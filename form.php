@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
@@ -50,7 +51,7 @@ class="img-thumbnail img-responsive"  >
                                 required="">
                         </div>
                     </div>
-                    <a class = "form-links" href="index.html">Já tenho uma conta</a>
+                    <a class = "form-links" href="index.php">Já tenho uma conta</a>
                     <br><br>
 
                     <div class="form-group">

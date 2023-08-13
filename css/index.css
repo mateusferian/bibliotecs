@@ -1,0 +1,36 @@
+body {
+    background-image: url(../img/index.jpg);
+    }
+
+.form-select {
+    appearance: none;
+    width: 100%; /* Define a largura do select como 100% */
+    padding: 10px; /* Adiciona um espaçamento interno ao select */
+    font-size: 16px; /* Define o tamanho da fonte */
+    border: 1px solid #99cdc7; /* Cor da borda do select */
+    border-radius: 4px; /* Adiciona cantos arredondados à borda */
+    background-color: #014d44; /* Cor de fundo do select */
+    color: #99cdc7; /* Cor do texto do select */
+}
+
+/* Estilo para a borda do select quando ele está focado */
+.form-select:focus {
+    outline: none; /* Remover o contorno padrão do elemento quando focado */
+    border-color: #014d44; /* Cor da borda do select quando focado */
+    box-shadow: 0 0 0 0.2rem #014d44; /* Adicionar uma sombra sutil quando focado */
+}
+
+/* customizando seta do select  */
+.form-select::after {
+    content: "▼"; /* Aqui, você pode usar o caractere unicode da seta para baixo */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #99cdc7; /* Cor da seta */
+}
+
+.align-vertical {
+    display: flex;
+    align-items: center;
+  }
