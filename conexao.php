@@ -1,10 +1,13 @@
     <?php
+
+    session_start();
 //variavéis de conexão
     $servername = "localhost";
     $username = "root";
     $password = "root";
     $dbname = "bd_biblioteca";
 
+    global $conn;
 
     try{
 
