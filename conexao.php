@@ -5,7 +5,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "root";
-    $dbname = "bd_biblioteca";
+    $dbname = "bd_bibliotecs";
 
     global $conn;
 

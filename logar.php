@@ -38,7 +38,7 @@ function verificaTipoUsuario($conn, $id, $tipo){
             header("Location: home_aluno.php"); // Redirecionar para a página do aluno
             exit();
         } elseif ($tipo == "2") {
-            header("Location: home_professor.php"); // Redirecionar para a página do professor
+            header("Location: admin/controleDeAluno.php"); // Redirecionar para a página do professor
             exit();
         }
     } else {
