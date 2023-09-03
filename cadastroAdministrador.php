@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro de usuarios</title>
+    <title>Cadastro de Administrador</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -115,57 +115,6 @@ class="img-thumbnail img-responsive"  >
     //fecha conexao
     $conn;
     ?>
-
-<h1>Consultar</h1>
-    <table border="1">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nome</th>
-      <th scope="col">email</th>
-      <th scope="col">senha</th>
-  </tr>
-  <?php
-  try{
-     $consulta = $conn->prepare("SELECT * FROM tbl_cadastro_usuario");
-     $consulta->execute();
-
-     while($row = $consulta->fetch(PDO::FETCH_ASSOC)){
-  ?>
-       <tr>
-        <td><?php echo $row["id"] ?> </td>
-        <td><?php echo $row["nome"] ?></td>
-        <td><?php echo $row["email"] ?></td>
-        <td><?php echo $row["senha"] ?></td>
-        <td>
-          <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
-          <a href="form.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
-       </td>
-    </tr>
-  <?php
-     }
-     }catch(PDOException $erro){
-       echo $erro->getMessage();
-     }
-  ?>
-    </table>
-    <?php
-    try{
-    if(isset($_REQUEST["ex"])){
-      $idUsuario = $_REQUEST["ex"];
-      $delete = $conn->prepare("DELETE FROM tbl_cadastro_usuario WHERE id=:id");
-      $delete->bindValue(':id',$idUsuario);
-      $delete ->execute();
-
-      echo "<script language=javascript>
-      alert('Dados excluidos com Sucesso !!');
-      location.href = 'form.php';
-      </script>";
-     }  
-    }catch(PDOException $erro){
-      echo $erro->getMessage();
-    }
-     $conn;
-     ?>
 </body>
 
 </html>

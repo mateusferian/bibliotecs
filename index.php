@@ -67,7 +67,7 @@ class="img-thumbnail img-responsive"  >
                             <a href="#" class="form-links">Esqueci minha senha</a>
                         </div>
                         <div class="align-vertical">
-                            <a href="form.php" class="form-links">Não tem uma conta? cadastre-se</a>
+                            <a href="cadastroUsuario.php" class="form-links">Não tem uma conta? cadastre-se</a>
                         </div>
                     </div>
 
