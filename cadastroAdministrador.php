@@ -51,7 +51,7 @@ class="img-thumbnail img-responsive"  >
                                 required="">
                         </div>
                     </div>
-                    <a class = "form-links" href="index.php">Já tenho uma conta</a>
+                    <a class="form-links" href="index.php">Já tenho uma conta</a>
                     <br><br>
 
                     <div class="form-group">
@@ -71,11 +71,11 @@ class="img-thumbnail img-responsive"  >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <script>
-        // Inicializa o AOS para ativar os efeitos na rolagem
-        AOS.init();
+    // Inicializa o AOS para ativar os efeitos na rolagem
+    AOS.init();
     </script>
 
-<?php
+    <?php
     //chamar o arquivo de conexão
     require_once "conexao.php";
 
@@ -86,28 +86,31 @@ class="img-thumbnail img-responsive"  >
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
       $tipo = 2;
-
+      $dataCadastro = date("Y-m-d");
+      $hash = password_hash($senha, PASSWORD_DEFAULT);
 
       //inicio da gravação de dados na tabela do banco de dados
       try{ //tente executar
         //variavel com os dados de gravação na tabela
-        $sql = $conn->prepare("INSERT INTO tbl_cadastro_usuario (id, nome, email, senha ,tipo)
-                            VALUES (:id, :nome, :email, :senha, :tipo) ");
+        $sql = $conn->prepare("INSERT INTO tbl_cadastro_usuario (id, nome, email, senha ,tipo,dataCadastro)
+                            VALUES (:id, :nome, :email, :senha, :tipo, :dataCadastro) ");
         
         //passagem de parametros para a tabela
-        $sql->bindValue(':id', null);
+        $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
-        $sql->bindValue(':senha', $senha);
+        $sql->bindValue(':senha', $hash);
         $sql->bindValue(':tipo', $tipo);
+        $sql->bindValue(':dataCadastro', $dataCadastro);
 
         //execução da query de inserção
         $sql->execute();
         //msg caso não ocorra erro
         echo "<script language=javascript>
-        alert('Dados gravados com Sucesso !!');
-        location.href = 'cadastroAdministrador.php';
+        alert('Dados gravados com Sucesso !!\\n\\nPara evitar riscos de senhas incorretas, pedimos para selecionar o \"Lembre de mim\" na página de login');
+        location.href = 'index.php';
         </script>";
+        
       } // caso não executar captura o erro no sgbd
       catch (PDOException $erro) {
           echo $erro->getMessage();
