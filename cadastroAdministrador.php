@@ -24,7 +24,7 @@ class="img-thumbnail img-responsive"  >
         data-aos-delay="100">
         <div class="container mt-4">
             <div class="col-md-6 offset-md-3">
-                <form class="form" action="form.php" method="POST" name="formulario">
+                <form class="form" action="cadastroAdministrador.php" method="POST" name="formulario">
                     <br><br>
                     <h1 class="text-center">Cadastro</h1>
                     <br><br>
@@ -85,26 +85,28 @@ class="img-thumbnail img-responsive"  >
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
+      $tipo = 2;
 
 
       //inicio da gravação de dados na tabela do banco de dados
       try{ //tente executar
         //variavel com os dados de gravação na tabela
-        $sql = $conn->prepare("INSERT INTO tbl_cadastro_usuario (id, nome, email, senha)
-                            VALUES (:id, :nome, :email, :senha) ");
+        $sql = $conn->prepare("INSERT INTO tbl_cadastro_usuario (id, nome, email, senha ,tipo)
+                            VALUES (:id, :nome, :email, :senha, :tipo) ");
         
         //passagem de parametros para a tabela
         $sql->bindValue(':id', null);
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $senha);
+        $sql->bindValue(':tipo', $tipo);
 
         //execução da query de inserção
         $sql->execute();
         //msg caso não ocorra erro
         echo "<script language=javascript>
         alert('Dados gravados com Sucesso !!');
-        location.href = 'form.php';
+        location.href = 'cadastroAdministrador.php';
         </script>";
       } // caso não executar captura o erro no sgbd
       catch (PDOException $erro) {
