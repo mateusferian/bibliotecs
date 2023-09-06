@@ -186,7 +186,7 @@ require_once "conexao.php";
                 $consulta->execute();
 
                 $totalAlunos = $consulta->rowCount();
-                $alunosPorPagina = 15; // Número de alunos por página
+                $alunosPorPagina = 10; // Número de alunos por página
                 $totalPaginas = ceil($totalAlunos / $alunosPorPagina);
 
                 $paginaAtual = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
