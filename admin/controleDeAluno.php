@@ -7,36 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>controle de alunos</title>
 
-    <!--Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"> </script>
-    <script src="script.js"></script>
+
+    <!--vendor -->
+    <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
+
+    <script src="funcoes/vendor/aos/aos.js"></script>
+    <script src="funcoes/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="funcoes/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="funcoes/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="js/efeitos.js"></script>
+
+    <!-- css  -->
+    <link href="css/mainAdmin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/botao.css">
 
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
@@ -60,6 +47,25 @@
     .img_lista {
         max-width: 100px;
         height: auto;
+    }
+
+    .botao-filtrar {
+        background-color: rgba(0, 131, 116, 0.8);
+        color: white;
+        border: 2px solid rgba(0, 131, 116, 0.8);
+    }
+
+    /* Estilo de hover do botão */
+    .botao-filtrar:hover {
+        background-color: #99cdc7;
+        color: white;
+        border: 2px solid #99cdc7;
+    }
+
+    #meuBotao:active {
+        background-color: #014d44;
+        border: 2px solid #014d44;
+        /* Cor quando o botão é clicado e segurado */
     }
     </style>
 
@@ -128,10 +134,9 @@ require_once "conexao.php";
 
 ?>
     <p class="fs-2 text-center mt-5">Controle de Alunos</p>
-
     <div class="container mt-4">
         <form method="get">
-            <p class="fs-5  mt-5">Opção de filtragem</p>
+            <p class="fs-5 mt-5">Opção de filtragem</p>
             <select class="form-control" name="filtro">
                 <option value="opcao0">sem filtro</option>
                 <option value="opcao1">há 7 dias</option>
@@ -139,12 +144,12 @@ require_once "conexao.php";
                 <option value="opcao3">há 21 dias</option>
                 <option value="opcao4">mais de 21 dias</option>
             </select>
-            <button type="submit" class="btn btn-primary mt-2 red-color-button">Filtrar</button>
-
-
-
+            <button id="meuBotao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
         </form>
     </div>
+
+
+
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -232,7 +237,7 @@ require_once "conexao.php";
         // Mostre o alerta com o nome do livro
         echo "<script language=javascript>
               alert('O usuario \"" . $aluno['nome'] . "\" foi excluído com sucesso!');
-              location.href = 'controleDeUsuario.php';
+              location.href = 'controleDeAluno.php';
               </script>";
     }
     }catch(PDOException $erro){

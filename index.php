@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/botao.css">
     <!-- <link rel="stylesheet" href="css/index.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
@@ -76,7 +77,7 @@ class="img-thumbnail img-responsive"  >
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Entrar" class="btn btn-primary" name="Entrar">
+                        <input type="submit" value="Entrar" class="btn btn-primary" name="Entrar" id="meuBotao">
                         </div>
                         <br><br>
                     </div>

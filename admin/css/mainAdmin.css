@@ -309,11 +309,8 @@ h6 {
 --------------------------------------------------------------*/
 
 /* styles.css */
-.red-color-button {
-  background-color: rgba(0, 131, 116, 0.8); /* Defina a cor de fundo desejada */
-  border-color: rgba(0, 131, 116, 0.8); /* Defina a cor da borda desejada */
-  color: white; /* Cor do texto no botão */
-}
+
+
 
  /* numeros da paginação dos livros */
 
