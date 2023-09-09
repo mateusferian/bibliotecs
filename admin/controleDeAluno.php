@@ -9,7 +9,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"> </script>
-
+    
     <!--vendor -->
     <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
 
@@ -18,11 +18,15 @@
     <script src="funcoes/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="funcoes/vendor/swiper/swiper-bundle.min.js"></script>
 
+    <!-- alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Template Main JS File -->
     <script src="js/efeitos.js"></script>
 
     <!-- css  -->
     <link href="css/mainAdmin.css" rel="stylesheet">
+    <link href="css/controleDeAluno.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
 
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
@@ -222,24 +226,8 @@ require_once "conexao.php";
     try{
      if (isset($_REQUEST["ex"])) {
         $id = $_REQUEST["ex"];
-        
-        // Recupere o nome do livro antes de excluí-lo
-        $stmt = $conn->prepare("SELECT nome FROM tbl_alunos WHERE id = :id");
-        $stmt->bindValue(':id', $id);
-        $stmt->execute();
-        $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Exclua o registro
-        $delete = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
-        $delete->bindValue(':id', $id);
-        $delete->execute();
-
-        // Mostre o alerta com o nome do livro
-        echo "<script language=javascript>
-              alert('O usuario \"" . $aluno['nome'] . "\" foi excluído com sucesso!');
-              location.href = 'controleDeAluno.php';
-              </script>";
-    }
+        deletandoAluno($id, $conn);
+     }
     }catch(PDOException $erro){
       echo $erro->getMessage();
     }
@@ -274,8 +262,75 @@ require_once "conexao.php";
         </nav>
     </div>
 
+    <?php
+    function deletandoAluno($id,$conn ){
+        $stmt = $conn->prepare("SELECT nome FROM tbl_alunos WHERE id = :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        echo "<script>
+        Swal.fire({
+            title: 'Apagar',
+            html: '<p>Tem certeza que deseja apagar  \"" . $aluno['nome'] . "\"?</p>',
+            customClass: {
+                popup: 'swalFireControleDeAluno', // Classe CSS personalizada para a caixa de diálogo
+            },
+            showCancelButton: true, // Não mostrar o botão de cancelar
+            confirmButtonText: 'sim',
+            cancelButtonText: 'não',
+            timer: 5000, // Defina o temporizador para 5 segundos (5000 milissegundos)
+            timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+            allowOutsideClick: false      
+        }).then((result) => {
+            if (result.isConfirmed) {
 
+                window.location.href = 'controleDeAluno.php?excluir=true&id=" . $id . "';
+            }else{
+            }
+        });
+        </script>";
+        }
+
+        if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+            $id = $_GET['id'];
+        
+            // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
+            $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+        
+            if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+                $id = $_GET['id'];
+            
+                // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
+                $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+                $stmt->bindValue(':id', $id);
+                $stmt->execute();
+            
+                // Redirecione de volta para o mesmo arquivo controleDeAluno.php após a exclusão
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Aluno apagado com sucesso',
+                        customClass: {
+                            popup: 'swalFireControleDeAlunoApagado', // Classe CSS personalizada para a caixa de diálogo
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false  
+                    });
+            
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeAluno.php';
+                    }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+                </script>";
+                exit;
+            }
+            
+            exit;
+        }
+?>
 
 
     <!-- ======= Footer ======= -->

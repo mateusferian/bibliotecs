@@ -3,7 +3,7 @@ class Usuario
 {
     public function login($email, $senha, $conn)
     {
-        $sql = "SELECT * FROM tbl_cadastro_usuario WHERE email = :email";
+        $sql = "SELECT * FROM tbl_administrador WHERE email = :email";
         $sql = $conn->prepare($sql);
         $sql->bindValue(":email", $email);
         $sql->execute();
@@ -22,7 +22,7 @@ class Usuario
 
     public function buscarUsuarioPorId($conn, $id)
     {
-        $sql = "SELECT * FROM tbl_cadastro_usuario WHERE id = :id";
+        $sql = "SELECT * FROM tbl_administrador WHERE id = :id";
         $sql = $conn->prepare($sql);
         $sql->bindValue(":id", $id);
         $sql->execute();
