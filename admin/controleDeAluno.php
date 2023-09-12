@@ -165,7 +165,7 @@ require_once "conexao.php";
                     <th scope="col">SALA</th>
                     <th scope="col">NOME DO LIVRO RETIRADO</th>
                     <th scope="col">DATA DA ENTREGA</th>
-                    <th scope="col" colspan="2">AÇÕES</th>
+                    <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -211,6 +211,8 @@ require_once "conexao.php";
                     <td><?php echo $row["dataEntrega"] ?></td>
                     <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                        </td>
+                        <td>
                         <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
                     </td>
                 </tr>

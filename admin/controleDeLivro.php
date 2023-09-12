@@ -114,7 +114,7 @@ require_once "conexao.php";
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livros WHERE arquivo2 IS NULL OR arquivo2 = '';");
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '';");
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10; // Número de livros por página
@@ -123,7 +123,7 @@ require_once "conexao.php";
         $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
         $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
 
-        $consulta = $conn->prepare("SELECT * FROM tbl_livros WHERE arquivo2 IS NULL OR arquivo2 = '' LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '' LIMIT $indiceInicial, $livrosPorPagina;");
         $consulta->execute();
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -210,7 +210,7 @@ require_once "conexao.php";
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livros WHERE arquivo2 IS NOT NULL AND arquivo2 <> '';");
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '';");
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10; // Número de livros por página
@@ -219,7 +219,7 @@ require_once "conexao.php";
         $paginaAtual2 = isset($_GET['pagina2']) ? max(1, $_GET['pagina2']) : 1;
         $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
     
-        $consulta = $conn->prepare("SELECT * FROM tbl_livros WHERE arquivo2 IS NOT NULL AND arquivo2 <> '' LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '' LIMIT $indiceInicial, $livrosPorPagina;");
         $consulta->execute();
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
@@ -290,7 +290,7 @@ require_once "conexao.php";
     </div>
  <?php
     function deletandoLivro($id,$conn ){
-                $stmt = $conn->prepare("SELECT nome FROM tbl_livros WHERE id_liv = :id_liv");
+                $stmt = $conn->prepare("SELECT nome FROM tbl_livro WHERE id_liv = :id_liv");
                 $stmt->bindValue(':id_liv', $id);
                 $stmt->execute();
                 $livro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -322,7 +322,7 @@ require_once "conexao.php";
                     $id = $_GET['id'];
                 
                     // Execute a lógica de exclusão do livro com base no $id usando a conexão $conn
-                    $stmt = $conn->prepare("DELETE FROM tbl_livros WHERE id_liv = :id_liv");
+                    $stmt = $conn->prepare("DELETE FROM tbl_livro WHERE id_liv = :id_liv");
                     $stmt->bindValue(':id_liv', $id);
                     $stmt->execute();
                 
@@ -330,7 +330,7 @@ require_once "conexao.php";
                         $id = $_GET['id'];
                     
                         // Execute a lógica de exclusão do livro com base no $id usando a conexão $conn
-                        $stmt = $conn->prepare("DELETE FROM tbl_livros WHERE id_liv = :id_liv");
+                        $stmt = $conn->prepare("DELETE FROM tbl_livro WHERE id_liv = :id_liv");
                         $stmt->bindValue(':id_liv', $id);
                         $stmt->execute();
                     
