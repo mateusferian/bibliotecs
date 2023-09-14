@@ -54,7 +54,7 @@ class="img-thumbnail img-responsive"  >
                                 required="">
                         </div>
                     </div>
-                    <a class="form-links" href="index.php">Já tenho uma conta</a>
+                    <a class="form-links" href="../index.php">Já tenho uma conta</a>
                     <br><br>
 
                     <div class="form-group">
