@@ -1,4 +1,18 @@
 
+.form-control {
+    background-color: #014d44; /* Cor de fundo preta */
+    color: white; /* Cor do texto branca */
+    box-shadow: none; /* Remove a sombra em foco */
+}
+
+.form-control:focus {
+    background-color: #014d44; /* Cor de fundo preta quando em foco */
+    color: white; /* Cor do texto branca quando em foco */
+    box-shadow: none; /* Remove a sombra em foco */
+    box-shadow: 0px 0px 5px 0px #99cdc7;
+}
+
+
 .swalFireIndex {
     background-color: #008374;
     border: 2px solid #ffffff;
