@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url(../imagensDeFundo/cadastro.jpg);
+    background-image: url(../imagensDeFundo/cadastro2.jpg);
     }
 
     .form-control {
@@ -16,7 +16,7 @@ body {
         box-shadow: none; /* Remove a sombra em foco */
         box-shadow: 0px 0px 5px 0px #99cdc7;
     }
-    
+
 .swalFireCadastroAdministrador {
     background-color: #008374;
     border: 2px solid #ffffff;
