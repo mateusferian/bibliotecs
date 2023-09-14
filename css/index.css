@@ -1,4 +1,8 @@
 
+#meuBotao:active {
+    background-color: #014d44; /* Cor quando o botão é clicado e segurado */
+}
+
 .form-control {
     background-color: #014d44; /* Cor de fundo preta */
     color: white; /* Cor do texto branca */

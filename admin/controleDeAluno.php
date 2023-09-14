@@ -29,7 +29,7 @@
     <link href="css/controleDeAluno.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
 
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
 
     <style>
     .img_novidades {
@@ -44,8 +44,6 @@
     </style>
 
     <script src="js/bootstrap.min.js"> </script>
-
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
     <style>
     .img_lista {
@@ -120,7 +118,7 @@
                         Bem-vindo à nossa biblioteca online, onde cada página é uma descoberta</p>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
-                    <img src="assets/img/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out"
+                    <img src="imagensDeFundo/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out"
                         data-aos-delay="100">
                 </div>
             </div>
@@ -400,21 +398,6 @@ require_once "conexao.php";
             class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-
-
-
     </div>
 </body>
 
