@@ -7,36 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>controle de alunos</title>
 
-    <!--Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"> </script>
-    <script src="script.js"></script>
+    
+    <!--vendor -->
+    <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
+
+    <script src="funcoes/vendor/aos/aos.js"></script>
+    <script src="funcoes/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="funcoes/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="funcoes/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Template Main JS File -->
+    <script src="js/efeitos.js"></script>
+
+    <!-- css  -->
+    <link href="css/mainAdmin.css" rel="stylesheet">
+    <link href="css/controleDeAluno.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/botao.css">
 
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
@@ -61,12 +52,33 @@
         max-width: 100px;
         height: auto;
     }
+
+    .botao-filtrar {
+        background-color: rgba(0, 131, 116, 0.8);
+        color: white;
+        border: 2px solid rgba(0, 131, 116, 0.8);
+    }
+
+    /* Estilo de hover do botão */
+    .botao-filtrar:hover {
+        background-color: #99cdc7;
+        color: white;
+        border: 2px solid #99cdc7;
+    }
+
+    #meuBotao:active {
+        background-color: #014d44;
+        border: 2px solid #014d44;
+        /* Cor quando o botão é clicado e segurado */
+    }
     </style>
 
 </head>
 
 <body>
-
+<?php
+    require_once "../restrito.php";
+    ?>
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -82,6 +94,7 @@
                     <li><a href="#Ajuda"> conta</a></li>
                     <li><a href="blog.html">cadastro de livros</a></li>
                     <li><a href="blog.html">notificações</a></li>
+                    <li><a href="sair.php"> sair</a></li>
                 </ul>
             </nav><!-- .navbar -->
 
@@ -128,10 +141,9 @@ require_once "conexao.php";
 
 ?>
     <p class="fs-2 text-center mt-5">Controle de Alunos</p>
-
     <div class="container mt-4">
         <form method="get">
-            <p class="fs-5  mt-5">Opção de filtragem</p>
+            <p class="fs-5 mt-5">Opção de filtragem</p>
             <select class="form-control" name="filtro">
                 <option value="opcao0">sem filtro</option>
                 <option value="opcao1">há 7 dias</option>
@@ -139,12 +151,12 @@ require_once "conexao.php";
                 <option value="opcao3">há 21 dias</option>
                 <option value="opcao4">mais de 21 dias</option>
             </select>
-            <button type="submit" class="btn btn-primary mt-2 red-color-button">Filtrar</button>
-
-
-
+            <button id="meuBotao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
         </form>
     </div>
+
+
+
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -156,7 +168,7 @@ require_once "conexao.php";
                     <th scope="col">SALA</th>
                     <th scope="col">NOME DO LIVRO RETIRADO</th>
                     <th scope="col">DATA DA ENTREGA</th>
-                    <th scope="col" colspan="2">AÇÕES</th>
+                    <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -181,7 +193,7 @@ require_once "conexao.php";
                 $consulta->execute();
 
                 $totalAlunos = $consulta->rowCount();
-                $alunosPorPagina = 15; // Número de alunos por página
+                $alunosPorPagina = 10; // Número de alunos por página
                 $totalPaginas = ceil($totalAlunos / $alunosPorPagina);
 
                 $paginaAtual = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
@@ -202,6 +214,8 @@ require_once "conexao.php";
                     <td><?php echo $row["dataEntrega"] ?></td>
                     <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                        </td>
+                        <td>
                         <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
                     </td>
                 </tr>
@@ -217,24 +231,8 @@ require_once "conexao.php";
     try{
      if (isset($_REQUEST["ex"])) {
         $id = $_REQUEST["ex"];
-        
-        // Recupere o nome do livro antes de excluí-lo
-        $stmt = $conn->prepare("SELECT nome FROM tbl_alunos WHERE id = :id");
-        $stmt->bindValue(':id', $id);
-        $stmt->execute();
-        $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Exclua o registro
-        $delete = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
-        $delete->bindValue(':id', $id);
-        $delete->execute();
-
-        // Mostre o alerta com o nome do livro
-        echo "<script language=javascript>
-              alert('O usuario \"" . $aluno['nome'] . "\" foi excluído com sucesso!');
-              location.href = 'controleDeUsuario.php';
-              </script>";
-    }
+        deletandoAluno($id, $conn);
+     }
     }catch(PDOException $erro){
       echo $erro->getMessage();
     }
@@ -269,8 +267,75 @@ require_once "conexao.php";
         </nav>
     </div>
 
+    <?php
+    function deletandoAluno($id,$conn ){
+        $stmt = $conn->prepare("SELECT nome FROM tbl_alunos WHERE id = :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        echo "<script>
+        Swal.fire({
+            title: 'Apagar',
+            html: '<p>Tem certeza que deseja apagar  \"" . $aluno['nome'] . "\"?</p>',
+            customClass: {
+                popup: 'swalFireControleDeAluno', // Classe CSS personalizada para a caixa de diálogo
+            },
+            showCancelButton: true, // Não mostrar o botão de cancelar
+            confirmButtonText: 'sim',
+            cancelButtonText: 'não',
+            timer: 5000, // Defina o temporizador para 5 segundos (5000 milissegundos)
+            timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+            allowOutsideClick: false      
+        }).then((result) => {
+            if (result.isConfirmed) {
 
+                window.location.href = 'controleDeAluno.php?excluir=true&id=" . $id . "';
+            }else{
+            }
+        });
+        </script>";
+        }
+
+        if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+            $id = $_GET['id'];
+        
+            // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
+            $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+        
+            if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+                $id = $_GET['id'];
+            
+                // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
+                $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+                $stmt->bindValue(':id', $id);
+                $stmt->execute();
+            
+                // Redirecione de volta para o mesmo arquivo controleDeAluno.php após a exclusão
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Aluno apagado com sucesso',
+                        customClass: {
+                            popup: 'swalFireControleDeAlunoApagado', // Classe CSS personalizada para a caixa de diálogo
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false  
+                    });
+            
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeAluno.php';
+                    }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+                </script>";
+                exit;
+            }
+            
+            exit;
+        }
+?>
 
 
     <!-- ======= Footer ======= -->

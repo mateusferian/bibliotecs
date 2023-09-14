@@ -24,8 +24,12 @@
 
     <!-- css  -->
     <link href="css/mainAdmin.css" rel="stylesheet">
-
+    <link href="css/controleDeLivro.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/botao.css">
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
     .img_lista {
@@ -37,7 +41,9 @@
 </head>
 
 <body>
-
+<?php
+    require_once "../restrito.php";
+    ?>
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -104,25 +110,119 @@ require_once "conexao.php";
                     <th scope="col">EDITORA</th>
                     <th scope="col">DESTAQUE</th>
                     <th scope="col">IMAGEM</th>
-                    <th scope="col">DOWNLOAD</th>
-                    <th  colspan="2" scope="col">AÇÕES</th>
+                    <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livros;");
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '';");
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-        $livrosPorPagina = 15; // Número de livros por página
+        $livrosPorPagina = 10; // Número de livros por página
         $totalPaginas = ceil($totalLivros / $livrosPorPagina);
 
-        $paginaAtual = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
-        $indiceInicial = ($paginaAtual - 1) * $livrosPorPagina;
+        $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
+        $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
 
-        $consulta = $conn->prepare("SELECT * FROM tbl_livros LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '' LIMIT $indiceInicial, $livrosPorPagina;");
         $consulta->execute();
 
+        while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            echo '<tr>';
+            echo '<td>' . $row["id_liv"] . '</td>';
+            echo '<td>' . $row["nome"] . '</td>';
+            echo '<td>' . $row["autor"] . '</td>';
+            echo '<td>' . $row["ano"] . '</td>';
+            echo '<td>' . $row["editora"] . '</td>';
+            echo '<td>' . $row["destaque"] . '</td>';
+            echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
+            echo '<td>';
+            echo '<a href="alterar.php?al=' . $row["id_liv"] . '">Alterar</a>';
+            echo '</td>';
+            echo '<td>';
+            echo '<a href="controleDeLivro.php?ex=' . $row["id_liv"] . '">Excluir</a>';
+            echo '</td>';
+            echo '</tr>';
+          }
+        } catch (PDOException $erro) {
+          echo $erro->getMessage();
+        }
+        ?>
+            </tbody>
+        </table>
+
+        <?php
+
+        try {
+            if (isset($_REQUEST["ex"])) {
+                $id = $_REQUEST["ex"];
+                deletandoLivro($id,$conn );
+            }
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
+       $conn;
+       ?>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center custom-pagination">
+                <?php
+    $groupSize = 5; // Número de páginas em cada grupo
+    $startPage = 1; // coloca os ... (3 pontos) depois de 5 paginas 
+
+    if ($paginaAtual1 > $groupSize) {
+      $startPage = $paginaAtual1 - floor($groupSize / 2);
+    }
+
+    for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
+      $activeClass = $i == $paginaAtual1 ? 'active' : '';
+
+      if ($i == $startPage && $i > 1) {
+        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i - 1) . '">...</a></li>';
+      }
+
+      echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina1=' . $i . '">' . $i . '</a></li>';
+
+      if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
+        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i + 1) . '">...</a></li>';
+      }
+    }
+    ?>
+            </ul>
+        </nav>
+    </div>
+
+    <p class="fs-2 text-center mt-5">Livros em PDF Cadastrados</p>
+
+    <div class="container mt-5">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light">
+                    <th scope="col">ID</th>
+                    <th scope="col">NOME</th>
+                    <th scope="col">AUTOR</th>
+                    <th scope="col">ANO</th>
+                    <th scope="col">EDITORA</th>
+                    <th scope="col">DESTAQUE</th>
+                    <th scope="col">IMAGEM</th>
+                    <th scope="col">DOWNLOAD</th>
+                    <th colspan="2" scope="col">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+      try {
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '';");
+        $consulta->execute();
+        $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
+        $livrosPorPagina = 10; // Número de livros por página
+        $totalPaginas = ceil($totalLivros / $livrosPorPagina);
+    
+        $paginaAtual2 = isset($_GET['pagina2']) ? max(1, $_GET['pagina2']) : 1;
+        $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
+    
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '' LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta->execute();
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
             echo '<td>' . $row["id_liv"] . '</td>';
@@ -145,35 +245,16 @@ require_once "conexao.php";
           echo $erro->getMessage();
         }
         ?>
-      </tbody>
-    </table>
-    
-    <?php
+            </tbody>
+        </table>
+
+        <?php
       try{
-        try {
             if (isset($_REQUEST["ex"])) {
                 $id = $_REQUEST["ex"];
-                
-                // Recupere o nome do livro antes de excluí-lo
-                $stmt = $conn->prepare("SELECT nome FROM tbl_livros WHERE id_liv = :id_liv");
-                $stmt->bindValue(':id_liv', $id);
-                $stmt->execute();
-                $livro = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-                // Exclua o registro
-                $delete = $conn->prepare("DELETE FROM tbl_livros WHERE id_liv = :id_liv");
-                $delete->bindValue(':id_liv', $id);
-                $delete->execute();
-        
+                deletandoLivro($id,$conn );
                 // Mostre o alerta com o nome do livro
-                echo "<script language=javascript>
-                      alert('O livro \"" . $livro['nome'] . "\" foi excluído com sucesso!');
-                      location.href = 'controleDeLivro.php';
-                      </script>";
             }
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
       }catch(PDOException $erro){
         echo $erro->getMessage();
       }
@@ -185,21 +266,21 @@ require_once "conexao.php";
     $groupSize = 5; // Número de páginas em cada grupo
     $startPage = 1; // coloca os ... (3 pontos) depois de 5 paginas 
 
-    if ($paginaAtual > $groupSize) {
-      $startPage = $paginaAtual - floor($groupSize / 2);
+    if ($paginaAtual2 > $groupSize) {
+      $startPage = $paginaAtual2 - floor($groupSize / 2);
     }
 
     for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
-      $activeClass = $i == $paginaAtual ? 'active' : '';
+      $activeClass = $i == $paginaAtual2 ? 'active' : '';
 
       if ($i == $startPage && $i > 1) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i - 1) . '">...</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="?pagina2=' . ($i - 1) . '">...</a></li>';
       }
 
-      echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina=' . $i . '">' . $i . '</a></li>';
+      echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina2=' . $i . '">' . $i . '</a></li>';
 
       if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i + 1) . '">...</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="?pagina2=' . ($i + 1) . '">...</a></li>';
       }
     }
     ?>
@@ -209,6 +290,75 @@ require_once "conexao.php";
 
 
     </div>
+ <?php
+    function deletandoLivro($id,$conn ){
+                $stmt = $conn->prepare("SELECT nome FROM tbl_livro WHERE id_liv = :id_liv");
+                $stmt->bindValue(':id_liv', $id);
+                $stmt->execute();
+                $livro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                echo "<script>
+                Swal.fire({
+                    title: 'Apagar',
+                    html: '<p>Tem certeza que deseja apagar  \"" . $livro['nome'] . "\"?</p>',
+                    customClass: {
+                        popup: 'swalFireControleDeLivro', // Classe CSS personalizada para a caixa de diálogo
+                    },
+                    showCancelButton: true, // Não mostrar o botão de cancelar
+                    confirmButtonText: 'sim',
+                    cancelButtonText: 'não',
+                    timer: 5000, // Defina o temporizador para 5 segundos (5000 milissegundos)
+                    timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+                    allowOutsideClick: false      
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        window.location.href = 'controleDeLivro.php?excluir=true&id=" . $id . "';
+                    }else{
+                    }
+                });
+                </script>";
+                }
+
+                if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                
+                    // Execute a lógica de exclusão do livro com base no $id usando a conexão $conn
+                    $stmt = $conn->prepare("DELETE FROM tbl_livro WHERE id_liv = :id_liv");
+                    $stmt->bindValue(':id_liv', $id);
+                    $stmt->execute();
+                
+                    if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
+                        $id = $_GET['id'];
+                    
+                        // Execute a lógica de exclusão do livro com base no $id usando a conexão $conn
+                        $stmt = $conn->prepare("DELETE FROM tbl_livro WHERE id_liv = :id_liv");
+                        $stmt->bindValue(':id_liv', $id);
+                        $stmt->execute();
+                    
+                        // Redirecione de volta para o mesmo arquivo controleDeLivro.php após a exclusão
+                        echo "<script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Livro apagado com sucesso',
+                                customClass: {
+                                    popup: 'swalFireControleDeLivroApagado', // Classe CSS personalizada para a caixa de diálogo
+                                },
+                                showConfirmButton: false,
+                                allowOutsideClick: false  
+                            });
+                    
+                            // Redirecione automaticamente após um breve atraso
+                            setTimeout(function() {
+                                window.location.href = 'controleDeLivro.php';
+                            }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+                        </script>";
+                        exit;
+                    }
+                    
+                    exit;
+                }
+?>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">

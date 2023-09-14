@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/botao.css">
     <!-- <link rel="stylesheet" href="css/index.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -26,19 +28,10 @@ class="img-thumbnail img-responsive"  >
         <div class="container mt-4">
             <div class="col-md-6 offset-md-7">
                 <!-- Changed offset to 6 to move the form to the right -->
-                <form class="form" action="logar.php" method="POST" name="formulario">
+                <form class="form" action="login.php" method="POST" name="formulario">
                     <br><br>
                     <h1 class="text-center">Login</h1>
                     <br><br>
-
-                    <div class="form-group">
-                        <div class="col-md-6 offset-md-3">
-                            <select class="form-select" aria-label="tipo de usuario" name="tipo">
-                                <option selected value="1">Usuario</option>
-                                <option value="2">Administrador</option>
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
@@ -67,7 +60,7 @@ class="img-thumbnail img-responsive"  >
                             <a href="#" class="form-links">Esqueci minha senha</a>
                         </div>
                         <div class="align-vertical">
-                            <a href="form.php" class="form-links">Não tem uma conta? cadastre-se</a>
+                            <a href="cadastroUsuario.php" class="form-links">Não tem uma conta? cadastre-se</a>
                         </div>
                     </div>
 
@@ -76,7 +69,7 @@ class="img-thumbnail img-responsive"  >
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Entrar" class="btn btn-primary" name="Entrar">
+                            <input type="submit" value="Entrar" class="btn btn-primary" name="acessar" id="meuBotao">
                         </div>
                         <br><br>
                     </div>
@@ -84,7 +77,6 @@ class="img-thumbnail img-responsive"  >
             </div>
         </div>
     </div>
-
 
     <script src="js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
