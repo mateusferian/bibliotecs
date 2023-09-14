@@ -76,7 +76,9 @@
 </head>
 
 <body>
-
+<?php
+    require_once "../restrito.php";
+    ?>
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -92,6 +94,7 @@
                     <li><a href="#Ajuda"> conta</a></li>
                     <li><a href="blog.html">cadastro de livros</a></li>
                     <li><a href="blog.html">notificações</a></li>
+                    <li><a href="sair.php"> sair</a></li>
                 </ul>
             </nav><!-- .navbar -->
 

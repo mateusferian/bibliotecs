@@ -1,3 +1,18 @@
+
+.swalFireIndex {
+    background-color: #008374;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 10px;
+    border-radius: 10px;
+
+    /* Media query para telas menores (por exemplo, dispositivos móveis) */
+    @media screen and (max-width: 768px) {
+        width: 100%; /* Largura de 100% em telas menores */
+    }
+}
+
+
 body {
     background-image: url(../img/index.jpg);
     }
