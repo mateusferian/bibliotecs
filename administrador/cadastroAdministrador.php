@@ -92,15 +92,14 @@
       //inicio da gravação de dados na tabela do banco de dados
       try{ //tente executar
         //variavel com os dados de gravação na tabela
-        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,tipo,dataCadastro)
-                            VALUES (:id, :nome, :email, :senha, :tipo, :dataCadastro) ");
+        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro)
+                            VALUES (:id, :nome, :email, :senha, :dataCadastro) ");
         
         //passagem de parametros para a tabela
         $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $hash);
-        $sql->bindValue(':tipo', $tipo);
         $sql->bindValue(':dataCadastro', $dataCadastro);
 
         //execução da query de inserção
