@@ -160,8 +160,6 @@ require_once "conexao.php";
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">SALA</th>
-                    <th scope="col">NOME DO LIVRO RETIRADO</th>
-                    <th scope="col">DATA DA ENTREGA</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -171,7 +169,7 @@ require_once "conexao.php";
                 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : "opcao0";
 
                 // Monta a consulta SQL baseado no filtro escolhido
-                $consultaSQL = "SELECT * FROM tbl_alunos";
+                $consultaSQL = "SELECT * FROM tbl_aluno";
 
                 if ($filtro === "opcao1") {
                     $consultaSQL .= " WHERE DATEDIFF(CURDATE(), dataEntrega) > 0 AND DATEDIFF(CURDATE(), dataEntrega) <= 7";
@@ -204,8 +202,6 @@ require_once "conexao.php";
                     <td><?php echo $row["nome"] ?></td>
                     <td><?php echo $row["email"] ?></td>
                     <td><?php echo $row["sala"] ?></td>
-                    <td><?php echo $row["livro"] ?></td>
-                    <td><?php echo $row["dataEntrega"] ?></td>
                     <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
                         </td>
@@ -263,7 +259,7 @@ require_once "conexao.php";
 
     <?php
     function deletandoAluno($id,$conn ){
-        $stmt = $conn->prepare("SELECT nome FROM tbl_alunos WHERE id = :id");
+        $stmt = $conn->prepare("SELECT nome FROM tbl_aluno WHERE id = :id");
         $stmt->bindValue(':id', $id);
         $stmt->execute();
         $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -295,7 +291,7 @@ require_once "conexao.php";
             $id = $_GET['id'];
         
             // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
-            $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+            $stmt = $conn->prepare("DELETE FROM tbl_aluno WHERE id = :id");
             $stmt->bindValue(':id', $id);
             $stmt->execute();
         
@@ -303,7 +299,7 @@ require_once "conexao.php";
                 $id = $_GET['id'];
             
                 // Execute a lógica de exclusão do Aluno com base no $id usando a conexão $conn
-                $stmt = $conn->prepare("DELETE FROM tbl_alunos WHERE id = :id");
+                $stmt = $conn->prepare("DELETE FROM tbl_aluno WHERE id = :id");
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
             
