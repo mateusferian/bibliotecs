@@ -26,7 +26,7 @@
     <link href="css/mainAdmin.css" rel="stylesheet">
     <link href="css/controleDeLivro.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -81,7 +81,7 @@
                         Bem-vindo à nossa biblioteca online, onde cada página é uma descoberta</p>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
-                    <img src="imagens/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+                    <img src="imagensDeFundo/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
                 </div>
             </div>
         </div>
