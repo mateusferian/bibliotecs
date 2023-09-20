@@ -17,7 +17,7 @@
             $senhas = $_REQUEST['senha'];
 
             $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
-            
+
             $consultaAdministrador->bindValue(':email' , $email);
             $consultaAdministrador->execute();
             $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
@@ -43,7 +43,7 @@
                     
                     $_SESSION['nome'] = $rowAdministrador['nome'];
 
-                    header(("location:../admin/controleDeAluno.php"));
+                    header(("location:../administrador/controleDeAluno.php"));
                 }
     
                 if($totalRowAluno > 0 ){
@@ -56,7 +56,7 @@
                     
                     // $_SESSION['nome'] = $rowAluno['nome'];
 
-                    header(("location: ../inicio_usuario.php"));
+                    header(("location: ../usuario/inicio_usuario.php"));
                 }
 
             } else{
