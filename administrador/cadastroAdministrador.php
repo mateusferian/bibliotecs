@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>Senha</label>
-                            <input type="text" name="senha" class="form-control" placeholder="digite a sua senha"
+                            <input type="password" name="senha" class="form-control" 
                                 required="">
                         </div>
                     </div>
