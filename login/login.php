@@ -16,31 +16,47 @@
             $email = $_REQUEST['email'];
             $senhas = $_REQUEST['senha'];
 
-            $consulta = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
-
-            $consulta->bindValue(':email' , $email);
-            $consulta->execute();
-            $row = $consulta->fetch(PDO::FETCH_ASSOC);
-
-            $total_rows = $consulta ->rowCount();
-         
-            if($total_rows > 0 && password_verify($senhas, $row['senha'])){
-                
-                session_start();
-
-                $_SESSION['email'] = $row['email'];
-                
-                $_SESSION['senha'] = $row['senha'];
-                
-                $_SESSION['nome'] = $row['nome'];
+            $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
             
+            $consultaAdministrador->bindValue(':email' , $email);
+            $consultaAdministrador->execute();
+            $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
+            $totalRowAdministrador = $consultaAdministrador ->rowCount();
 
-                if($row['tipo'] == '2'){
+
+            $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email;");
+
+            $consultaAluno->bindValue(':email' , $email);
+            $consultaAluno->execute();
+            $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
+            $totalRowAluno = $consultaAluno ->rowCount();
+
+         
+            if((password_verify($senhas, $rowAdministrador['senha'])) || (password_verify($senhas, $rowAluno['senha']))){
+                
+                if($totalRowAdministrador > 0 ){
+                    session_start();
+
+                    $_SESSION['email'] = $rowAdministrador['email'];
+                    
+                    $_SESSION['senha'] = $rowAdministrador['senha'];
+                    
+                    $_SESSION['nome'] = $rowAdministrador['nome'];
+
                     header(("location:../admin/controleDeAluno.php"));
                 }
     
-                if($row['tipo'] == '0'){
-                    header(("location:inicio_usuario.php"));
+                if($totalRowAluno > 0 ){
+
+                    // session_start();
+
+                    // $_SESSION['email'] = $rowAluno['email'];
+                    
+                    // $_SESSION['senha'] = $rowAluno['senha'];
+                    
+                    // $_SESSION['nome'] = $rowAluno['nome'];
+
+                    header(("location: ../inicio_usuario.php"));
                 }
 
             } else{
