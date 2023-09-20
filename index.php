@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login de usuarios</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/botao.css">
+    <link href="bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/bootstrapJS/bootstrap.min.js"> </script>
+
+    <link rel="stylesheet" href="login/css/index.css">
+    <link rel="stylesheet" href="login/css/style.css">
     <!-- <link rel="stylesheet" href="css/index.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -28,7 +29,7 @@ class="img-thumbnail img-responsive"  >
         <div class="container mt-4">
             <div class="col-md-6 offset-md-7">
                 <!-- Changed offset to 6 to move the form to the right -->
-                <form class="form" action="login.php" method="POST" name="formulario">
+                <form class="form" action="login/login.php" method="POST" name="formulario">
                     <br><br>
                     <h1 class="text-center">Login</h1>
                     <br><br>

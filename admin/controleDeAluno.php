@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>controle de alunos</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"> </script>
+    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
     
     <!--vendor -->
     <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
@@ -41,11 +41,7 @@
         max-width: 300px;
         height: auto;
     }
-    </style>
 
-    <script src="js/bootstrap.min.js"> </script>
-
-    <style>
     .img_lista {
         max-width: 100px;
         height: auto;

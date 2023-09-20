@@ -8,12 +8,11 @@
     <title>Bibliotecs controle de livros</title>
 
     <!--Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"> </script>
+    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
 
     <!--vendor -->
     <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
-
     <script src="funcoes/vendor/aos/aos.js"></script>
     <script src="funcoes/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="funcoes/vendor/purecounter/purecounter_vanilla.js"></script>
