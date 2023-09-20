@@ -10,6 +10,7 @@
     <!--Bootstrap -->
     <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
+    <link href="../bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!--vendor -->
     <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
@@ -22,7 +23,7 @@
     <script src="js/efeitos.js"></script>
 
     <!-- css  -->
-    <link href="css/mainAdmin.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link href="css/controleDeLivro.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
     <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
@@ -418,7 +419,11 @@ require_once "conexao.php";
     <!-- End Footer -->
 
 
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
+    <div id="preloader"></div>
+    </div>
 </body>
 
 </html>

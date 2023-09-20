@@ -56,7 +56,7 @@
                     
                     // $_SESSION['nome'] = $rowAluno['nome'];
 
-                    header(("location: ../usuario/inicio_usuario.php"));
+                    header(("location: ../usuario/home.php"));
                 }
 
             } else{
