@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>controle de alunos</title>
+    <title>Bibliotecs controle de alunos</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"> </script>
+    <!--Bootstrap -->
+    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
     
     <!--vendor -->
     <link href="funcoes/vendor/aos/aos.css" rel="stylesheet">
-
     <script src="funcoes/vendor/aos/aos.js"></script>
     <script src="funcoes/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="funcoes/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -42,8 +42,6 @@
         height: auto;
     }
     </style>
-
-    <script src="js/bootstrap.min.js"> </script>
 
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
@@ -400,21 +398,6 @@ require_once "conexao.php";
             class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-
-
-
     </div>
 </body>
 

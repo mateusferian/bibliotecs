@@ -5,22 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Administrador</title>
+    <title>Bibliotecs Cadastro de Administrador</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cadastroAdministrador.css">
-     <!-- links apra mostrar o  Swal.fire( -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 </head>
 
 <body>
-
-    <!--<div class="form-group d-flex justify-content-center">
-    <img src="http://placeskull.com/100/100" width="100px" alt="Fuzzy Cardigan"
-class="img-thumbnail img-responsive"  >
-</div> -->
+    <script>
+    // Inicializa o AOS para ativar os efeitos na rolagem
+    AOS.init();
+    </script>
 
     </div>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
@@ -67,16 +74,6 @@ class="img-thumbnail img-responsive"  >
             </div>
         </div>
     </div>
-
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-    <script>
-    // Inicializa o AOS para ativar os efeitos na rolagem
-    AOS.init();
-    </script>
 
     <?php
     //chamar o arquivo de conexão
