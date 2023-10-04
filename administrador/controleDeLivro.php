@@ -17,6 +17,7 @@
 
 <body>
     <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
     require_once "../conexao.php";
@@ -96,7 +97,7 @@
             echo '<td>' . $row["editora"] . '</td>';
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td>';
-            echo '<a href="alterar.php?al=' . $row["id_liv"] . '">Alterar</a>';
+            echo '<a href="alterarLivro.php?al=' . $row["id_liv"] . '">Alterar</a>';
             echo '</td>';
             echo '<td>';
             echo '<a href="controleDeLivro.php?ex=' . $row["id_liv"] . '">Excluir</a>';
@@ -224,7 +225,7 @@
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td><a href="' . $row["arquivo2"] . '">Download</a></td>';
             echo '<td>';
-            echo '<a href="alterar.php?al=' . $row["id_liv"] . '">Alterar</a>';
+            echo '<a href="alterarLivro.php?al=' . $row["id_liv"] . '">Alterar</a>';
             echo '</td>';
             echo '<td>';
             echo '<a href="controleDeLivro.php?ex=' . $row["id_liv"] . '">Excluir</a>';
