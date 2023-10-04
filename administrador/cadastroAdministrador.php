@@ -26,7 +26,6 @@
 <body>
 
     <script>
-    // Inicializa o AOS para ativar os efeitos na rolagem
     AOS.init();
     </script>
 
@@ -76,12 +75,11 @@
         </div>
     </div>
     <?php
-    //chamar o arquivo de conexão
+
     require_once "conexao.php";
 
-    //verifica o botão enviar
     if (isset($_REQUEST["Cadastra-se"])) {
-      //se o botao nao estiver vazio receba os dados do formulario
+
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
@@ -89,50 +87,43 @@
       $dataCadastro = date("Y-m-d");
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
-      //inicio da gravação de dados na tabela do banco de dados
-      try{ //tente executar
-        //variavel com os dados de gravação na tabela
+      try{ 
         $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro)
                             VALUES (:id, :nome, :email, :senha, :dataCadastro) ");
         
-        //passagem de parametros para a tabela
         $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $hash);
         $sql->bindValue(':dataCadastro', $dataCadastro);
 
-        //execução da query de inserção
         $sql->execute();
-        //msg caso não ocorra erro
         echo "<script>
             Swal.fire({
                 title: 'Cadastro com Sucesso!!',
                 html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
                 customClass: {
-                    popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
+                    popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false, // Não mostrar o botão de cancelar
                 confirmButtonText: 'Ir para a página de login',
-                timer: 5000, // Defina o temporizador para 5 segundos (5000 milissegundos)
-                timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+                timer: 5000, 
+                timerProgressBar: true, 
                 allowOutsideClick: false      
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirecionar para a página de login
                     window.location.href = '../index.php';
                 }
             });
         </script>";
 
         
-      } // caso não executar captura o erro no sgbd
+      } 
       catch (PDOException $erro) {
           echo $erro->getMessage();
       }
     }
 
-    //fecha conexao
     $conn;
     ?>
 </body>

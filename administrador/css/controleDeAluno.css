@@ -3,13 +3,10 @@
     border: 2px solid #ffffff;
     color: #ffffff;
     border-radius: 10px;
-    width: 70%; /* Largura de 70% em telas maiores */
-
-    /* Media query para telas menores (por exemplo, dispositivos móveis) */
+    width: 70%;
     @media screen and (max-width: 768px) {
-        width: 100%; /* Largura de 100% em telas menores */
+        width: 100%;
     }
-
 }
 
 .swalFireControleDeAlunoApagado {
@@ -19,16 +16,13 @@
     border-radius: 10px;
     border-radius: 10px;
 
-    /* Media query para telas menores (por exemplo, dispositivos móveis) */
     @media screen and (max-width: 768px) {
-        width: 100%; /* Largura de 100% em telas menores */
+        width: 100%;
     }
 
 }
 
-/* botao sim */
 .swalFireControleDeAluno .swal2-confirm {
-    /* Estilos para o botão de confirmação */
     background-color: #014d44;
     color: #fff;
     border:#008374;
@@ -48,10 +42,7 @@
     /* Cor quando o botão é clicado e segurado */
 }
 
-
-/* botao nao */
 .swalFireControleDeAluno .swal2-cancel {
-    /* Estilos para o botão não  de confirmação */
     background-color: #014d44;
     color: #fff;
     border:#008374;
@@ -68,5 +59,4 @@
 .swalFireControleDeAluno .swal2-cancel:active {
     background-color: #014d44;
     border: 2px solid #014d44;
-    /* Cor quando o botão não  é clicado e segurado */
 }

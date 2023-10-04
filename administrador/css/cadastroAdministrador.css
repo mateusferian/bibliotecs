@@ -5,15 +5,15 @@ body {
     }
 
     .form-control {
-        background-color: #014d44; /* Cor de fundo preta */
-        color: white; /* Cor do texto branca */
-        box-shadow: none; /* Remove a sombra em foco */
+        background-color: #014d44; 
+        color: white; 
+        box-shadow: none; 
     }
     
     .form-control:focus {
-        background-color: #014d44; /* Cor de fundo preta quando em foco */
-        color: white; /* Cor do texto branca quando em foco */
-        box-shadow: none; /* Remove a sombra em foco */
+        background-color: #014d44; 
+        color: white; 
+        box-shadow: none; 
         box-shadow: 0px 0px 5px 0px #99cdc7;
     }
 
@@ -22,18 +22,13 @@ body {
     border: 2px solid #ffffff;
     color: #ffffff;
     border-radius: 10px;
-    width: 70%; /* Largura de 70% em telas maiores */
-
-    /* Media query para telas menores (por exemplo, dispositivos móveis) */
+    width: 70%; 
     @media screen and (max-width: 768px) {
-        width: 100%; /* Largura de 100% em telas menores */
+        width: 100%; 
     }
 
 }
-
-/* Seleciona o elemento da caixa de diálogo SweetAlert2 e, em seguida, o botão de confirmação */
 .swalFireCadastroAdministrador .swal2-confirm {
-    /* Estilos para o botão de confirmação */
     background-color: #014d44;
     color: #fff;
     border:#008374;
@@ -50,7 +45,6 @@ body {
 .swalFireCadastroAdministrador .swal2-confirm:active {
     background-color: #014d44;
     border: 2px solid #014d44;
-    /* Cor quando o botão é clicado e segurado */
 }
 
 
