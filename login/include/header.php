@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-ico">
-    <title>Celke - Atualizar Senha</title>
+    <title>Bibliotecs</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>

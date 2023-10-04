@@ -7,6 +7,10 @@ include_once 'include/header.php';
     .login{
         color: #fff;
     }
+    
+    body {
+    background-image: url(img/atualizarSenha.jpg);
+    }
 </style>
 <?php
     $chave = filter_input(INPUT_GET, 'chave', FILTER_DEFAULT);

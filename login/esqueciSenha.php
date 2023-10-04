@@ -99,7 +99,7 @@ $mail = new PHPMailer(true);
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
         
-            $mail->setFrom('bibliotecs@outlook.com', 'Atendimento');
+            $mail->setFrom('bibliotecs@outlook.com', 'Atendimento Bibliotecs');
             $mail->addAddress($row_email['email'], $row_email['nome']);
         
             $mail->isHTML(true);                                  
