@@ -74,19 +74,26 @@ try{
 <legend>Alterar Dados de Livros</legend>
 
 <form name="form" method="post" action="alterarLivro.php"  enctype="multipart/form-data">
+<div class="row">
 
-<label> ID: </label><br>
-<input type="text" name="id_liv" value="<?php if(isset($row['id_liv'])) {echo $row['id_liv'];} ?>"readonly="readonly" ><br>
-   <br><br> 
-   <label>Nome </label><br>
-<input type="text" name="nome" value="<?php if(isset($row['nome'])) {echo $row['nome'];} ?>"><br>
-   <br><br> 
+<div class="col-sm-12  mt-3">
+<label for="id" class="form-label"> ID: </label><br>
+<input type="text" name="id_liv" class="form-control" value="<?php if(isset($row['id_liv'])) {echo $row['id_liv'];} ?>"readonly="readonly" ><br>
+</div>
 
-   <label> Isbn: </label><br>
-<input type="text" name="isbn" value="<?php if(isset($row['isbn'])) {echo $row['isbn'];} ?>"><br>
-   <br><br> 
-   <label> Categoria: </label><br>
-<select name="categoria" value="<?php if(isset($row['categoria'])) {echo $row['categoria'];} ?>" id="categoria">
+<div class="col-sm-12  mt-3">
+   <label for="nome" class="form-label">Nome </label><br>
+<input type="text" name="nome" class="form-control" value="<?php if(isset($row['nome'])) {echo $row['nome'];} ?>"><br>
+</div>
+
+<div class="col-sm-12  mt-3">
+   <label for="isbn" class="form-label"> Isbn: </label><br>
+<input type="text" name="isbn" class="form-control" value="<?php if(isset($row['isbn'])) {echo $row['isbn'];} ?>"><br>
+</div>
+
+<div class="col-sm-6  mt-3">
+<label for="categoria" class="form-label">Categoria</label>
+<select name="categoria"  class="form-control"  value="<?php if(isset($row['categoria'])) {echo $row['categoria'];} ?>" id="categoria">
           <option value="Romance">Românce</option>
             <option value="Ficção">Ficção</option>
             <option value="Drama">Drama</option>
@@ -96,52 +103,54 @@ try{
             <option value="Terror">Terror</option>
             <option value="Suspense">Suspense</option>
           </select> 
+          </div>
 
-<br><br> 
-
-   <label> Autor: </label><br>
-<input type="text" name="autor" value="<?php if(isset($row['autor'])) {echo $row['autor'];} ?>"><br>
-   <br><br> 
-
-   <label> Ano: </label><br>
-<input type="text" name="ano" value="<?php if(isset($row['ano'])) {echo $row['ano'];} ?>"><br>
-   <br><br> 
-
-   <label> Destaque: </label><br>
-   <select name="destaque" value="<?php if(isset($row['destaque'])) {echo $row['destaque'];} ?> " id="destaque">
-    <option value="S" >S</option>
-    <option value="N" >N </option>
-</select><br>
-
-
-<label> Descrição: </label><br>
-<input type="text" name="descricao" value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>" id="descricao">
-<br><br>
-
-
-
-   <label> Editora: </label><br>
-<input type="text" name="editora" value="<?php if(isset($row['editora'])) {echo $row['editora'];} ?>" id="editora">
-<br><br>
-   <label> Arquivo: </label><br>
-<input type="file" name="arquivo" value="<?php if(isset($row['arquivo'])) {echo $row['arquivo'];} ?>"><br>
-   <br><br> 
-
-   <label> PDF: </label><br>
-<input type="file" name="arquivo2" value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>"><br>
-   <br><br> 
-
+          <div class="col-sm-6  mt-3">
+          <label for="autor" class="form-label">Autor</label>
+<input type="text" name="autor"  class="form-control" value="<?php if(isset($row['autor'])) {echo $row['autor'];} ?>"><br>
 </div>
 
-<input type="hidden" name="caminho_arquivo" value="<?php if(isset($row['arquivo'])) { echo $row['arquivo']; } ?>">
+<div class="col-sm-6  mt-3">
+   <label for="ano" class="form-label">Ano</label>
+<input type="text" name="ano"  class="form-control"  value="<?php if(isset($row['ano'])) {echo $row['ano'];} ?>"><br>
+</div>
 
+<div class="col-sm-6  mt-3">
+<label for="editora" class="form-label">Editora</label>
+<input type="text" name="editora"  class="form-control" value="<?php if(isset($row['editora'])) {echo $row['editora'];} ?>" id="editora">
+</div>
+
+<div class="col-sm-12  mt-3">
+<label for="destaque" class="form-label">Destaque</label>
+   <select name="destaque" class="form-control" value="<?php if(isset($row['destaque'])) {echo $row['destaque'];} ?> " id="destaque">
+    <option value="S" >S</option>
+    <option value="N" >N </option>
+</select>
+</div>
+
+  
+<div class="col-sm-6   mt-3">
+          <label for="imagem" class="form-label">Selecione a Imagem</label>
+<input type="file" name="arquivo" class="form-control" value="<?php if(isset($row['arquivo'])) {echo $row['arquivo'];} ?>"><br>
+</div>
+
+
+<div class="col-sm-6  mt-3">
+   <label for="pdf" class="form-label">Selecione o arquivo PDF</label>
+<input type="file" name="arquivo2" class="form-control" value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
+</div>
+
+<div class="col-md-12 mx-auto">
+<label for="descricao" class="form-label"><h5>Sinópse</h5></label>
+<textarea type="text" name="descricao"   class="form-control" value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>" id="descricao"></textarea>
+</div>
 
 <div class="col-12  mt-3">
       <button type="submit" name="alterar" value="alterar" class="btn meuBotao">Alterar</button>
       <br><br>
-        </div></form>
-
-
+        </div>
+</div>
+</form>
 
 <?php
 try{

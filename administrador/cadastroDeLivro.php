@@ -83,10 +83,10 @@ require_once "include/header.php";
           </select> 
         </div> 
 
-	    <div class="col-sm-6  mt-3">
+        <div class="col-sm-6  mt-3">
             <label for="autor" class="form-label">Autor</label>
             <input type="text" name="autor" class="form-control">
-        </div>
+            </div>
 	
         <div class="col-sm-6  mt-3">
           <label for="ano" class="form-label">Ano</label>
@@ -98,7 +98,7 @@ require_once "include/header.php";
           <input type="text" class="form-control" id="editora" name="editora">
         </div>
 
-        <div class="col-sm-4 mt-3">
+        <div class="col-sm-12 mt-3">
         <label for="destaque" class="form-label">Destaque</label>
           <select id="destaque" name="destaque" class="form-control">
             <option selected>Informe se o produto é destaque</option> 
@@ -107,17 +107,17 @@ require_once "include/header.php";
         </select>
         </div> 
   
-        <div class="col-sm-8   mt-3">
+        <div class="col-sm-6   mt-3">
           <label for="imagem" class="form-label">Selecione a Imagem</label>
           <input type="file" class="form-control" id="arquivo" name="arquivo">
         </div>
 		
 		  <div class="col-sm-6   mt-3">
-          <label for="imagem" class="form-label">Selecione o arquivo PDF</label>
+          <label for="pdf" class="form-label">Selecione o arquivo PDF</label>
           <input type="file" class="form-control" id="arquivo2" name="arquivo2">
         </div><p></p><br></br>
 
-        <div class="col-md-7 mx-auto">
+        <div class="col-md-12 mx-auto">
           <label for="descricao" class="form-label"><h5>Sinópse</h5></label>
           <textarea class="form-control" rows="4" id="descricao" name="descricao" ></textarea>
         </div>
