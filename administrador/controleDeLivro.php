@@ -61,7 +61,7 @@
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '';");
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0';");
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10;
@@ -70,7 +70,7 @@
         $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
         $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
 
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '' LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina;");
         $consulta->execute();
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -203,7 +203,7 @@
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 = '0';");
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0';");
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10;
@@ -212,7 +212,7 @@
         $paginaAtual2 = isset($_GET['pagina2']) ? max(1, $_GET['pagina2']) : 1;
         $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
     
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '' LIMIT $indiceInicial, $livrosPorPagina;");
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina;");
         $consulta->execute();
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
