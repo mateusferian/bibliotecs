@@ -241,8 +241,22 @@
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td><a href="' . $row["arquivo2"] . '">Download</a></td>';
             echo '<td>';
+            if ($row["situacao"] == 1) {
+                ?>
+                  <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                <?php
+                } else {
+                ?>
+                  <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
+                <?php
+    
+                }
+                echo '</td>';
+                echo '<td>';
+
             echo '<a href="alterarLivro.php?al=' . $row["id_liv"] . '">Alterar</a>';
             echo '</td>';
+            
             echo '<td>';
             echo '<a href="controleDeLivro.php?ex=' . $row["id_liv"] . '">Excluir</a>';
             echo '</td>';
