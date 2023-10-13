@@ -26,7 +26,6 @@
 <body>
 
     <script>
-    // Inicializa o AOS para ativar os efeitos na rolagem
     AOS.init();
     </script>
 
@@ -58,7 +57,7 @@
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>Senha</label>
-                            <input type="text" name="senha" class="form-control" placeholder="digite a sua senha"
+                            <input type="password" name="senha" class="form-control" 
                                 required="">
                         </div>
                     </div>
@@ -76,12 +75,11 @@
         </div>
     </div>
     <?php
-    //chamar o arquivo de conexão
-    require_once "conexao.php";
 
-    //verifica o botão enviar
+    require_once "../conexao.php";
+
     if (isset($_REQUEST["Cadastra-se"])) {
-      //se o botao nao estiver vazio receba os dados do formulario
+
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
@@ -89,51 +87,43 @@
       $dataCadastro = date("Y-m-d");
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
-      //inicio da gravação de dados na tabela do banco de dados
-      try{ //tente executar
-        //variavel com os dados de gravação na tabela
-        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,tipo,dataCadastro)
-                            VALUES (:id, :nome, :email, :senha, :tipo, :dataCadastro) ");
+      try{ 
+        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro, recuperar_senha)
+                            VALUES (:id, :nome, :email, :senha, :dataCadastro, :recuperar_senha) ");
         
-        //passagem de parametros para a tabela
         $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $hash);
-        $sql->bindValue(':tipo', $tipo);
         $sql->bindValue(':dataCadastro', $dataCadastro);
+        $sql->bindValue(':recuperar_senha', "0");
 
-        //execução da query de inserção
         $sql->execute();
-        //msg caso não ocorra erro
         echo "<script>
             Swal.fire({
-                title: 'Cadastro com Sucesso!!',
-                html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
+                title: 'Cadastro de administrador realizado com Sucesso!!',
                 customClass: {
-                    popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
+                    popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false, // Não mostrar o botão de cancelar
                 confirmButtonText: 'Ir para a página de login',
-                timer: 5000, // Defina o temporizador para 5 segundos (5000 milissegundos)
-                timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+                timer: 5000, 
+                timerProgressBar: true, 
                 allowOutsideClick: false      
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirecionar para a página de login
                     window.location.href = '../index.php';
                 }
             });
         </script>";
 
         
-      } // caso não executar captura o erro no sgbd
+      } 
       catch (PDOException $erro) {
           echo $erro->getMessage();
       }
     }
 
-    //fecha conexao
     $conn;
     ?>
 </body>
