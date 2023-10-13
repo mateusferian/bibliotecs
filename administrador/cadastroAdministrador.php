@@ -76,7 +76,7 @@
     </div>
     <?php
 
-    require_once "conexao.php";
+    require_once "../conexao.php";
 
     if (isset($_REQUEST["Cadastra-se"])) {
 
@@ -88,20 +88,20 @@
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
       try{ 
-        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro)
-                            VALUES (:id, :nome, :email, :senha, :dataCadastro) ");
+        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro, recuperar_senha)
+                            VALUES (:id, :nome, :email, :senha, :dataCadastro, :recuperar_senha) ");
         
         $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $hash);
         $sql->bindValue(':dataCadastro', $dataCadastro);
+        $sql->bindValue(':recuperar_senha', "0");
 
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro com Sucesso!!',
-                html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
+                title: 'Cadastro de administrador realizado com Sucesso!!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
