@@ -44,7 +44,6 @@ require_once "include/header.php";
 </head>
 <body>
 <?php
-    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
     require_once "../conexao.php";
@@ -117,7 +116,17 @@ require_once "include/header.php";
           <input type="file" class="form-control" id="arquivo2" name="arquivo2">
         </div><p></p><br></br>
 
+        <div class="col-sm-12 mt-3">
+        <p> Situação </p>
+          <select id="situ" name="situ" class="form-control">
+          <option selected>Selecione a situação desse livro</option>
+            <option value="1">Ativado</option>
+            <option value="0">Desativado</option>
+          </select>
+        </div>
+
         <div class="col-md-12 mx-auto">
+        <br><br>
           <label for="descricao" class="form-label"><h5>Sinópse</h5></label>
           <textarea class="form-control" rows="4" id="descricao" name="descricao" ></textarea>
         </div>
@@ -144,6 +153,7 @@ if (isset($_REQUEST["cadastrar"]))
       $destaque = $_REQUEST["destaque"];
       $descricao = $_REQUEST["descricao"];
       $editora = $_REQUEST["editora"];
+      $situacao = $_REQUEST["situ"];
 
       date_default_timezone_set('America/Sao_Paulo');
 
@@ -193,15 +203,55 @@ if (isset($_REQUEST["cadastrar"]))
       $arquivo2 = 'pdf/' . $novo_nomeimg2;
 
       $mover2 = move_uploaded_file($temp2, 'pdf/' . $novo_nomeimg2);
-     
+    
+      if (empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora) || empty($_FILES['arquivo']['name'])) {
+        $mensagem = "Campos obrigatórios em branco: ";
+        
+        if (empty($isbn)) {
+            $mensagem .= "ISBN ";
+        }
+        if (empty($autor)) {
+            $mensagem .= "Autor ";
+        }
+        if (empty($ano)) {
+            $mensagem .= "Ano ";
+        }
+        if (empty($descricao)) {
+            $mensagem .= "Descrição ";
+        }
+        if (empty($editora)) {
+            $mensagem .= "Editora ";
+        }
+        if (empty($_FILES['arquivo']['name'])) {
+            $mensagem .= "Imagem ";
+        }
+        
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: '$mensagem não pode estar vazio!!!',
+            customClass: {
+                popup: 'swalFireLivro',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'cadastroDeLivro.php';
+        }, 5000);
+        </script>";
+    }
+    
 
     if($tamanho2==0){
       $arquivo2= 0;
     }
     
-               $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2)
-               VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2) ");
-           
+    $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao)
+    VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao)");
+    
             $sql->bindValue(':id_liv', null);
             $sql->bindValue(':nome',$nome);
             $sql->bindValue(':isbn',$isbn);
@@ -213,6 +263,7 @@ if (isset($_REQUEST["cadastrar"]))
             $sql->bindValue(':editora',$editora);
             $sql->bindValue(':arquivo', $arquivo);
             $sql->bindValue(':arquivo2', $arquivo2);
+            $sql->bindValue(':situacao', $situacao);
 
         $sql->execute();
         echo "<script>
@@ -223,7 +274,7 @@ if (isset($_REQUEST["cadastrar"]))
                 popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
             },
             showCancelButton: false, // Não mostrar o botão de cancelar
-            confirmButtonText: 'Ir para a página de  alterar Cadastro',
+            confirmButtonText: 'Ir para a página de controle de lirvo',
             timer: 2000, // Defina o temporizador para 3 segundos (3000 milissegundos)
             timerProgressBar: true, // Mostrar a barra de progresso do temporizador
             allowOutsideClick: false    
@@ -231,7 +282,7 @@ if (isset($_REQUEST["cadastrar"]))
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirecionar para a página de login
-                window.location.href = 'alterar.php';
+                window.location.href = 'controleDeLivro.php';
             }
             
         });
