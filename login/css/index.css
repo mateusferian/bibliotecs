@@ -1,32 +1,36 @@
-
+:root {
+    --color-default: #fff;
+    --color-primary: #008374;
+    --color-secondary: #014d44;
+    --color-third: #99cdc7;
+  }
 #meuBotao:active {
-    background-color: #014d44; /* Cor quando o botão é clicado e segurado */
+    background-color: var(--color-secondary);
 }
 
 .form-control {
-    background-color: #014d44; /* Cor de fundo preta */
-    color: white; /* Cor do texto branca */
-    box-shadow: none; /* Remove a sombra em foco */
+    background-color: var(--color-secondary);
+    color: var(--color-default);
+    box-shadow: none;
 }
 
 .form-control:focus {
-    background-color: #014d44; /* Cor de fundo preta quando em foco */
-    color: white; /* Cor do texto branca quando em foco */
-    box-shadow: none; /* Remove a sombra em foco */
-    box-shadow: 0px 0px 5px 0px #99cdc7;
+    background-color: var(--color-secondary);
+    color: var(--color-default);
+    box-shadow: none;
+    box-shadow: 0px 0px 5px 0px var(--color-third);
 }
 
 
 .swalFireIndex {
-    background-color: #008374;
-    border: 2px solid #ffffff;
-    color: #ffffff;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-default);
+    color: var(--color-default);
     border-radius: 10px;
     border-radius: 10px;
 
-    /* Media query para telas menores (por exemplo, dispositivos móveis) */
     @media screen and (max-width: 768px) {
-        width: 100%; /* Largura de 100% em telas menores */
+        width: 100%;
     }
 }
 
@@ -37,30 +41,28 @@ body {
 
 .form-select {
     appearance: none;
-    width: 100%; /* Define a largura do select como 100% */
-    padding: 10px; /* Adiciona um espaçamento interno ao select */
-    font-size: 16px; /* Define o tamanho da fonte */
-    border: 1px solid #99cdc7; /* Cor da borda do select */
-    border-radius: 4px; /* Adiciona cantos arredondados à borda */
-    background-color: #014d44; /* Cor de fundo do select */
-    color: #99cdc7; /* Cor do texto do select */
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--color-third);
+    border-radius: 4px;
+    background-color: var(--color-secondary);
+    color: var(--color-third);
 }
 
-/* Estilo para a borda do select quando ele está focado */
 .form-select:focus {
-    outline: none; /* Remover o contorno padrão do elemento quando focado */
-    border-color: #014d44; /* Cor da borda do select quando focado */
-    box-shadow: 0 0 0 0.2rem #014d44; /* Adicionar uma sombra sutil quando focado */
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 0.2rem var(--color-secondary);
 }
 
-/* customizando seta do select  */
 .form-select::after {
-    content: "▼"; /* Aqui, você pode usar o caractere unicode da seta para baixo */
+    content: "▼";
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    color: #99cdc7; /* Cor da seta */
+    color: var(--color-third);
 }
 
 .align-vertical {

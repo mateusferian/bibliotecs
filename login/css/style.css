@@ -1,16 +1,23 @@
+:root {
+    --color-default: #fff;
+    --color-primary: #008374;
+    --color-secondary: #014d44;
+    --color-third: #99cdc7;
+  }
+
 body {
     width: 100%;
     height: 100vh;
     font-size: 1rem;
-    color: #fff;
+    color: var(--color-primary);
     background-size: cover;
     background-position: center;
 }
 
 .form{
-    background-color: #008374;
+        background-color: var(--color-primary);
     border-radius: 20px;
-    box-shadow: 2px 2px 6px #014d44;
+    box-shadow: 2px 2px 6px var(--color-secondary);
 }
 
 .form-group label {
@@ -24,31 +31,29 @@ body {
 }
 
 form .form-group input {
-    color: #ffffff;
+    color: var(--color-default);
     width: 100%;
     font-size: .9rem;
     padding: .5rem;
     margin-top: .3rem;
     height: 30px;
-    background-color: #014d44;
+    background-color: var(--color-secondary);
     box-sizing: border-box;
     outline: none;
     border: none;
     border-radius: 5px;
 }
 
-/* Altere a cor do texto de marca d'água para todos os campos de entrada de texto */
 ::placeholder {
-  color: #99cdc7; /* Altere a cor desejada aqui */
+  color: var(--color-third);
 }
 
-/* Opcional: para alterar a cor do texto de marca d'água apenas para um campo específico */
 input[type="text"]::placeholder {
-  color: #99cdc7; /* Altere a cor desejada aqui */
+  color: var(--color-third);
 }
 
 .btn-primary:hover {
-    background-color: #99cdc7; /* pode alterar a cor de fundo (background-color) para a cor que desejar quando o mouse estiver em cima do botão */
+    background-color:var(--color-third);
 }
 
 .form-links {
@@ -56,7 +61,7 @@ input[type="text"]::placeholder {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    color: #99cdc7;
+    color: var(--color-third);
     gap: .3rem;
     text-decoration: none;
     font-size: .9rem;
@@ -64,5 +69,5 @@ input[type="text"]::placeholder {
 }
 
 .form-links:hover {
-    color: #014d44; /* Cor do texto quando o mouse passa por cima */
+    color:  var(--color-secondary);
 }
