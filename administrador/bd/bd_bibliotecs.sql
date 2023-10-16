@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/10/2023 às 14:10
+-- Tempo de geração: 15/10/2023 às 21:32
 -- Versão do servidor: 8.0.34-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -192,7 +192,7 @@ CREATE TABLE `tbl_livro` (
   `destaque` varchar(1) NOT NULL,
   `descricao` varchar(500) NOT NULL,
   `editora` varchar(50) NOT NULL,
-  `situacao` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `situacao` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -200,35 +200,8 @@ CREATE TABLE `tbl_livro` (
 --
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
-(19, 4566262, 'Drama', 'Vento Molhado', 'Broksli', 2012, 'img/img_19-09-2023_22-04-51_7259818503.png', 'pdf/arquivo_19-09-2023_22-04-51_2556057897.pdf', 'S', '', '', '0'),
-(61, 34223556, 'Liter.brasileira', 'Reformados', 'Orlando boyer', 1967, 'img/img_26-09-2023_20-54-42_5468209519.png', 'pdf/arquivo_26-09-2023_20-54-42_9866097576.pdf', 'N', '', 'Reaut', '0'),
-(22, 4567754, 'Drama', 'A menina do lago', 'Hosus', 2071, 'img/img_19-09-2023_23-51-28_5702309260.png', 'pdf/arquivo_19-09-2023_23-51-28_2919347860.pdf', 'N', '', 'Aunt', '0'),
-(25, 4545345, 'Liter.brasileira', 'Se eu ficar', 'Juninhos Rossi', 2004, 'img/img_20-09-2023_16-12-47_2188690487.png', 'pdf/arquivo_20-09-2023_16-12-47_3154070143.pdf', 'N', '', 'Aunt', '0'),
-(35, 14566525, 'Romance', 'Teste na aula II', 'C.S Lewis', 1023, 'img/img_20-09-2023_17-40-14_4126293284.png', 'pdf/arquivo_20-09-2023_17-40-14_2601045965.pdf', 'S', '', 'Pelau', '0'),
-(50, 2147483647, 'Drama', 'banana de pijama', 'daniel souza', 2013, 'img/img_23-09-2023_12-10-31_1830759961.png', 'pdf/arquivo_23-09-2023_12-10-31_38865403.pdf', 'S', '', 'fernanda bacalhalhaos', '0'),
-(55, 0, 'Selecione o gênero', 'testandooool', '', 0, 'img/img_26-09-2023_20-19-34_1722097220.', '', 'I', '', '', '0'),
-(52, 909867886, 'Ficção', 'Crepúsculo ', 'stheph hoppy', 2014, 'img/img_26-09-2023_19-42-03_2905429658.png', 'pdf/arquivo_26-09-2023_19-42-03_6622167072.pdf', 'S', '', 'Arquueiro', '0'),
-(62, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-49-34_9139810640.', '', 'I', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', '', '0'),
-(63, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-51-22_9433016946.', '', 'I', 'dcjbskkkkkkkkkkkdcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeedcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeekkkkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeekkkkk', '', '1'),
-(64, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-52-59_7734591557.', '', 'I', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', '', '0'),
-(65, 343454354, 'Ficção', 'A menina que roubava livros', 'C.S Lewis', 2005, 'img/img_27-09-2023_16-54-13_2187126215.png', '', 'N', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', 'Contemporany', '0'),
-(66, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-59-06_4085081984.', '', 'I', '', '', '1'),
-(67, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_17-00-13_2111433251.', '', 'I', '', '', '1'),
-(69, 123, 'Romance', 'livro pdf', '', 2020, 'img/img_04-10-2023_08-42-47_1025910526.', '', 'S', '', '', '0'),
-(70, 12345, 'Terror', 'testando com O', '2020', 2020, 'img/img_04-10-2023_08-55-05_2317685040.', '0', 'S', '', '', '1'),
-(71, 123445, 'Romance', 'livros com capa', '213', 234, 'img/imagem_01-11-2022_10-17-58_5265008324', '0', 'S', '', '23', '0'),
-(72, 123445, 'Conto', 'teste', 'casa', 2212, 'img/img_13-10-2023_12-52-53_776936895.', '0', 'S', 'yuytutut', '123', '0'),
-(73, 123, 'Romance', '23', '1123', 12, 'img/img_13-10-2023_13-07-41_547035181.', '0', 'S', '231231313', '123', '1'),
-(74, 1231, 'Romance', 'qwe', '13', 12313131, 'img/img_13-10-2023_13-26-46_2701129131.', '0', 'S', 'we', '12', '1'),
-(75, 1231, 'Romance', 'qwe', '13', 12313131, 'img/img_13-10-2023_13-27-52_1967259215.', '0', 'S', 'we', '12', '1'),
-(76, 1231, 'Romance', 'qwe', '13', 12313131, 'img/img_13-10-2023_13-28-12_2824739726.', '0', 'S', 'we', '12', '1'),
-(77, 3, 'Ficção', '123', '23', 23, 'img/img_13-10-2023_13-32-26_8985146280.', '0', 'S', '13', '23', '1'),
-(78, 1313, 'Romance', 'situacao', '1313', 13, 'img/img_13-10-2023_13-33-22_3206291660.', '0', 'N', '1313', '13', '1'),
-(79, 13, 'Terror', 'qweqeq', '13', 13, 'img/img_13-10-2023_13-36-35_5127979409.', '0', 'S', '3', '13', '1'),
-(80, 13, 'Ficção', '13', '13', 13, 'img/img_13-10-2023_13-37-29_9388599499.', '0', 'S', '1313', '13', '1'),
-(81, 13, 'Ficção', 'qeqe', '1', 1, 'img/img_13-10-2023_13-38-08_9036172591.', '0', 'N', '13', '1', '1'),
-(82, 13, 'Romance', '13', '13', 1, 'img/img_13-10-2023_13-40-07_892652966.', '0', 'S', '13', '1', '1'),
-(83, 13, 'Romance', '123', '13', 13, 'img/img_13-10-2023_13-40-58_2221664141.', '0', 'S', '13', '13', '1');
+(69, 1234, 'Romance', 'ALTERADO', '2023', 12, 'img/img_15-10-2023_21-30-10_5059567387.jpg', 'pdf/arquivo_15-10-2023_21-30-10_5059567387.pdf', 'S', '', '12', '1'),
+(70, 1223, 'Romance', 'SEM FOTO NOMAL', '23', 34, 'img/img_15-10-2023_21-31-43_6474422898.jpg', '0', 'S', '', '34', '0');
 
 -- --------------------------------------------------------
 
@@ -328,7 +301,7 @@ ALTER TABLE `tbl_horario`
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_livro_retirado`

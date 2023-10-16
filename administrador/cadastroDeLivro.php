@@ -270,19 +270,17 @@ if (isset($_REQUEST["cadastrar"]))
         echo "<script>
         Swal.fire({
             title: 'Cadastro realizado!!',
-            html: '<p>Clique alterar para alterar dados do Cadastro.</p>',
             customClass: {
-                popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
+                popup: 'swalFireLivro',
             },
-            showCancelButton: false, // Não mostrar o botão de cancelar
-            confirmButtonText: 'Ir para a página de controle de lirvo',
-            timer: 2000, // Defina o temporizador para 3 segundos (3000 milissegundos)
-            timerProgressBar: true, // Mostrar a barra de progresso do temporizador
+            showCancelButton: false,
+            confirmButtonText: 'Ir para a página de controle de livro',
+            timer: 5000,
+            timerProgressBar: true,
             allowOutsideClick: false    
               
         }).then((result) => {
             if (result.isConfirmed) {
-                // Redirecionar para a página de login
                 window.location.href = 'controleDeLivro.php';
             }
             
