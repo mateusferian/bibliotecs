@@ -46,7 +46,6 @@ require_once "include/header.php";
 <?php
     require_once "include/navbar.php";
     require_once "include/hero.php";
-    require_once "../conexao.php";
 ?>
 <script>
     AOS.init();

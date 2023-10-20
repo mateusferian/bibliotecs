@@ -30,3 +30,7 @@
     <link rel="stylesheet" href="css/botao.css">
 
     <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
+
+    <?php
+    require_once "../conexao.php";
+    ?>
