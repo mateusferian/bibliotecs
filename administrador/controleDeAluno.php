@@ -42,7 +42,6 @@
 
 <body>
 <?php
-    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
     require_once "../conexao.php";
@@ -70,6 +69,7 @@
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">SALA</th>
+                    <th scope="col">SITUAÇÃO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -111,6 +111,19 @@
                     <td><?php echo $row["nome"] ?></td>
                     <td><?php echo $row["email"] ?></td>
                     <td><?php echo $row["sala"] ?></td>
+                    <td>
+                    <?php
+            if ($row["situacao"] == 1) {
+                ?>
+                  <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                <?php
+                } else {
+                ?>
+                  <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
+                <?php
+                }
+                ?>
+                </td>;
                     <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
                         </td>
