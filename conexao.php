@@ -4,7 +4,7 @@
 //variavéis de conexão
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $dbname = "bd_bibliotecs";
 
     global $conn;
