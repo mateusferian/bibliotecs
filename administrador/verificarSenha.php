@@ -13,10 +13,16 @@ if (isset($_POST["senha"])) {
         header("Location: cadastroAdministrador.php?protect=2");
         exit();
     } else {
-        $valor_para_enviar = "erro";
-        header("Location: paginaprotegida.php?alerta_valor=" . urlencode($valor_para_enviar));
+        $bytes = random_bytes(7);
+        $valorErro = bin2hex($bytes);
+        header("Location: paginaprotegida.php?erro=" . urlencode($valorErro));
         exit;
     exit;
     }
+} else{
+    $bytes = random_bytes(7);
+    $valorErro = bin2hex($bytes);
+    header("Location: paginaprotegida.php?erro=" . urlencode($valorErro));
+    exit;
 }
 ?>

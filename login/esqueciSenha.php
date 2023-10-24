@@ -130,7 +130,22 @@ $mail = new PHPMailer(true);
             </script>";
 
                 } catch (Exception $e) {
-                    echo "Erro: E-mail não enviado sucesso. Mailer Error: {$mail->ErrorInfo}";
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email nâo enviado',
+                        customClass: {
+                            popup: 'swalFireIndex',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false  
+                    });
+            
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'esqueciSenha.php';
+                    }, 3000);
+                </script>";
                 }
     }
     ?>

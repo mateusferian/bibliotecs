@@ -50,8 +50,8 @@
         </div>
     </div>
 <?php
-    if (isset($_GET["alerta_valor"])) {
-    $valor_recebido = urldecode($_GET["alerta_valor"]);
+    if (isset($_GET["erro"])) {
+    $valor_recebido = urldecode($_GET["erro"]);
 
     echo "<script>
     Swal.fire({

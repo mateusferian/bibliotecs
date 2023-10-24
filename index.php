@@ -71,7 +71,29 @@
             </div>
         </div>
     </div>
+    <?php
 
+    if (isset($_GET["erro"])) {
+    $valor_recebido = urldecode($_GET["erro"]);
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'email ou senha incorretos',
+                    customClass: {
+                        popup: 'swalFireIndex', // Classe CSS personalizada para a caixa de diálogo
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                // Redirecione automaticamente após um breve atraso
+                setTimeout(function() {
+                    window.location.href = 'index.php';
+                }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+            </script>";
+}
+?>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
