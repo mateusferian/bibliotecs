@@ -53,22 +53,11 @@
                 }
 
             } else{
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'email ou senha incorretos',
-                    customClass: {
-                        popup: 'swalFireIndex', // Classe CSS personalizada para a caixa de diálogo
-                    },
-                    showConfirmButton: false,
-                    allowOutsideClick: false  
-                });
-        
-                // Redirecione automaticamente após um breve atraso
-                setTimeout(function() {
-                    window.location.href = '../index.php';
-                }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
-            </script>";
+                $bytes = random_bytes(7);
+                $valorErro = bin2hex($bytes);
+
+                header("Location: ../index.php?erro=" . urlencode($valorErro));
+                exit;
             }
         }
 
