@@ -110,7 +110,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email ja utilzizado',
+            title: 'Email já utilizado',
             title: 'o email: \"" . $email . "\" já esta sendo utilziado',
             customClass: {
                 popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
@@ -130,7 +130,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'esse email ja esta sendo utilziado',
+            title: 'o email: \"" . $email . "\" já esta sendo utilziado',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
             },
