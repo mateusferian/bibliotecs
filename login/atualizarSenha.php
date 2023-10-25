@@ -1,5 +1,4 @@
 <?php
-ob_start();
 include_once 'conexao.php';
 include_once 'include/header.php';
 ?>
@@ -12,71 +11,45 @@ include_once 'include/header.php';
     background-image: url(img/atualizarSenha.jpg);
     }
 </style>
-<?php
+
+    <?php
     $chave = filter_input(INPUT_GET, 'chave', FILTER_DEFAULT);
 
 
     if (!empty($chave)) {
+        //var_dump($chave);
 
-        $query_email_aluno = "SELECT id 
-                            FROM tbl_aluno 
+        $query_usuario = "SELECT id 
+                            FROM tbl_administrador 
                             WHERE recuperar_senha =:recuperar_senha  
                             LIMIT 1";
-        $result_email_aluno = $conn->prepare($query_email_aluno);
-        $result_email_aluno->bindParam(':recuperar_senha', $chave, PDO::PARAM_STR);
-        $result_email_aluno->execute();
+        $result_usuario = $conn->prepare($query_usuario);
+        $result_usuario->bindParam(':recuperar_senha', $chave, PDO::PARAM_STR);
+        $result_usuario->execute();
 
-        $query_email_admin = "SELECT id 
-        FROM tbl_administrador 
-        WHERE recuperar_senha =:recuperar_senha  
-        LIMIT 1";
-        $result_email_admin = $conn->prepare($query_email_admin);
-        $result_email_admin->bindParam(':recuperar_senha', $chave, PDO::PARAM_STR);
-        $result_email_admin->execute();
-
-        if ($result_email_aluno->rowCount() > 0) {
-        if (($result_email_aluno) and ($result_email_aluno->rowCount() != 0)) {
-            $row_email = $result_email_aluno->fetch(PDO::FETCH_ASSOC);
+        if (($result_usuario) and ($result_usuario->rowCount() != 0)) {
+            $row_usuario = $result_usuario->fetch(PDO::FETCH_ASSOC);
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            //var_dump($dados);
             if (!empty($dados['SendNovaSenha'])) {
-                $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
+                $senha_usuario = password_hash($dados['senha'], PASSWORD_DEFAULT);
                 $recuperar_senha = 'NULL';
 
-                $query_up_email = "UPDATE tbl_aluno 
+                $query_up_usuario = "UPDATE tbl_administrador 
                         SET senha =:senha,
                         recuperar_senha =:recuperar_senha
                         WHERE id =:id 
                         LIMIT 1";
-                $result_up_email = $conn->prepare($query_up_email);
-                $result_up_email->bindParam(':senha', $senha, PDO::PARAM_STR);
-                $result_up_email->bindParam(':recuperar_senha', $recuperar_senha);
-                $result_up_email->bindParam(':id', $row_email['id'], PDO::PARAM_INT);
-                if ($result_up_email->execute()) {
+                $result_up_usuario = $conn->prepare($query_up_usuario);
+                $result_up_usuario->bindParam(':senha', $senha_usuario, PDO::PARAM_STR);
+                $result_up_usuario->bindParam(':recuperar_senha', $recuperar_senha);
+                $result_up_usuario->bindParam(':id', $row_usuario['id'], PDO::PARAM_INT);
 
-                echo "<script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Senha atualizada com sucesso!',
-                    customClass: {
-                        popup: 'swalFireIndex',
-                    },
-                    showConfirmButton: false,
-                    allowOutsideClick: false  
-                });
-        
-                // Redirecione automaticamente após um breve atraso
-                setTimeout(function() {
-                    window.location.href = '../index.php';
-                }, 3000);
-            </script>";
-
-            exit;
-                
-                } else {
+                if ($result_up_usuario->execute()) {
                     echo "<script>
                     Swal.fire({
-                        icon: 'warning',
-                        title: 'Erro: Tente novamente!',
+                        icon: 'success',
+                        title: 'Senha atualizada com sucesso!',
                         customClass: {
                             popup: 'swalFireIndex',
                         },
@@ -87,71 +60,9 @@ include_once 'include/header.php';
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
                         window.location.href = '../index.php';
-                    }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+                    }, 3000);
                 </script>";
-                }
-            }
 
-            
-        } else {
-
-            echo "<script>
-            Swal.fire({0
-                icon: 'error',
-                title: 'Link inválido, solicite novo link para atualizar a senha!',
-                customClass: {
-                    popup: 'swalFireIndex',
-                },
-                showConfirmButton: false,
-                allowOutsideClick: false  
-            });
-    
-            // Redirecione automaticamente após um breve atraso
-            setTimeout(function() {
-                window.location.href = 'esqueciSenha.php';
-            }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
-        </script>";
-        }
-    }
-
-    else if($result_email_admin->rowCount() > 0){
-        if (($result_email_admin) and ($result_email_admin->rowCount() != 0)) {
-            $row_email = $result_email_admin->fetch(PDO::FETCH_ASSOC);
-            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-            if (!empty($dados['SendNovaSenha'])) {
-                $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
-                $recuperar_senha = 'NULL';
-
-                $query_up_email = "UPDATE tbl_administrador 
-                        SET senha =:senha,
-                        recuperar_senha =:recuperar_senha
-                        WHERE id =:id 
-                        LIMIT 1";
-                $result_up_email = $conn->prepare($query_up_email);
-                $result_up_email->bindParam(':senha', $senha, PDO::PARAM_STR);
-                $result_up_email->bindParam(':recuperar_senha', $recuperar_senha);
-                $result_up_email->bindParam(':id', $row_email['id'], PDO::PARAM_INT);
-                if ($result_up_email->execute()) {
-
-                echo "<script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Senha atualizada com sucesso!',
-                    customClass: {
-                        popup: 'swalFireIndex',
-                    },
-                    showConfirmButton: false,
-                    allowOutsideClick: false  
-                });
-        
-                // Redirecione automaticamente após um breve atraso
-                setTimeout(function() {
-                    window.location.href = '../index.php';
-                }, 3000);
-            </script>";
-
-            exit;
-                
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -169,53 +80,26 @@ include_once 'include/header.php';
                         window.location.href = '../index.php';
                     }, 3000);
                 </script>";
-                }
+                
+                 }
             }
-
-            
         } else {
+            $bytes = random_bytes(7);
+            $valorErro = bin2hex($bytes);
 
-            echo "<script>
-            Swal.fire({0
-                icon: 'error',
-                title: 'Link inválido, solicite novo link para atualizar a senha!',
-                customClass: {
-                    popup: 'swalFireIndex',
-                },
-                showConfirmButton: false,
-                allowOutsideClick: false  
-            });
-    
-            // Redirecione automaticamente após um breve atraso
-            setTimeout(function() {
-                window.location.href = 'esqueciSenha.php';
-            }, 3000);
-        </script>";
+            header("Location: esqueciSenha.php?erro=" . urlencode($valorErro));
+            exit;
         }
-    }
-    
     } else {
+        $bytes = random_bytes(7);
+        $valorErro = bin2hex($bytes);
 
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: Link inválido, solicite novo link para atualizar a senha!',
-            customClass: {
-                popup: 'swalFireIndex',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false  
-        });
-
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'esqueciSenha.php';
-        }, 3000);
-    </script>";
-
-   }
+        header("Location: esqueciSenha.php?erro=" . urlencode($valorErro));
+        exit;
+    }
 
     ?>
+
 <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out" data-aos-delay="100">
     <div class="container mt-4">
         <div class="col-md-6 offset-md-3">
@@ -247,6 +131,7 @@ include_once 'include/header.php';
         </div>
     </div>
 </div>
+
 </body>
 
 </html>

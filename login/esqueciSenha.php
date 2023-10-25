@@ -23,6 +23,28 @@ $mail = new PHPMailer(true);
 </style>
 <body>
     <?php
+
+if (isset($_GET["erro"])) { 
+    $valor_recebido = urldecode($_GET["erro"]);
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Link inválido',
+                    html: '<p>solicite um novo link para atualizar a senha!!</p>',
+                    customClass: {
+                        popup: 'swalFireIndex',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                setTimeout(function() {
+                    window.location.href = 'esqueciSenha.php';
+                }, 5000);
+            </script>";
+}
+
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
     if (!empty($dados['SendRecupSenha'])) {

@@ -73,7 +73,7 @@
     </div>
     <?php
 
-    if (isset($_GET["erro"])) {
+    if (isset($_GET["erro"])) { 
     $valor_recebido = urldecode($_GET["erro"]);
 
                 echo "<script>
