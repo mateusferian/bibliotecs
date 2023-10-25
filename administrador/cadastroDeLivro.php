@@ -175,9 +175,9 @@ if (isset($_REQUEST["cadastrar"]))
 
       $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
 
-      $mover = move_uploaded_file($temp, 'img/' . $novo_nomeimg);
+      $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
 
-      $arquivo = 'img/' . $novo_nomeimg;
+      $arquivo = '../img/' . $novo_nomeimg;
 
       date_default_timezone_set('America/Sao_Paulo');
 
@@ -198,9 +198,9 @@ if (isset($_REQUEST["cadastrar"]))
       
       $ext2 = "pdf";
       $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-      $arquivo2 = 'pdf/' . $novo_nomeimg2;
+      $arquivo2 = '../pdf/' . $novo_nomeimg2;
 
-      $mover2 = move_uploaded_file($temp2, 'pdf/' . $novo_nomeimg2);
+      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
     
       if (empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora) || empty($_FILES['arquivo']['name'])) {
         $mensagem = "Campos obrigatórios em branco: ";

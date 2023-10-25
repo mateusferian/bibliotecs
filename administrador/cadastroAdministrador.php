@@ -86,10 +86,64 @@
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
-      $tipo = 2;
       $dataCadastro = date("Y-m-d");
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
+
+      $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
+
+      $consultaAdministrador->bindValue(':email' , $email);
+      $consultaAdministrador->execute();
+      $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
+      $totalRowAdministrador = $consultaAdministrador ->rowCount();
+
+
+      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email;");
+
+      $consultaAluno->bindValue(':email' , $email);
+      $consultaAluno->execute();
+      $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
+      $totalRowAluno = $consultaAluno ->rowCount();
+
+    if($totalRowAdministrador > 0 ){
+
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Email ja utilzizado',
+            title: 'o email: \"" . $email . "\" já esta sendo utilziado',
+            customClass: {
+                popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false  
+        });
+
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'index.php';
+        }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+    </script>";
+
+    }else if($totalRowAluno > 0 ){
+
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'esse email ja esta sendo utilziado',
+            customClass: {
+                popup: 'swalFireCadastroAdministrador',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false  
+        });
+
+        setTimeout(function() {
+            window.location.href = 'index.php';
+        }, 3000);
+    </script>";
+
+    }else{
       try{ 
         $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro, recuperar_senha)
                             VALUES (:id, :nome, :email, :senha, :dataCadastro, :recuperar_senha) ");
@@ -125,6 +179,7 @@
       catch (PDOException $erro) {
           echo $erro->getMessage();
       }
+    }
     }
 
     $conn;
