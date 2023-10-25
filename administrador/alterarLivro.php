@@ -96,14 +96,14 @@ try{
                 <label for="categoria" class="form-label">Categoria</label>
                 <select name="categoria" class="form-control"
                     value="<?php if(isset($row['categoria'])) {echo $row['categoria'];} ?>" id="categoria">
-                    <option value="Romance">Românce</option>
-                    <option value="Ficção">Ficção</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Religioso">Religioso</option>
-                    <option value="Conto">Conto</option>
-                    <option value="Liter.brasileira">Liter.brasileira</option>
-                    <option value="Terror">Terror</option>
-                    <option value="Suspense">Suspense</option>
+                    <option selected>Selecione o gênero</option>
+                    <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias">Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e Português</option>
+                    <option value="Contos">Contos</option>
                 </select>
             </div>
 
