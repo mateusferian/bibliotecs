@@ -64,6 +64,7 @@
 </head>
 
 <body>
+
   
 
   <header id="header" class="header d-flex align-items-center">
@@ -82,7 +83,6 @@
           <li><a href="blog.html">Horarios</a></li>
           <li><a href="#team">Doação</a></li>
           <li><a href="#livrosPDF">Livros em PDF</a></li>
-          <li><a href="../administrador/sair.php"> sair</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -117,14 +117,14 @@
   </section>
 
    <!--Novidades --> 
-   <section id="novidades" class="container">
+   <section id="destaques" class="container">
   <p class="fs-1 text-center mt-5">Destaques</p>
 
   <?php
   require_once "conexao.php";
   include 'funcoes/funcoes.php';
 
-  exibirLivrosPaginados($conn, 's', "novidades"); // Exibe os livros não-novidades
+  exibirLivrosPaginados($conn, 'S', "destaque"); // Exibe os livros não-novidades
   ?>
 </section>
 
@@ -272,7 +272,7 @@
 
   <!-- Linha 1 - Produtos -->
   <?php
-  exibirLivrosPaginados($conn, 'n',"livros"); // Exibe os livros não-novidades
+  exibirLivrosPaginados($conn, 'N',"livros"); // Exibe os livros não-novidades
   ?>
 </section>
 
@@ -283,9 +283,9 @@
  </section>
 
  <?php
-function exibirLivrosPaginados($conn, $novidade,$secaoId) {
-  $consulta = $conn->prepare("SELECT * FROM games WHERE novidade = :novidade");
-  $consulta->bindParam(':novidade', $novidade);
+function exibirLivrosPaginados($conn, $destaque,$secaoId) {
+  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = :destaque");
+  $consulta->bindParam(':destaque', $destaque);
   $consulta->execute();
   $livros = $consulta->fetchAll(PDO::FETCH_ASSOC);
   $totalLivros = count($livros);
@@ -305,13 +305,12 @@ function exibirLivrosPaginados($conn, $novidade,$secaoId) {
     <div class="col-sm-4 mt-5">
       <img src="<?php echo $livros[$i]["arquivo"]?>" class="card-img-top img_tamanho" alt="<?php echo $livros[$i]["nome"]?>">
       <h5 class="card-title"><?php echo $livros[$i]["nome"]?></h5>
-      <p class="card-text"><?php echo $livros[$i]["plataforma"]?></p>
+     
       <?php
-      $media_avaliacoes = $livros[$i]["media_avaliacoes"];
+      $media_avaliacoes = $livros[$i]["destaque"];
       mediaEstrelasDeAvaliacao($media_avaliacoes);
       ?>
-      <p class="card-text">R$<?php echo $livros[$i]["preco"]?></p>
-      <a href="detalhes.php?codgame=<?php echo $livros[$i]['codgame']?>" class="btn btn-primary red-color-button" target="_blank">Ver</a>
+      <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn btn-primary red-color-button">Ver</a></p>
     </div>
     <?php
   }
@@ -471,7 +470,7 @@ window.onload = function() {
  <section id="livrosPDF" class="container" >
   <p class="fs-1 text-center">Livros em PDF</p>
   <?php
-  exibirLivrosPaginados($conn, 's', "novidades"); 
+  exibirLivrosPaginados($conn, 'S', "destaque"); 
   ?>
   </section>
 

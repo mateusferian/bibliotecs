@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 25-Out-2023 às 20:41
+-- Tempo de geração: 25-Out-2023 às 18:02
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -20,94 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bd_bibliotecs`
 --
-DROP DATABASE IF EXISTS `bd_bibliotecs`;
-CREATE DATABASE IF NOT EXISTS `bd_bibliotecs` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `bd_bibliotecs`;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbl_administrador`
---
-
-DROP TABLE IF EXISTS `tbl_administrador`;
-CREATE TABLE IF NOT EXISTS `tbl_administrador` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `dataCadastro` date DEFAULT NULL,
-  `recuperar_senha` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `tbl_administrador`
---
-
-INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`) VALUES
-(21, 'mateus', 'giyato3203@tutoreve.com', '$2y$10$AI3w7NLko39AOim4fGetR.YYhtMQ0cUP3q7LqEm7WAmE8yopaiULi', '2023-09-20', 'NULL'),
-(23, 'gabriely', 'gabriely@gmail.com', '$2y$10$mINh1RSrXNefVwDbUdLWlOSrLia0gDI14POVD9szRVS7vSBGuVzL2', '2023-10-13', '0');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbl_aluno`
---
-
-DROP TABLE IF EXISTS `tbl_aluno`;
-CREATE TABLE IF NOT EXISTS `tbl_aluno` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `periodo` varchar(30) NOT NULL,
-  `sala` varchar(30) NOT NULL,
-  `dataCadastro` date DEFAULT NULL,
-  `recuperar_senha` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `situacao` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `tbl_aluno`
---
-
-INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
-(2, 'as', 'mateusferian10 @gmail.com ', '07/07/2005', '', '', NULL, '', 0),
-(3, '1', 'sas', '2', '', '', NULL, '', 0),
-(4, 'mateus', 'ferian', '123', '', '', NULL, '', 0),
-(5, 'test', 'mane@gmail.com', '12', '', '', NULL, '', 0),
-(6, 'pedro', 'pedro@gmail.com', '12345', '', '', NULL, '', 0),
-(7, 'ze', 'ze@gmail.com', '123', '', '', NULL, '', 0),
-(8, '12341', 'joseeeeeeeeee', '123', '', '', NULL, '', 0),
-(9, 'testeeeeeeeeeeeeeeeee', 'testeeeeeeeeeeeeeeeee', '123', '', '', NULL, '', 1),
-(10, 'maneeeeeeeee', 'maneeeeeeeee', 'maneeeeeeeee', '', '', NULL, '', 1),
-(11, 'crip', 'crip', '$2y$10$JoHyw5u0Q5OyfBpIY5jt.ecy0gYXiuMmVu.84.T7vUyJ9MCm/ZykC', '', '', NULL, '', 0),
-(12, 'data', 'data', '$2y$10$F2VcHIAUZ7ZFaQv5DiSynu/XdoszqldqSYPBnEkQdtW3vZOSmW4IS', '', '', '2023-09-03', '', 0),
-(13, 'as', 'as', '$2y$10$58hx7O9z9RV2pB6Yy6F8nOagak0xVUnnP.kFD5oSPcfC8qvTvWeeq', '', '', '2023-09-03', '', 0),
-(14, 'sad', 'as', '$2y$10$7R1292uM1BdU/Mba0QtA6O4CdRN6lbpLLGbMCVPf6IFE7BUfVkGv6', '', '', '2023-09-03', '', 0),
-(15, 'asd', 'sd', '$2y$10$lfilVSBo0LX6CcQHZ9r7Z.LqRM7TwUlE87.SfLz879zXtUtJ/PDTe', '', '', '2023-09-03', '', 0),
-(16, 'asd', 'asd', '$2y$10$hGJAdDCnIkD1E31LbTA/Hej.h/fhvVKv31pWojTjyx/ky/hkpQ0eq', '', '', '2023-09-03', '', 0),
-(17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0),
-(18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0),
-(19, 'qwe', 'asdad', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0),
-(20, 'qwe', 'mateusferian10@gmail.com', '$2y$10$s9H7I2TG3FveuQSlZyzZEePDC7pPsO2CFm3Yt5Ge0GlWvq5IM7vQe', '', 'asasasas', '2023-09-03', 'NULL', 0),
-(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 0);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tbl_eventos`
---
-
-DROP TABLE IF EXISTS `tbl_eventos`;
-CREATE TABLE IF NOT EXISTS `tbl_eventos` (
-  `id_eventos` int NOT NULL AUTO_INCREMENT,
-  `nome_eventos` varchar(60) NOT NULL,
-  `inf_eventos` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_eventos`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -156,7 +68,7 @@ DROP TABLE IF EXISTS `tbl_livro`;
 CREATE TABLE IF NOT EXISTS `tbl_livro` (
   `id_liv` int NOT NULL AUTO_INCREMENT,
   `isbn` int NOT NULL,
-  `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `categoria` varchar(40) NOT NULL,
   `nome` varchar(500) NOT NULL,
   `autor` varchar(50) NOT NULL,
   `ano` int NOT NULL,
@@ -165,20 +77,28 @@ CREATE TABLE IF NOT EXISTS `tbl_livro` (
   `destaque` varchar(1) NOT NULL,
   `descricao` varchar(500) NOT NULL,
   `editora` varchar(50) NOT NULL,
-  `situacao` varchar(30) NOT NULL,
   PRIMARY KEY (`id_liv`)
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tbl_livro`
 --
 
-INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
-(73, 234324, 'Séries da Literatura Estrangeira', 'categoria nova', '565', 23, 'img/img_25-10-2023_16-28-23_9784972110.', '0', 'S', '2323232323', '565', '1'),
-(74, 0, 'Séries da Literatura Estrangeira', 'uyuit', 'i', 0, 'img/img_25-10-2023_16-52-38_9650139344.jpg', '../pdf/arquivo_25-10-2023_16-52-38_5284186249.pdf', 'S', 'okok', '565', '1'),
-(75, 0, 'Séries da Literatura Estrangeira', 'fs', 'fs', 200, 'img/img_25-10-2023_16-54-25_9732870173.jpg', '../pdf/arquivo_25-10-2023_16-54-25_6090897677.pdf', 'N', 'oooooooo', '565', '1'),
-(76, 546565, 'Auto-Ajuda e Religião', 'hhh', 'hh', 2000, '../img/img_25-10-2023_16-56-15_69116916.jpg', '../pdf/arquivo_25-10-2023_16-56-15_6557666120.pdf', 'S', 'hfhf', 'hf', '1'),
-(77, 214234324, 'Selecione o gênero', 'testando ', '34', 34, '../img/img_25-10-2023_17-06-51_3767841944.jpg', '0', 'S', '4545454', '34', '0');
+INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`) VALUES
+(19, 4566262, 'Drama', 'Vento Molhado', 'Broksli', 2012, 'img/img_19-09-2023_22-04-51_7259818503.png', 'pdf/arquivo_19-09-2023_22-04-51_2556057897.pdf', 'S', 'teste', ''),
+(61, 34223556, 'Liter.brasileira', 'Reformados', 'Orlando boyer', 1967, 'img/img_26-09-2023_20-54-42_5468209519.png', 'pdf/arquivo_26-09-2023_20-54-42_9866097576.pdf', 'N', '', 'Reaut'),
+(22, 4567754, 'Drama', 'A menina do lago', 'Hosus', 2071, 'img/img_19-09-2023_23-51-28_5702309260.png', 'pdf/arquivo_19-09-2023_23-51-28_2919347860.pdf', 'N', '', 'Aunt'),
+(25, 4545345, 'Liter.brasileira', 'Se eu ficar', 'Juninhos Rossi', 2004, 'img/img_20-09-2023_16-12-47_2188690487.png', 'pdf/arquivo_20-09-2023_16-12-47_3154070143.pdf', 'N', '', 'Aunt'),
+(35, 14566525, 'Romance', 'Teste na aula II', 'C.S Lewis', 1023, 'img/img_20-09-2023_17-40-14_4126293284.png', 'pdf/arquivo_20-09-2023_17-40-14_2601045965.pdf', 'S', '', 'Pelau'),
+(50, 2147483647, 'Drama', 'Como eu era antes de você', 'Jojo Moyes', 2013, 'img/img_23-09-2023_12-10-31_1830759961.png', 'pdf/arquivo_23-09-2023_12-10-31_38865403.pdf', 'S', 'Will (Sam Claflin) é um jovem rico e bem-sucedido, até sofrer um grave acidente que o deixa preso a uma cadeira de rodas. Profundamente depressivo, sua família contrata Louisa (Emilia Clarke) para fazer companhia a ele. Ela sempre levou uma vida modesta, com dificuldades financeiras e problemas no trabalho, mas está disposta a provar para Will que ainda existem razões para viver.', 'Intrínsecaaos'),
+(55, 0, 'Selecione o gênero', '', '', 0, 'img/img_26-09-2023_20-19-34_1722097220.', '', 'I', '', ''),
+(52, 909867886, 'Ficção', 'Crepúsculo ', 'stheph hoppy', 2014, 'img/img_26-09-2023_19-42-03_2905429658.png', 'pdf/arquivo_26-09-2023_19-42-03_6622167072.pdf', 'S', '', 'Arquueiro'),
+(62, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-49-34_9139810640.', '', 'I', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', ''),
+(63, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-51-22_9433016946.', '', 'I', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', ''),
+(64, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-52-59_7734591557.', '', 'I', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', ''),
+(65, 343454354, 'Ficção', 'A menina que roubava livros', 'C.S Lewis', 2005, 'img/img_27-09-2023_16-54-13_2187126215.png', '', 'N', 'dcjbskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', 'Contemporany'),
+(66, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_16-59-06_4085081984.', '', 'I', '', ''),
+(67, 0, 'Selecione o gênero', '', '', 0, 'img/img_27-09-2023_17-00-13_2111433251.', '', 'I', '', '');
 
 -- --------------------------------------------------------
 

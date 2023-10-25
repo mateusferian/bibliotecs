@@ -2,8 +2,8 @@
 //variaveis de conexao
 	$servername = "localhost";
 	$username = "root";
-	$password = "root";
-	$dbname = "bd_games";
+	$password = "";
+	$dbname = "bd_bibliotecs";
 
 
 	try {
