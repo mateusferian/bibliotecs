@@ -25,9 +25,9 @@
             $totalRowAluno = $consultaAluno ->rowCount();
 
          
-            if((password_verify($senhas, $rowAdministrador['senha'])) || (password_verify($senhas, $rowAluno['senha']))){
                 
                 if($totalRowAdministrador > 0 ){
+                    if(password_verify($senhas, $rowAdministrador['senha'])){
                     session_start();
 
                     $_SESSION['email'] = $rowAdministrador['email'];
@@ -37,10 +37,15 @@
                     $_SESSION['nome'] = $rowAdministrador['nome'];
 
                     header(("location:../administrador/controleDeAluno.php"));
-                }
-    
-                if($totalRowAluno > 0 ){
-
+                    } else{
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
+        
+                        header("Location: ../index.php?erro=" . urlencode($valorErro));
+                        exit;
+                    }
+                }else if($totalRowAluno > 0 ){
+                    if((password_verify($senhas, $rowAluno['senha']))){
                     // session_start();
 
                     // $_SESSION['email'] = $rowAluno['email'];
@@ -50,15 +55,20 @@
                     // $_SESSION['nome'] = $rowAluno['nome'];
 
                     header(("location: ../usuario/home.php"));
+                    }else{
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
+    
+                        header("Location: ../index.php?erro=" . urlencode($valorErro));
+                        exit;
+                    }
+                }else{
+                    $bytes = random_bytes(7);
+                    $valorErro = bin2hex($bytes);
+
+                     header("Location: ../index.php?erro=" . urlencode($valorErro));
+                    exit;
                 }
-
-            } else{
-                $bytes = random_bytes(7);
-                $valorErro = bin2hex($bytes);
-
-                header("Location: ../index.php?erro=" . urlencode($valorErro));
-                exit;
-            }
         }
 
     }  catch (PDOException $erro) {
