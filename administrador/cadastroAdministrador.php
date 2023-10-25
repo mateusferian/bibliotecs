@@ -130,6 +130,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
+            title: 'Email já utilizado',
             title: 'o email: \"" . $email . "\" já esta sendo utilziado',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
