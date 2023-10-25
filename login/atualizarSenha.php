@@ -1,5 +1,5 @@
 <?php
-include_once 'conexao.php';
+include_once '../conexao.php';
 include_once 'include/header.php';
 ?>
 <style>
@@ -19,71 +19,31 @@ include_once 'include/header.php';
     if (!empty($chave)) {
         //var_dump($chave);
 
-        $query_usuario = "SELECT id 
+        $queryAdministrador = "SELECT id 
                             FROM tbl_administrador 
                             WHERE recuperar_senha =:recuperar_senha  
                             LIMIT 1";
-        $result_usuario = $conn->prepare($query_usuario);
-        $result_usuario->bindParam(':recuperar_senha', $chave, PDO::PARAM_STR);
-        $result_usuario->execute();
+        $resultadoAdministrador = $conn->prepare($queryAdministrador);
+        $resultadoAdministrador->bindParam(':recuperar_senha', $chave, PDO::PARAM_STR);
+        $resultadoAdministrador->execute();
 
-        if (($result_usuario) and ($result_usuario->rowCount() != 0)) {
-            $row_usuario = $result_usuario->fetch(PDO::FETCH_ASSOC);
-            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-            //var_dump($dados);
-            if (!empty($dados['SendNovaSenha'])) {
-                $senha_usuario = password_hash($dados['senha'], PASSWORD_DEFAULT);
-                $recuperar_senha = 'NULL';
 
-                $query_up_usuario = "UPDATE tbl_administrador 
-                        SET senha =:senha,
-                        recuperar_senha =:recuperar_senha
-                        WHERE id =:id 
-                        LIMIT 1";
-                $result_up_usuario = $conn->prepare($query_up_usuario);
-                $result_up_usuario->bindParam(':senha', $senha_usuario, PDO::PARAM_STR);
-                $result_up_usuario->bindParam(':recuperar_senha', $recuperar_senha);
-                $result_up_usuario->bindParam(':id', $row_usuario['id'], PDO::PARAM_INT);
 
-                if ($result_up_usuario->execute()) {
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Senha atualizada com sucesso!',
-                        customClass: {
-                            popup: 'swalFireIndex',
-                        },
-                        showConfirmButton: false,
-                        allowOutsideClick: false  
-                    });
-            
-                    // Redirecione automaticamente após um breve atraso
-                    setTimeout(function() {
-                        window.location.href = '../index.php';
-                    }, 3000);
-                </script>";
+        $queryUsuario = "SELECT id 
+        FROM tbl_aluno 
+        WHERE recuperar_senha =:recuperar_senha  
+        LIMIT 1";
+        $resultadoUsuario = $conn->prepare($queryUsuario);
+        $resultadoUsuario->bindParam(':recuperar_senha', $chave, PDO::  PARAM_STR);
+        $resultadoUsuario->execute();
 
-                } else {
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Erro: Tente novamente!',
-                        customClass: {
-                            popup: 'swalFireIndex',
-                        },
-                        showConfirmButton: false,
-                        allowOutsideClick: false  
-                    });
-            
-                    // Redirecione automaticamente após um breve atraso
-                    setTimeout(function() {
-                        window.location.href = '../index.php';
-                    }, 3000);
-                </script>";
-                
-                 }
-            }
-        } else {
+        if (($resultadoAdministrador) and ($resultadoAdministrador->rowCount() != 0)) {         
+            include_once 'metodoAtualizarSenhaAdministrador.php';     
+
+        }else if (($resultadoUsuario) and ($resultadoUsuario->rowCount() != 0)) {       
+            include_once 'metodoAtualizarSenhaUsuario.php';
+
+        }else {
             $bytes = random_bytes(7);
             $valorErro = bin2hex($bytes);
 
@@ -131,7 +91,5 @@ include_once 'include/header.php';
         </div>
     </div>
 </div>
-
 </body>
-
 </html>

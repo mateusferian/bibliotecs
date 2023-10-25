@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include_once 'conexao.php';
+include_once '../conexao.php';
 include_once 'include/header.php';
 
 use PHPMailer\PHPMailer\PHPMailer;

@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "root";
+$pass = "";
 $dbname = "bd_bibliotecs";
 $port = 3306;
 
