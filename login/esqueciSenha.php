@@ -55,6 +55,12 @@ if (isset($_GET["erro"])) {
         $result_email_aluno = $conn->prepare($query_email_aluno);
         $result_email_aluno->bindParam(':email', $email, PDO::PARAM_STR);
         $result_email_aluno->execute();
+
+        
+        $query_email_admin = "SELECT id, nome, email FROM tbl_administrador WHERE email = :email LIMIT 1";
+        $result_email_admin = $conn->prepare($query_email_admin);
+        $result_email_admin->bindParam(':email', $email, PDO::PARAM_STR);
+        $result_email_admin->execute();
         
         if ($result_email_aluno->rowCount() > 0) {
 
@@ -69,14 +75,7 @@ if (isset($_GET["erro"])) {
         
             $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
 
-        } else {
-
-            $query_email_admin = "SELECT id, nome, email FROM tbl_administrador WHERE email = :email LIMIT 1";
-            $result_email_admin = $conn->prepare($query_email_admin);
-            $result_email_admin->bindParam(':email', $email, PDO::PARAM_STR);
-            $result_email_admin->execute();
-        
-            if ($result_email_admin->rowCount() > 0) {
+        } else if ($result_email_admin->rowCount() > 0) {
                 $row_email = $result_email_admin->fetch(PDO::FETCH_ASSOC);
                 $chave_recuperar_senha = password_hash($row_email['id'], PASSWORD_DEFAULT);
 
@@ -106,10 +105,9 @@ if (isset($_GET["erro"])) {
                 }, 3000);
             </script>";
             }
-        }
         
-        $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
-        
+        if(($result_email_admin->rowCount() > 0) || ($result_email_aluno->rowCount() > 0)){
+            $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
         try {
 
             $mail->CharSet = 'UTF-8';
@@ -169,6 +167,7 @@ if (isset($_GET["erro"])) {
                     }, 3000);
                 </script>";
                 }
+            }
     }
     ?>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
