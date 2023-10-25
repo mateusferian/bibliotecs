@@ -213,9 +213,9 @@ try{
       
               $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
       
-              $mover = move_uploaded_file($temp, 'img/' . $novo_nomeimg);
+              $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
       
-              $arquivo = 'img/' . $novo_nomeimg;
+              $arquivo = '../img/' . $novo_nomeimg;
             } else {
       
               $arquivo = $_REQUEST['caminho_arquivo'];
@@ -232,12 +232,10 @@ try{
       $erro2 =     $_FILES["arquivo2"]["error"];
 
       $ext2 = "pdf";
-
       $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+      $arquivo2 = '../pdf/' . $novo_nomeimg2;
 
-      $mover2 = move_uploaded_file($temp2, 'pdf/' . $novo_nomeimg2);
-
-      $arquivo2 = 'pdf/' . $novo_nomeimg2;
+      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
 
       if($tamanho2==0){
         $arquivo2= 0;
