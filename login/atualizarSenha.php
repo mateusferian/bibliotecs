@@ -83,7 +83,7 @@ include_once 'include/header.php';
                     <br><br>
                 <div class="form-group">
                     <div class="col-md-4 offset-md-4">
-                        <input id="botao" type="submit" value="Atualizar" class="btn" name="SendNovaSenha">
+                        <input id="formulario" type="submit" value="Atualizar" class="btn" name="SendNovaSenha">
                     </div>
                     <br><br>
                 </div>

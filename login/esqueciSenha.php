@@ -195,7 +195,7 @@ if (isset($_GET["erro"])) {
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input id="botao" type="submit" value="Recuperar" class="btn btn-primary" name="SendRecupSenha">
+                            <input id="formulario" type="submit" value="Recuperar" class="btn btn-primary" name="SendRecupSenha">
                         </div>
                         <br><br>
                     </div>

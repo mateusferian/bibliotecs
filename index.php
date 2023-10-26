@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Entrar" class="btn" name="acessar" id="botao">
+                            <input type="submit" value="Entrar" class="btn" name="acessar" id="formulario">
                         </div>
                         <br><br>
                     </div>

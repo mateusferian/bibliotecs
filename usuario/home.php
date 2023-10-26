@@ -220,7 +220,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
       $media_avaliacoes = $livros[$i]["destaque"];
       mediaEstrelasDeAvaliacao($media_avaliacoes);
       ?>
-      <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn btn-primary red-color-button">Ver</a></p>
+      <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn" id="botao">Ver</a></p>
     </div>
     <?php
   }
