@@ -12,7 +12,7 @@ if (isset($_POST["senha"])) {
     if ($senha_inserida == $senha_correta) {
         $bytes = random_bytes(7);
         $valorPermitido = bin2hex($bytes);
-        header("Location: cadastroAdministrador.php?protect=" . urlencode($valorPermitido));
+        header("Location: opcoesDeAcesso.php?protect=" . urlencode($valorPermitido));
         exit();
     } else {
         $bytes = random_bytes(7);
