@@ -22,24 +22,6 @@ require_once "include/header.php";
         max-width: 100px;
         height: auto;
     }
-
-    .meuBotao {
-        background-color: rgba(0, 131, 116, 0.8);
-        color: white;
-        border: 2px solid rgba(0, 131, 116, 0.8);
-    }
-
-    /* Estilo de hover do botão */
-    .meuBotao:hover {
-        background-color: #99cdc7;
-        color: white;
-        border: 2px solid #99cdc7;
-    }
-
-    #meuBotao:active {
-        background-color: #014d44;
-        border: 2px solid #014d44;
-    }
     </style>
 </head>
 <body>
@@ -131,7 +113,7 @@ require_once "include/header.php";
     
     
         <div class="col-12  mt-3">
-      <button type="submit" name="cadastrar" value="cadastrar" class="btn meuBotao">Cadastrar</button>
+      <button id="botao" type="submit" name="cadastrar" value="cadastrar" class="btn">Cadastrar</button>
       <br><br>
         </div>
         <div>

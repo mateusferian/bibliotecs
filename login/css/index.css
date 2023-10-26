@@ -4,9 +4,6 @@
     --color-secondary: #014d44;
     --color-third: #99cdc7;
   }
-#meuBotao:active {
-    background-color: var(--color-secondary);
-}
 
 .form-control {
     background-color: var(--color-secondary);

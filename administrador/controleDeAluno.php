@@ -1,47 +1,29 @@
 <?php
     require_once "include/header.php";
 ?>
-    <link href="css/controleDeAluno.css" rel="stylesheet">
+<link href="css/controleDeAluno.css" rel="stylesheet">
 
-    <style>
-    .img_novidades {
-        max-width: 80%;
-        height: auto;
-    }
+<style>
+.img_novidades {
+    max-width: 80%;
+    height: auto;
+}
 
-    .img_tamanho {
-        max-width: 300px;
-        height: auto;
-    }
+.img_tamanho {
+    max-width: 300px;
+    height: auto;
+}
 
-    .img_lista {
-        max-width: 100px;
-        height: auto;
-    }
-
-    .meuBotao {
-        background-color: rgba(0, 131, 116, 0.8);
-        color: white;
-        border: 2px solid rgba(0, 131, 116, 0.8);
-    }
-
-    /* Estilo de hover do botão */
-    .meuBotao:hover {
-        background-color: #99cdc7;
-        color: white;
-        border: 2px solid #99cdc7;
-    }
-
-    #meuBotao:active {
-        background-color: #014d44;
-        border: 2px solid #014d44;
-    }
-    </style>
+.img_lista {
+    max-width: 100px;
+    height: auto;
+}
+</style>
 
 </head>
 
 <body>
-<?php
+    <?php
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
@@ -56,7 +38,7 @@
                 <option value="opcao3">há 21 dias</option>
                 <option value="opcao4">mais de 21 dias</option>
             </select>
-            <button id="meuBotao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+            <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
         </form>
     </div>
 
@@ -111,22 +93,23 @@
                     <td><?php echo $row["email"] ?></td>
                     <td><?php echo $row["sala"] ?></td>
                     <td>
-                    <?php
+                        <?php
             if ($row["situacao"] == 1) {
                 ?>
-                  <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
-                <?php
+                        <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                        <?php
                 } else {
                 ?>
-                  <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
-                <?php
+                        <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado">
+                        </center>
+                        <?php
                 }
                 ?>
-                </td>;
+                    </td>;
                     <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
-                        </td>
-                        <td>
+                    </td>
+                    <td>
                         <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
                     </td>
                 </tr>

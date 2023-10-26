@@ -1,0 +1,17 @@
+#botao {
+    background-color: #014d44;
+    color: white;
+    border: 2px solid #014d44;
+}
+
+/* Estilo de hover do botão */
+#botao:hover {
+    background-color: #99cdc7;
+    color: white;
+    border: 2px solid #99cdc7;
+}
+
+#botao:active {
+    background-color: #014d44;
+    border: 2px solid #014d44;
+}

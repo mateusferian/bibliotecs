@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="login/css/index.css">
     <link rel="stylesheet" href="login/css/style.css">
+    <link href="login/css/botao.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -63,7 +64,7 @@
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Entrar" class="btn btn-primary" name="acessar" id="meuBotao">
+                            <input type="submit" value="Entrar" class="btn" name="acessar" id="botao">
                         </div>
                         <br><br>
                     </div>
