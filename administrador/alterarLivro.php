@@ -72,6 +72,18 @@ try{
                     value="<?php if(isset($row['isbn'])) {echo $row['isbn'];} ?>"><br>
             </div>
 
+            <div class="col-sm-12  mt-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="situacao" id="situacao">
+                    <option value="1"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
+                        Ativado</option>
+                    <option value="0"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
+                        Desativado</option>
+                </select>
+            </div>
+
             <div class="col-sm-6  mt-3">
                 <label for="categoria" class="form-label">Categoria</label>
                 <select name="categoria" class="form-control"
@@ -82,7 +94,8 @@ try{
                     <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
                     <option value="Poemas e Poesias">Poemas e Poesias</option>
                     <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
-                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e Português</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e
+                        Português</option>
                     <option value="Contos">Contos</option>
                 </select>
             </div>
@@ -137,7 +150,8 @@ try{
             </div>
 
             <div class="col-12  mt-3">
-            <button id="botao" type="submit"  name="alterar" value="alterar" class="btn btn-primary mt-2">alterar</button>
+                <button id="botao" type="submit" name="alterar" value="alterar"
+                    class="btn btn-primary mt-2">alterar</button>
                 <br><br>
             </div>
         </div>
