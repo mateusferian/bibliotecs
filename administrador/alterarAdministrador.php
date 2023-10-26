@@ -63,7 +63,7 @@
                     <h1 class="text-center">Alterar</h1>
                     <br><br>
 
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
                             <label> ID: </label><br>
                             <input type="text" name="id" class="form-control"
@@ -71,15 +71,15 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-MAIL INSTITUCIONAL</label>
+                            <label>E-MAIL</label>
                             <input type="text" name="email" class="form-control"
                                 value="<?php if(isset($row['email'])) {echo $row['email'];} ?>"><br>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
                             <label>Nome completo</label>
                             <input type="text" name="nome" class="form-control"
@@ -87,15 +87,35 @@
                         </div>
                     </div>
 
-                    <a class="form-links" href="controleDeAdministrador.php?protect=434341212">Já </a>
+                    <div class="form-group text-center">
+                        <div class="col-md-6 offset-md-3">
+                            <label for="situacao">Situação</label>
+                            <select class="form-control" name="situacao" id="situacao">
+                                <option value="1"
+                                    <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
+                                    Ativado</option>
+                                <option value="0"
+                                    <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
+                                    Desativado</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group text-center">
+                        <a class="form-links" href="controleDeAdministrador.php?protect=434341212">deseja voltar para
+                            controle de administrador? clique aqui </a>
+                    </div>
                     <br><br>
 
-                    <div class="form-group">
-                        <div class="col-md-5 offset-md-5">
-                            <input id="formulario" type="submit" value="Alterar" class="btn" name="Alterar">
+                    <div class="form-group text-center">
+                        <div class="col-md-5 offset-md-5 mx-auto">
+                            <input id="formulario" type="submit" value="Alterar Dados" class="btn" name="Alterar">
                         </div>
                         <br><br>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -108,11 +128,13 @@
       $email = $_REQUEST["email"];
       $idAdministrador = $_REQUEST["id"];
       $dataCadastro = date("Y-m-d");
+      $situacao = $_REQUEST["situacao"];
 
 
-      $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
-
-      $consultaAdministrador->bindValue(':email' , $email);
+      $consultaAdministrador = $conn->prepare("SELECT * FROM tbl_administrador WHERE email=:email AND id != :id;");
+      $consultaAdministrador->bindValue(':email', $email);
+      $consultaAdministrador->bindValue(':id', $idAdministrador);
+      
       $consultaAdministrador->execute();
       $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
       $totalRowAdministrador = $consultaAdministrador ->rowCount();
@@ -161,41 +183,46 @@
             },
             showConfirmButton: false,
             allowOutsideClick: false  
+            timer: 4000
         });
 
         setTimeout(function() {
             window.location.href = 'controleDeAdministrador.php?protect=2343431';
-        }, 4000);
+        });
     </script>";
 
     }else{
       try{ 
-        $sql = $conn->prepare("UPDATE tbl_administrador SET nome = :nome, email = :email, dataCadastro = :dataCadastro WHERE id = :id");
+        $sql = $conn->prepare("UPDATE tbl_administrador SET nome = :nome, email = :email, dataCadastro = :dataCadastro, situacao = :situacao WHERE id = :id");
 
-        $sql->bindValue(':id', $idAdministrador);  // Substitua $id pelo valor do ID que deseja atualizar
+        $sql->bindValue(':id', $idAdministrador);
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':dataCadastro', $dataCadastro);
+        $sql->bindValue(':situacao', $situacao);
         
 
         $sql->execute();
         echo "<script>
-            Swal.fire({
-                title: 'Alteração de administrador realizada com Sucesso!!',
-                customClass: {
-                    popup: 'swalFireCadastroAdministrador',
-                },
-                showCancelButton: false,
-                confirmButtonText: 'Ir para a página de login',
-                timer: 4000, 
-                timerProgressBar: true, 
-                allowOutsideClick: false      
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'controleDeAdministrador.php?protect=2343431';
-                }
-            });
-        </script>";
+        Swal.fire({
+            title: 'Alteração de administrador realizada com Sucesso!!',
+            customClass: {
+                popup: 'swalFireCadastroAdministrador',
+            },
+            showCancelButton: false,
+            confirmButtonText: 'Ir para a página de login',
+            timer: 4000,
+            timerProgressBar: true,
+            allowOutsideClick: false      
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            } else {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            }
+        });
+    </script>";
+    
 
         
       } 

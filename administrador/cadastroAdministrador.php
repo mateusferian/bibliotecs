@@ -47,7 +47,7 @@
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-MAIL INSTITUCIONAL</label>
+                        <label>E-MAIL</label>
                             <input type="text" name="email" class="form-control"
                                 placeholder="digite o seu e-mail institucional" required="">
                         </div>
@@ -151,16 +151,18 @@
     </script>";
 
     }else{
+        $situacao = 1;
       try{ 
-        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha ,dataCadastro, recuperar_senha)
-                            VALUES (:id, :nome, :email, :senha, :dataCadastro, :recuperar_senha) ");
-        
+        $sql = $conn->prepare("INSERT INTO tbl_administrador (id, nome, email, senha, dataCadastro, recuperar_senha, situacao)
+        VALUES (:id, :nome, :email, :senha, :dataCadastro, :recuperar_senha, :situacao)");
+
         $sql->bindValue(':id', null);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':senha', $hash);
         $sql->bindValue(':dataCadastro', $dataCadastro);
         $sql->bindValue(':recuperar_senha', "0");
+        $sql->bindValue(':situacao', $situacao );
 
         $sql->execute();
         echo "<script>

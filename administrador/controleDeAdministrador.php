@@ -66,7 +66,6 @@
                     <td><?php echo $row["id"] ?> </td>
                     <td><?php echo $row["nome"] ?></td>
                     <td><?php echo $row["email"] ?></td>
-                    <td><?php echo $row["sala"] ?></td>
                     <td>
                         <?php
             if ($row["situacao"] == 1) {
@@ -79,17 +78,22 @@
                         </center>
                         <?php
                 }
+                ?>
+                    </td>;
 
+                    <?php
                 $bytes = random_bytes(7);
                 $valorPermitido = bin2hex($bytes);
                 ?>
-                    </td>
+
                     <td>
-                        <a href="alterarAdministrador.php?protect=<?php echo urlencode($valorPermitido); ?>&al=<?php echo $row["id"]; ?>">Alterar</a>
+                        <a
+                            href="alterarAdministrador.php?protect=<?php echo urlencode($valorPermitido); ?>&al=<?php echo $row["id"]; ?>">Alterar</a>
                     </td>
-                    
+
                     <td>
-                    <a href="controleDeAdministrador.php?protect=<?php echo urlencode($valorPermitido); ?>&ex=<?php echo $row["id"]; ?>">Excluir</a>        
+                        <a
+                            href="controleDeAdministrador.php?protect=<?php echo urlencode($valorPermitido); ?>&ex=<?php echo $row["id"]; ?>">Excluir</a>
                     </td>
                 </tr>
                 <?php
