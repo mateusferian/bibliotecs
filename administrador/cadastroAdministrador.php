@@ -41,7 +41,7 @@
         data-aos-delay="100">
         <div class="container mt-4">
             <div class="col-md-6 offset-md-3">
-                <form class="form" action="cadastroAdministrador.php" method="POST" name="formulario">
+                <form class="form" action="cadastroAdministrador.php?protect=123452" method="POST" name="formulario">
                     <br><br>
                     <h1 class="text-center">Cadastro</h1>
                     <br><br>
