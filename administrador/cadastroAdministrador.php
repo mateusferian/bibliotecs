@@ -1,6 +1,4 @@
-<?php
-    require_once "protect.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,13 +103,15 @@
       $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
       $totalRowAluno = $consultaAluno ->rowCount();
 
+
+
     if($totalRowAdministrador > 0 ){
 
         echo "<script>
         Swal.fire({
             icon: 'error',
             title: 'Email já utilizado',
-            title: 'o email: \"" . $email . "\" já esta sendo utilziado',
+            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
             },
@@ -121,7 +121,7 @@
 
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
-            window.location.href = 'index.php';
+            window.location.href = 'cadastroAdministrador.php?protect=2343431';
         }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
     </script>";
 
@@ -131,7 +131,7 @@
         Swal.fire({
             icon: 'error',
             title: 'Email já utilizado',
-            title: 'o email: \"" . $email . "\" já esta sendo utilziado',
+            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
             },
@@ -140,8 +140,8 @@
         });
 
         setTimeout(function() {
-            window.location.href = 'index.php';
-        }, 3000);
+            window.location.href = 'cadastroAdministrador.php?protect=2343431';
+        }, 5000);
     </script>";
 
     }else{
