@@ -1006,6 +1006,9 @@ section {
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
+#testimonials{
+  background-color: #f6f6f6;
+}
 .testimonials .testimonial-wrap {
   padding-left: 10px;
 }
@@ -1016,7 +1019,7 @@ section {
   margin: 30px 10px;
   box-shadow: 0px 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
-  background: #fff;
+ 
   border-radius: 10px;
 }
 
@@ -1579,6 +1582,10 @@ section {
 /*--------------------------------------------------------------
 # Frequently Asked Questions Section
 --------------------------------------------------------------*/
+#faq {
+  background-color: #f6f6f6;
+}
+
 .faq .content h3 {
   font-weight: 400;
   font-size: 34px;
@@ -2666,4 +2673,44 @@ section {
 
 .footer .credits a {
   color: #fff;
+}
+
+.rating {
+  color: #ffd700; /* Amarelo */
+}
+
+.star {
+  font-size: 24px;
+  display: inline-block;
+}
+
+.filled {
+  color: #ffd700; /* Amarelo */
+}
+
+/* // botão */
+
+/* styles.css */
+.red-color-button {
+  background-color: rgba(0, 131, 116, 0.8); /* Defina a cor de fundo desejada */
+  border-color: rgba(0, 131, 116, 0.8); /* Defina a cor da borda desejada */
+  color: white; /* Cor do texto no botão */
+}
+
+ /* numeros da paginação dos livros */
+
+ /* styles.css */
+/* styles.css */
+
+
+.custom-pagination .page-item .page-link {
+  background-color: white;  /* Defina a cor de fundo desejada para os números das páginas não ativas */
+  border-color: #014d44;; /* Defina a cor da borda desejada para os números das páginas não ativas */
+  color: #014d44; /* Cor do texto nos números das páginas não ativas */
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(0, 131, 116, 0.8); /* Defina a cor de fundo desejada para o número da página ativa */
+  border-color: #014d44; /* Defina a cor da borda desejada para o número da página ativa */
+  color: white; /* Cor do texto no número da página ativa */
 }
