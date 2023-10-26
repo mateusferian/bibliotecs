@@ -82,16 +82,15 @@
                     icon: 'error',
                     title: 'email ou senha incorretos',
                     customClass: {
-                        popup: 'swalFireIndex', // Classe CSS personalizada para a caixa de diálogo
+                        popup: 'swalFireIndex',
                     },
                     showConfirmButton: false,
                     allowOutsideClick: false  
                 });
         
-                // Redirecione automaticamente após um breve atraso
                 setTimeout(function() {
                     window.location.href = 'index.php';
-                }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+                }, 4000);
             </script>";
 }
 ?>

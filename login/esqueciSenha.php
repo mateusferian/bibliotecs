@@ -102,7 +102,7 @@ if (isset($_GET["erro"])) {
                 // Redirecione automaticamente após um breve atraso
                 setTimeout(function() {
                     window.location.href = 'esqueciSenha.php';
-                }, 3000);
+                }, 4000);
             </script>";
             }
         
@@ -146,7 +146,7 @@ if (isset($_GET["erro"])) {
                 // Redirecione automaticamente após um breve atraso
                 setTimeout(function() {
                     window.location.href = '../index.php';
-                }, 3000);
+                }, 4000);
             </script>";
 
                 } catch (Exception $e) {
@@ -164,7 +164,7 @@ if (isset($_GET["erro"])) {
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
                         window.location.href = 'esqueciSenha.php';
-                    }, 3000);
+                    }, 4000);
                 </script>";
                 }
             }

@@ -30,7 +30,7 @@ $rowUsuario = $resultadoUsuario->fetch(PDO::FETCH_ASSOC);
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
                         window.location.href = '../index.php';
-                    }, 3000);
+                    }, 4000);
                 </script>";
 
                 } else {
@@ -47,7 +47,7 @@ $rowUsuario = $resultadoUsuario->fetch(PDO::FETCH_ASSOC);
             
                     setTimeout(function() {
                         window.location.href = '../index.php';
-                    }, 3000);
+                    }, 4000);
                 </script>";
                 
                  }

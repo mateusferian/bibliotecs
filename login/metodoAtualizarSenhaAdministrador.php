@@ -31,7 +31,7 @@ if (!empty($dados['SendNovaSenha'])) {
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
             window.location.href = '../index.php';
-        }, 3000);
+        }, 4000);
     </script>";
 
     } else {
@@ -49,7 +49,7 @@ if (!empty($dados['SendNovaSenha'])) {
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
             window.location.href = '../index.php';
-        }, 3000);
+        }, 4000);
     </script>";
     
      }
