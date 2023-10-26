@@ -220,7 +220,7 @@ if (isset($_REQUEST["cadastrar"]))
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
             window.location.href = 'cadastroDeLivro.php';
-        }, 5000);
+        }, 4000);
         </script>";
     }
     
@@ -254,7 +254,7 @@ if (isset($_REQUEST["cadastrar"]))
             },
             showCancelButton: false,
             confirmButtonText: 'Ir para a página de controle de livro',
-            timer: 5000,
+            timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    
               

@@ -323,7 +323,7 @@
                     showCancelButton: true, // Não mostrar o botão de cancelar
                     confirmButtonText: 'sim',
                     cancelButtonText: 'não',
-                    timer: 5000,
+                    timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false      
                 }).then((result) => {
@@ -364,7 +364,7 @@
                             // Redirecione automaticamente após um breve atraso
                             setTimeout(function() {
                                 window.location.href = 'controleDeLivro.php';
-                            }, 3000);
+                            }, 4000);
                         </script>";
                         exit;
                     }

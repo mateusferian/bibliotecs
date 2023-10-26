@@ -1,4 +1,8 @@
 
+<?php
+    require_once "protect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +15,10 @@
     <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/formulario.css">
     <link rel="stylesheet" href="css/cadastroAdministrador.css">
+    <link rel="stylesheet" href="css/swalFire.css">
+    <link rel="stylesheet" href="css/botao.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -67,7 +73,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input type="submit" value="Cadastra-se" class="btn btn-primary" name="Cadastra-se">
+                            <input id="formulario" type="submit" value="Cadastra-se" class="btn" name="Cadastra-se">
                         </div>
                         <br><br>
                     </div>
@@ -113,7 +119,7 @@
             title: 'Email já utilizado',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
-                popup: 'swalFireCadastroAdministrador', // Classe CSS personalizada para a caixa de diálogo
+                popup: 'swalFireCadastroAdministrador',
             },
             showConfirmButton: false,
             allowOutsideClick: false  
@@ -122,7 +128,7 @@
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
             window.location.href = 'cadastroAdministrador.php?protect=2343431';
-        }, 3000); // Tempo em milissegundos (2 segundos no exemplo) antes de redirecionar
+        }, 3000);
     </script>";
 
     }else if($totalRowAluno > 0 ){
@@ -141,7 +147,7 @@
 
         setTimeout(function() {
             window.location.href = 'cadastroAdministrador.php?protect=2343431';
-        }, 5000);
+        }, 4000);
     </script>";
 
     }else{
@@ -163,9 +169,9 @@
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
-                showCancelButton: false, // Não mostrar o botão de cancelar
+                showCancelButton: false,
                 confirmButtonText: 'Ir para a página de login',
-                timer: 5000, 
+                timer: 4000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      
             }).then((result) => {

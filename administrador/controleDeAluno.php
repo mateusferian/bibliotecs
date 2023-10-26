@@ -1,8 +1,6 @@
 <?php
     require_once "include/header.php";
 ?>
-<link href="css/controleDeAluno.css" rel="stylesheet">
-
 <style>
 .img_novidades {
     max-width: 80%;
@@ -178,7 +176,7 @@
             showCancelButton: true,
             confirmButtonText: 'sim',
             cancelButtonText: 'não',
-            timer: 5000,
+            timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      
         }).then((result) => {
@@ -219,7 +217,7 @@
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
                         window.location.href = 'controleDeAluno.php';
-                    }, 3000); 
+                    }, 4000); 
                 </script>";
                 exit;
             }

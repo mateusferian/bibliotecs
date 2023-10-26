@@ -247,7 +247,7 @@ try{
                 },
                 showCancelButton: false,
                 confirmButtonText: 'Ir para a página de controle de lirvo',
-                timer: 5000,
+                timer: 4000,
                 timerProgressBar: true, 
                 allowOutsideClick: false    
                   
