@@ -62,6 +62,7 @@
         <br><br><br><br>
         <?php
         if (isset($_REQUEST['id_liv'])) {
+ 
             $idlivro = $_GET['id_liv'];
             // Consulta SQL para recuperar o preço e a capa do jogo com base no código
             $consulta = $conn->prepare("SELECT * FROM tbl_livro where id_liv = $idlivro ");
@@ -104,13 +105,37 @@
             </div>
         </div>
         <p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary red-color-button" type="button">Reservar</button>
-        </div>
+        <form action="detalhes.php?id_liv=<?php echo urlencode($idlivro); ?>" method="POST">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary red-color-button" type="submit" name="Reservar" value="Reservar" id="botao">Reservar</button>
+    </div>
+</form>
         <?php
-        $idlivro = $_GET['id_liv'];
-        $check_sql = "SELECT * FROM tbl_reservar WHERE id = '$idlivro' AND nome = '$nome'";
-        $result = $conn->query($check_sql);
+            if (isset($_REQUEST["Reservar"])) {
+
+
+                $idlivro = $_GET['id_liv'];
+                $rm = "1";
+                $turma = "2";
+                try{ 
+                $sql = $conn->prepare("INSERT INTO tbl_reservar (id, nome, rm, turma)
+                VALUES (:id, :nome, :rm, :turma)");
+        
+                $sql->bindValue(':id', null);   
+                $sql->bindValue(':nome', $idlivro);
+                $sql->bindValue(':rm', $rm);
+                $sql->bindValue(':turma', $turma);
+                $sql->execute();
+
+                echo "<script language=javascript>
+                alert('cadastrou!');
+                location.href = 'home.php';
+                </script>";
+            } 
+            catch (PDOException $erro) {
+                echo $erro->getMessage();
+            }
+            }
         /*
         if ($result->num_rows > 0) {
             echo "<script language=javascript>
