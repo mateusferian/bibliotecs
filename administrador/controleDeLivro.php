@@ -35,6 +35,44 @@
     }
 </style>
 
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-6 mt-3">
+            <form method="get" action="controleDeLivro.php">
+                <p class="fs-5 mt-5">Opção de filtragem de Livro</p>
+                <select class="form-control" name="filtro">
+                    <option selected disabled>Sem Filtro em livros</option>
+                    <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias">Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e Português</option>
+                </select>
+                <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+            </form>
+        </div>
+        <div class="col-sm-6 mt-3">
+            <form method="get" action="controleDeLivro.php">
+                <p class="fs-5 mt-5">Opção de filtragem de Livro em PDF</p>
+                <select class="form-control" name="filtroPdf">
+                    <option selected disabled>Sem Filtro em livro em PDF</option>
+                    <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias">Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e Português</option>
+                </select>
+                <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar PDF</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
     <p class="fs-2 text-center mt-5">Livros Cadastrados</p>
 
     <div class="container mt-5">
@@ -59,17 +97,35 @@
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0';");
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria");
+            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+        } else {
+            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
+        }
+        
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10;
         $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-
+        
         $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
         $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
-
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina;");
+        
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
+            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+        } else {
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
+        }
+        
         $consulta->execute();
+        
+        
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
@@ -201,17 +257,34 @@
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0';");
-        $consulta->execute();
-        $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
+
         $livrosPorPagina = 10;
-        $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-    
-        $paginaAtual2 = isset($_GET['pagina2']) ? max(1, $_GET['pagina2']) : 1;
-        $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
-    
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina;");
-        $consulta->execute();
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtroPdf"])) {
+        $categoria = $_GET["filtroPdf"];
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria");
+        $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+    } else {
+        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
+    }
+
+    $consulta->execute();
+    $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
+    $totalPaginas = ceil($totalLivros / $livrosPorPagina);
+
+    $paginaAtual2 = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
+    $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtroPdf"])) {
+        $categoria = $_GET["filtroPdf"];
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
+        $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+    } else {
+        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
+    }
+
+    $consulta->execute();
+
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
             echo '<tr>';
