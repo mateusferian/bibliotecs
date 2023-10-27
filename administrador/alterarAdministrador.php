@@ -15,7 +15,7 @@
     <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
 
     <link rel="stylesheet" href="css/formulario.css">
-    <link rel="stylesheet" href="css/cadastroAdministrador.css">
+    <link rel="stylesheet" href="css/alterarAdministrador.css">
     <link rel="stylesheet" href="css/swalFire.css">
     <link rel="stylesheet" href="css/botao.css">
 

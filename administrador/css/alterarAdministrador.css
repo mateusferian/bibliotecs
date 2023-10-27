@@ -1,0 +1,23 @@
+
+
+body {
+    background-image: url(../imagensDeFundo/alterarAdministrador.jpg);
+    }
+
+    .form-control {
+        background-color: #014d44; 
+        color: white; 
+        box-shadow: none; 
+    }
+    
+    .form-control:focus {
+        background-color: #014d44; 
+        color: white; 
+        box-shadow: none; 
+        box-shadow: 0px 0px 5px 0px #99cdc7;
+    }
+
+
+
+  
+
