@@ -75,12 +75,30 @@
     <?php
 
     if (isset($_GET["erro"])) { 
-    $valor_recebido = urldecode($_GET["erro"]);
 
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
                     title: 'email ou senha incorretos',
+                    customClass: {
+                        popup: 'swalFireIndex',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                setTimeout(function() {
+                    window.location.href = 'index.php';
+                }, 4000);
+            </script>";
+}
+
+if (isset($_GET["inativo"])) { 
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario inativo!!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },

@@ -24,12 +24,25 @@
             $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
             $totalRowAluno = $consultaAluno ->rowCount();
 
-         
+            if(0 == 0){       
+                $bytes = random_bytes(7);
+                $valorErro = bin2hex($bytes);
+
+                header("Location: ../index.php?inativo=" . urlencode($valorErro));
+            }
                 
                 if($totalRowAdministrador > 0 ){
                     if(password_verify($senhas, $rowAdministrador['senha'])){
-                    session_start();
+                    if($rowAdministrador["situacao"] == '0'){       
 
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
+        
+                        header("Location: ../index.php?inativo=" . urlencode($valorErro));
+                        exit;
+                    }elseif($rowAdministrador["situacao"] == '1'){
+
+                    session_start();
                     $_SESSION['email'] = $rowAdministrador['email'];
                     
                     $_SESSION['senha'] = $rowAdministrador['senha'];
@@ -37,6 +50,7 @@
                     $_SESSION['nome'] = $rowAdministrador['nome'];
 
                     header(("location:../administrador/controleDeAluno.php"));
+                    }
                     } else{
                         $bytes = random_bytes(7);
                         $valorErro = bin2hex($bytes);
@@ -46,6 +60,14 @@
                     }
                 }else if($totalRowAluno > 0 ){
                     if((password_verify($senhas, $rowAluno['senha']))){
+                        if($rowAluno["situacao"] == '0'){       
+
+                            $bytes = random_bytes(7);
+                            $valorErro = bin2hex($bytes);
+            
+                            header("Location: ../index.php?inativo=" . urlencode($valorErro));
+                            exit;
+                        }elseif($rowAluno["situacao"] == '1'){
                     // session_start();
 
                     // $_SESSION['email'] = $rowAluno['email'];
@@ -54,7 +76,9 @@
                     
                     // $_SESSION['nome'] = $rowAluno['nome'];
 
-                    header(("location: ../usuario/home.php"));
+                          header(("location: ../usuario/home.php"));
+                          exit;
+                        }
                     }else{
                         $bytes = random_bytes(7);
                         $valorErro = bin2hex($bytes);
