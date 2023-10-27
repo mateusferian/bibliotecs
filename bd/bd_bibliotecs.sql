@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 25-Out-2023 às 20:41
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.2.0
+-- Host: localhost
+-- Tempo de geração: 27/10/2023 às 08:02
+-- Versão do servidor: 8.0.34-0ubuntu0.22.04.1
+-- Versão do PHP: 8.1.2-1ubuntu2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,37 +27,36 @@ USE `bd_bibliotecs`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_administrador`
+-- Estrutura para tabela `tbl_administrador`
 --
 
-DROP TABLE IF EXISTS `tbl_administrador`;
-CREATE TABLE IF NOT EXISTS `tbl_administrador` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_administrador` (
+  `id` int NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `dataCadastro` date DEFAULT NULL,
   `recuperar_senha` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `situacao` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_administrador`
+-- Despejando dados para a tabela `tbl_administrador`
 --
 
-INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`) VALUES
-(21, 'mateus', 'giyato3203@tutoreve.com', '$2y$10$AI3w7NLko39AOim4fGetR.YYhtMQ0cUP3q7LqEm7WAmE8yopaiULi', '2023-09-20', 'NULL'),
-(23, 'gabriely', 'gabriely@gmail.com', '$2y$10$mINh1RSrXNefVwDbUdLWlOSrLia0gDI14POVD9szRVS7vSBGuVzL2', '2023-10-13', '0');
+INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
+(34, 'situacao@gmail.com', 'situacao@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 0),
+(35, 'a@gmail.com', 'a@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 1),
+(36, 'casa@gmail.com', 'casa@gmail.com', '$2y$10$Lf14DqtfuWKz0OJLBM3EQ.FloytjNbCImn3WolreXCBBv1TJg2eXq', '2023-10-27', '0', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_aluno`
+-- Estrutura para tabela `tbl_aluno`
 --
 
-DROP TABLE IF EXISTS `tbl_aluno`;
-CREATE TABLE IF NOT EXISTS `tbl_aluno` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_aluno` (
+  `id` int NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -65,12 +64,11 @@ CREATE TABLE IF NOT EXISTS `tbl_aluno` (
   `sala` varchar(30) NOT NULL,
   `dataCadastro` date DEFAULT NULL,
   `recuperar_senha` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `situacao` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `situacao` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_aluno`
+-- Despejando dados para a tabela `tbl_aluno`
 --
 
 INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
@@ -91,41 +89,37 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 (16, 'asd', 'asd', '$2y$10$hGJAdDCnIkD1E31LbTA/Hej.h/fhvVKv31pWojTjyx/ky/hkpQ0eq', '', '', '2023-09-03', '', 0),
 (17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0),
 (18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0),
-(19, 'qwe', 'asdad', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0),
+(19, 'qwe', 's@gmail.com', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0),
 (20, 'qwe', 'mateusferian10@gmail.com', '$2y$10$s9H7I2TG3FveuQSlZyzZEePDC7pPsO2CFm3Yt5Ge0GlWvq5IM7vQe', '', 'asasasas', '2023-09-03', 'NULL', 0),
-(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 0);
+(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_eventos`
+-- Estrutura para tabela `tbl_eventos`
 --
 
-DROP TABLE IF EXISTS `tbl_eventos`;
-CREATE TABLE IF NOT EXISTS `tbl_eventos` (
-  `id_eventos` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_eventos` (
+  `id_eventos` int NOT NULL,
   `nome_eventos` varchar(60) NOT NULL,
-  `inf_eventos` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_eventos`)
+  `inf_eventos` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_horario`
+-- Estrutura para tabela `tbl_horario`
 --
 
-DROP TABLE IF EXISTS `tbl_horario`;
-CREATE TABLE IF NOT EXISTS `tbl_horario` (
-  `id_horario` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_horario` (
+  `id_horario` int NOT NULL,
   `dia` varchar(20) NOT NULL,
   `periodo` varchar(15) NOT NULL,
-  `horario` varchar(20) NOT NULL,
-  PRIMARY KEY (`id_horario`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `horario` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_horario`
+-- Despejando dados para a tabela `tbl_horario`
 --
 
 INSERT INTO `tbl_horario` (`id_horario`, `dia`, `periodo`, `horario`) VALUES
@@ -149,12 +143,11 @@ INSERT INTO `tbl_horario` (`id_horario`, `dia`, `periodo`, `horario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_livro`
+-- Estrutura para tabela `tbl_livro`
 --
 
-DROP TABLE IF EXISTS `tbl_livro`;
-CREATE TABLE IF NOT EXISTS `tbl_livro` (
-  `id_liv` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_livro` (
+  `id_liv` int NOT NULL,
   `isbn` int NOT NULL,
   `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome` varchar(500) NOT NULL,
@@ -165,38 +158,33 @@ CREATE TABLE IF NOT EXISTS `tbl_livro` (
   `destaque` varchar(1) NOT NULL,
   `descricao` varchar(500) NOT NULL,
   `editora` varchar(50) NOT NULL,
-  `situacao` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_liv`)
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `situacao` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_livro`
+-- Despejando dados para a tabela `tbl_livro`
 --
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
-(73, 234324, 'Séries da Literatura Estrangeira', 'categoria nova', '565', 23, 'img/img_25-10-2023_16-28-23_9784972110.', '0', 'S', '2323232323', '565', '1'),
-(74, 0, 'Séries da Literatura Estrangeira', 'uyuit', 'i', 0, 'img/img_25-10-2023_16-52-38_9650139344.jpg', '../pdf/arquivo_25-10-2023_16-52-38_5284186249.pdf', 'S', 'okok', '565', '1'),
-(75, 0, 'Séries da Literatura Estrangeira', 'fs', 'fs', 200, 'img/img_25-10-2023_16-54-25_9732870173.jpg', '../pdf/arquivo_25-10-2023_16-54-25_6090897677.pdf', 'N', 'oooooooo', '565', '1'),
-(76, 546565, 'Auto-Ajuda e Religião', 'hhh', 'hh', 2000, '../img/img_25-10-2023_16-56-15_69116916.jpg', '../pdf/arquivo_25-10-2023_16-56-15_6557666120.pdf', 'S', 'hfhf', 'hf', '1'),
-(77, 214234324, 'Selecione o gênero', 'testando ', '34', 34, '../img/img_25-10-2023_17-06-51_3767841944.jpg', '0', 'S', '4545454', '34', '0');
+(79, 12321313, 'Séries da Literatura Estrangeira', 'teste em casa', 'teste em casa', 23, '../img/img_26-10-2023_20-57-36_3907145194.jpg', '0', 'S', '23232323', '323232', '1'),
+(80, 123, 'Séries da Literatura Estrangeira', '1sasa', '23', 23, '../img/img_26-10-2023_21-05-55_1026145262.jpg', '0', 'S', '6556', '23', '1'),
+(81, 23, 'Clássico da Literatura Brasileira e Português', 'PERMISSAO', '34', 34, '../img/img_26-10-2023_21-11-05_8766069361.jpg', '0', 'S', '3434', '34', '1');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_reservar`
+-- Estrutura para tabela `tbl_reservar`
 --
 
-DROP TABLE IF EXISTS `tbl_reservar`;
-CREATE TABLE IF NOT EXISTS `tbl_reservar` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_reservar` (
+  `id` int NOT NULL,
   `nome` varchar(100) NOT NULL,
   `rm` varchar(50) NOT NULL,
-  `turma` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=414 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `turma` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_reservar`
+-- Despejando dados para a tabela `tbl_reservar`
 --
 
 INSERT INTO `tbl_reservar` (`id`, `nome`, `rm`, `turma`) VALUES
@@ -613,6 +601,86 @@ INSERT INTO `tbl_reservar` (`id`, `nome`, `rm`, `turma`) VALUES
 (411, '', '', ''),
 (412, '', '', ''),
 (413, '', '', '');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_aluno`
+--
+ALTER TABLE `tbl_aluno`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_eventos`
+--
+ALTER TABLE `tbl_eventos`
+  ADD PRIMARY KEY (`id_eventos`);
+
+--
+-- Índices de tabela `tbl_horario`
+--
+ALTER TABLE `tbl_horario`
+  ADD PRIMARY KEY (`id_horario`);
+
+--
+-- Índices de tabela `tbl_livro`
+--
+ALTER TABLE `tbl_livro`
+  ADD PRIMARY KEY (`id_liv`);
+
+--
+-- Índices de tabela `tbl_reservar`
+--
+ALTER TABLE `tbl_reservar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_aluno`
+--
+ALTER TABLE `tbl_aluno`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_eventos`
+--
+ALTER TABLE `tbl_eventos`
+  MODIFY `id_eventos` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_horario`
+--
+ALTER TABLE `tbl_horario`
+  MODIFY `id_horario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_livro`
+--
+ALTER TABLE `tbl_livro`
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_reservar`
+--
+ALTER TABLE `tbl_reservar`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
