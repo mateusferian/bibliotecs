@@ -2,7 +2,9 @@
 <html lang="pt-br">
 
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
+<script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
+
 <link href="../assets/img/favicon.png" rel="icon">
 <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
