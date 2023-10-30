@@ -78,7 +78,7 @@
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img flex-shrink-0" alt="">
+                    <img src="../assets/img/testimonials/testimonials-2.jpg" class="testimonial-img flex-shrink-0" alt="">
                     <div>
                       <h3>Paola Silva</h3>
                       <h4>Aluna</h4>
@@ -101,7 +101,7 @@
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img flex-shrink-0" alt="">
+                    <img src="../assets/img/testimonials/testimonials-3.jpg" class="testimonial-img flex-shrink-0" alt="">
                     <div>
                       <h3>Michele Bird</h3>
                       <h4>Professora</h4>
@@ -124,7 +124,7 @@
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img flex-shrink-0" alt="">
+                    <img src="../assets/img/testimonials/testimonials-4.jpg" class="testimonial-img flex-shrink-0" alt="">
                     <div>
                       <h3>Alberto Soares </h3>
                       <h4>Aluno</h4>
@@ -147,7 +147,7 @@
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <div class="d-flex align-items-center">
-                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img flex-shrink-0" alt="">
+                    <img src="../assets/img/testimonials/testimonials-5.jpg" class="testimonial-img flex-shrink-0" alt="">
                     <div>
                       <h3>Robson Fernandes</h3>
                       <h4>Professor</h4>
