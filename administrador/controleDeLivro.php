@@ -2,8 +2,6 @@
     require_once "include/header.php";
 ?>
 <link href="css/swalFireLivro.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/model.js"></script>
 
 <style>
@@ -38,11 +36,11 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-sm-6 mt-3">
+            <div class="col-sm-12 mt-3">
                 <form method="get" action="controleDeLivro.php">
-                    <p class="fs-5 mt-5">Opção de filtragem de Livro</p>
+                    <p class="fs-5 mt-5">Opção de filtragem</p>
                     <select class="form-control" name="filtro" id="filtro">
-                        <option value="SemFiltro" selected>Sem Filtro em livros</option>
+                        <option value="SemFiltro" selected>Sem Filtro</option>
                         <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
                         <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
                         <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
@@ -70,41 +68,6 @@
                 filtroSelect.value = filtroSelecionado;
             }
             </script>
-
-
-            <div class="col-sm-6 mt-3">
-                <form method="get" action="controleDeLivro.php">
-                    <p class="fs-5 mt-5">Opção de filtragem de Livro em PDF</p>
-                    <select class="form-control" name="filtroPdf" id="filtroPdf">
-                        <option value="SemFiltroPDF" selected>Sem Filtro em livro em PDF</option>
-                        <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
-                        <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
-                        <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
-                        <option value="Poemas e Poesias">Poemas e Poesias</option>
-                        <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
-                        <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira
-                            e Português</option>
-                    </select>
-                    <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar PDF</button>
-                </form>
-            </div>
-
-            <script>
-            // Recupere o elemento select
-            var filtroPdfSelect = document.getElementById("filtroPdf");
-
-            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-            filtroPdfSelect.addEventListener("change", function() {
-                localStorage.setItem("filtroPdfSelecionado", filtroPdfSelect.value);
-            });
-
-            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
-            var filtroPdfSelecionado = localStorage.getItem("filtroPdfSelecionado");
-            if (filtroPdfSelecionado) {
-                filtroPdfSelect.value = filtroPdfSelecionado;
-            }
-            </script>
-
         </div>
     </div>
 
@@ -307,38 +270,42 @@
 
         $livrosPorPagina = 10;
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtroPdf"])) {
-        $categoria = $_GET["SemFiltroPDF"];
-        if($categoria == "SemFiltro"){
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
+            }else{
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria");
+                $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+                }
+        }else{
             $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
-        }else{
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria");
-        $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
         }
-    } else {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
-    }
-
-    $consulta->execute();
-    $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-    $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-
-    $paginaAtual2 = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
-    $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
-
-    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtroPdf"])) {
-        $categoria = $_GET["filtroPdf"];
-        if($categoria == "SemFiltroPDF"){
+        
+        $consulta->execute();
+        $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
+        $totalPaginas = ceil($totalLivros / $livrosPorPagina);
+    
+        $paginaAtual2 = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
+        $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
+    
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
+            }else{
+                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
+                $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+                }
+ 
+        } else {
             $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
-        }else{
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
-        $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
         }
-    } else {
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
-    }
-
-    $consulta->execute();
+        
+        $consulta->execute();
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
