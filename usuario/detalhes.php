@@ -118,7 +118,16 @@
                 $idlivro = $_GET['id_liv'];
                 $idAluno = $_SESSION["id"];
                 $turma = 2;
-                try{ 
+                $situacao = "0";
+
+                try{
+                    $sql = $conn->prepare("UPDATE tbl_livro SET situacao = :situacao  WHERE id_liv = :id_liv");
+            
+                    $sql->bindValue(':id_liv', $idlivro);
+                    $sql->bindValue(':situacao', $situacao);
+            
+                    $sql->execute();
+
                 $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro)
                 VALUES (:id, :idAluno, :idLivro)");
         

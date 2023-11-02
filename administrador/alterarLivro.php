@@ -142,6 +142,16 @@ try{
                     value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
             </div>
 
+            <div class="col-sm-12 mt-3">
+                <p> Situação </p>
+                <select id="status" name="status" class="form-control">
+                    <select name="status" class="form-control"
+                        value="<?php if(isset($row['situacao'])) {echo $row['situacao'];} ?> " id="status">
+                        <option value="1">ativado</option>
+                        <option value="0">não ativado</option>
+                    </select>
+            </div>
+
             <div class="col-md-12 mx-auto">
                 <label for="descricao" class="form-label">
                     <h5>Sinópse</h5>
@@ -172,6 +182,7 @@ try{
             $destaque = $_REQUEST["destaque"];
             $descricao = $_REQUEST["descricao"];
             $editora = $_REQUEST["editora"];
+            $situacao = $_REQUEST["situacao"];  
     
             date_default_timezone_set('America/Sao_Paulo');
             $data = date("d-m-Y");
@@ -235,7 +246,7 @@ try{
       if($tamanho2==0){
         $arquivo2= 0;
       }
-            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2  WHERE id_liv = :id_liv");
+            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao  WHERE id_liv = :id_liv");
             
             // Passagem de parâmetros para a tabela
             $sql->bindValue(':id_liv', $idlivro);
@@ -249,7 +260,7 @@ try{
             $sql->bindValue(':editora', $editora);
             $sql->bindValue(':arquivo', $arquivo);
             $sql->bindValue(':arquivo2', $arquivo2);
-
+            $sql->bindValue(':situacao', $situacao);
     
             $sql->execute();
 
