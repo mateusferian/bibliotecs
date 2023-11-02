@@ -33,7 +33,7 @@
         <?php
   include 'funcoes/funcoes.php';
 
-  exibirLivrosPaginados($conn, 'S', "destaque"); // Exibe os livros não-novidades
+  exibirLivrosPaginados($conn, 'S', "destaque", "todos"); // Exibe os livros não-novidades
   ?>
     </section>
 
@@ -208,7 +208,7 @@
 
         <!-- Linha 1 - Produtos -->
         <?php
-  exibirLivrosPaginados($conn, 'N',"livros"); // Exibe os livros não-novidades
+  exibirLivrosPaginados($conn, 'N',"livros","livronNormal"); // Exibe os livros não-novidades
   ?>
     </section>
 
@@ -219,9 +219,15 @@
     </section>
 
     <?php
-function exibirLivrosPaginados($conn, $destaque,$secaoId) {
-  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = :destaque AND situacao = '1'");
-  $consulta->bindParam(':destaque', $destaque);
+function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
+  if(($destaque == "S") and ($tipoLIvro =="todos")){
+  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'S' AND situacao = '1'");
+  }
+  else if (($destaque == "N") and ($tipoLIvro =="livronNormal")){
+    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND arquivo2 = '0'");
+  }else if (($destaque == "N") and ($tipoLIvro =="livroPdf")){
+    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND arquivo2 <> '0'");
+  }
   $consulta->execute();
   $livros = $consulta->fetchAll(PDO::FETCH_ASSOC);
   $totalLivros = count($livros);
@@ -439,23 +445,24 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
     <section id="livrosPDF" class="container">
         <p class="fs-1 text-center">Livros em PDF</p>
         <?php
-  exibirLivrosPaginados($conn, 'S', "destaque"); 
+  exibirLivrosPaginados($conn, 'N', "destaque" , "livroPdf"); 
   ?>
     </section>
     </div>
 
 
     <section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h2>Eventos</h2>
-                    <p>Eventos que vão ser realizados</p>
-                </div>
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Eventos</h2>
+                <p>Eventos que vão ser realizados</p>
+            </div>
 
-                <div class="row gx-lg-0 gy-4">
-    <div class="col-lg-4">
-        <div class="info-container d-flex flex-column align-items-center justify-content-start overflow-auto" style="max-height: 400px;">
-            <?php
+            <div class="row gx-lg-0 gy-4">
+                <div class="col-lg-4">
+                    <div class="info-container d-flex flex-column align-items-center justify-content-start overflow-auto"
+                        style="max-height: 400px;">
+                        <?php
             $consulta = $conn->prepare("SELECT * FROM tbl_evento;");
             $consulta->execute();
 
@@ -464,58 +471,61 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
 
                 foreach ($resultados as $index => $rowEvento) {
             ?>
-                    <div class="info-item d-flex evento" data-index="<?php echo $index; ?>">
-                        <i class="bi bi-calendar-event flex-shrink-0 evento-icon"></i>
-                        <div>
+                        <div class="info-item d-flex evento" data-index="<?php echo $index; ?>">
+                            <i class="bi bi-calendar-event flex-shrink-0 evento-icon"></i>
+                            <div>
+                                <h4><?php echo $rowEvento['nome']; ?></h4>
+                                <p><?php echo $rowEvento['data']; ?></p>
+                            </div>
+                        </div>
+                        <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
                             <h4><?php echo $rowEvento['nome']; ?></h4>
                             <p><?php echo $rowEvento['data']; ?></p>
+                            <br>
+                            <?php
+                              $descricao = $rowEvento['descricao'];
+                              $descricao_quebrada = wordwrap($descricao, 30, "<br>\n", false);
+                              echo $descricao_quebrada;
+                            ?>
                         </div>
-                    </div>
-                    <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
-                        <h4><?php echo $rowEvento['nome']; ?></h4>
-                        <p><?php echo $rowEvento['data']; ?></p>
-                        <br>
-                        <p><?php echo $rowEvento['descricao']; ?></p>
-                    </div>
-            <?php
+                        <?php
                 }
             } catch (PDOException $erro) {
                 echo $erro->getMessage();
             }
             ?>
-        </div>
-    </div>
+                    </div>
+                </div>
 
 
-                    <div class="col-lg-8">
-                        <div class="php-email-form">
-                            <!-- A descrição do evento aparecerá aqui quando o ícone for clicado -->
-                        </div>
+                <div class="col-lg-8">
+                    <div class="php-email-form">
+                        <!-- A descrição do evento aparecerá aqui quando o ícone for clicado -->
                     </div>
                 </div>
             </div>
-        </section>
-        <script>
+        </div>
+    </section>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const eventos = document.querySelectorAll(".evento");
+        const descricaoEvento = document.querySelector(".php-email-form");
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const eventos = document.querySelectorAll(".evento");
-            const descricaoEvento = document.querySelector(".php-email-form");
-
-            eventos.forEach(function(evento, index) {
-                evento.addEventListener("click", function() {
-                    const descricao = document.querySelector("#descricao-evento-" + index);
-                    descricaoEvento.innerHTML = descricao.innerHTML;
-                });
+        eventos.forEach(function(evento, index) {
+            evento.addEventListener("click", function() {
+                const descricao = document.querySelector("#descricao-evento-" + index);
+                descricaoEvento.innerHTML = descricao.innerHTML;
             });
         });
-        </script> 
+    });
+    </script>
 
 
-        <?php
+    <?php
       require_once "include/footer.php";
       require_once "include/scrollTop.php";
 ?>
 
-    </body>
+</body>
 
-    </html>
+</html>

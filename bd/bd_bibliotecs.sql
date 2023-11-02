@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/11/2023 às 17:33
+-- Tempo de geração: 02/11/2023 às 18:01
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -102,7 +102,7 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 CREATE TABLE `tbl_evento` (
   `id` int NOT NULL,
   `nome` varchar(20) NOT NULL,
-  `descricao` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descricao` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `data` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -117,7 +117,7 @@ INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `data`) VALUES
 (4, '3hbdrbdnd', 'dddddddddddddddddd ', '2030-10-16'),
 (5, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
 (6, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
-(7, 'casaaaaaaaaaa', 'dddddddddddddddddd ', '2030-10-16');
+(7, 'casaaaaaaaaaa', 'i67lrtrt', '2030-10-16');
 
 -- --------------------------------------------------------
 
@@ -192,15 +192,10 @@ CREATE TABLE `tbl_livro` (
 --
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
-(79, 12321313, 'Séries da Literatura Estrangeira', 'teste em casa', 'teste em casa', 23, '../img/img_26-10-2023_20-57-36_3907145194.jpg', '0', 'S', '23232323', '323232', '1'),
-(80, 123, 'Selecione o gênero', 'casa', '23', 23, '../img/img_30-10-2023_05-50-13_9429945443.png', '0erbte34nter', 'S', 'dfdsf', '23', '1'),
-(82, 123, 'Diversos da Literatura Estrangeira', 'podf', '23', 23, '../img/img_30-10-2023_06-35-39_5540995628.png', '0r3qgw35gwa3d', 'S', '', '23', '1'),
-(84, 123, 'Diversos da Literatura Estrangeira', 'pdf editação', '23', 23, '../img/img_30-10-2023_06-54-15_1360463496.png', '../pdf/arquivo_30-10-2023_06-54-15_1360463496.pdf', 'S', '', '23', '1'),
-(85, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
-(86, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
-(87, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
 (88, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
-(89, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1');
+(89, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '0'),
+(90, 12321313, 'Diversos da Literatura Estrangeira', 'LIVRO', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'N', '', '323232', '1'),
+(91, 12321313, 'Diversos da Literatura Estrangeira', 'NORMAL PDF', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', 'bertbewhnern', 'N', '', '323232', '1');
 
 -- --------------------------------------------------------
 
@@ -311,7 +306,7 @@ ALTER TABLE `tbl_horario`
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_reservado`
