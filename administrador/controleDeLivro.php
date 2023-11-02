@@ -1,4 +1,5 @@
 <?php
+    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 <link href="css/swalFireLivro.css" rel="stylesheet">
