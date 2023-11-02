@@ -68,13 +68,15 @@
                             header("Location: ../index.php?inativo=" . urlencode($valorErro));
                             exit;
                         }elseif($rowAluno["situacao"] == '1'){
-                    // session_start();
+                    session_start();
 
-                    // $_SESSION['email'] = $rowAluno['email'];
+                    $_SESSION['email'] = $rowAluno['email'];
                     
-                    // $_SESSION['senha'] = $rowAluno['senha'];
+                    $_SESSION['senha'] = $rowAluno['senha'];
                     
-                    // $_SESSION['nome'] = $rowAluno['nome'];
+                    $_SESSION['nome'] = $rowAluno['nome'];
+
+                    $_SESSION['id'] = $rowAluno['id'];
 
                           header(("location: ../usuario/home.php"));
                           exit;

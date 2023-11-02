@@ -115,49 +115,39 @@
 
 
                 $idlivro = $_GET['id_liv'];
-                $rm = "1";
-                $turma = "2";
+                $idAluno = $_SESSION["id"];
+                $turma = 2;
                 try{ 
-                $sql = $conn->prepare("INSERT INTO tbl_reservar (id, nome, rm, turma)
-                VALUES (:id, :nome, :rm, :turma)");
+                $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro)
+                VALUES (:id, :idAluno, :idLivro)");
         
                 $sql->bindValue(':id', null);   
-                $sql->bindValue(':nome', $idlivro);
-                $sql->bindValue(':rm', $rm);
-                $sql->bindValue(':turma', $turma);
+                $sql->bindValue(':idAluno', $idAluno);
+                $sql->bindValue(':idLivro', $idlivro);
                 $sql->execute();
 
-                echo "<script language=javascript>
-                alert('cadastrou!');
-                location.href = 'home.php';
-                </script>";
+                echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Livro reservado com sucesso!',
+                    customClass: {
+                        popup: 'swalFireControleDeAlunoApagado',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                // Redirecione automaticamente após um breve atraso
+                setTimeout(function() {
+                    window.location.href = 'home.php';
+                }, 4000);
+            </script>";
+
             } 
             catch (PDOException $erro) {
                 echo $erro->getMessage();
             }
             }
-        /*
-        if ($result->num_rows > 0) {
-            echo "<script language=javascript>
-            alert('Desculpe, este livro já está ocupado.!!');
-            location.href = 'home.php';
-            </script>";
-        } else {
-            // Inserir agendamento no banco de dados
-            $insert_sql = "INSERT INTO tbl_reservar (nome, id, rm, turma) VALUES ('$idlivro', '$nome', '$rm', '$turma')";
-        }
-
-        if ($conn->query($insert_sql) === TRUE) {
-            echo "<script language=javascript>
-            alert('reservamento criado com sucesso !!');
-            location.href = 'home.php';
-            </script>";
-        } else {
-            echo "<script language=javascript>
-            alert('Erro ao reservar o livro: !!');
-            location.href = 'detalhes.php';
-            </script>";
-        } $conn->error;*/
         ?>
         <br><br><br><br>
         <br><br><br><br>
