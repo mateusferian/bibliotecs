@@ -1,0 +1,25 @@
+.evento {
+    cursor: pointer;
+}
+
+.descricao-evento {
+    display: none;
+}
+
+.info-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Para navegadores baseados no WebKit (Chrome, Safari) */
+.info-container::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+}
+
+.info-container::-webkit-scrollbar-thumb {
+    background-color:red; /* Cor do polegar da barra de rolagem */
+    border-radius: 6px; /* Borda arredondada para o polegar */
+}
+
+.info-container::-webkit-scrollbar-track {
+    background-color: red; /* Cor da própria barra de rolagem */
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/11/2023 às 16:06
+-- Tempo de geração: 02/11/2023 às 17:33
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -96,6 +96,32 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tbl_evento`
+--
+
+CREATE TABLE `tbl_evento` (
+  `id` int NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `descricao` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `data` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tbl_evento`
+--
+
+INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `data`) VALUES
+(1, 'teste', 'aaaaaaaaaaaaaaaaaadiuqwhv97rywe987vywe9bu 5yvnw87c65b8e76bg98n6tgn9rytgn976t9r7n0er7gr9dnhdryt9', '2023-10-27'),
+(2, '2gbsse', 'bbbbbbbbbbbbbbbb', '2023-10-27'),
+(3, '3hbdrbdnd', 'ccccccccc ', '2023-10-27'),
+(4, '3hbdrbdnd', 'dddddddddddddddddd ', '2030-10-16'),
+(5, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
+(6, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
+(7, 'casaaaaaaaaaa', 'dddddddddddddddddd ', '2030-10-16');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tbl_eventos`
 --
 
@@ -167,9 +193,9 @@ CREATE TABLE `tbl_livro` (
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
 (79, 12321313, 'Séries da Literatura Estrangeira', 'teste em casa', 'teste em casa', 23, '../img/img_26-10-2023_20-57-36_3907145194.jpg', '0', 'S', '23232323', '323232', '1'),
-(80, 123, 'Selecione o gênero', 'casa', '23', 23, '../img/img_30-10-2023_05-50-13_9429945443.png', '0', 'S', 'dfdsf', '23', '1'),
-(82, 123, 'Selecione o gênero', 'podf', '23', 23, '../img/img_30-10-2023_06-35-39_5540995628.png', '0', 'S', '', '23', '1'),
-(84, 123, 'Selecione o gênero', 'pdf editação', '23', 23, '../img/img_30-10-2023_06-54-15_1360463496.png', '../pdf/arquivo_30-10-2023_06-54-15_1360463496.pdf', 'S', '', '23', '1'),
+(80, 123, 'Selecione o gênero', 'casa', '23', 23, '../img/img_30-10-2023_05-50-13_9429945443.png', '0erbte34nter', 'S', 'dfdsf', '23', '1'),
+(82, 123, 'Diversos da Literatura Estrangeira', 'podf', '23', 23, '../img/img_30-10-2023_06-35-39_5540995628.png', '0r3qgw35gwa3d', 'S', '', '23', '1'),
+(84, 123, 'Diversos da Literatura Estrangeira', 'pdf editação', '23', 23, '../img/img_30-10-2023_06-54-15_1360463496.png', '../pdf/arquivo_30-10-2023_06-54-15_1360463496.pdf', 'S', '', '23', '1'),
 (85, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
 (86, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
 (87, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
@@ -218,6 +244,12 @@ ALTER TABLE `tbl_aluno`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_evento`
+--
+ALTER TABLE `tbl_evento`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tbl_eventos`
 --
 ALTER TABLE `tbl_eventos`
@@ -256,6 +288,12 @@ ALTER TABLE `tbl_administrador`
 --
 ALTER TABLE `tbl_aluno`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_evento`
+--
+ALTER TABLE `tbl_evento`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_eventos`

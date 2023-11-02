@@ -296,6 +296,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
 
             <div class="row gy-4">
 
+
                 <div class="col-lg-4">
                     <div class="content px-xl-5">
                         <h3> Otimize Sua Experiência na <strong>Bibliotecs</strong></h3>
@@ -372,8 +373,11 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
                             </h3>
                             <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                Ao navegar na página inicial, a pessoa escolhe o livro que deseja e clica em 'Ver'. Isso a direciona para a página de informações específicas do livro. Nessa página, ela pode clicar no botão 'Reservar' 
-                                para garantir o livro. Após a reserva ser concluída com sucesso, a pessoa poderá retirar o livro na escola.
+                                    Ao navegar na página inicial, a pessoa escolhe o livro que deseja e clica em 'Ver'.
+                                    Isso a direciona para a página de informações específicas do livro. Nessa página,
+                                    ela pode clicar no botão 'Reservar'
+                                    para garantir o livro. Após a reserva ser concluída com sucesso, a pessoa poderá
+                                    retirar o livro na escola.
                                 </div>
                             </div>
                         </div><!-- # Faq item-->
@@ -383,14 +387,17 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-4">
                                     <span class="num">4.</span>
-                                    Quais são os motivos mais comuns para ser bloqueado de fazer reservas no site da escola?
+                                    Quais são os motivos mais comuns para ser bloqueado de fazer reservas no site da
+                                    escola?
                                 </button>
                             </h3>
                             <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                o motivo mais comum para ser bloqueado de fazer reservas no site da escola estão frequentemente 
-                                relacionados ao comportamento do usuário e ao cumprimento das políticas da biblioteca da escola.
-                                 Um dos motivos comuns pode ser relacionado à demora na devolução de livros
+                                    o motivo mais comum para ser bloqueado de fazer reservas no site da escola estão
+                                    frequentemente
+                                    relacionados ao comportamento do usuário e ao cumprimento das políticas da
+                                    biblioteca da escola.
+                                    Um dos motivos comuns pode ser relacionado à demora na devolução de livros
                                 </div>
                             </div>
                         </div><!-- # Faq item-->
@@ -438,11 +445,77 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId) {
     </div>
 
 
-    <?php
+    <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h2>Eventos</h2>
+                    <p>Eventos que vão ser realizados</p>
+                </div>
+
+                <div class="row gx-lg-0 gy-4">
+    <div class="col-lg-4">
+        <div class="info-container d-flex flex-column align-items-center justify-content-start overflow-auto" style="max-height: 400px;">
+            <?php
+            $consulta = $conn->prepare("SELECT * FROM tbl_evento;");
+            $consulta->execute();
+
+            try {
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($resultados as $index => $rowEvento) {
+            ?>
+                    <div class="info-item d-flex evento" data-index="<?php echo $index; ?>">
+                        <i class="bi bi-calendar-event flex-shrink-0 evento-icon"></i>
+                        <div>
+                            <h4><?php echo $rowEvento['nome']; ?></h4>
+                            <p><?php echo $rowEvento['data']; ?></p>
+                        </div>
+                    </div>
+                    <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
+                        <h4><?php echo $rowEvento['nome']; ?></h4>
+                        <p><?php echo $rowEvento['data']; ?></p>
+                        <br>
+                        <p><?php echo $rowEvento['descricao']; ?></p>
+                    </div>
+            <?php
+                }
+            } catch (PDOException $erro) {
+                echo $erro->getMessage();
+            }
+            ?>
+        </div>
+    </div>
+
+
+                    <div class="col-lg-8">
+                        <div class="php-email-form">
+                            <!-- A descrição do evento aparecerá aqui quando o ícone for clicado -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const eventos = document.querySelectorAll(".evento");
+            const descricaoEvento = document.querySelector(".php-email-form");
+
+            eventos.forEach(function(evento, index) {
+                evento.addEventListener("click", function() {
+                    const descricao = document.querySelector("#descricao-evento-" + index);
+                    descricaoEvento.innerHTML = descricao.innerHTML;
+                });
+            });
+        });
+        </script> 
+
+
+        <?php
       require_once "include/footer.php";
       require_once "include/scrollTop.php";
 ?>
 
-</body>
+    </body>
 
-</html>
+    </html>

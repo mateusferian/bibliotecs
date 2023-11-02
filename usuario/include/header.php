@@ -27,6 +27,8 @@
 <link href="../assets/css/main.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 <link href="css/botao.css" rel="stylesheet">
+<link href="css/evento.css" rel="stylesheet">
+
 <script src="js/bootstrap.min.js"></script>
 <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
