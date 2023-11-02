@@ -220,7 +220,7 @@
 
     <?php
 function exibirLivrosPaginados($conn, $destaque,$secaoId) {
-  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = :destaque");
+  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = :destaque AND situacao = '1'");
   $consulta->bindParam(':destaque', $destaque);
   $consulta->execute();
   $livros = $consulta->fetchAll(PDO::FETCH_ASSOC);
