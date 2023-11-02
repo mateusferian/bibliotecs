@@ -451,7 +451,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
     </div>
 
 
-    <section id="contact" class="contact">
+    <section id="eventos" class="contact">
         <div class="container" data-aos="fade-up">
             <div class="section-header">
                 <h2>Eventos</h2>
