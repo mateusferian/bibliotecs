@@ -295,8 +295,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
 
 
 
-    <!-- duvidas frequentes  -->
-    <section id="Ajuda" class="faq">
+<div id ="testimonials">
+    <section id="ajuda" class="faq">
 
         <div class="container" data-aos="fade-up">
 
@@ -440,6 +440,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
 
         </div>
     </section><!-- End Frequently Asked Questions Section -->
+</div>
 
 
     <section id="livrosPDF" class="container">
@@ -451,6 +452,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
     </div>
 
 
+    <div id ="testimonials">
     <section id="eventos" class="contact">
         <div class="container" data-aos="fade-up">
             <div class="section-header">
@@ -474,19 +476,31 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                         <div class="info-item d-flex evento" data-index="<?php echo $index; ?>">
                             <i class="bi bi-calendar-event flex-shrink-0 evento-icon"></i>
                             <div>
-                                <h4><?php echo $rowEvento['nome']; ?></h4>
-                                <p><?php echo $rowEvento['data']; ?></p>
+                                <?php
+                                  $nome = $rowEvento['nome'];
+                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                ?>
+                                <p class="h3"><?php echo $nome_quebrada; ?></p>
+
+                                <p class="h6"><?php echo $rowEvento['data']; ?></p>
                             </div>
                         </div>
+
                         <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
-                            <h4><?php echo $rowEvento['nome']; ?></h4>
-                            <p><?php echo $rowEvento['data']; ?></p>
+                            <?php
+                                  $nome = $rowEvento['nome'];
+                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                ?>
+                            <p class="h3"><?php echo $nome_quebrada; ?></p>
+
+                            <p class="h6"><?php echo $rowEvento['data']; ?></p>
                             <br>
+
                             <?php
                               $descricao = $rowEvento['descricao'];
                               $descricao_quebrada = wordwrap($descricao, 30, "<br>\n", false);
-                              echo $descricao_quebrada;
-                            ?>
+                              ?>
+                            <p class="h6"><?php  echo $descricao_quebrada;?></p>
                         </div>
                         <?php
                 }
@@ -506,19 +520,27 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
             </div>
         </div>
     </section>
+    </div>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const eventos = document.querySelectorAll(".evento");
         const descricaoEvento = document.querySelector(".php-email-form");
-
+        const mensagemPadrao = `
+        <p class="h3">Bem-vindo à nossa página de eventos!</p>
+        <p class="h6">Aqui você encontrará uma lista dos eventos emocionantes que estão programados para ocorrer em breve. Cada evento é exibido com o nome e um ícone ao lado. Para saber mais detalhes sobre um evento específico, basta clicar no ícone correspondente ao lado do nome. Isso abrirá a descrição completa do evento, incluindo datas, horários e informações adicionais. Explore nossa lista de eventos e fique por dentro de tudo o que está acontecendo!</p>
+    `;
         eventos.forEach(function(evento, index) {
             evento.addEventListener("click", function() {
                 const descricao = document.querySelector("#descricao-evento-" + index);
                 descricaoEvento.innerHTML = descricao.innerHTML;
             });
         });
+
+        // Exibe a mensagem padrão inicialmente
+        descricaoEvento.innerHTML = mensagemPadrao;
     });
     </script>
+
 
 
     <?php

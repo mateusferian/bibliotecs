@@ -64,6 +64,11 @@ section {
   overflow: hidden;
 }
 
+#Ajuda.faq {
+  background-color: #FF0000; /* Substitua pela cor desejada */
+}
+
+
 .sections-bg {
   background-color: #f6f6f6;
 }

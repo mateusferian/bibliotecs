@@ -23,11 +23,9 @@
 <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-<!-- Template Main CSS Files -->
-<link href="../assets/css/main.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 <link href="css/botao.css" rel="stylesheet">
-<link href="css/evento.css" rel="stylesheet">
+<link href="css/eventoHome.css" rel="stylesheet">
 
 <script src="js/bootstrap.min.js"></script>
 <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

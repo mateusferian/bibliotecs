@@ -10,7 +10,7 @@
         <ul>
         <li><a href="home.php">Home</a></li>
           <li><a href="home.php#livros">Livros</a></li>
-          <li><a href="home.php#Ajuda"> Ajuda</a></li>
+          <li><a href="home.php#ajuda"> Ajuda</a></li>
           <li><a href="home.php#eventos">Eventos</a></li>
           <li><a href="home.phpblog.html">Horarios</a></li>
           <li><a href="home.php#team">Doação</a></li>

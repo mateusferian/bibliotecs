@@ -1,0 +1,11 @@
+.evento {
+    cursor: pointer;
+}
+
+.descricao-evento {
+    display: none;
+}
+
+.info-container::-webkit-scrollbar {
+    width: 12px;
+}
