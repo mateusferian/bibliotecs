@@ -87,11 +87,11 @@
                     <th scope="col">AUTOR</th>
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
+                    <th scope="col">DISPONIBILIDADE</th>
                     <th scope="col">DESCRIÇÃO</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
                     <th scope="col">SITUAÇÃO</th>
-
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -153,7 +153,17 @@
             limitandoCampos($autor);  
 
             echo '<td>' . $row["ano"] . '</td>';
-            echo '<td>' . $row["destaque"] . '</td>';  
+            echo '<td>' . $row["destaque"] . '</td>';
+            if ($row["disponibilidade"] == "naoRetirado") {
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Não Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
+            else{
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
             $descricao = $row["descricao"];      
@@ -193,6 +203,24 @@
                 echo $campo;
             }
         }
+
+        function limitandoCampoDisponibilidade($campo, $campoDaTabela) {
+         if($campoDaTabela == "naoRetirado"){
+            if (strlen($campo) > 100) {
+                echo '<span style="color: green;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: green;">' . $campo . '</span>';
+            }
+        } else{
+            if (strlen($campo) > 100) {
+                echo '<span style="color: red;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: red;">' . $campo . '</span>';
+            }
+        }
+    }
+        
+        
         ?>
             </tbody>
         </table>
@@ -257,6 +285,7 @@
                     <th scope="col">AUTOR</th>
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
+                    <th scope="col">DISPONIBILIDADE</th>
                     <th scope="col">DESCRIÇÃO</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
@@ -326,6 +355,16 @@
 
             echo '<td>' . $row["ano"] . '</td>';
             echo '<td>' . $row["destaque"] . '</td>';  
+            if ($row["disponibilidade"] == "naoRetirado") {
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Não Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
+            else{
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
             $descricao = $row["descricao"];      

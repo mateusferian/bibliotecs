@@ -118,13 +118,13 @@
                 $idlivro = $_GET['id_liv'];
                 $idAluno = $_SESSION["id"];
                 $turma = 2;
-                $situacao = "0";
+                $disponibilidade = "retirado";
 
                 try{
-                    $sql = $conn->prepare("UPDATE tbl_livro SET situacao = :situacao  WHERE id_liv = :id_liv");
+                    $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
             
                     $sql->bindValue(':id_liv', $idlivro);
-                    $sql->bindValue(':situacao', $situacao);
+                    $sql->bindValue(':disponibilidade', $disponibilidade);
             
                     $sql->execute();
 

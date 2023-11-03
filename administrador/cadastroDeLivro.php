@@ -106,6 +106,15 @@ require_once "include/header.php";
           </select>
         </div>
 
+        <div class="col-sm-12 mt-3">
+        <p> disponibilidade </p>
+          <select id="disponibilidade" name="disponibilidade" class="form-control">
+          <option selected>Selecione a disponibilidade desse livro</option>
+            <option value="retirado">Retirado</option>
+            <option value="naoRetirado">Não retirado</option>
+          </select>
+        </div>
+
         <div class="col-md-12 mx-auto">
         <br><br>
           <label for="descricao" class="form-label"><h5>Sinópse</h5></label>
@@ -135,6 +144,7 @@ if (isset($_REQUEST["cadastrar"]))
       $descricao = $_REQUEST["descricao"];
       $editora = $_REQUEST["editora"];
       $situacao = $_REQUEST["situ"];
+      $disponibilidade = $_REQUEST["disponibilidade"];
 
       date_default_timezone_set('America/Sao_Paulo');
 
@@ -230,8 +240,8 @@ if (isset($_REQUEST["cadastrar"]))
       $arquivo2= 0;
     }
     
-    $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao)
-    VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao)");
+    $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao ,disponibilidade)
+    VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao, :disponibilidade)");
     
             $sql->bindValue(':id_liv', null);
             $sql->bindValue(':nome',$nome);
@@ -245,6 +255,7 @@ if (isset($_REQUEST["cadastrar"]))
             $sql->bindValue(':arquivo', $arquivo);
             $sql->bindValue(':arquivo2', $arquivo2);
             $sql->bindValue(':situacao', $situacao);
+            $sql->bindValue(':disponibilidade', $disponibilidade);
 
         $sql->execute();
         echo "<script>

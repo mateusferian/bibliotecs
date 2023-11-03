@@ -73,23 +73,10 @@ try{
                     value="<?php if(isset($row['isbn'])) {echo $row['isbn'];} ?>"><br>
             </div>
 
-            <div class="col-sm-12  mt-3">
-                <label for="situacao">Situação</label>
-                <select class="form-control" name="situacao" id="situacao">
-                    <option value="1"
-                        <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
-                        Ativado</option>
-                    <option value="0"
-                        <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
-                        Desativado</option>
-                </select>
-            </div>
-
             <div class="col-sm-6  mt-3">
                 <label for="categoria" class="form-label">Categoria</label>
                 <select name="categoria" class="form-control"
                     value="<?php if(isset($row['categoria'])) {echo $row['categoria'];} ?>" id="categoria">
-                    <option selected>Selecione o gênero</option>
                     <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
                     <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
                     <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
@@ -120,14 +107,16 @@ try{
             </div>
 
             <div class="col-sm-12  mt-3">
-                <label for="destaque" class="form-label">Destaque</label>
-                <select name="destaque" class="form-control"
-                    value="<?php if(isset($row['destaque'])) {echo $row['destaque'];} ?> " id="destaque">
-                    <option value="S">S</option>
-                    <option value="N">N </option>
+                <label for="destaque">Destaque</label>
+                <select class="form-control" name="destaque" id="destaque">
+                    <option value="S"
+                        <?php if (isset($row['destaque']) && $row['destaque'] == "S") { echo 'selected'; } ?>>
+                        S</option>
+                    <option value="N"
+                        <?php if (isset($row['destaque']) && $row['destaque'] == "N") { echo 'selected'; } ?>>
+                        N</option>
                 </select>
             </div>
-
 
             <div class="col-sm-6   mt-3">
                 <label for="imagem" class="form-label">Selecione a Imagem</label>
@@ -142,17 +131,32 @@ try{
                     value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
             </div>
 
-            <div class="col-sm-12 mt-3">
-                <p> Situação </p>
-                <select id="status" name="status" class="form-control">
-                    <select name="status" class="form-control"
-                        value="<?php if(isset($row['situacao'])) {echo $row['situacao'];} ?> " id="status">
-                        <option value="1">ativado</option>
-                        <option value="0">não ativado</option>
-                    </select>
+            <div class="col-sm-12  mt-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="situacao" id="situacao">
+                    <option value="1"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
+                        Ativado</option>
+                    <option value="0"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
+                        Desativado</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12  mt-3">
+                <label for="disponibilidade">disponibilidade</label>
+                <select class="form-control" name="disponibilidade" id="disponibilidade">
+                    <option value="retirado"
+                        <?php if (isset($row['disponibilidade']) && $row['disponibilidade'] == "retirado") { echo 'selected'; } ?>>
+                        Retirado</option>
+                    <option value="naoRetirado"
+                        <?php if (isset($row['disponibilidade']) && $row['disponibilidade'] == "naoRetirado") { echo 'selected'; } ?>>
+                        Não retirado</option>
+                </select>
             </div>
 
             <div class="col-md-12 mx-auto">
+            <br><br>
                 <label for="descricao" class="form-label">
                     <h5>Sinópse</h5>
                 </label>
@@ -182,7 +186,8 @@ try{
             $destaque = $_REQUEST["destaque"];
             $descricao = $_REQUEST["descricao"];
             $editora = $_REQUEST["editora"];
-            $situacao = $_REQUEST["situacao"];  
+            $situacao = $_REQUEST["situacao"];
+            $disponibilidade = $_REQUEST["disponibilidade"];  
     
             date_default_timezone_set('America/Sao_Paulo');
             $data = date("d-m-Y");
@@ -246,7 +251,7 @@ try{
       if($tamanho2==0){
         $arquivo2= 0;
       }
-            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao  WHERE id_liv = :id_liv");
+            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao, disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
             
             // Passagem de parâmetros para a tabela
             $sql->bindValue(':id_liv', $idlivro);
@@ -261,6 +266,7 @@ try{
             $sql->bindValue(':arquivo', $arquivo);
             $sql->bindValue(':arquivo2', $arquivo2);
             $sql->bindValue(':situacao', $situacao);
+            $sql->bindValue(':disponibilidade', $disponibilidade);
     
             $sql->execute();
 
