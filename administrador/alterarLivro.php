@@ -177,133 +177,150 @@ try{
       if (isset($_REQUEST["alterar"])) {
         
         try {
-            $idlivro = $_REQUEST["id_liv"];
-            $nome = $_REQUEST["nome"];
-            $isbn = $_REQUEST["isbn"];
-            $categoria = $_REQUEST["categoria"];
-            $autor = $_REQUEST["autor"];
-            $ano = $_REQUEST["ano"];
-            $destaque = $_REQUEST["destaque"];
-            $descricao = $_REQUEST["descricao"];
-            $editora = $_REQUEST["editora"];
-            $situacao = $_REQUEST["situacao"];
-            $disponibilidade = $_REQUEST["disponibilidade"];  
-    
-            date_default_timezone_set('America/Sao_Paulo');
-            $data = date("d-m-Y");
-            $time = date("H-i-s");
-      
-            if (!empty($_FILES["arquivo"]["name"])) {
-      
-      
-              $nomeimg =     $_FILES["arquivo"]["name"];
-              $temp =     $_FILES["arquivo"]["tmp_name"];
-              $tamanho =  $_FILES["arquivo"]["size"];
-              $tipoimg =     $_FILES["arquivo"]["type"];
-              $erro =     $_FILES["arquivo"]["error"];
-      
-              $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-      
-              if (($ext != 'jpg') and  ($ext != 'png')) {
-                echo "<script language=javascript>
-                alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
-                location.href = 'alterar.php?al=$idusuario';
-                </script>";
-                exit;
-              }
-      
-              if ($tamanho > 900000) {
-                echo "<script language=javascript>
-                alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
-                location.href = 'alterar.php?al=$idusuario';
-                </script>";
-                exit;
-              }
+                $idlivro = $_REQUEST["id_liv"];
+                $nome = $_REQUEST["nome"];
+                $isbn = $_REQUEST["isbn"];
+                $categoria = $_REQUEST["categoria"];
+                $autor = $_REQUEST["autor"];
+                $ano = $_REQUEST["ano"];
+                $destaque = $_REQUEST["destaque"];
+                $descricao = $_REQUEST["descricao"];
+                $editora = $_REQUEST["editora"];
+                $situacao = $_REQUEST["situacao"];
+                $disponibilidade = $_REQUEST["disponibilidade"];  
+        
+                date_default_timezone_set('America/Sao_Paulo');
+                $data = date("d-m-Y");
+                $time = date("H-i-s");
+        
+                if (!empty($_FILES["arquivo"]["name"])) {
+        
+        
+                $nomeimg =     $_FILES["arquivo"]["name"];
+                $temp =     $_FILES["arquivo"]["tmp_name"];
+                $tamanho =  $_FILES["arquivo"]["size"];
+                $tipoimg =     $_FILES["arquivo"]["type"];
+                $erro =     $_FILES["arquivo"]["error"];
+        
+                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
+        
+                if (($ext != 'jpg') and  ($ext != 'png')) {
+                    echo "<script language=javascript>
+                    alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
+                    location.href = 'alterar.php?al=$idusuario';
+                    </script>";
+                    exit;
+                }
+        
+                if ($tamanho > 900000) {
+                    echo "<script language=javascript>
+                    alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
+                    location.href = 'alterar.php?al=$idusuario';
+                    </script>";
+                    exit;
+                }
 
-              $num = rand(1, 10000000000);
-      
-              $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-      
-              $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-      
-              $arquivo = '../img/' . $novo_nomeimg;
-            } else {
-      
-              $arquivo = $_REQUEST['caminho_arquivo'];
+                $num = rand(1, 10000000000);
+        
+                $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+        
+                $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+        
+                $arquivo = '../img/' . $novo_nomeimg;
+                } else {
+        
+                $arquivo = $_REQUEST['caminho_arquivo'];
+                }
+
+                $nomeimg2 =  $_FILES["arquivo2"]["name"];
+
+                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
+
+                $tamanho2 =  $_FILES["arquivo2"]["size"];
+
+                $tipoimg2 =  $_FILES["arquivo2"]["type"];
+
+                $erro2 =     $_FILES["arquivo2"]["error"];
+
+                $ext2 = "pdf";
+                $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+                $arquivo2 = '../pdf/' . $novo_nomeimg2;
+
+                $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
+
+                if($tamanho2==0){
+                    $arquivo2= 0;
+                }
+                try{
+                    if($disponibilidade == "naoRetirado"){
+                        $consultaReserva = $conn->prepare("SELECT * FROM  tbl_reservado WHERE idLivro=:idLivro;");
+
+                        $consultaReserva->bindValue(':idLivro' , $idlivro);
+                        $consultaReserva->execute();
+                        $totalRowReserva = $consultaReserva ->rowCount();
+
+                        if($totalRowReserva > 0){
+                        $deleteReserva = $conn->prepare("DELETE FROM tbl_reservado WHERE idLivro=:idLivro;");
+                        $deleteReserva->bindValue(':idLivro', $idlivro);
+                        $deleteReserva->execute();
+                        }
+                    }
+                }catch (PDOException $erro){
+                echo $erro->getMessage();
+                }
+
+                $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao, disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
+                
+                $sql->bindValue(':id_liv', $idlivro);
+                $sql->bindValue(':nome', $nome);
+                $sql->bindValue(':isbn', $isbn);
+                $sql->bindValue(':categoria', $categoria);
+                $sql->bindValue(':autor', $autor);
+                $sql->bindValue(':ano', $ano);
+                $sql->bindValue(':destaque', $destaque);
+                $sql->bindValue(':descricao', $descricao);
+                $sql->bindValue(':editora', $editora);
+                $sql->bindValue(':arquivo', $arquivo);
+                $sql->bindValue(':arquivo2', $arquivo2);
+                $sql->bindValue(':situacao', $situacao);
+                $sql->bindValue(':disponibilidade', $disponibilidade);
+        
+                $sql->execute();
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Alteração realizado!!',
+                    customClass: {
+                        popup: 'swalFireLivro',
+                    },
+                    showCancelButton: false,
+                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    timer: 4000,
+                    timerProgressBar: true, 
+                    allowOutsideClick: false    
+                    
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'controleDeLivro.php';
+                    }
+                    
+                });
+                </script>";
+
+            }catch (PDOException $erro){
+            echo $erro->getMessage();
             }
 
-      $nomeimg2 =  $_FILES["arquivo2"]["name"];
+        } 
 
-      $temp2 =     $_FILES["arquivo2"]["tmp_name"];
-
-      $tamanho2 =  $_FILES["arquivo2"]["size"];
-
-      $tipoimg2 =  $_FILES["arquivo2"]["type"];
-
-      $erro2 =     $_FILES["arquivo2"]["error"];
-
-      $ext2 = "pdf";
-      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-      $arquivo2 = '../pdf/' . $novo_nomeimg2;
-
-      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
-      if($tamanho2==0){
-        $arquivo2= 0;
-      }
-            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao, disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
-            
-            // Passagem de parâmetros para a tabela
-            $sql->bindValue(':id_liv', $idlivro);
-            $sql->bindValue(':nome', $nome);
-            $sql->bindValue(':isbn', $isbn);
-            $sql->bindValue(':categoria', $categoria);
-            $sql->bindValue(':autor', $autor);
-            $sql->bindValue(':ano', $ano);
-            $sql->bindValue(':destaque', $destaque);
-            $sql->bindValue(':descricao', $descricao);
-            $sql->bindValue(':editora', $editora);
-            $sql->bindValue(':arquivo', $arquivo);
-            $sql->bindValue(':arquivo2', $arquivo2);
-            $sql->bindValue(':situacao', $situacao);
-            $sql->bindValue(':disponibilidade', $disponibilidade);
-    
-            $sql->execute();
-
-            echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Alteração realizado!!',
-                customClass: {
-                    popup: 'swalFireLivro',
-                },
-                showCancelButton: false,
-                confirmButtonText: 'Ir para a página de controle de lirvo',
-                timer: 4000,
-                timerProgressBar: true, 
-                allowOutsideClick: false    
-                  
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'controleDeLivro.php';
-                }
-                
-            });
-        </script>";
-
-        }catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-
-} 
-
-}catch (PDOException $erro){
+    }catch (PDOException $erro){
 	echo $erro->getMessage();
-}
+    }
 
-$conn = null;
-require_once "include/footer.php";
-require_once "include/scrollTop.php";
+    $conn = null;
+    require_once "include/footer.php";
+    require_once "include/scrollTop.php";
 ?>
 </body>
 
