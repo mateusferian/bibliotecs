@@ -225,9 +225,9 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
   $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'S' AND situacao = '1'");
   }
   else if (($destaque == "N") and ($tipoLIvro =="livronNormal")){
-    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND arquivo2 = '0'");
+    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND disponibilidade = 'naoRetirado' AND arquivo2 = '0'");
   }else if (($destaque == "N") and ($tipoLIvro =="livroPdf")){
-    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND arquivo2 <> '0'");
+    $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND disponibilidade = 'naoRetirado' AND arquivo2 <> '0'");
   }
   $consulta->execute();
   $livros = $consulta->fetchAll(PDO::FETCH_ASSOC);
