@@ -222,7 +222,7 @@
     <?php
 function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
   if(($destaque == "S") and ($tipoLIvro =="todos")){
-  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'S' AND situacao = '1'");
+  $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'S' AND situacao = '1' AND disponibilidade = 'naoRetirado'");
   }
   else if (($destaque == "N") and ($tipoLIvro =="livronNormal")){
     $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE destaque = 'N' AND situacao = '1' AND disponibilidade = 'naoRetirado' AND arquivo2 = '0'");
