@@ -55,7 +55,7 @@
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <div class="d-flex align-items-center">
-                                    <img src="assets/img/testimonials/testimonials-1.jpg"
+                                    <img src="../assets/img/testimonials/testimonials-1.jpg"
                                         class="testimonial-img flex-shrink-0" alt="">
                                     <div>
                                         <h3>Eduardo Rossi</h3>
@@ -458,7 +458,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
         <div class="container" data-aos="fade-up">
             <div class="section-header">
                 <h2>Eventos</h2>
-                <p>Eventos que vão ser realizados</p>
+                <p>Prepare-se para uma Experiência Inesquecível e descubra Eventos Imperdíveis!</p>
             </div>
 
             <div class="row gx-lg-0 gy-4">
@@ -527,8 +527,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
         const eventos = document.querySelectorAll(".evento");
         const descricaoEvento = document.querySelector(".php-email-form");
         const mensagemPadrao = `
-        <p class="h3">Bem-vindo à nossa página de eventos!</p>
-        <p class="h6">Aqui você encontrará uma lista dos eventos emocionantes que estão programados para ocorrer em breve. Cada evento é exibido com o nome e um ícone ao lado. Para saber mais detalhes sobre um evento específico, basta clicar no ícone correspondente ao lado do nome. Isso abrirá a descrição completa do evento, incluindo datas, horários e informações adicionais. Explore nossa lista de eventos e fique por dentro de tudo o que está acontecendo!</p>
+        <p class="h3">BEM-VINDO À NOSSA PÁGINA DE EVENTOS!</p>
+        <p class="h6">Aqui você encontrará uma lista dos eventos emocionantes que estão programados para ocorrer em breve. Cada evento é exibido com o nome e um ícone ao lado. Para saber mais detalhes sobre um evento específico, basta clicar no ícone correspondente ao lado do nome. Isso abrirá a descrição completa do evento, incluindo datas, horários e informações adicionais. Se você deseja ver todos os eventos, basta posicionar a seta do mouse sobre o nome e datas e, em seguida, use a roda de rolagem do mouse para deslocar a lista e visualizar todos os eventos. Explore nossa lista de eventos e fique por dentro de tudo o que está acontecendo!</p>
     `;
         eventos.forEach(function(evento, index) {
             evento.addEventListener("click", function() {
