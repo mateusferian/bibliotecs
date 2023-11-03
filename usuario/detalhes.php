@@ -122,41 +122,44 @@
 
                 try{
                     $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
-            
+                
                     $sql->bindValue(':id_liv', $idlivro);
                     $sql->bindValue(':disponibilidade', $disponibilidade);
+                
+                    $sql->execute();
+                }catch (PDOException $erro) {
+                        echo $erro->getMessage();
+                }
+
+                try{
+                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro)
+                    VALUES (:id, :idAluno, :idLivro)");
             
+                    $sql->bindValue(':id', null);   
+                    $sql->bindValue(':idAluno', $idAluno);
+                    $sql->bindValue(':idLivro', $idlivro);
                     $sql->execute();
 
-                $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro)
-                VALUES (:id, :idAluno, :idLivro)");
-        
-                $sql->bindValue(':id', null);   
-                $sql->bindValue(':idAluno', $idAluno);
-                $sql->bindValue(':idLivro', $idlivro);
-                $sql->execute();
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Livro reservado com sucesso!',
+                        customClass: {
+                            popup: 'swalFireControleDeAlunoApagado',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false  
+                    });
+            
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'home.php';
+                    }, 4000);
+                     </script>";
 
-                echo "<script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Livro reservado com sucesso!',
-                    customClass: {
-                        popup: 'swalFireControleDeAlunoApagado',
-                    },
-                    showConfirmButton: false,
-                    allowOutsideClick: false  
-                });
-        
-                // Redirecione automaticamente após um breve atraso
-                setTimeout(function() {
-                    window.location.href = 'home.php';
-                }, 4000);
-            </script>";
-
-            } 
-            catch (PDOException $erro) {
-                echo $erro->getMessage();
-            }
+                }catch (PDOException $erro) {
+                    echo $erro->getMessage();
+                }
             }
         ?>
         <br><br><br><br>
