@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/11/2023 às 18:01
+-- Tempo de geração: 03/11/2023 às 08:29
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -47,7 +47,8 @@ CREATE TABLE `tbl_administrador` (
 INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
 (34, 'situacao@gmail.com', 'situacao@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 0),
 (35, 'a@gmail.com', 'a@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 1),
-(36, 'casa@gmail.com', 'casa@gmail.com', '$2y$10$Lf14DqtfuWKz0OJLBM3EQ.FloytjNbCImn3WolreXCBBv1TJg2eXq', '2023-10-27', '0', 0);
+(36, 'casa@gmail.com', 'abc@gmail.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '2023-10-27', '0', 0),
+(37, 'admin@gmail.com', 'admin@gmail.com', '$2y$10$FEWNLhissWQegHKMmakSM.SnZJ1zSQasPisnlQ7aFGvvC09dePFgi', '2023-11-02', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,7 @@ INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `data`) VALUES
 (3, '3hbdrbdnd', 'ccccccccc ', '2023-10-27'),
 (4, '3hbdrbdnd', 'dddddddddddddddddd ', '2030-10-16'),
 (5, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
-(6, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
+(6, 'CINCOO OOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
 (7, 'casaaaaaaaaaa', 'i67lrtrt', '2030-10-16');
 
 -- --------------------------------------------------------
@@ -184,18 +185,17 @@ CREATE TABLE `tbl_livro` (
   `destaque` varchar(1) NOT NULL,
   `descricao` varchar(500) NOT NULL,
   `editora` varchar(50) NOT NULL,
-  `situacao` varchar(30) NOT NULL
+  `situacao` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `disponibilidade` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tbl_livro`
 --
 
-INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`) VALUES
-(88, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '1'),
-(89, 12321313, 'Diversos da Literatura Estrangeira', 'pdffff', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'S', '', '323232', '0'),
-(90, 12321313, 'Diversos da Literatura Estrangeira', 'LIVRO', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', '0', 'N', '', '323232', '1'),
-(91, 12321313, 'Diversos da Literatura Estrangeira', 'NORMAL PDF', 'teste em casa', 23, '../img/img_30-10-2023_06-53-08_7966699875.png', 'bertbewhnern', 'N', '', '323232', '1');
+INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`, `disponibilidade`) VALUES
+(92, 1341, 'Séries da Literatura Estrangeira', 'DISPONIBILIDADE', '34', 34, '../img/img_03-11-2023_07-02-36_2798012950.png', '0', 'S', '', '34', '0', 'naoRetirado'),
+(93, 123, 'Séries da Literatura Estrangeira', 'DISPONIVEL', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'naoRetirado');
 
 -- --------------------------------------------------------
 
@@ -208,19 +208,6 @@ CREATE TABLE `tbl_reservado` (
   `idAluno` int NOT NULL,
   `idLivro` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `tbl_reservado`
---
-
-INSERT INTO `tbl_reservado` (`id`, `idAluno`, `idLivro`) VALUES
-(1, 82, 1),
-(2, 21, 82),
-(3, 21, 82),
-(4, 21, 82),
-(5, 21, 82),
-(6, 21, 82),
-(7, 21, 82);
 
 --
 -- Índices para tabelas despejadas
@@ -276,7 +263,7 @@ ALTER TABLE `tbl_reservado`
 -- AUTO_INCREMENT de tabela `tbl_administrador`
 --
 ALTER TABLE `tbl_administrador`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_aluno`
@@ -306,13 +293,13 @@ ALTER TABLE `tbl_horario`
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_reservado`
 --
 ALTER TABLE `tbl_reservado`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
