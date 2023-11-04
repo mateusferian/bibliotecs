@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/11/2023 às 12:03
+-- Tempo de geração: 04/11/2023 às 14:06
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -65,34 +65,35 @@ CREATE TABLE `tbl_aluno` (
   `sala` varchar(30) NOT NULL,
   `dataCadastro` date DEFAULT NULL,
   `recuperar_senha` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `situacao` int NOT NULL
+  `situacao` int NOT NULL,
+  `condicao` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tbl_aluno`
 --
 
-INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
-(2, 'as', 'mateusferian10 @gmail.com ', '07/07/2005', '', '', NULL, '', 0),
-(3, '1', 'sas', '2', '', '', NULL, '', 0),
-(4, 'mateus', 'ferian', '123', '', '', NULL, '', 0),
-(5, 'test', 'mane@gmail.com', '12', '', '', NULL, '', 0),
-(6, 'pedro', 'pedro@gmail.com', '12345', '', '', NULL, '', 0),
-(7, 'ze', 'ze@gmail.com', '123', '', '', NULL, '', 0),
-(8, '12341', 'joseeeeeeeeee', '123', '', '', NULL, '', 0),
-(9, 'testeeeeeeeeeeeeeeeee', 'testeeeeeeeeeeeeeeeee', '123', '', '', NULL, '', 1),
-(10, 'maneeeeeeeee', 'maneeeeeeeee', 'maneeeeeeeee', '', '', NULL, '', 1),
-(11, 'crip', 'crip', '$2y$10$JoHyw5u0Q5OyfBpIY5jt.ecy0gYXiuMmVu.84.T7vUyJ9MCm/ZykC', '', '', NULL, '', 0),
-(12, 'data', 'data', '$2y$10$F2VcHIAUZ7ZFaQv5DiSynu/XdoszqldqSYPBnEkQdtW3vZOSmW4IS', '', '', '2023-09-03', '', 0),
-(13, 'as', 'as', '$2y$10$58hx7O9z9RV2pB6Yy6F8nOagak0xVUnnP.kFD5oSPcfC8qvTvWeeq', '', '', '2023-09-03', '', 0),
-(14, 'sad', 'as', '$2y$10$7R1292uM1BdU/Mba0QtA6O4CdRN6lbpLLGbMCVPf6IFE7BUfVkGv6', '', '', '2023-09-03', '', 0),
-(15, 'asd', 'sd', '$2y$10$lfilVSBo0LX6CcQHZ9r7Z.LqRM7TwUlE87.SfLz879zXtUtJ/PDTe', '', '', '2023-09-03', '', 0),
-(16, 'asd', 'asd', '$2y$10$hGJAdDCnIkD1E31LbTA/Hej.h/fhvVKv31pWojTjyx/ky/hkpQ0eq', '', '', '2023-09-03', '', 0),
-(17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0),
-(18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0),
-(19, 'qwe', 's@gmail.com', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0),
-(20, 'qwe', 'mateusferian10@gmail.com', '$2y$10$s9H7I2TG3FveuQSlZyzZEePDC7pPsO2CFm3Yt5Ge0GlWvq5IM7vQe', '', 'asasasas', '2023-09-03', 'NULL', 0),
-(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 1);
+INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`, `condicao`) VALUES
+(2, 'as', 'mateusferian10 @gmail.com ', '07/07/2005', '', '', NULL, '', 0, ''),
+(3, '1', 'sas', '2', '', '', NULL, '', 0, ''),
+(4, 'mateus', 'ferian', '123', '', '', NULL, '', 0, ''),
+(5, 'test', 'mane@gmail.com', '12', '', '', NULL, '', 0, ''),
+(6, 'pedro', 'pedro@gmail.com', '12345', '', '', NULL, '', 0, ''),
+(7, 'ze', 'ze@gmail.com', '123', '', '', NULL, '', 0, ''),
+(8, '12341', 'joseeeeeeeeee', '123', '', '', NULL, '', 0, ''),
+(9, 'testeeeeeeeeeeeeeeeee', 'testeeeeeeeeeeeeeeeee', '123', '', '', NULL, '', 1, ''),
+(10, 'maneeeeeeeee', 'maneeeeeeeee', 'maneeeeeeeee', '', '', NULL, '', 1, ''),
+(11, 'crip', 'crip', '$2y$10$JoHyw5u0Q5OyfBpIY5jt.ecy0gYXiuMmVu.84.T7vUyJ9MCm/ZykC', '', '', NULL, '', 0, ''),
+(12, 'data', 'data', '$2y$10$F2VcHIAUZ7ZFaQv5DiSynu/XdoszqldqSYPBnEkQdtW3vZOSmW4IS', '', '', '2023-09-03', '', 0, ''),
+(13, 'as', 'as', '$2y$10$58hx7O9z9RV2pB6Yy6F8nOagak0xVUnnP.kFD5oSPcfC8qvTvWeeq', '', '', '2023-09-03', '', 0, ''),
+(14, 'sad', 'as', '$2y$10$7R1292uM1BdU/Mba0QtA6O4CdRN6lbpLLGbMCVPf6IFE7BUfVkGv6', '', '', '2023-09-03', '', 0, ''),
+(15, 'asd', 'sd', '$2y$10$lfilVSBo0LX6CcQHZ9r7Z.LqRM7TwUlE87.SfLz879zXtUtJ/PDTe', '', '', '2023-09-03', '', 0, ''),
+(16, 'asd', 'asd', '$2y$10$hGJAdDCnIkD1E31LbTA/Hej.h/fhvVKv31pWojTjyx/ky/hkpQ0eq', '', '', '2023-09-03', '', 0, ''),
+(17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0, ''),
+(18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0, ''),
+(19, 'qwe', 's@gmail.com', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0, ''),
+(20, 'qwe', 'mateusferian10@gmail.com', '$2y$10$s9H7I2TG3FveuQSlZyzZEePDC7pPsO2CFm3Yt5Ge0GlWvq5IM7vQe', '', 'asasasas', '2023-09-03', 'NULL', 0, 'bloqueado'),
+(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 1, 'desbloqueado');
 
 -- --------------------------------------------------------
 
@@ -196,11 +197,15 @@ CREATE TABLE `tbl_livro` (
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`, `disponibilidade`) VALUES
 (92, 1341, 'Séries da Literatura Estrangeira', 'DISPONIBILIDADE', '34', 34, '../img/img_03-11-2023_07-02-36_2798012950.png', '0', 'S', '', '34', '1', 'retirado'),
 (93, 123, 'Séries da Literatura Estrangeira', 'DISPONIVEL', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(94, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
+(94, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO', '23', 23, '../img/img_04-11-2023_13-50-46_2947098437.png', '0', 'N', '', '23', '1', 'retirado'),
 (95, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
 (96, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
 (97, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(98, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado');
+(98, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
+(99, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
+(100, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
+(101, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
+(102, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado');
 
 -- --------------------------------------------------------
 
@@ -215,19 +220,6 @@ CREATE TABLE `tbl_reservado` (
   `dataDeReserva` date NOT NULL,
   `dataDeEntrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `tbl_reservado`
---
-
-INSERT INTO `tbl_reservado` (`id`, `idAluno`, `idLivro`, `dataDeReserva`, `dataDeEntrega`) VALUES
-(21, 21, 93, '2023-11-04', '2023-11-18'),
-(22, 21, 94, '2023-11-04', '2023-11-11'),
-(23, 21, 92, '2023-11-04', '2023-11-11'),
-(24, 21, 96, '2023-11-04', '2023-11-11'),
-(25, 21, 95, '2023-11-04', '2023-11-11'),
-(26, 21, 97, '2023-11-04', '2023-11-11'),
-(27, 21, 98, '2023-11-04', '2023-11-11');
 
 --
 -- Índices para tabelas despejadas
@@ -313,13 +305,13 @@ ALTER TABLE `tbl_horario`
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_reservado`
 --
 ALTER TABLE `tbl_reservado`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

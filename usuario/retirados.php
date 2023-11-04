@@ -78,6 +78,7 @@ $idAluno = $_SESSION["id"];
 $consultaReserva = $conn->prepare("SELECT * FROM tbl_reservado WHERE idAluno = :idAluno");
 $consultaReserva->bindValue(':idAluno', $idAluno);
 $consultaReserva->execute();
+$totalReserva= $consultaReserva ->rowCount();
 ?>
 
 <!DOCTYPE html>
@@ -87,9 +88,17 @@ $consultaReserva->execute();
 </head>
 <body>
 <section id="reservado" class="container">
+
+    <?php
+    if($totalReserva < 1){
+                ?>
+                <p class="fs-1 text-center">Olá tudo bem? você não possui livros reservados</p>
+
+                <?php
+            }else{
+                ?>
     <p class="fs-1 text-center">Livros Reservado</p>
 
-    <!-- Linha 1 - Produtos -->
     <div class="row text-center mt-5">
         <?php
         
@@ -115,7 +124,7 @@ $consultaReserva->execute();
                 <p>Data de Entrega: <?php echo date("d/m/Y", strtotime($rowReservaLivro["dataDeEntrega"])) ?></p>
                 <p><a href="renovar.php?id=<?php echo $livro['id_liv'] ?>" class="btn" id="botao">Renovar</a></p>
             </div>
-        <?php } ?>
+        <?php }} ?>
     </div>
 </section>
 
