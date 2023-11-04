@@ -112,7 +112,7 @@ $consultaReserva->execute();
             <div class="col-sm-4 mt-5">
             <img src="<?php echo $livro["arquivo"]?>" class="card-img-top img_tamanho" alt="<?php echo $livro["nome"]?>">
                 <h5 class="card-title"><?php echo $livro["nome"] ?></h5>
-                <p><?php echo date("d/m/Y", strtotime($rowReservaLivro["dataDeEntrega"])) ?></p>
+                <p>Data de Entrega: <?php echo date("d/m/Y", strtotime($rowReservaLivro["dataDeEntrega"])) ?></p>
                 <p><a href="renovar.php?id=<?php echo $livro['id_liv'] ?>" class="btn" id="botao">Renovar</a></p>
             </div>
         <?php } ?>
@@ -126,6 +126,27 @@ $consultaReserva->execute();
             Swal.fire({
                 icon: 'success',
                 title: 'Livro renovado com sucesso!',
+                html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
+                customClass: {
+                    popup: 'swalFireControleDeAlunoApagado',
+                },
+                showConfirmButton: false,
+                allowOutsideClick: false  
+            });
+    
+            // Redirecione automaticamente após um breve atraso
+            setTimeout(function() {
+                window.location.href = 'home.php';
+            }, 4000);
+             </script>";
+        }
+
+        if (isset($_GET["renovacaoBloquada"])) { 
+
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Só é permitido renovar o livro uma vez!',
                 html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',

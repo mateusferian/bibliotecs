@@ -14,10 +14,35 @@ if (isset($_REQUEST["id"])) {
     $consultaReserva->execute();
     $rowReserva = $consultaReserva->fetch(PDO::FETCH_ASSOC);
 
+    $dataAtual = $rowReserva["dataDeReserva"];
+    $dataDeEntrega = $rowReserva["dataDeEntrega"];
 
-    $dataAtual = $rowReserva["dataDeEntrega"];
+    $dateTimeReserva = new DateTime($dataDeEntrega);
 
-    $dateTimeAtual = new DateTime($dataAtual);
+    // Suponhamos que a data da reserva seja $dataReserva, você pode definir isso da maneira apropriada.
+
+    $dataReserva = new DateTime('2023-11-04'); // Substitua isso pela data da reserva real
+
+    // Calcule a diferença entre a data de entrega e a data da reserva em dias
+    $interval = $dataReserva->diff($dateTimeReserva);
+    $diferencaDias = $interval->days;
+
+    if ( $diferencaDias > 13) {
+
+        $bytes = random_bytes(7);
+        $valorErro = bin2hex($bytes);
+
+        header("Location: retirados.php?renovacaoBloquada=" . urlencode($valorErro));
+        exit;
+
+    }
+
+
+
+
+    $dataDeReserva = $rowReserva["dataDeEntrega"];
+
+    $dateTimeAtual = new DateTime($dataDeReserva);
 
     $dateTimeAtual->modify('+7 days');
 
