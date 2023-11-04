@@ -127,34 +127,18 @@
                 $dateTimeAtual->modify('+7 days');
 
                 $dataDeEntrega = $dateTimeAtual->format('Y-m-d');
-
-                try{
-                    $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
+                $consultaCount = $conn->prepare("SELECT COUNT(*) as total_reservas FROM tbl_reservado WHERE idAluno = :idAluno");
+                $consultaCount->bindValue(':idAluno', $idAluno);
+                $consultaCount->execute();
+                $resultCount = $consultaCount->fetch(PDO::FETCH_ASSOC);
                 
-                    $sql->bindValue(':id_liv', $idlivro);
-                    $sql->bindValue(':disponibilidade', $disponibilidade);
-                
-                    $sql->execute();
-                }catch (PDOException $erro) {
-                        echo $erro->getMessage();
-                }
-
-                try{
-                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva ,dataDeEntrega)
-                    VALUES (:id, :idAluno, :idLivro, :dataDeReserva, :dataDeEntrega)");
-            
-                    $sql->bindValue(':id', null);   
-                    $sql->bindValue(':idAluno', $idAluno);
-                    $sql->bindValue(':idLivro', $idlivro);
-                    $sql->bindValue(':dataDeReserva', $dataAtual);
-                    $sql->bindValue(':dataDeEntrega', $dataDeEntrega);
-                    $sql->execute();
-
+                // Verifique se o aluno já fez mais de 3 reservas
+                if ($resultCount['total_reservas'] >= 3) {
                     echo "<script>
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Livro reservado com sucesso!',
-                        html: '<p>A reserva do livro é de 7 dias podendo ter a possibilidade de renovação da reserva por mais 7 dias!</p>',
+                        icon: 'error',
+                        title: 'Quantidade de reservas excedida!',
+                        html: '<p>O usuario pode reservar 3 livros apenas!</p>',
                         customClass: {
                             popup: 'swalFireControleDeAlunoApagado',
                         },
@@ -167,11 +151,53 @@
                         window.location.href = 'home.php';
                     }, 4000);
                      </script>";
+                     
+                } else {
+                    try{
+                        $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
+                    
+                        $sql->bindValue(':id_liv', $idlivro);
+                        $sql->bindValue(':disponibilidade', $disponibilidade);
+                    
+                        $sql->execute();
+                    }catch (PDOException $erro) {
+                            echo $erro->getMessage();
+                    }
 
-                }catch (PDOException $erro) {
-                    echo $erro->getMessage();
-                }
+                    try{
+                        $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva ,dataDeEntrega)
+                        VALUES (:id, :idAluno, :idLivro, :dataDeReserva, :dataDeEntrega)");
+                
+                        $sql->bindValue(':id', null);   
+                        $sql->bindValue(':idAluno', $idAluno);
+                        $sql->bindValue(':idLivro', $idlivro);
+                        $sql->bindValue(':dataDeReserva', $dataAtual);
+                        $sql->bindValue(':dataDeEntrega', $dataDeEntrega);
+                        $sql->execute();
+
+                        echo "<script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Livro reservado com sucesso!',
+                            html: '<p>A reserva do livro é de 7 dias podendo ter a possibilidade de renovação da reserva por mais 7 dias!</p>',
+                            customClass: {
+                                popup: 'swalFireControleDeAlunoApagado',
+                            },
+                            showConfirmButton: false,
+                            allowOutsideClick: false  
+                        });
+                
+                        // Redirecione automaticamente após um breve atraso
+                        setTimeout(function() {
+                            window.location.href = 'home.php';
+                        }, 4000);
+                        </script>";
+
+                    }catch (PDOException $erro) {
+                        echo $erro->getMessage();
+                    }
             }
+        }
         ?>
         <br><br><br><br>
         <br><br><br><br>
