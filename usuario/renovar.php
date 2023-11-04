@@ -15,13 +15,13 @@ if (isset($_REQUEST["id"])) {
     $rowReserva = $consultaReserva->fetch(PDO::FETCH_ASSOC);
 
 
-    $dataAtual = $rowReserva["dataDeReserva"];
+    $dataAtual = $rowReserva["dataDeEntrega"];
 
     $dateTimeAtual = new DateTime($dataAtual);
 
     $dateTimeAtual->modify('+7 days');
 
-    $dataDeReserva = $dateTimeAtual->format('Y-m-d');
+    $dataDeEntrega = $dateTimeAtual->format('Y-m-d');
 
     try {
         $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
@@ -35,9 +35,9 @@ if (isset($_REQUEST["id"])) {
     }
 
     try {
-        $sql = $conn->prepare("UPDATE tbl_reservado SET dataDeReserva = :dataDeReserva  WHERE idLivro = :idLivro");
+        $sql = $conn->prepare("UPDATE tbl_reservado SET dataDeEntrega = :dataDeEntrega  WHERE idLivro = :idLivro");
 
-        $sql->bindValue(':dataDeReserva', $dataDeReserva);
+        $sql->bindValue(':dataDeEntrega', $dataDeEntrega);
         $sql->bindValue(':idLivro', $idLivro);
 
         $sql->execute();
@@ -45,7 +45,7 @@ if (isset($_REQUEST["id"])) {
         $bytes = random_bytes(7);
         $valorErro = bin2hex($bytes);
 
-        header("Location: reserva.php?renovado=" . urlencode($valorErro));
+        header("Location: retirados.php?renovado=" . urlencode($valorErro));
         exit;
     } catch (PDOException $erro) {
         echo $erro->getMessage();

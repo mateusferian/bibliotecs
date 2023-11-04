@@ -126,7 +126,7 @@
 
                 $dateTimeAtual->modify('+7 days');
 
-                $dataDeReserva = $dateTimeAtual->format('Y-m-d');
+                $dataDeEntrega = $dateTimeAtual->format('Y-m-d');
 
                 try{
                     $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
@@ -140,13 +140,14 @@
                 }
 
                 try{
-                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva)
-                    VALUES (:id, :idAluno, :idLivro, :dataDeReserva)");
+                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva ,dataDeEntrega)
+                    VALUES (:id, :idAluno, :idLivro, :dataDeReserva, :dataDeEntrega)");
             
                     $sql->bindValue(':id', null);   
                     $sql->bindValue(':idAluno', $idAluno);
                     $sql->bindValue(':idLivro', $idlivro);
-                    $sql->bindValue(':dataDeReserva', $dataDeReserva);
+                    $sql->bindValue(':dataDeReserva', $dataAtual);
+                    $sql->bindValue(':dataDeEntrega', $dataDeEntrega);
                     $sql->execute();
 
                     echo "<script>

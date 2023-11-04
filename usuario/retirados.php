@@ -86,12 +86,13 @@ $consultaReserva->execute();
     <!-- Seu código de cabeçalho aqui -->
 </head>
 <body>
-<section id="produtos" class="container">
-    <p class="fs-1 text-center">Produtos</p>
+<section id="reservado" class="container">
+    <p class="fs-1 text-center">Livros Reservado</p>
 
     <!-- Linha 1 - Produtos -->
     <div class="row text-center mt-5">
         <?php
+        
         while ($rowReserva = $consultaReserva->fetch(PDO::FETCH_ASSOC)) {
             $idLivro = $rowReserva["idLivro"];
             $consultaLivro = $conn->prepare("SELECT * FROM tbl_livro WHERE id_liv = :idLivro");
@@ -99,15 +100,23 @@ $consultaReserva->execute();
             $consultaLivro->execute();
             $livro = $consultaLivro->fetch(PDO::FETCH_ASSOC);
 
-            // Exibe informações sobre o livro reservado
+
+
+            $consultaReservaLivro = $conn->prepare("SELECT * FROM tbl_reservado WHERE idLivro = :idLivro AND idAluno = :idAluno ");
+            $consultaReservaLivro->bindValue(':idLivro', $idLivro);
+            $consultaReservaLivro->bindValue(':idAluno', $idAluno);
+            $consultaReservaLivro->execute();
+            $rowReservaLivro = $consultaReservaLivro->fetch(PDO::FETCH_ASSOC);
+
         ?>
             <div class="col-sm-4 mt-5">
-            <img src="<?php echo $linha1["arquivo"]?>" class="card-img-top img_tamanho" alt="<?php echo $linha1["nome"]?>">
+            <img src="<?php echo $livro["arquivo"]?>" class="card-img-top img_tamanho" alt="<?php echo $livro["nome"]?>">
                 <h5 class="card-title"><?php echo $livro["nome"] ?></h5>
+                <p><?php echo date("d/m/Y", strtotime($rowReservaLivro["dataDeEntrega"])) ?></p>
                 <p><a href="renovar.php?id=<?php echo $livro['id_liv'] ?>" class="btn" id="botao">Renovar</a></p>
             </div>
         <?php } ?>
-    </div> <!-- Fecha 1ª linha -->
+    </div>
 </section>
 
         <?php
