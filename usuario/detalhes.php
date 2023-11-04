@@ -120,6 +120,14 @@
                 $turma = 2;
                 $disponibilidade = "retirado";
 
+                $dataAtual = date('Y-m-d');
+
+                $dateTimeAtual = new DateTime($dataAtual);
+
+                $dateTimeAtual->modify('+7 days');
+
+                $dataDeReserva = $dateTimeAtual->format('Y-m-d');
+
                 try{
                     $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
                 
@@ -132,18 +140,20 @@
                 }
 
                 try{
-                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro)
-                    VALUES (:id, :idAluno, :idLivro)");
+                    $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva)
+                    VALUES (:id, :idAluno, :idLivro, :dataDeReserva)");
             
                     $sql->bindValue(':id', null);   
                     $sql->bindValue(':idAluno', $idAluno);
                     $sql->bindValue(':idLivro', $idlivro);
+                    $sql->bindValue(':dataDeReserva', $dataDeReserva);
                     $sql->execute();
 
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
                         title: 'Livro reservado com sucesso!',
+                        html: '<p>A reserva do livro é de 7 dias podendo ter a possibilidade de renovação da reserva por mais 7 dias!</p>',
                         customClass: {
                             popup: 'swalFireControleDeAlunoApagado',
                         },
