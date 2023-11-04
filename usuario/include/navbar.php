@@ -15,6 +15,7 @@
           <li><a href="home.phpblog.html">Horarios</a></li>
           <li><a href="home.php#team">Doação</a></li>
           <li><a href="home.php#livrosPDF">Livros em PDF</a></li>
+          <li><a href="reserva.php">reservas</a></li>
         </ul>
     </nav><!-- .navbar -->
 
