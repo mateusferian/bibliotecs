@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="login/css/index.css">
     <link rel="stylesheet" href="login/css/style.css">
+    <link href="login/css/botao.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -63,7 +64,7 @@
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Entrar" class="btn btn-primary" name="acessar" id="meuBotao">
+                            <input type="submit" value="Entrar" class="btn" name="acessar" id="formulario">
                         </div>
                         <br><br>
                     </div>
@@ -71,7 +72,46 @@
             </div>
         </div>
     </div>
+    <?php
 
+    if (isset($_GET["erro"])) { 
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'email ou senha incorretos',
+                    customClass: {
+                        popup: 'swalFireIndex',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                setTimeout(function() {
+                    window.location.href = 'index.php';
+                }, 4000);
+            </script>";
+}
+
+if (isset($_GET["inativo"])) { 
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario inativo!!',
+                    customClass: {
+                        popup: 'swalFireIndex',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                setTimeout(function() {
+                    window.location.href = 'index.php';
+                }, 4000);
+            </script>";
+}
+?>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>

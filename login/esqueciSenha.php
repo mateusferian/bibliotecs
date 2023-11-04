@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include_once 'conexao.php';
+include_once '../conexao.php';
 include_once 'include/header.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -23,6 +23,28 @@ $mail = new PHPMailer(true);
 </style>
 <body>
     <?php
+
+if (isset($_GET["erro"])) { 
+    $valor_recebido = urldecode($_GET["erro"]);
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Link inválido',
+                    html: '<p>solicite um novo link para atualizar a senha!!</p>',
+                    customClass: {
+                        popup: 'swalFireIndex',
+                    },
+                    showConfirmButton: false,
+                    allowOutsideClick: false  
+                });
+        
+                setTimeout(function() {
+                    window.location.href = 'esqueciSenha.php';
+                }, 5000);
+            </script>";
+}
+
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
     if (!empty($dados['SendRecupSenha'])) {
@@ -33,6 +55,12 @@ $mail = new PHPMailer(true);
         $result_email_aluno = $conn->prepare($query_email_aluno);
         $result_email_aluno->bindParam(':email', $email, PDO::PARAM_STR);
         $result_email_aluno->execute();
+
+        
+        $query_email_admin = "SELECT id, nome, email FROM tbl_administrador WHERE email = :email LIMIT 1";
+        $result_email_admin = $conn->prepare($query_email_admin);
+        $result_email_admin->bindParam(':email', $email, PDO::PARAM_STR);
+        $result_email_admin->execute();
         
         if ($result_email_aluno->rowCount() > 0) {
 
@@ -47,14 +75,7 @@ $mail = new PHPMailer(true);
         
             $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
 
-        } else {
-
-            $query_email_admin = "SELECT id, nome, email FROM tbl_administrador WHERE email = :email LIMIT 1";
-            $result_email_admin = $conn->prepare($query_email_admin);
-            $result_email_admin->bindParam(':email', $email, PDO::PARAM_STR);
-            $result_email_admin->execute();
-        
-            if ($result_email_admin->rowCount() > 0) {
+        } else if ($result_email_admin->rowCount() > 0) {
                 $row_email = $result_email_admin->fetch(PDO::FETCH_ASSOC);
                 $chave_recuperar_senha = password_hash($row_email['id'], PASSWORD_DEFAULT);
 
@@ -81,13 +102,12 @@ $mail = new PHPMailer(true);
                 // Redirecione automaticamente após um breve atraso
                 setTimeout(function() {
                     window.location.href = 'esqueciSenha.php';
-                }, 3000);
+                }, 4000);
             </script>";
             }
-        }
         
-        $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
-        
+        if(($result_email_admin->rowCount() > 0) || ($result_email_aluno->rowCount() > 0)){
+            $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
         try {
 
             $mail->CharSet = 'UTF-8';
@@ -126,12 +146,28 @@ $mail = new PHPMailer(true);
                 // Redirecione automaticamente após um breve atraso
                 setTimeout(function() {
                     window.location.href = '../index.php';
-                }, 3000);
+                }, 4000);
             </script>";
 
                 } catch (Exception $e) {
-                    echo "Erro: E-mail não enviado sucesso. Mailer Error: {$mail->ErrorInfo}";
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email nâo enviado',
+                        customClass: {
+                            popup: 'swalFireIndex',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false  
+                    });
+            
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'esqueciSenha.php';
+                    }, 4000);
+                </script>";
                 }
+            }
     }
     ?>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
@@ -159,7 +195,7 @@ $mail = new PHPMailer(true);
 
                     <div class="form-group">
                         <div class="col-md-4 offset-md-4">
-                            <input type="submit" value="Recuperar" class="btn btn-primary" name="SendRecupSenha">
+                            <input id="formulario" type="submit" value="Recuperar" class="btn btn-primary" name="SendRecupSenha">
                         </div>
                         <br><br>
                     </div>

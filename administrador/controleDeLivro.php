@@ -1,28 +1,25 @@
 <?php
+    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
-    <link href="css/swalFireLivro.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/model.js"></script>
+<link href="css/swalFireLivro.css" rel="stylesheet">
+<script src="js/model.js"></script>
 
-    <style>
-    .img_lista {
-        max-width: 100px;
-        height: auto;
-    }
-    </style>
+<style>
+.img_lista {
+    max-width: 100px;
+    height: auto;
+}
+</style>
 
 </head>
 
 <body>
     <?php
-    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
-    require_once "../conexao.php";
 ?>
-<style>
+    <style>
     .table-description {
         white-space: nowrap;
         overflow: hidden;
@@ -35,7 +32,47 @@
         white-space: normal;
         max-width: none;
     }
-</style>
+    </style>
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm-12 mt-3">
+                <form method="get" action="controleDeLivro.php">
+                    <p class="fs-5 mt-5">Opção de filtragem</p>
+                    <select class="form-control" name="filtro" id="filtro">
+                        <option value="SemFiltro" selected>Sem Filtro</option>
+                        <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+                        <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                        <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                        <option value="Poemas e Poesias">Poemas e Poesias</option>
+                        <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                        <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira
+                            e Português</option>
+                    </select>
+                    <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+                </form>
+            </div>
+
+            <script>
+            // Recupere o elemento select
+            var filtroSelect = document.getElementById("filtro");
+
+            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
+            filtroSelect.addEventListener("change", function() {
+                localStorage.setItem("filtroSelecionado", filtroSelect.value);
+            });
+
+            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
+            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
+            if (filtroSelecionado) {
+                filtroSelect.value = filtroSelecionado;
+            }
+            </script>
+        </div>
+    </div>
+
+
 
     <p class="fs-2 text-center mt-5">Livros Cadastrados</p>
 
@@ -50,28 +87,55 @@
                     <th scope="col">AUTOR</th>
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
+                    <th scope="col">DISPONIBILIDADE</th>
                     <th scope="col">DESCRIÇÃO</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
                     <th scope="col">SITUAÇÃO</th>
-
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0';");
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
+            }else{
+            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria");
+            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+            }
+        }else{
+            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
+        }
+        
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
         $livrosPorPagina = 10;
         $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-
+        
         $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
         $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
-
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina;");
+        
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
+            }else{
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
+            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+            }
+ 
+        } else {
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
+        }
+        
         $consulta->execute();
+        
+        
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
@@ -89,7 +153,17 @@
             limitandoCampos($autor);  
 
             echo '<td>' . $row["ano"] . '</td>';
-            echo '<td>' . $row["destaque"] . '</td>';  
+            echo '<td>' . $row["destaque"] . '</td>';
+            if ($row["disponibilidade"] == "naoRetirado") {
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Não Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
+            else{
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
             $descricao = $row["descricao"];      
@@ -100,11 +174,11 @@
             echo '<td>';
             if ($row["situacao"] == 1) {
                 ?>
-                  <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
                 } else {
                 ?>
-                  <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
+                <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
     
                 }
@@ -129,15 +203,34 @@
                 echo $campo;
             }
         }
+
+        function limitandoCampoDisponibilidade($campo, $campoDaTabela) {
+         if($campoDaTabela == "naoRetirado"){
+            if (strlen($campo) > 100) {
+                echo '<span style="color: green;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: green;">' . $campo . '</span>';
+            }
+        } else{
+            if (strlen($campo) > 100) {
+                echo '<span style="color: red;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: red;">' . $campo . '</span>';
+            }
+        }
+    }
+        
+        
         ?>
             </tbody>
         </table>
         <div class="modal modal-container" onclick="closeDescriptionModal()" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Use 'modal-lg' para modal grande -->
-    <div class="modal-content"  onclick="event.stopPropagation()">
-    </div>
-  </div>
-</div>   
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <!-- Use 'modal-lg' para modal grande -->
+                <div class="modal-content" onclick="event.stopPropagation()">
+                </div>
+            </div>
+        </div>
 
         <?php
 
@@ -185,13 +278,14 @@
         <table class="table table-bordered text-center">
             <thead>
                 <tr class="bg-light">
-                <th scope="col">ID</th>
+                    <th scope="col">ID</th>
                     <th scope="col">NOME</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">CATEGORIA</th>
                     <th scope="col">AUTOR</th>
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
+                    <th scope="col">DISPONIBILIDADE</th>
                     <th scope="col">DESCRIÇÃO</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
@@ -203,17 +297,46 @@
             <tbody>
                 <?php
       try {
-        $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0';");
+
+        $livrosPorPagina = 10;
+
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
+            }else{
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria");
+                $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+                }
+        }else{
+            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 <> '0'");
+        }
+        
         $consulta->execute();
         $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-        $livrosPorPagina = 10;
         $totalPaginas = ceil($totalLivros / $livrosPorPagina);
     
-        $paginaAtual2 = isset($_GET['pagina2']) ? max(1, $_GET['pagina2']) : 1;
+        $paginaAtual2 = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
         $indiceInicial = ($paginaAtual2 - 1) * $livrosPorPagina;
     
-        $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NOT NULL AND arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina;");
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
+            $categoria = $_GET["filtro"];
+            if($categoria == "SemFiltro"){
+                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
+            }else{
+                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
+                $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+                }
+ 
+        } else {
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 <> '0' LIMIT $indiceInicial, $livrosPorPagina");
+        }
+        
         $consulta->execute();
+
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
             echo '<tr>';
@@ -232,6 +355,16 @@
 
             echo '<td>' . $row["ano"] . '</td>';
             echo '<td>' . $row["destaque"] . '</td>';  
+            if ($row["disponibilidade"] == "naoRetirado") {
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Não Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
+            else{
+                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
+                $disponibilidade = "Retirado";      
+                limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
+            }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
             $descricao = $row["descricao"];      
@@ -243,11 +376,11 @@
             echo '<td>';
             if ($row["situacao"] == 1) {
                 ?>
-                  <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
                 } else {
                 ?>
-                  <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
+                <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
     
                 }
@@ -325,7 +458,7 @@
                     showCancelButton: true, // Não mostrar o botão de cancelar
                     confirmButtonText: 'sim',
                     cancelButtonText: 'não',
-                    timer: 5000,
+                    timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false      
                 }).then((result) => {
@@ -366,7 +499,7 @@
                             // Redirecione automaticamente após um breve atraso
                             setTimeout(function() {
                                 window.location.href = 'controleDeLivro.php';
-                            }, 3000);
+                            }, 4000);
                         </script>";
                         exit;
                     }
@@ -377,4 +510,5 @@
                 require_once "include/scrollTop.php";
 ?>
 </body>
+
 </html>

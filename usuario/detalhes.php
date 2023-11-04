@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<?php
+    require_once "../restrito.php";
+    require_once "include/header.php";
+?>
 
-    <title>Detalhes do Jogo</title>
-    <!-- Seus links CSS do Bootstrap e outros recursos -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <link href="assets/css/main.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+
 
     <style>
         .img_novidades {
@@ -35,94 +18,224 @@
             max-width: 300px;
             height: auto;
         }
+
+        .book {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 600px;
+            display: flex;
+        }
+
+        .book img {
+            max-width: 150px;
+            margin-right: 10px;
+        }
+
+        .book-details {
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 24px; /* Alterei '24x' para '24px' */
+            margin: 0;
+        }
+
+        .author {
+            font-size: 18px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .description {
+            font-size: 16px;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
-    <header id="header" class="header d-flex align-items-center">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <h1>Bibliotecs<span>.</span></h1>
-            </a>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="game.php">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">Bibliotecs</a></li>
-                </ul>
-            </nav>
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        </div>
-    </header>
-    
+<?php
+    require_once "include/navbar.php";
+    require_once "include/hero.php";
+?>
     <div class="container">
+    <br><br><br><br>
+        <br><br><br><br>
         <?php
-        if(isset($_GET['codgame'])) {
-            // Conexão com o banco de dados (substitua pelos detalhes da sua conexão)
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bd_games";
-
-            // Cria a conexão
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Verifica a conexão
-            if ($conn->connect_error) {
-                die("Conexão falhou: " . $conn->connect_error);
-            }
-
-            // Obtém o código do jogo da URL
-            $codgame = $_GET['codgame'];
-
+        if (isset($_REQUEST['id_liv'])) {
+ 
+            $idlivro = $_GET['id_liv'];
             // Consulta SQL para recuperar o preço e a capa do jogo com base no código
-            $sql = "SELECT nome, arquivo FROM games WHERE codgame = $codgame";
-
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
+            $consulta = $conn->prepare("SELECT * FROM tbl_livro where id_liv = $idlivro ");
+            $consulta->execute();
+            while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $categoria = $row['categoria'];
                 $nome = $row['nome'];
-                $capa = $row['arquivo'];
-            } else {
-                $nome = "Preço não disponível";
-                $capa = "caminho_para_imagem_padrao.jpg"; // Coloque o caminho da imagem padrão caso não tenha capa
+                $autor = $row['autor'];
+                $ano = $row['ano'];
+                $arquivo = $row['arquivo'];
+                $arquivo2 = $row['arquivo2'];
+                $destaque = $row['destaque'];
+                $descricao = $row['descricao'];
+                $editora = $row['editora'];
             }
-
-            // Fecha a conexão com o banco de dados
-            $conn->close();
+            // $nome = "BLÁ -  BLÁ";
+            // $arquivo = "caminho_para_imagem_padrao.jpg"; // Coloque o caminho da imagem padrão caso não tenha capa
         }
         ?>
-
-        <h1>Detalhes do Jogo</h1>
-        <div class="card" style="width: 18rem;">
-            <img src="<?php echo $capa; ?>" class="card-img-top" alt="Capa do Jogo">
-            <div class="card-body">
-                <p class="card-text"><?php echo $nome; ?></p>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $arquivo; ?>" class="card-img-top" alt="Capa do livro">
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $nome; ?></h5>
+                        <p class="card-text">DESCRICAO<?php echo $descricao; ?></p>
+                        <p class="card-text">Autor(a): <?php echo $autor; ?></p>
+                        <p class="card-text">Ano: <?php echo $ano ?></p>
+                        <p class="card-text">Editora: <?php echo $editora; ?></p>
+                        <p class="card-text">Categoria: <?php echo $categoria; ?></p>
+                    </div>
+                </div>
             </div>
         </div>
+        <p>
+        <form action="detalhes.php?id_liv=<?php echo urlencode($idlivro); ?>" method="POST">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary red-color-button" type="submit" name="Reservar" value="Reservar" id="botao">Reservar</button>
     </div>
+</form>
+        <?php
+            if (isset($_REQUEST["Reservar"])) {
 
-    <!-- Seus scripts aqui -->
 
-</body>
-</html>
+                $idlivro = $_GET['id_liv'];
+                $idAluno = $_SESSION["id"];
+                $turma = 2;
+                $disponibilidade = "retirado";
+
+                $dataAtual = date('Y-m-d');
+
+                $dateTimeAtual = new DateTime($dataAtual);
+
+                $dateTimeAtual->modify('+7 days');
+
+
+                $consultaAluno = $conn->prepare("SELECT * FROM tbl_aluno WHERE id = :id");
+                $consultaAluno->bindValue(':id', $idAluno);
+                $consultaAluno->execute();
+                $aluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
+        
+                    if ($aluno["condicao"] == "bloqueado") {
+                        echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Usuário bloqueado!',
+                            html: '<p>O usuário está bloqueado</p>',
+                            customClass: {
+                                popup: 'swalFireControleDeAlunoApagado',
+                            },
+                            showConfirmButton: false,
+                            allowOutsideClick: false  
+                        });
+                
+                        // Redirecione automaticamente após um breve atraso
+                        setTimeout(function() {
+                            window.location.href = 'home.php';
+                        }, 4000);
+                     </script>";
+                     
+                    } else {
+                
+
+
+                        $dataDeEntrega = $dateTimeAtual->format('Y-m-d');
+                        $consultaCount = $conn->prepare("SELECT COUNT(*) as total_reservas FROM tbl_reservado WHERE idAluno = :idAluno");
+                        $consultaCount->bindValue(':idAluno', $idAluno);
+                        $consultaCount->execute();
+                        $resultCount = $consultaCount->fetch(PDO::FETCH_ASSOC);
+            
+
+
+                        if ($resultCount['total_reservas'] >= 3) {
+                            echo "<script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Quantidade de reservas excedida!',
+                                html: '<p>O usuario pode reservar 3 livros apenas!</p>',
+                                customClass: {
+                                    popup: 'swalFireControleDeAlunoApagado',
+                                },
+                                showConfirmButton: false,
+                                allowOutsideClick: false  
+                            });
+                    
+                            // Redirecione automaticamente após um breve atraso
+                            setTimeout(function() {
+                                window.location.href = 'home.php';
+                            }, 4000);
+                            </script>";
+                            
+                        } else {
+                            try{
+                                $sql = $conn->prepare("UPDATE tbl_livro SET disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
+                            
+                                $sql->bindValue(':id_liv', $idlivro);
+                                $sql->bindValue(':disponibilidade', $disponibilidade);
+                            
+                                $sql->execute();
+                            }catch (PDOException $erro) {
+                                    echo $erro->getMessage();
+                            }
+
+                            try{
+                                $sql = $conn->prepare("INSERT INTO tbl_reservado (id, idAluno, idLivro, dataDeReserva ,dataDeEntrega)
+                                VALUES (:id, :idAluno, :idLivro, :dataDeReserva, :dataDeEntrega)");
+                        
+                                $sql->bindValue(':id', null);   
+                                $sql->bindValue(':idAluno', $idAluno);
+                                $sql->bindValue(':idLivro', $idlivro);
+                                $sql->bindValue(':dataDeReserva', $dataAtual);
+                                $sql->bindValue(':dataDeEntrega', $dataDeEntrega);
+                                $sql->execute();
+
+                                echo "<script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Livro reservado com sucesso!',
+                                    html: '<p>A reserva do livro é de 7 dias podendo ter a possibilidade de renovação da reserva por mais 7 dias!</p>',
+                                    customClass: {
+                                        popup: 'swalFireControleDeAlunoApagado',
+                                    },
+                                    showConfirmButton: false,
+                                    allowOutsideClick: false  
+                                });
+                        
+                                // Redirecione automaticamente após um breve atraso
+                                setTimeout(function() {
+                                    window.location.href = 'home.php';
+                                }, 4000);
+                                </script>";
+
+                            }catch (PDOException $erro) {
+                                echo $erro->getMessage();
+                            }
+                    }
+                }
+        }
+        ?>
+        <br><br><br><br>
+        <br><br><br><br>
+        </div>
+        <?php
+        require_once "include/footer.php";
+        require_once "include/scrollTop.php";
+  ?>
+  </body>
+  

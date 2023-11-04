@@ -1,66 +1,62 @@
 <?php
+    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
-    <link href="css/controleDeAluno.css" rel="stylesheet">
+<style>
+.img_novidades {
+    max-width: 80%;
+    height: auto;
+}
 
-    <style>
-    .img_novidades {
-        max-width: 80%;
-        height: auto;
-    }
+.img_tamanho {
+    max-width: 300px;
+    height: auto;
+}
 
-    .img_tamanho {
-        max-width: 300px;
-        height: auto;
-    }
-
-    .img_lista {
-        max-width: 100px;
-        height: auto;
-    }
-
-    .meuBotao {
-        background-color: rgba(0, 131, 116, 0.8);
-        color: white;
-        border: 2px solid rgba(0, 131, 116, 0.8);
-    }
-
-    /* Estilo de hover do botão */
-    .meuBotao:hover {
-        background-color: #99cdc7;
-        color: white;
-        border: 2px solid #99cdc7;
-    }
-
-    #meuBotao:active {
-        background-color: #014d44;
-        border: 2px solid #014d44;
-    }
-    </style>
+.img_lista {
+    max-width: 100px;
+    height: auto;
+}
+</style>
 
 </head>
 
 <body>
-<?php
-    require_once "../restrito.php";
+    <?php
     require_once "include/navbar.php";
     require_once "include/hero.php";
-    require_once "../conexao.php";
 ?>
     <p class="fs-2 text-center mt-5">Controle de Alunos</p>
     <div class="container mt-4">
         <form method="get">
             <p class="fs-5 mt-5">Opção de filtragem</p>
-            <select class="form-control" name="filtro">
+            <select class="form-control" name="filtro" id="filtro">
                 <option value="opcao0">sem filtro</option>
-                <option value="opcao1">há 7 dias</option>
-                <option value="opcao2">há 14 dias</option>
-                <option value="opcao3">há 21 dias</option>
-                <option value="opcao4">mais de 21 dias</option>
+                <option value="bloqueado">Bloquados</option>
+                <option value="desbloqueado">Desbloqueado</option>
+                <option value="inativo">Inativo</option>
+                <option value="ativo">Ativo</option>
             </select>
-            <button id="meuBotao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+            <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
         </form>
     </div>
+
+    <script>
+            // Recupere o elemento select
+            var filtroSelect = document.getElementById("filtro");
+
+            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
+            filtroSelect.addEventListener("change", function() {
+                localStorage.setItem("filtroSelecionado", filtroSelect.value);
+            });
+
+            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
+            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
+            if (filtroSelecionado) {
+                filtroSelect.value = filtroSelecionado;
+            }
+            </script>
+
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -69,8 +65,10 @@
                     <th scope="col">ID</th>
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
+                    <th scope="col">condicao</th>
                     <th scope="col">SALA</th>
-                    <th colspan="2" scope="col">AÇÕES</th>
+                    <th scope="col">SITUAÇÃO</th>
+                    <th colspan="3" scope="col">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,15 +78,16 @@
 
                 $consultaSQL = "SELECT * FROM tbl_aluno";
 
-                if ($filtro === "opcao1") {
-                    $consultaSQL .= " WHERE DATEDIFF(CURDATE(), dataEntrega) > 0 AND DATEDIFF(CURDATE(), dataEntrega) <= 7";
-                } elseif ($filtro === "opcao2") {
-                    $consultaSQL .= " WHERE DATEDIFF(CURDATE(), dataEntrega) > 7 AND DATEDIFF(CURDATE(), dataEntrega) <= 14";
-                } elseif ($filtro === "opcao3") {
-                    $consultaSQL .= " WHERE DATEDIFF(CURDATE(), dataEntrega) > 14 AND DATEDIFF(CURDATE(), dataEntrega) <= 21";
-                } elseif ($filtro === "opcao4") {
-                    $consultaSQL .= " WHERE DATEDIFF(CURDATE(), dataEntrega) > 21";
+                if ($filtro === "bloqueado") {
+                    $consultaSQL .= " WHERE condicao = 'bloqueado'";
+                } elseif ($filtro === "desbloqueado") {
+                    $consultaSQL .= " WHERE condicao = 'desbloqueado'";
+                } elseif ($filtro === "inativo") {
+                    $consultaSQL .= " WHERE situacao = 0";
+                } elseif ($filtro === "ativo") {
+                    $consultaSQL .= " WHERE situacao = 1";
                 }
+                
 
                 $consulta = $conn->prepare($consultaSQL);
                 $consulta->execute();
@@ -110,11 +109,32 @@
                     <td><?php echo $row["id"] ?> </td>
                     <td><?php echo $row["nome"] ?></td>
                     <td><?php echo $row["email"] ?></td>
+                    <td style="color: <?php echo $row["condicao"] === 'bloqueado' ? 'red' : 'green'; ?>">
+                    <?php echo $row["condicao"]; ?>
+                    </td>
                     <td><?php echo $row["sala"] ?></td>
                     <td>
+                    <td>
+                    <?php
+                    if ($row["situacao"] == 1) {
+                    ?>
+                    <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                    <?php
+                    } else {
+                    ?>
+                    <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado">
+                    </center>
+                    <?php
+                    }
+                    ?>
+                    </td>
+                    <td>
+                        <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
+                    </td>
+                    <td>
                         <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
-                        </td>
-                        <td>
+                    </td>
+                    <td>
                         <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
                     </td>
                 </tr>
@@ -183,7 +203,7 @@
             showCancelButton: true,
             confirmButtonText: 'sim',
             cancelButtonText: 'não',
-            timer: 5000,
+            timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      
         }).then((result) => {
@@ -224,7 +244,7 @@
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
                         window.location.href = 'controleDeAluno.php';
-                    }, 3000); 
+                    }, 4000); 
                 </script>";
                 exit;
             }

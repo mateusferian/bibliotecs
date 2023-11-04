@@ -52,10 +52,6 @@ input[type="text"]::placeholder {
   color: var(--color-third);
 }
 
-.btn-primary:hover {
-    background-color:var(--color-third);
-}
-
 .form-links {
     display: flex;
     flex-direction: column;
