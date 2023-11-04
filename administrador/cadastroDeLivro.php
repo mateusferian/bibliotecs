@@ -1,4 +1,5 @@
 <?php
+require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
@@ -21,24 +22,6 @@ require_once "include/header.php";
     .img_lista {
         max-width: 100px;
         height: auto;
-    }
-
-    .meuBotao {
-        background-color: rgba(0, 131, 116, 0.8);
-        color: white;
-        border: 2px solid rgba(0, 131, 116, 0.8);
-    }
-
-    /* Estilo de hover do botão */
-    .meuBotao:hover {
-        background-color: #99cdc7;
-        color: white;
-        border: 2px solid #99cdc7;
-    }
-
-    #meuBotao:active {
-        background-color: #014d44;
-        border: 2px solid #014d44;
     }
     </style>
 </head>
@@ -70,14 +53,13 @@ require_once "include/header.php";
         <label for="categoria" class="form-label">Categoria</label>
           <select id="categoria" name="categoria" class="form-control">
             <option selected>Selecione o gênero</option>
-            <option value="Romance">Românce</option>
-            <option value="Ficção">Ficção</option>
-            <option value="Drama">Drama</option>
-            <option value="Religioso">Religioso</option>
-            <option value="Conto">Conto</option>
-            <option value="Liter.brasileira">Literatura Brasileira</option>
-            <option value="Terror">Terror</option>
-            <option value="Suspense">Suspense</option>
+            <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+            <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+            <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+            <option value="Poemas e Poesias">Poemas e Poesias</option>
+            <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+            <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e Português</option>
+            <option value="Contos">Contos</option>
           </select> 
         </div> 
 
@@ -124,6 +106,15 @@ require_once "include/header.php";
           </select>
         </div>
 
+        <div class="col-sm-12 mt-3">
+        <p> disponibilidade </p>
+          <select id="disponibilidade" name="disponibilidade" class="form-control">
+          <option selected>Selecione a disponibilidade desse livro</option>
+            <option value="retirado">Retirado</option>
+            <option value="naoRetirado">Não retirado</option>
+          </select>
+        </div>
+
         <div class="col-md-12 mx-auto">
         <br><br>
           <label for="descricao" class="form-label"><h5>Sinópse</h5></label>
@@ -132,7 +123,7 @@ require_once "include/header.php";
     
     
         <div class="col-12  mt-3">
-      <button type="submit" name="cadastrar" value="cadastrar" class="btn meuBotao">Cadastrar</button>
+      <button id="botao" type="submit" name="cadastrar" value="cadastrar" class="btn">Cadastrar</button>
       <br><br>
         </div>
         <div>
@@ -153,6 +144,7 @@ if (isset($_REQUEST["cadastrar"]))
       $descricao = $_REQUEST["descricao"];
       $editora = $_REQUEST["editora"];
       $situacao = $_REQUEST["situ"];
+      $disponibilidade = $_REQUEST["disponibilidade"];
 
       date_default_timezone_set('America/Sao_Paulo');
 
@@ -176,9 +168,9 @@ if (isset($_REQUEST["cadastrar"]))
 
       $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
 
-      $mover = move_uploaded_file($temp, 'img/' . $novo_nomeimg);
+      $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
 
-      $arquivo = 'img/' . $novo_nomeimg;
+      $arquivo = '../img/' . $novo_nomeimg;
 
       date_default_timezone_set('America/Sao_Paulo');
 
@@ -199,9 +191,9 @@ if (isset($_REQUEST["cadastrar"]))
       
       $ext2 = "pdf";
       $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-      $arquivo2 = 'pdf/' . $novo_nomeimg2;
+      $arquivo2 = '../pdf/' . $novo_nomeimg2;
 
-      $mover2 = move_uploaded_file($temp2, 'pdf/' . $novo_nomeimg2);
+      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
     
       if (empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora) || empty($_FILES['arquivo']['name'])) {
         $mensagem = "Campos obrigatórios em branco: ";
@@ -239,7 +231,7 @@ if (isset($_REQUEST["cadastrar"]))
         // Redirecione automaticamente após um breve atraso
         setTimeout(function() {
             window.location.href = 'cadastroDeLivro.php';
-        }, 5000);
+        }, 4000);
         </script>";
     }
     
@@ -248,8 +240,8 @@ if (isset($_REQUEST["cadastrar"]))
       $arquivo2= 0;
     }
     
-    $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao)
-    VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao)");
+    $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao ,disponibilidade)
+    VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao, :disponibilidade)");
     
             $sql->bindValue(':id_liv', null);
             $sql->bindValue(':nome',$nome);
@@ -263,6 +255,7 @@ if (isset($_REQUEST["cadastrar"]))
             $sql->bindValue(':arquivo', $arquivo);
             $sql->bindValue(':arquivo2', $arquivo2);
             $sql->bindValue(':situacao', $situacao);
+            $sql->bindValue(':disponibilidade', $disponibilidade);
 
         $sql->execute();
         echo "<script>
@@ -273,7 +266,7 @@ if (isset($_REQUEST["cadastrar"]))
             },
             showCancelButton: false,
             confirmButtonText: 'Ir para a página de controle de livro',
-            timer: 5000,
+            timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    
               

@@ -1,4 +1,5 @@
 <?php
+require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
@@ -22,26 +23,6 @@ require_once "include/header.php";
     max-width: 100px;
     height: auto;
 }
-
-.meuBotao {
-    background-color: rgba(0, 131, 116, 0.8);
-    color: white;
-    border: 2px solid rgba(0, 131, 116, 0.8);
-}
-
-/* Estilo de hover do botão */
-.meuBotao:hover {
-    background-color: #99cdc7;
-    color: white;
-    border: 2px solid #99cdc7;
-}
-
-#meuBotao:active {
-    background-color: #014d44;
-    border: 2px solid #014d44;
-}
-</style>
-
 </style>
 
 </head>
@@ -96,14 +77,14 @@ try{
                 <label for="categoria" class="form-label">Categoria</label>
                 <select name="categoria" class="form-control"
                     value="<?php if(isset($row['categoria'])) {echo $row['categoria'];} ?>" id="categoria">
-                    <option value="Romance">Românce</option>
-                    <option value="Ficção">Ficção</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Religioso">Religioso</option>
-                    <option value="Conto">Conto</option>
-                    <option value="Liter.brasileira">Liter.brasileira</option>
-                    <option value="Terror">Terror</option>
-                    <option value="Suspense">Suspense</option>
+                    <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias">Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e
+                        Português</option>
+                    <option value="Contos">Contos</option>
                 </select>
             </div>
 
@@ -126,14 +107,16 @@ try{
             </div>
 
             <div class="col-sm-12  mt-3">
-                <label for="destaque" class="form-label">Destaque</label>
-                <select name="destaque" class="form-control"
-                    value="<?php if(isset($row['destaque'])) {echo $row['destaque'];} ?> " id="destaque">
-                    <option value="S">S</option>
-                    <option value="N">N </option>
+                <label for="destaque">Destaque</label>
+                <select class="form-control" name="destaque" id="destaque">
+                    <option value="S"
+                        <?php if (isset($row['destaque']) && $row['destaque'] == "S") { echo 'selected'; } ?>>
+                        S</option>
+                    <option value="N"
+                        <?php if (isset($row['destaque']) && $row['destaque'] == "N") { echo 'selected'; } ?>>
+                        N</option>
                 </select>
             </div>
-
 
             <div class="col-sm-6   mt-3">
                 <label for="imagem" class="form-label">Selecione a Imagem</label>
@@ -148,7 +131,32 @@ try{
                     value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
             </div>
 
+            <div class="col-sm-12  mt-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="situacao" id="situacao">
+                    <option value="1"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
+                        Ativado</option>
+                    <option value="0"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
+                        Desativado</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12  mt-3">
+                <label for="disponibilidade">disponibilidade</label>
+                <select class="form-control" name="disponibilidade" id="disponibilidade">
+                    <option value="retirado"
+                        <?php if (isset($row['disponibilidade']) && $row['disponibilidade'] == "retirado") { echo 'selected'; } ?>>
+                        Retirado</option>
+                    <option value="naoRetirado"
+                        <?php if (isset($row['disponibilidade']) && $row['disponibilidade'] == "naoRetirado") { echo 'selected'; } ?>>
+                        Não retirado</option>
+                </select>
+            </div>
+
             <div class="col-md-12 mx-auto">
+            <br><br>
                 <label for="descricao" class="form-label">
                     <h5>Sinópse</h5>
                 </label>
@@ -157,7 +165,8 @@ try{
             </div>
 
             <div class="col-12  mt-3">
-                <button type="submit" name="alterar" value="alterar" class="btn meuBotao">Alterar</button>
+                <button id="botao" type="submit" name="alterar" value="alterar"
+                    class="btn btn-primary mt-2">alterar</button>
                 <br><br>
             </div>
         </div>
@@ -168,132 +177,150 @@ try{
       if (isset($_REQUEST["alterar"])) {
         
         try {
-            $idlivro = $_REQUEST["id_liv"];
-            $nome = $_REQUEST["nome"];
-            $isbn = $_REQUEST["isbn"];
-            $categoria = $_REQUEST["categoria"];
-            $autor = $_REQUEST["autor"];
-            $ano = $_REQUEST["ano"];
-            $destaque = $_REQUEST["destaque"];
-            $descricao = $_REQUEST["descricao"];
-            $editora = $_REQUEST["editora"];
-    
-            date_default_timezone_set('America/Sao_Paulo');
-            $data = date("d-m-Y");
-            $time = date("H-i-s");
-      
-            if (!empty($_FILES["arquivo"]["name"])) {
-      
-      
-              $nomeimg =     $_FILES["arquivo"]["name"];
-              $temp =     $_FILES["arquivo"]["tmp_name"];
-              $tamanho =  $_FILES["arquivo"]["size"];
-              $tipoimg =     $_FILES["arquivo"]["type"];
-              $erro =     $_FILES["arquivo"]["error"];
-      
-              $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-      
-              if (($ext != 'jpg') and  ($ext != 'png')) {
-                echo "<script language=javascript>
-                alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
-                location.href = 'alterar.php?al=$idusuario';
-                </script>";
-                exit;
-              }
-      
-              if ($tamanho > 900000) {
-                echo "<script language=javascript>
-                alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
-                location.href = 'alterar.php?al=$idusuario';
-                </script>";
-                exit;
-              }
+                $idlivro = $_REQUEST["id_liv"];
+                $nome = $_REQUEST["nome"];
+                $isbn = $_REQUEST["isbn"];
+                $categoria = $_REQUEST["categoria"];
+                $autor = $_REQUEST["autor"];
+                $ano = $_REQUEST["ano"];
+                $destaque = $_REQUEST["destaque"];
+                $descricao = $_REQUEST["descricao"];
+                $editora = $_REQUEST["editora"];
+                $situacao = $_REQUEST["situacao"];
+                $disponibilidade = $_REQUEST["disponibilidade"];  
+        
+                date_default_timezone_set('America/Sao_Paulo');
+                $data = date("d-m-Y");
+                $time = date("H-i-s");
+        
+                if (!empty($_FILES["arquivo"]["name"])) {
+        
+        
+                $nomeimg =     $_FILES["arquivo"]["name"];
+                $temp =     $_FILES["arquivo"]["tmp_name"];
+                $tamanho =  $_FILES["arquivo"]["size"];
+                $tipoimg =     $_FILES["arquivo"]["type"];
+                $erro =     $_FILES["arquivo"]["error"];
+        
+                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
+        
+                if (($ext != 'jpg') and  ($ext != 'png')) {
+                    echo "<script language=javascript>
+                    alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
+                    location.href = 'alterar.php?al=$idusuario';
+                    </script>";
+                    exit;
+                }
+        
+                if ($tamanho > 900000) {
+                    echo "<script language=javascript>
+                    alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
+                    location.href = 'alterar.php?al=$idusuario';
+                    </script>";
+                    exit;
+                }
 
-              $num = rand(1, 10000000000);
-      
-              $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-      
-              $mover = move_uploaded_file($temp, 'img/' . $novo_nomeimg);
-      
-              $arquivo = 'img/' . $novo_nomeimg;
-            } else {
-      
-              $arquivo = $_REQUEST['caminho_arquivo'];
+                $num = rand(1, 10000000000);
+        
+                $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+        
+                $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+        
+                $arquivo = '../img/' . $novo_nomeimg;
+                } else {
+        
+                $arquivo = $_REQUEST['caminho_arquivo'];
+                }
+
+                $nomeimg2 =  $_FILES["arquivo2"]["name"];
+
+                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
+
+                $tamanho2 =  $_FILES["arquivo2"]["size"];
+
+                $tipoimg2 =  $_FILES["arquivo2"]["type"];
+
+                $erro2 =     $_FILES["arquivo2"]["error"];
+
+                $ext2 = "pdf";
+                $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+                $arquivo2 = '../pdf/' . $novo_nomeimg2;
+
+                $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
+
+                if($tamanho2==0){
+                    $arquivo2= 0;
+                }
+                try{
+                    if($disponibilidade == "naoRetirado"){
+                        $consultaReserva = $conn->prepare("SELECT * FROM  tbl_reservado WHERE idLivro=:idLivro;");
+
+                        $consultaReserva->bindValue(':idLivro' , $idlivro);
+                        $consultaReserva->execute();
+                        $totalRowReserva = $consultaReserva ->rowCount();
+
+                        if($totalRowReserva > 0){
+                        $deleteReserva = $conn->prepare("DELETE FROM tbl_reservado WHERE idLivro=:idLivro;");
+                        $deleteReserva->bindValue(':idLivro', $idlivro);
+                        $deleteReserva->execute();
+                        }
+                    }
+                }catch (PDOException $erro){
+                echo $erro->getMessage();
+                }
+
+                $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2, situacao = :situacao, disponibilidade = :disponibilidade  WHERE id_liv = :id_liv");
+                
+                $sql->bindValue(':id_liv', $idlivro);
+                $sql->bindValue(':nome', $nome);
+                $sql->bindValue(':isbn', $isbn);
+                $sql->bindValue(':categoria', $categoria);
+                $sql->bindValue(':autor', $autor);
+                $sql->bindValue(':ano', $ano);
+                $sql->bindValue(':destaque', $destaque);
+                $sql->bindValue(':descricao', $descricao);
+                $sql->bindValue(':editora', $editora);
+                $sql->bindValue(':arquivo', $arquivo);
+                $sql->bindValue(':arquivo2', $arquivo2);
+                $sql->bindValue(':situacao', $situacao);
+                $sql->bindValue(':disponibilidade', $disponibilidade);
+        
+                $sql->execute();
+
+                echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Alteração realizado!!',
+                    customClass: {
+                        popup: 'swalFireLivro',
+                    },
+                    showCancelButton: false,
+                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    timer: 4000,
+                    timerProgressBar: true, 
+                    allowOutsideClick: false    
+                    
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'controleDeLivro.php';
+                    }
+                    
+                });
+                </script>";
+
+            }catch (PDOException $erro){
+            echo $erro->getMessage();
             }
 
-      $nomeimg2 =  $_FILES["arquivo2"]["name"];
+        } 
 
-      $temp2 =     $_FILES["arquivo2"]["tmp_name"];
-
-      $tamanho2 =  $_FILES["arquivo2"]["size"];
-
-      $tipoimg2 =  $_FILES["arquivo2"]["type"];
-
-      $erro2 =     $_FILES["arquivo2"]["error"];
-
-      $ext2 = "pdf";
-
-      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-
-      $mover2 = move_uploaded_file($temp2, 'pdf/' . $novo_nomeimg2);
-
-      $arquivo2 = 'pdf/' . $novo_nomeimg2;
-
-      if($tamanho2==0){
-        $arquivo2= 0;
-      }
-            $sql = $conn->prepare("UPDATE tbl_livro SET nome = :nome, isbn = :isbn, categoria = :categoria, autor = :autor, ano = :ano, destaque = :destaque, descricao = :descricao, editora = :editora,  arquivo=:arquivo, arquivo2=:arquivo2  WHERE id_liv = :id_liv");
-            
-            // Passagem de parâmetros para a tabela
-            $sql->bindValue(':id_liv', $idlivro);
-            $sql->bindValue(':nome', $nome);
-            $sql->bindValue(':isbn', $isbn);
-            $sql->bindValue(':categoria', $categoria);
-            $sql->bindValue(':autor', $autor);
-            $sql->bindValue(':ano', $ano);
-            $sql->bindValue(':destaque', $destaque);
-            $sql->bindValue(':descricao', $descricao);
-            $sql->bindValue(':editora', $editora);
-            $sql->bindValue(':arquivo', $arquivo);
-            $sql->bindValue(':arquivo2', $arquivo2);
-
-    
-            $sql->execute();
-
-            echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Alteração realizado!!',
-                customClass: {
-                    popup: 'swalFireLivro',
-                },
-                showCancelButton: false,
-                confirmButtonText: 'Ir para a página de controle de lirvo',
-                timer: 5000,
-                timerProgressBar: true, 
-                allowOutsideClick: false    
-                  
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'controleDeLivro.php';
-                }
-                
-            });
-        </script>";
-
-        }catch (PDOException $erro){
-            echo $erro->getMessage();
-        }
-
-} 
-
-}catch (PDOException $erro){
+    }catch (PDOException $erro){
 	echo $erro->getMessage();
-}
+    }
 
-$conn = null;
-require_once "include/footer.php";
-require_once "include/scrollTop.php";
+    $conn = null;
+    require_once "include/footer.php";
+    require_once "include/scrollTop.php";
 ?>
 </body>
 

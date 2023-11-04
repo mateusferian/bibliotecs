@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Administrador</title>
+    <title>Bibliotecs</title>
 
     <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/cadastroAdministrador.css">
+    <link rel="stylesheet" href="css/formulario.css">
+    <link rel="stylesheet" href="css/paginaProtegida.css">
+    <link rel="stylesheet" href="css/swalFire.css">
+    <link rel="stylesheet" href="css/botao.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -41,7 +43,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input type="submit" value="enviar codigo" class="btn btn-primary">
+                            <input  id="formulario" type="submit" value="enviar codigo" class="btn btn-primary">
                         </div>
                         <br><br>
                     </div>
@@ -62,7 +64,7 @@
         },
         showCancelButton: false, 
         confirmButtonText: 'Ir para a página de login',
-        timer: 5000, 
+        timer: 4000, 
         timerProgressBar: true, 
         allowOutsideClick: false      
     }).then((result) => {

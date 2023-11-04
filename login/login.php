@@ -24,12 +24,25 @@
             $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
             $totalRowAluno = $consultaAluno ->rowCount();
 
-         
-            if((password_verify($senhas, $rowAdministrador['senha'])) || (password_verify($senhas, $rowAluno['senha']))){
+            if(0 == 0){       
+                $bytes = random_bytes(7);
+                $valorErro = bin2hex($bytes);
+
+                header("Location: ../index.php?inativo=" . urlencode($valorErro));
+            }
                 
                 if($totalRowAdministrador > 0 ){
-                    session_start();
+                    if(password_verify($senhas, $rowAdministrador['senha'])){
+                    if($rowAdministrador["situacao"] == '0'){       
 
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
+        
+                        header("Location: ../index.php?inativo=" . urlencode($valorErro));
+                        exit;
+                    }elseif($rowAdministrador["situacao"] == '1'){
+
+                    session_start();
                     $_SESSION['email'] = $rowAdministrador['email'];
                     
                     $_SESSION['senha'] = $rowAdministrador['senha'];
@@ -37,28 +50,51 @@
                     $_SESSION['nome'] = $rowAdministrador['nome'];
 
                     header(("location:../administrador/controleDeAluno.php"));
-                }
+                    }
+                    } else{
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
+        
+                        header("Location: ../index.php?erro=" . urlencode($valorErro));
+                        exit;
+                    }
+                }else if($totalRowAluno > 0 ){
+                    if((password_verify($senhas, $rowAluno['senha']))){
+                        if($rowAluno["situacao"] == '0'){       
+
+                            $bytes = random_bytes(7);
+                            $valorErro = bin2hex($bytes);
+            
+                            header("Location: ../index.php?inativo=" . urlencode($valorErro));
+                            exit;
+                        }elseif($rowAluno["situacao"] == '1'){
+                    session_start();
+
+                    $_SESSION['email'] = $rowAluno['email'];
+                    
+                    $_SESSION['senha'] = $rowAluno['senha'];
+                    
+                    $_SESSION['nome'] = $rowAluno['nome'];
+
+                    $_SESSION['id'] = $rowAluno['id'];
+
+                          header(("location: ../usuario/home.php"));
+                          exit;
+                        }
+                    }else{
+                        $bytes = random_bytes(7);
+                        $valorErro = bin2hex($bytes);
     
-                if($totalRowAluno > 0 ){
+                        header("Location: ../index.php?erro=" . urlencode($valorErro));
+                        exit;
+                    }
+                }else{
+                    $bytes = random_bytes(7);
+                    $valorErro = bin2hex($bytes);
 
-                    // session_start();
-
-                    // $_SESSION['email'] = $rowAluno['email'];
-                    
-                    // $_SESSION['senha'] = $rowAluno['senha'];
-                    
-                    // $_SESSION['nome'] = $rowAluno['nome'];
-
-                    header(("location: ../usuario/home.php"));
+                     header("Location: ../index.php?erro=" . urlencode($valorErro));
+                    exit;
                 }
-
-            } else{
-                $bytes = random_bytes(7);
-                $valorErro = bin2hex($bytes);
-
-                header("Location: ../index.php?erro=" . urlencode($valorErro));
-                exit;
-            }
         }
 
     }  catch (PDOException $erro) {
