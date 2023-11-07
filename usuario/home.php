@@ -483,7 +483,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                                 ?>
                                 <p class="h3"><?php echo $nome_quebrada; ?></p>
 
-                                <p class="h6"><?php echo $rowEvento['data']; ?></p>
+                                <p class="h6"><?php echo $rowEvento['dataEvento']; ?></p>
                             </div>
                         </div>
 
@@ -494,7 +494,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                                 ?>
                             <p class="h3"><?php echo $nome_quebrada; ?></p>
 
-                            <p class="h6"><?php echo $rowEvento['data']; ?></p>
+                            <p class="h6"><?php echo $rowEvento['dataEvento']; ?></p>
                             <br>
 
                             <?php
