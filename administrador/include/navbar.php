@@ -10,6 +10,7 @@
         <ul>
             <li><a href="controleDeAluno.php">controle de alunos</a></li>
             <li><a href="controleDeLivro.php">controle de livros</a></li>
+            <li><a href="controleComentario.php">controle de comentarios</a></li>
             <li><a href="controleDeComentario.php">controle de evento</a></li>
             <li><a href="#Ajuda"> conta</a></li>
             <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
