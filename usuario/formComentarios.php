@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliotecs</title>
-
-    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
-    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
-
+<?php
+    require_once "../restrito.php";
+    require_once "include/header.php";
+?>
     <link rel="stylesheet" href="css/formulario.css">
     <link rel="stylesheet" href="css/formularioComentario.css">
     <link rel="stylesheet" href="css/swalFire.css">
     <link rel="stylesheet" href="css/botao.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/comentarios.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/svg" sizes="16x16" href="card-heading.svg">
-    <title> Comentários </title>
-
-    <style>
+<style>
         .estrelas input[type=radio]{
 	display: none;
     }.estrelas label i.fa:before{
@@ -43,14 +21,15 @@
 
    <body>
     <main>
+        <?php
+    require_once "include/navbar.php";
+?>
     <?php
     if(isset($_SESSION['msg'])){
     echo $_SESSION['msg']."<br><br>";
     unset($_SESSION['msg']);
     }
     ?>
-
-
 <script>
     AOS.init();
     </script>
@@ -81,16 +60,20 @@
     </div>
 
 
-
+    <div class="form-group">
+    <div class="col-md-6 offset-md-3">
     <div class="input-group-label">
-        <label for="informacoes">Faça seu comentário</label>
-        <textarea id="informacoes" name="comentario" rows="5" cols="42"
+        <label for="informacoes" class="form-label">Faça seu comentário</label>
+        <textarea  class="form-control" id="informacoes" name="comentario" rows="5" cols="42"
         placeholder="Escreva seu cometário sobre o site."
         style="max-height: 50px; overflow-y: auto; resize: vertical;"
         required></textarea>
 </div>
+</div>
+    </div>
 
-
+    <div class="form-group">
+    <div class="col-md-6 offset-md-3">
     <div class="estrelas">
 		<input type="radio" id="vazio" name="estrela" value="" checked>
 		<label for="estrela_um"><i class="fa"></i></label>
@@ -108,11 +91,13 @@
 		<label for="estrela_cinco"><i class="fa"></i></label>
 		<input type="radio" id="estrela_cinco" name="estrela" value="5"><br><br>	
 		</div>
+        </div>
+</div>
 
         <div class="form-group">
-                        <div class="col-md-5 offset-md-5">
-    <input type="submit" value="Cadastrar" class="button-submit" name="Cadastrar">
-    </div>
+                            <div class="col-md-5 offset-md-5">
+        <input type="submit" value="Cadastrar" class="button-submit" name="Cadastrar">
+        </div>
                         <br><br>
                     </div>
                 </form>
@@ -137,16 +122,32 @@ if (isset($_REQUEST["Cadastrar"])) {
       $cargo = $_REQUEST["cargo"];
       $estrela = $_REQUEST["estrela"];
 
+      if($estrela == 1){
+        $avatar="imagemAvatar/1";
+      }else if($estrela == 2){
+        $avatar="imagemAvatar/2";
+      
+    }else if($estrela == 3){
+        $avatar="imagemAvatar/3";
+    
+    }else if($estrela == 4){
+        $avatar="imagemAvatar/4";
+
+    }else if($estrela == 5){
+        $avatar="imagemAvatar/5";
+    }
+
       try{ 
   
-        $sql = $conn->prepare("INSERT INTO tbl_comentario (id, nome, comentario, cargo, estrela)
-                            VALUES (:id, :nome, :comentario, :cargo, :estrela) ");
+        $sql = $conn->prepare("INSERT INTO tbl_comentario (id, nome, comentario, cargo, estrela, avatar)
+                            VALUES (:id, :nome, :comentario, :cargo, :estrela, :avatar) ");
         
         $sql->bindValue(':id', null);
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':comentario', $comentario);
         $sql->bindValue(':cargo', $cargo);
         $sql->bindValue(':estrela', $estrela);
+        $sql->bindValue(':avatar', $avatar);
 
         $sql->execute();
     
@@ -173,5 +174,9 @@ if (isset($_REQUEST["Cadastrar"])) {
     }
   }
         ?>
+            <?php
+      require_once "include/footer.php";
+      require_once "include/scrollTop.php";
+?>
         </body>
 </html>
