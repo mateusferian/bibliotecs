@@ -51,33 +51,47 @@
             <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
                 <div class="swiper-wrapper">
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="../assets/img/testimonials/testimonials-1.jpg"
-                                        class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Eduardo Rossi</h3>
-                                        <h4> Professor</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
+                <?php
+                        $consultaComentario = $conn->prepare("SELECT * FROM tbl_comentario;");
+                        $consultaComentario->execute();
+
+                        while ($rowComentario = $consultaComentario->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
+                            <div class="swiper-slide">
+                                <div class="testimonial-wrap">
+                                    <div class="testimonial-item">
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/img/testimonials/testimonials-1.jpg" class="testimonial-img flex-shrink-0" alt="">
+                                            <div>
+                                                <h3><?php echo $rowComentario['nome']; ?></h3>
+                                                <h4> <?php echo $rowComentario['cargo']; ?></h4>
+                                                <div class="stars">
+                                                <?php
+                                                $rating = $rowComentario['estrela'];
+                                                for ($i = 1; $i <= 5; $i++) {
+                                                    // Se $i for menor ou igual à classificação, defina a classe para "bi-star-fill" (estrela preenchida), caso contrário, defina para "bi-star" (estrela vazia).
+                                                    $class = ($i <= $rating) ? "bi-star-fill" : "bi-star";
+                                                    echo '<i class="bi ' . $class . '"></i>';
+                                                }
+                                                ?>
+                                            </div>
+
+
+                                            </div>
                                         </div>
+                                        <p>
+                                            <i class="bi bi-quote quote-icon-left"></i>
+                                            <?php echo $rowComentario['comentario']; ?>
+                                            <i class="bi bi-quote quote-icon-right"></i>
+                                        </p>
                                     </div>
                                 </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    O site da biblioteca é incrivelmente útil! É fácil de navegar e encontrar
-                                    informações atualizadas sobre os eventos,
-                                    horários de funcionamento e até mesmo sobre o acervo de livros disponíveis. Um
-                                    recurso essencial para qualquer amante da leitura!
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
                             </div>
-                        </div>
-                    </div><!-- End testimonial item -->
+                        <?php
+                        }
+                        ?>
+
+
 
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
@@ -483,7 +497,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                                 ?>
                                 <p class="h3"><?php echo $nome_quebrada; ?></p>
 
-                                <p class="h6"><?php echo $rowEvento['data']; ?></p>
+                                <p class="h6"><?php echo $rowEvento['dataEvento']; ?></p>
                             </div>
                         </div>
 
@@ -494,7 +508,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                                 ?>
                             <p class="h3"><?php echo $nome_quebrada; ?></p>
 
-                            <p class="h6"><?php echo $rowEvento['data']; ?></p>
+                            <p class="h6"><?php echo $rowEvento['dataEvento']; ?></p>
                             <br>
 
                             <?php
