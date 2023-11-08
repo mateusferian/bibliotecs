@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/11/2023 às 14:06
+-- Tempo de geração: 08/11/2023 às 08:51
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -98,6 +98,29 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tbl_comentario`
+--
+
+CREATE TABLE `tbl_comentario` (
+  `id` int NOT NULL,
+  `nome` varchar(60) NOT NULL,
+  `comentario` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cargo` varchar(40) NOT NULL,
+  `estrela` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tbl_comentario`
+--
+
+INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`) VALUES
+(1, 'TESTE 1', 'ytnveroiuhtcbiouweygtv', 'cargo', 2),
+(2, 'TESTE 2', 'ytnveroiuhtcbiouweygtv', 'cargo', 5),
+(3, 'TESTE 3', 'ytnveroiuhtcbiouweygtv', 'cargo', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tbl_evento`
 --
 
@@ -105,21 +128,24 @@ CREATE TABLE `tbl_evento` (
   `id` int NOT NULL,
   `nome` varchar(20) NOT NULL,
   `descricao` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `data` date DEFAULT NULL
+  `dataEvento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tbl_evento`
 --
 
-INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `data`) VALUES
+INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `dataEvento`) VALUES
 (1, 'teste', 'aaaaaaaaaaaaaaaaaadiuqwhv97rywe987vywe9bu 5yvnw87c65b8e76bg98n6tgn9rytgn976t9r7n0er7gr9dnhdryt9', '2023-10-27'),
 (2, '2gbsse', 'bbbbbbbbbbbbbbbb', '2023-10-27'),
 (3, '3hbdrbdnd', 'ccccccccc ', '2023-10-27'),
 (4, '3hbdrbdnd', 'dddddddddddddddddd ', '2030-10-16'),
 (5, 'CINCOOOOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
 (6, 'CINCOO OOOOOOO', 'dddddddddddddddddd ', '2030-10-16'),
-(7, 'casaaaaaaaaaa', 'i67lrtrt', '2030-10-16');
+(7, 'casaaaaaaaaaa', 'i67lrtrt', '2030-10-16'),
+(8, 'uyn', 'ui', '2023-11-04'),
+(9, 'ESCOLA', 'ASDASAS', '2023-11-03'),
+(10, 'ESCOLA 3', 'ASDASD', '2023-11-03');
 
 -- --------------------------------------------------------
 
@@ -238,6 +264,12 @@ ALTER TABLE `tbl_aluno`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_comentario`
+--
+ALTER TABLE `tbl_comentario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tbl_evento`
 --
 ALTER TABLE `tbl_evento`
@@ -284,10 +316,16 @@ ALTER TABLE `tbl_aluno`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
+-- AUTO_INCREMENT de tabela `tbl_comentario`
+--
+ALTER TABLE `tbl_comentario`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_evento`
 --
 ALTER TABLE `tbl_evento`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_eventos`
