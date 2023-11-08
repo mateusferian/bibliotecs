@@ -120,8 +120,7 @@ try{
 
             <div class="col-sm-6   mt-3">
                 <label for="imagem" class="form-label">Selecione a Imagem</label>
-                <input type="file" name="arquivo" class="form-control"
-                    value="<?php if(isset($row['arquivo'])) {echo $row['arquivo'];} ?>"><br>
+                <input type="file" class="form-control" id="arquivo" name="arquivo"><br>
             </div>
 
 

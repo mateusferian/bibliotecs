@@ -16,6 +16,7 @@
           <li><a href="home.php#team">Doação</a></li>
           <li><a href="home.php#livrosPDF">Livros em PDF</a></li>
           <li><a href="retirados.php">Meus livros retirados</a></li>
+          <li><a href="formComentarios.php">Comentarios</a></li>
         </ul>
     </nav><!-- .navbar -->
 
