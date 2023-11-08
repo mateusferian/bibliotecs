@@ -66,8 +66,17 @@
                                                 <h3><?php echo $rowComentario['nome']; ?></h3>
                                                 <h4> <?php echo $rowComentario['cargo']; ?></h4>
                                                 <div class="stars">
-                                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                                </div>
+                                                <?php
+                                                $rating = $rowComentario['estrela'];
+                                                for ($i = 1; $i <= 5; $i++) {
+                                                    // Se $i for menor ou igual à classificação, defina a classe para "bi-star-fill" (estrela preenchida), caso contrário, defina para "bi-star" (estrela vazia).
+                                                    $class = ($i <= $rating) ? "bi-star-fill" : "bi-star";
+                                                    echo '<i class="bi ' . $class . '"></i>';
+                                                }
+                                                ?>
+                                            </div>
+
+
                                             </div>
                                         </div>
                                         <p>

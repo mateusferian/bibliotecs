@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/11/2023 às 08:37
+-- Tempo de geração: 08/11/2023 às 08:51
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -105,17 +105,18 @@ CREATE TABLE `tbl_comentario` (
   `id` int NOT NULL,
   `nome` varchar(60) NOT NULL,
   `comentario` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `cargo` varchar(40) NOT NULL
+  `cargo` varchar(40) NOT NULL,
+  `estrela` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tbl_comentario`
 --
 
-INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`) VALUES
-(1, 'TESTE 1', 'ytnveroiuhtcbiouweygtv', 'cargo'),
-(2, 'TESTE 2', 'ytnveroiuhtcbiouweygtv', 'cargo'),
-(3, 'TESTE 3', 'ytnveroiuhtcbiouweygtv', 'cargo');
+INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`) VALUES
+(1, 'TESTE 1', 'ytnveroiuhtcbiouweygtv', 'cargo', 2),
+(2, 'TESTE 2', 'ytnveroiuhtcbiouweygtv', 'cargo', 5),
+(3, 'TESTE 3', 'ytnveroiuhtcbiouweygtv', 'cargo', 4);
 
 -- --------------------------------------------------------
 
