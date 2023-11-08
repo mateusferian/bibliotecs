@@ -10,10 +10,10 @@
         <ul>
             <li><a href="controleDeAluno.php">controle de alunos</a></li>
             <li><a href="controleDeLivro.php">controle de livros</a></li>
+            <li><a href="controleDeComentario.php">controle de evento</a></li>
             <li><a href="#Ajuda"> conta</a></li>
             <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
             <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
-            <li><a href="blog.html">notificações</a></li>
             <li><a href="sair.php"> sair</a></li>
         </ul>
     </nav><!-- .navbar -->
