@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 08-Nov-2023 às 17:29
+-- Tempo de geração: 09-Nov-2023 às 16:44
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `tbl_comentario` (
   `comentario` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cargo` varchar(40) NOT NULL,
   `estrela` int NOT NULL,
+  `avatar` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -119,10 +120,9 @@ CREATE TABLE IF NOT EXISTS `tbl_comentario` (
 -- Extraindo dados da tabela `tbl_comentario`
 --
 
-INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`) VALUES
-(1, 'TESTE 1', 'ytnveroiuhtcbiouweygtv', 'cargo', 2),
-(2, 'TESTE 2', 'ytnveroiuhtcbiouweygtv', 'cargo', 5),
-(3, 'TESTE 3', 'ytnveroiuhtcbiouweygtv', 'cargo', 4);
+INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`, `avatar`) VALUES
+(2, 'ALTERANDO ESTRELA', 'ytnveroiuhtcbiouweygtv', 'cargo', 1, '../assets/imagemAvatar/1'),
+(3, 'TESTE 5', 'alterado', 'alterado', 1, '../assets/imagemAvatar/1');
 
 -- --------------------------------------------------------
 
