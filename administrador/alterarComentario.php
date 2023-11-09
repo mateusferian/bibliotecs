@@ -78,20 +78,20 @@ try{
             </div>
 
             <div class="col-sm-12  mt-3">
-                <label for="comentario" class="form-label"> comentario: </label><br>
+                <label for="comentario" class="form-label"> Comentario: </label><br>
                 <input type="comentario" name="comentario" class="form-control"
                     value="<?php if(isset($row['comentario'])) {echo $row['comentario'];} ?>"><br>
             </div>
 
             <div class="col-sm-6  mt-3">
-                <label for="cargo" class="form-label">cargo</label>
+                <label for="cargo" class="form-label">Cargo</label>
                 <input type="text" name="cargo" class="form-control"
                     value="<?php if(isset($row['cargo'])) {echo $row['cargo'];} ?>"><br>
             </div>
 
-            <div class="form-group">
-    <div class="col-md-6 offset-md-3">
+            <div class="col-sm-6  mt-3">
         <div class="estrelas">
+        <label for="comentario" class="form-label"> Avaliação: </label><br>
             <?php
                 $originalRating = $row['estrela']; // Obtenha o valor da classificação do banco de dados
             ?>
@@ -108,7 +108,7 @@ try{
             <input type="radio" id="estrela_cinco" name="estrela" value="5" <?php echo ($originalRating == 5) ? 'checked' : ''; ?>><br><br>	
         </div>
     </div>
-</div>
+
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
                     class="btn btn-primary mt-2">alterar</button>
