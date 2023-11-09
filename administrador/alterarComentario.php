@@ -7,6 +7,7 @@ require_once "include/header.php";
 <link href="css/swalFireLivro.css" rel="stylesheet">
 <link rel="stylesheet" href="css/botao.css">
 <link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <style>
 .img_novidades {
@@ -23,7 +24,16 @@ require_once "include/header.php";
     max-width: 100px;
     height: auto;
 }
-</style>
+
+        .estrelas input[type=radio]{
+	display: none;
+    }.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+    }.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+    }
+    </style>
 
 </head>
 
@@ -79,12 +89,26 @@ try{
                     value="<?php if(isset($row['cargo'])) {echo $row['cargo'];} ?>"><br>
             </div>
 
-            <div class="col-sm-6  mt-3">
-                <label for="estrela" class="form-label">estrela</label>
-                <input type="text" name="estrela" class="form-control"
-                    value="<?php if(isset($row['estrela'])) {echo $row['estrela'];} ?>"><br>
-            </div>
-
+            <div class="form-group">
+    <div class="col-md-6 offset-md-3">
+        <div class="estrelas">
+            <?php
+                $originalRating = $row['estrela']; // Obtenha o valor da classificação do banco de dados
+            ?>
+            <input type="radio" id="vazio" name="estrela" value="" <?php echo ($originalRating === '') ? 'checked' : ''; ?>>
+            <label for="estrela_um"><i class="fa"></i></label>
+            <input type="radio" id="estrela_um" name="estrela" value="1" <?php echo ($originalRating == 1) ? 'checked' : ''; ?>>
+            <label for="estrela_dois"><i class="fa"></i></label>
+            <input type="radio" id="estrela_dois" name="estrela" value="2" <?php echo ($originalRating == 2) ? 'checked' : ''; ?>>
+            <label for="estrela_tres"><i class="fa"></i></label>
+            <input type="radio" id="estrela_tres" name="estrela" value="3" <?php echo ($originalRating == 3) ? 'checked' : ''; ?>>
+            <label for="estrela_quatro"><i class="fa"></i></label>
+            <input type="radio" id="estrela_quatro" name="estrela" value="4" <?php echo ($originalRating == 4) ? 'checked' : ''; ?>>
+            <label for="estrela_cinco"><i class="fa"></i></label>
+            <input type="radio" id="estrela_cinco" name="estrela" value="5" <?php echo ($originalRating == 5) ? 'checked' : ''; ?>><br><br>	
+        </div>
+    </div>
+</div>
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
                     class="btn btn-primary mt-2">alterar</button>
@@ -93,10 +117,37 @@ try{
         </div>
     </form>
 
+    <script>
+    const ratingInputs = document.querySelectorAll('input[type="radio"]');
+    const ratingValue = document.getElementById('ratingValue');
+    const originalRating = <?php echo $originalRating; ?>;
+
+    // Inicializa a cor com base na classificação do banco de dados
+    setStarColor(originalRating);
+
+    ratingInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            ratingValue.textContent = input.value;
+
+            // Muda a cor das estrelas quando uma opção é selecionada
+            setStarColor(input.value);
+        });
+    });
+
+    function setStarColor(rating) {
+        // Adapte isso de acordo com a lógica específica do seu código para mudar a cor
+        ratingInputs.forEach(input => {
+            const starLabel = input.nextElementSibling;
+            starLabel.style.color = input.value <= rating ? 'yellow' : 'gray';
+        });
+    }
+</script>
+
     <?php
 try{
       if (isset($_REQUEST["alterar"])) {
         
+    
         try {
                 $id = $_REQUEST["id"];
                 $nome = $_REQUEST["nome"];
@@ -104,13 +155,29 @@ try{
                 $cargo = $_REQUEST["cargo"];
                 $estrela = $_REQUEST["estrela"];
 
-                $sql = $conn->prepare("UPDATE tbl_comentario SET nome = :nome, comentario = :comentario, cargo = :cargo, estrela = :estrela WHERE id = :id");
+                if($estrela == 1){
+                    $avatar="../assets/imagemAvatar/1";
+                  }else if($estrela == 2){
+                    $avatar="../assets/imagemAvatar/2";
+                  
+                }else if($estrela == 3){
+                    $avatar="../assets/imagemAvatar/3";
+                
+                }else if($estrela == 4){
+                    $avatar="../assets/imagemAvatar/4";
+            
+                }else if($estrela == 5){
+                    $avatar="../assets/imagemAvatar/5";
+                }
+
+                $sql = $conn->prepare("UPDATE tbl_comentario SET nome = :nome, comentario = :comentario, cargo = :cargo, estrela = :estrela, avatar = :avatar WHERE id = :id");
                 
                 $sql->bindValue(':id', $id);
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':comentario', $comentario);
                 $sql->bindValue(':cargo', $cargo);
                 $sql->bindValue(':estrela', $estrela);
+                $sql->bindValue(':avatar', $avatar);
         
                 $sql->execute();
 

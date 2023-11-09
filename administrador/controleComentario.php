@@ -4,13 +4,23 @@
 ?>
 <link href="css/swalFireLivro.css" rel="stylesheet">
 <script src="js/model.js"></script>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <style>
 .img_lista {
     max-width: 100px;
     height: auto;
 }
-</style>
+
+        .estrelas input[type=radio]{
+	display: none;
+    }.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+    }.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+    }
+    </style>
 
 </head>
 
@@ -46,6 +56,7 @@
                 <th scope="col">NOME</th>
                 <th scope="col">CARGO</th>
                 <th scope="col">COMENTARIO</th>
+                <th scope="col">AVATAR</th>
                 <th scope="col">AVALIAÇÃO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
             </tr>
@@ -84,10 +95,23 @@
                     limitandoCampos($descricao);
                     echo '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["estrela"] . '" onclick="openDescriptionModal(this)">';
+                    echo '<td><img src="' . $row["avatar"] . '" class="img_lista img-fluid"></td>';
+
                     $estrela = $row["estrela"];
-                    limitandoCampos($estrela);
+                    
+                    echo '<td class="table-description" data-description="' . $estrela . '">';
+                    
+                    // Output the stars based on the rating value
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $estrela) {
+                            echo '<i class="fa fa-star" style="color: #FC0;"></i>';
+                        } else {
+                            echo '<i class="fa fa-star" style="color: #CCC;"></i>';
+                        }
+                    }
+                    
                     echo '</td>';
+
 
                     echo '<td>';
                     echo '<a href="alterarComentario.php?al=' . $row["id"] . '">Alterar</a>';
