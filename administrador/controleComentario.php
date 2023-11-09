@@ -67,7 +67,7 @@
 
                 while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
                     echo '<tr>';
-                    echo '<td>' . $row["id_liv"] . '</td>';
+                    echo '<td>' . $row["id"] . '</td>';
 
                     echo '<td class="table-description" data-description="' . $row["nome"] . '" onclick="openDescriptionModal(this)">';
                     $nome = $row["nome"];
