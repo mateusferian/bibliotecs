@@ -26,36 +26,37 @@
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
-    <p class="fs-2 text-center mt-5">Controle de Alunos</p>
-    <div class="container mt-4">
-        <form method="get">
-            <p class="fs-5 mt-5">Opção de filtragem</p>
-            <select class="form-control" name="filtro" id="filtro">
-                <option value="opcao0">sem filtro</option>
-                <option value="bloqueado">Bloquados</option>
-                <option value="desbloqueado">Desbloqueado</option>
-                <option value="inativo">Inativo</option>
-                <option value="ativo">Ativo</option>
-            </select>
-            <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
-        </form>
-    </div>
+<p class="fs-2 text-center mt-5">Controle de Alunos</p>
+<div class="container mt-4">
+    <form method="get">
+        <p class="fs-5 mt-5">Opção de filtragem</p>
+        <select class="form-control" name="filtro" id="filtro">
+            <option value="opcao0" selected>sem filtro</option>
+            <option value="bloqueado">Bloqueados</option>
+            <option value="desbloqueado">Desbloqueado</option>
+            <option value="inativo">Inativo</option>
+            <option value="ativo">Ativo</option>
+        </select>
+        <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+    </form>
+</div>
 
-    <script>
-            // Recupere o elemento select
-            var filtroSelect = document.getElementById("filtro");
+<script>
+    // Recupere o elemento select
+    var filtroSelect = document.getElementById("filtro");
 
-            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-            filtroSelect.addEventListener("change", function() {
-                localStorage.setItem("filtroSelecionado", filtroSelect.value);
-            });
+    // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada, ou "sem filtro" como padrão.
+    var filtroSelecionado = localStorage.getItem("filtroSelecionado");
+    if (filtroSelecionado) {
+        filtroSelect.value = filtroSelecionado;
+    }
 
-            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
-            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
-            if (filtroSelecionado) {
-                filtroSelect.value = filtroSelecionado;
-            }
-            </script>
+    // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
+    filtroSelect.addEventListener("change", function() {
+        localStorage.setItem("filtroSelecionado", filtroSelect.value);
+    });
+</script>
+
 
 
     <div class="container mt-5">
