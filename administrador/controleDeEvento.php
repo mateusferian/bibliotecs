@@ -95,7 +95,7 @@
 
 
                     echo '<td>';
-                    echo '<a href="alterarComentario.php?al=' . $row["id"] . '">Alterar</a>';
+                    echo '<a href="alterarEvento.php?al=' . $row["id"] . '">Alterar</a>';
                     echo '</td>';
 
                     echo '<td>';

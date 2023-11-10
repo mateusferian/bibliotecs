@@ -17,8 +17,25 @@
 
 <body>
 <?php
-    require_once "include/navbar.php"
+    require_once "include/navbar.php";
+
+    try{
+    if(isset($_REQUEST["al"])) {
+        
+    $id = $_REQUEST["al"];
+    $consulta = $conn->prepare("SELECT * FROM tbl_evento where id=:id;");
+    $consulta->bindValue(':id', $id);
+    $consulta->execute();
+    $row=$consulta -> fetch(PDO::FETCH_ASSOC);
+    }
+    
+    }
+    
+    catch (PDOException $erro){
+        echo $erro->getMessage();
+    }
     ?>
+
     <script>
     AOS.init();
     </script>
@@ -28,23 +45,32 @@
         data-aos-delay="100">
         <div class="container mt-4">
             <div class="col-md-6 offset-md-3">
-                <form class="form" action="cadastroDeEvento.php" method="POST" name="formulario">
+                <form class="form" action="alterarEvento.php" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Cadastro de evento</h1>
+                    <h1 class="text-center">Alterar dados de eventos</h1>
                     <br><br>
+
+                    <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                        <label>Id:</label>
+                            <input type="text" name="id" class="form-control"
+                            value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                         <label>Nome</label>
                             <input type="text" name="nome" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                value="<?php if(isset($row['nome'])) {echo $row['nome'];} ?>"><br>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>descrição</label>
-                            <input type="text" name="descricao" class="form-control" placeholder="digite o a descrição do evento"
-                                required="">
+                            <input type="text" name="descricao" class="form-control"
+                            value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>"><br>
                         </div>
                     </div>
 
@@ -52,13 +78,13 @@
                         <div class="col-md-6 offset-md-3">
                             <label>Data:</label>
                             <input type="date" name="dataEvento" class="form-control" 
-                                required="">
+                            value="<?php if(isset($row['dataEvento'])) {echo $row['dataEvento'];} ?>"><br>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input id="formulario" type="submit" value="cadastrar" class="btn" name="cadastrar">
+                            <input id="formulario" type="submit" value="alterar" class="btn" name="alterar">
                         </div>
                         <br><br>
                     </div>
@@ -70,18 +96,18 @@
 
     require_once "../conexao.php";
 
-    if (isset($_REQUEST["cadastrar"])){
+    if (isset($_REQUEST["alterar"])){
 
+      $id = $_REQUEST["id"];
       $nome = $_REQUEST["nome"];
       $descricao = $_REQUEST["descricao"];
       $dataEvento = $_REQUEST["dataEvento"];
 
 
       try{ 
-        $sql = $conn->prepare("INSERT INTO tbl_evento (id, nome, descricao, dataEvento)
-        VALUES (:id, :nome, :descricao, :dataEvento)");
+        $sql = $conn->prepare("UPDATE tbl_evento SET nome = :nome, descricao = :descricao, dataEvento = :dataEvento WHERE id = :id");
 
-        $sql->bindValue(':id', null);   
+        $sql->bindValue(':id', $id);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':descricao', $descricao);
         $sql->bindValue(':dataEvento', $dataEvento);
@@ -89,7 +115,7 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de evento realizado com Sucesso!!',
+                title: 'Alteração de evento realizado com Sucesso!!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },

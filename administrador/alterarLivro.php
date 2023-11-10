@@ -50,7 +50,7 @@ try{
 ?>
 
 
-    <legend>Alterar Dados de Livros</legend>
+    <legend>Alterar dados de livros</legend>
 
     <form name="form" method="post" action="alterarLivro.php" enctype="multipart/form-data">
         <div class="row">
