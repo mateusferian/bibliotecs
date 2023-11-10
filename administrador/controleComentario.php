@@ -178,7 +178,7 @@
         try {
             if (isset($_REQUEST["ex"])) {
                 $id = $_REQUEST["ex"];
-                deletandoLivro($id,$conn );
+                deletando($id,$conn );
             }
         } catch (PDOException $erro) {
             echo $erro->getMessage();
@@ -187,7 +187,7 @@
        ?>
 
     <?php
-    function deletandoLivro($id,$conn ){
+    function deletando($id,$conn ){
                 $stmt = $conn->prepare("SELECT nome FROM tbl_comentario WHERE id = :id");
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
