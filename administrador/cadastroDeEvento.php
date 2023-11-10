@@ -112,7 +112,10 @@
       }
     }
     $conn;
-    ?>
+
+    require_once "include/footer.php";
+    require_once "include/scrollTop.php";
+?>
 </body>
 
 </html>

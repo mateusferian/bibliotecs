@@ -123,6 +123,10 @@ try{
                 <input type="file" class="form-control" id="arquivo" name="arquivo"><br>
             </div>
 
+            <input type="hidden" name="caminho_arquivo" value="<?php if (isset($row['arquivo'])) {
+            echo $row['arquivo'];
+        } ?>">
+
 
             <div class="col-sm-6  mt-3">
                 <label for="pdf" class="form-label">Selecione o arquivo PDF</label>
