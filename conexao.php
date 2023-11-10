@@ -1,7 +1,5 @@
     <?php
 
-    session_start();
-//variavéis de conexão
     $servername = "localhost";
     $username = "root";
     $password = "";
