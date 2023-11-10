@@ -156,12 +156,12 @@ try{
                 $estrela = $_REQUEST["estrela"];
 
                 if($estrela == 1){
-                    $avatar="../assets/imagemAvatar/1";
+                    $avatar="../assets/img/imagemAvatar/1";
                   }else if($estrela == 2){
-                    $avatar="../assets/imagemAvatar/2";
+                    $avatar="../assets/img/imagemAvatar/2";
                   
                 }else if($estrela == 3){
-                    $avatar="../assets/imagemAvatar/3";
+                    $avatar="../assets/img/imagemAvatar/3";
                 
                 }else if($estrela == 4){
                     $avatar="../assets/imagemAvatar/4";

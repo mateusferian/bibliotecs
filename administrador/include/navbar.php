@@ -25,8 +25,7 @@
                     <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
                     </ul>
                 </li>
-            <li><a href="#Ajuda"> conta</a></li>
-            <li><a href="sair.php"> sair</a></li>
+            <li><a href="conta.php"> conta</a></li>
         </ul>
     </nav><!-- .navbar -->
 

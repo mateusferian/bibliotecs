@@ -1,0 +1,25 @@
+
+
+body {
+    background-image: url(../imagensDeFundo/imagemConta.jpg);
+    }
+
+    .custom-text {
+        color: white;
+        margin: 0; /* Remover margens padrão do parágrafo */
+    }
+    
+    .custom-card {
+        background-color: #014d44;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .custom-link {
+        text-decoration: none; /* Remover sublinhado padrão do link */
+        color: inherit; /* Herdar a cor do texto do pai (custom-text) */
+    }
+
+    
+    
+
