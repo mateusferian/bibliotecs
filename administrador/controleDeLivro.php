@@ -74,7 +74,7 @@
 
 
 
-    <p class="fs-2 text-center mt-5">Livros Cadastrados</p>
+    <p class="fs-2 text-center mt-5">Controle de livros</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">

@@ -46,7 +46,7 @@
 
 
 
-<p class="fs-2 text-center mt-5">Controle de comentario</p>
+<p class="fs-2 text-center mt-5">Controle de evento</p>
 
 <div class="container mt-5">
     <table class="table table-bordered text-center">
@@ -54,26 +54,24 @@
             <tr class="bg-light">
                 <th scope="col">ID</th>
                 <th scope="col">NOME</th>
-                <th scope="col">CARGO</th>
-                <th scope="col">COMENTARIO</th>
-                <th scope="col">AVATAR</th>
-                <th scope="col">AVALIAÇÃO</th>
+                <th scope="col">DESCRIÇÃO</th>
+                <th scope="col">DATA DO EVENTO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
             <?php
             try {
-                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_comentario");
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_evento");
                 $consulta->execute();
-                $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-                $livrosPorPagina = 1;
-                $totalPaginas = ceil($totalLivros / $livrosPorPagina);
+                $totalEventos = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
+                $livrosPorPagina = 10;
+                $totalPaginas = ceil($totalEventos / $livrosPorPagina);
 
                 $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
                 $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
 
-                $consulta = $conn->prepare("SELECT * FROM tbl_comentario  LIMIT $indiceInicial, $livrosPorPagina");
+                $consulta = $conn->prepare("SELECT * FROM tbl_evento  LIMIT $indiceInicial, $livrosPorPagina");
                 $consulta->execute();
 
                 while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -85,31 +83,14 @@
                     limitandoCampos($nome);
                     echo '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["cargo"] . '" onclick="openDescriptionModal(this)">';
-                    $autor = $row["cargo"];
+                    echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
+                    $autor = $row["descricao"];
                     limitandoCampos($autor);
                     echo '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["comentario"] . '" onclick="openDescriptionModal(this)">';
-                    $descricao = $row["comentario"];
+                    echo '<td class="table-description" data-description="' . $row["dataEvento"] . '" onclick="openDescriptionModal(this)">';
+                    $descricao = $row["dataEvento"];
                     limitandoCampos($descricao);
-                    echo '</td>';
-
-                    echo '<td><img src="' . $row["avatar"] . '" class="img_lista img-fluid"></td>';
-
-                    $estrela = $row["estrela"];
-                    
-                    echo '<td class="table-description" data-description="' . $estrela . '">';
-                    
-                    // Output the stars based on the rating value
-                    for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= $estrela) {
-                            echo '<i class="fa fa-star" style="color: #FC0;"></i>';
-                        } else {
-                            echo '<i class="fa fa-star" style="color: #CCC;"></i>';
-                        }
-                    }
-                    
                     echo '</td>';
 
 
@@ -118,7 +99,7 @@
                     echo '</td>';
 
                     echo '<td>';
-                    echo '<a href="controleComentario.php?ex=' . $row["id"] . '">Excluir</a>';
+                    echo '<a href="controleDeEvento.php?ex=' . $row["id"] . '">Excluir</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
@@ -172,7 +153,6 @@
             </ul>
         </nav>
 
-
         <?php
 
         try {
@@ -188,15 +168,15 @@
 
     <?php
     function deletandoLivro($id,$conn ){
-                $stmt = $conn->prepare("SELECT nome FROM tbl_comentario WHERE id = :id");
+                $stmt = $conn->prepare("SELECT nome FROM tbl_evento WHERE id = :id");
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
-                $comentario = $stmt->fetch(PDO::FETCH_ASSOC);
+                $evento = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 echo "<script>
                 Swal.fire({
                     title: 'Apagar',
-                    html: '<p>Tem certeza que deseja apagar o comentario de \"" . $comentario['nome'] . "\"?</p>',
+                    html: '<p>Tem certeza que deseja apagar o evento de \"" . $evento['nome'] . "\"?</p>',
                     customClass: {
                         popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
                     },
@@ -209,7 +189,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        window.location.href = 'controleComentario.php?excluir=true&id=" . $id . "';
+                        window.location.href = 'controleDeEvento.php?excluir=true&id=" . $id . "';
                     }else{
                     }
                 });
@@ -219,21 +199,21 @@
                 if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
                     $id = $_GET['id'];
                 
-                    $stmt = $conn->prepare("DELETE FROM tbl_comentario WHERE id = :id");
+                    $stmt = $conn->prepare("DELETE FROM tbl_evento WHERE id = :id");
                     $stmt->bindValue(':id', $id);
                     $stmt->execute();
                 
                     if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
                         $id = $_GET['id'];
                     
-                        $stmt = $conn->prepare("DELETE FROM tbl_comentario WHERE id = :id");
+                        $stmt = $conn->prepare("DELETE FROM tbl_evento WHERE id = :id");
                         $stmt->bindValue(':id', $id);
                         $stmt->execute();
                     
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'comentario apagado com sucesso',
+                                title: 'Evento apagado com sucesso',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },
@@ -243,7 +223,7 @@
                     
                             // Redirecione automaticamente após um breve atraso
                             setTimeout(function() {
-                                window.location.href = 'controleComentario.php';
+                                window.location.href = 'controleDeEvento.php';
                             }, 4000);
                         </script>";
                         exit;
