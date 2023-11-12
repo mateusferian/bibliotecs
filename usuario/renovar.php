@@ -21,7 +21,7 @@ if (isset($_REQUEST["id"])) {
 
     // Suponhamos que a data da reserva seja $dataReserva, você pode definir isso da maneira apropriada.
 
-    $dataReserva = new DateTime('2023-11-04'); // Substitua isso pela data da reserva real
+    $dataReserva = new DateTime($dataAtual); // Substitua isso pela data da reserva real
 
     // Calcule a diferença entre a data de entrega e a data da reserva em dias
     $interval = $dataReserva->diff($dateTimeReserva);

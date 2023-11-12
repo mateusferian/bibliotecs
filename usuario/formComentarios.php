@@ -123,18 +123,18 @@ if (isset($_REQUEST["Cadastrar"])) {
       $estrela = $_REQUEST["estrela"];
 
       if($estrela == 1){
-        $avatar="../assets/img/imagemAvatar/1";
+        $avatar="../assets/img/imagemAvatar/1.png";
       }else if($estrela == 2){
-        $avatar="../assets/img/imagemAvatar/2";
+        $avatar="../assets/img/imagemAvatar/2.png";
       
     }else if($estrela == 3){
-        $avatar="../assets/img/imagemAvatar/3";
+        $avatar="../assets/img/imagemAvatar/3.png";
     
     }else if($estrela == 4){
-        $avatar="../assets/imagemAvatar/4";
+        $avatar="../assets/imagemAvatar/4.png";
 
     }else if($estrela == 5){
-        $avatar="../assets/imagemAvatar/5";
+        $avatar="../assets/imagemAvatar/5.png";
     }
 
       try{ 
