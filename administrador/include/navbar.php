@@ -15,7 +15,8 @@
                     <li><a href="controleDeLivro.php">controle de livros</a></li>
                     <li><a href="controleComentario.php">controle de comentarios</a></li>
                     <li><a href="controleDeEvento.php">controle de evento</a></li>
-                    </ul>
+                    <li><a href="controleDeHorario.php">controle de horario</a></li>
+                </ul>
                 </li>
 
                 <li class="dropdown"><a href="#"><span>Cadastros</span> <i       
@@ -23,7 +24,8 @@
                     <ul>
                     <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
                     <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
-                    </ul>
+                    <li><a href="cadastroHorario.php">cadastro de horario</a></li>
+                </ul>
                 </li>
             <li><a href="conta.php"> conta</a></li>
         </ul>

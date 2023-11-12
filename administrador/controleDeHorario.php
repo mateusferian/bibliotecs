@@ -46,25 +46,23 @@
 
 
 
-<p class="fs-2 text-center mt-5">Controle de comentario</p>
+<p class="fs-2 text-center mt-5">Controle de horario</p>
 
 <div class="container mt-5">
     <table class="table table-bordered text-center">
         <thead>
             <tr class="bg-light">
                 <th scope="col">ID</th>
-                <th scope="col">NOME</th>
-                <th scope="col">CARGO</th>
-                <th scope="col">COMENTARIO</th>
-                <th scope="col">AVATAR</th>
-                <th scope="col">AVALIAÇÃO</th>
+                <th scope="col">DIA</th>
+                <th scope="col">PERIODO</th>
+                <th scope="col">HORARIO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
             <?php
             try {
-                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_comentario");
+                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_horario");
                 $consulta->execute();
                 $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
                 $livrosPorPagina = 10;
@@ -73,7 +71,7 @@
                 $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
                 $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
 
-                $consulta = $conn->prepare("SELECT * FROM tbl_comentario  LIMIT $indiceInicial, $livrosPorPagina");
+                $consulta = $conn->prepare("SELECT * FROM tbl_horario  LIMIT $indiceInicial, $livrosPorPagina");
                 $consulta->execute();
 
                 while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -81,44 +79,26 @@
                     echo '<td>' . $row["id"] . '</td>';
 
                     echo '<td class="table-description" data-description="' . $row["nome"] . '" onclick="openDescriptionModal(this)">';
-                    $nome = $row["nome"];
+                    $nome = $row["dia"];
                     limitandoCampos($nome);
                     echo '</td>';
 
                     echo '<td class="table-description" data-description="' . $row["cargo"] . '" onclick="openDescriptionModal(this)">';
-                    $autor = $row["cargo"];
+                    $autor = $row["periodo"];
                     limitandoCampos($autor);
                     echo '</td>';
 
                     echo '<td class="table-description" data-description="' . $row["comentario"] . '" onclick="openDescriptionModal(this)">';
-                    $descricao = $row["comentario"];
+                    $descricao = $row["horario"];
                     limitandoCampos($descricao);
                     echo '</td>';
 
-                    echo '<td><img src="' . $row["avatar"] . '" class="img_lista img-fluid"></td>';
-
-                    $estrela = $row["estrela"];
-                    
-                    echo '<td class="table-description" data-description="' . $estrela . '">';
-                    
-                    // Output the stars based on the rating value
-                    for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= $estrela) {
-                            echo '<i class="fa fa-star" style="color: #FC0;"></i>';
-                        } else {
-                            echo '<i class="fa fa-star" style="color: #CCC;"></i>';
-                        }
-                    }
-                    
-                    echo '</td>';
-
-
                     echo '<td>';
-                    echo '<a href="alterarComentario.php?al=' . $row["id"] . '">Alterar</a>';
+                    echo '<a href="alterarHorario.php?al=' . $row["id"] . '">Alterar</a>';
                     echo '</td>';
 
                     echo '<td>';
-                    echo '<a href="controleComentario.php?ex=' . $row["id"] . '">Excluir</a>';
+                    echo '<a href="controleDeHorario.php?ex=' . $row["id"] . '">Excluir</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
@@ -188,7 +168,7 @@
 
     <?php
     function deletando($id,$conn ){
-                $stmt = $conn->prepare("SELECT nome FROM tbl_comentario WHERE id = :id");
+                $stmt = $conn->prepare("SELECT * FROM tbl_horario WHERE id = :id");
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
                 $comentario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -196,7 +176,7 @@
                 echo "<script>
                 Swal.fire({
                     title: 'Apagar',
-                    html: '<p>Tem certeza que deseja apagar o comentario de \"" . $comentario['nome'] . "\"?</p>',
+                    html: '<p>Tem certeza que deseja apagar o horario \"" . $comentario['horario'] . "\" de \"" . $comentario['dia'] . "\"?</p>',
                     customClass: {
                         popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
                     },
@@ -209,7 +189,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        window.location.href = 'controleComentario.php?excluir=true&id=" . $id . "';
+                        window.location.href = 'controleDeHorario.php?excluir=true&id=" . $id . "';
                     }else{
                     }
                 });
@@ -219,21 +199,21 @@
                 if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
                     $id = $_GET['id'];
                 
-                    $stmt = $conn->prepare("DELETE FROM tbl_comentario WHERE id = :id");
+                    $stmt = $conn->prepare("DELETE FROM tbl_horario WHERE id = :id");
                     $stmt->bindValue(':id', $id);
                     $stmt->execute();
                 
                     if (isset($_GET['excluir']) && $_GET['excluir'] === 'true' && isset($_GET['id'])) {
                         $id = $_GET['id'];
                     
-                        $stmt = $conn->prepare("DELETE FROM tbl_comentario WHERE id = :id");
+                        $stmt = $conn->prepare("DELETE FROM tbl_horario WHERE id = :id");
                         $stmt->bindValue(':id', $id);
                         $stmt->execute();
                     
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'comentario apagado com sucesso',
+                                title: 'horario apagado com sucesso',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },
@@ -243,7 +223,7 @@
                     
                             // Redirecione automaticamente após um breve atraso
                             setTimeout(function() {
-                                window.location.href = 'controleComentario.php';
+                                window.location.href = 'controleDeHorario.php';
                             }, 4000);
                         </script>";
                         exit;

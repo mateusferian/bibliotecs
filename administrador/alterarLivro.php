@@ -298,7 +298,7 @@ try{
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    confirmButtonText: 'Ir para a página de controle de livro',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    
