@@ -13,7 +13,7 @@
           <li><a href="home.php#ajuda"> Ajuda</a></li>
           <li><a href="home.php#eventos">Eventos</a></li>
           <li><a href="home.phpblog.html">Horarios</a></li>
-          <li><a href="home.php#team">Doação</a></li>
+          <li><a href="doacoes.php">Doação</a></li>
           <li><a href="home.php#livrosPDF">Livros em PDF</a></li>
           <li><a href="retirados.php">Meus livros retirados</a></li>
           <li><a href="formComentarios.php">Comentarios</a></li>
