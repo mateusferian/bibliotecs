@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 12/11/2023 às 09:43
+-- Tempo de geração: 13/11/2023 às 04:38
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -92,8 +92,7 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 (17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0, ''),
 (18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0, ''),
 (19, 'qwe', 's@gmail.com', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0, ''),
-(20, 'qwe', 'mateusferian10@gmail.com', '$2y$10$s9H7I2TG3FveuQSlZyzZEePDC7pPsO2CFm3Yt5Ge0GlWvq5IM7vQe', '', 'asasasas', '2023-09-03', 'NULL', 0, 'bloqueado'),
-(21, 'mateus', 'bopsorurtu@gufum.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '', '', '2023-09-20', 'NULL', 1, 'desbloqueado');
+(21, 'mateus', 'mateusferian10@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', '', '', '2023-09-20', 'NULL', 1, 'desbloqueado');
 
 -- --------------------------------------------------------
 
@@ -115,8 +114,8 @@ CREATE TABLE `tbl_comentario` (
 --
 
 INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`, `avatar`) VALUES
-(2, 'ALTERANDO ESTRELA', 'ytnveroiuhtcbiouweygtv', 'cargo', 1, '../assets/imagemAvatar/1'),
-(3, 'TESTE 5', 'alterado', 'alterado', 1, '../assets/imagemAvatar/1');
+(4, 'TESTEEE', 'TESTEEE', 'TESTEEE', 2, '../assets/img/imagemAvatar/2.png'),
+(5, 'CASA', 'CASA', 'CASA', 5, '../assets/imagemAvatar/5.png');
 
 -- --------------------------------------------------------
 
@@ -219,7 +218,7 @@ INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, 
 (102, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
 (103, 2344, 'Séries da Literatura Estrangeira', 'aulaa', '3434', 3434, '../img/img_08-11-2023_14-16-20_6645937670.jpg', '0', 'S', '', '343', '0', 'retirado'),
 (104, 6757575, 'Séries da Literatura Estrangeira', 'teste 3', '7878', 7878, '', '0', 'S', '', '7878', '1', 'retirado'),
-(105, 234324, 'Diversos da Literatura Estrangeira', 'TESTE 3', '3434', 343, '', '0', 'S', '', '343', '1', 'naoRetirado');
+(105, 234324, 'Diversos da Literatura Estrangeira', 'TESTE 3', '3434', 343, '', '0', 'S', '', '343', '1', 'retirado');
 
 -- --------------------------------------------------------
 
@@ -234,6 +233,13 @@ CREATE TABLE `tbl_reservado` (
   `dataDeReserva` date NOT NULL,
   `dataDeEntrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tbl_reservado`
+--
+
+INSERT INTO `tbl_reservado` (`id`, `idAluno`, `idLivro`, `dataDeReserva`, `dataDeEntrega`) VALUES
+(35, 21, 105, '2023-11-12', '2023-11-26');
 
 --
 -- Índices para tabelas despejadas
@@ -309,7 +315,7 @@ ALTER TABLE `tbl_aluno`
 -- AUTO_INCREMENT de tabela `tbl_comentario`
 --
 ALTER TABLE `tbl_comentario`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_evento`
@@ -339,7 +345,7 @@ ALTER TABLE `tbl_livro`
 -- AUTO_INCREMENT de tabela `tbl_reservado`
 --
 ALTER TABLE `tbl_reservado`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Restrições para tabelas despejadas
