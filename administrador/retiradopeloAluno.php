@@ -5,7 +5,7 @@
 
     <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
+
 
 
     <style>

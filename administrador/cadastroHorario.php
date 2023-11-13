@@ -4,7 +4,6 @@ require_once "include/header.php";
 ?>
         <link href="css/swalFireLivro.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
 
     <style>
     .img_novidades {

@@ -6,7 +6,6 @@ require_once "include/header.php";
 <!-- css  -->
 <link href="css/swalFireLivro.css" rel="stylesheet">
 <link rel="stylesheet" href="css/botao.css">
-<link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <style>

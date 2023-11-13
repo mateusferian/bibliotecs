@@ -23,7 +23,7 @@
 
 <body>
     <?php
-    require_once "include/navbar.php";
+    require_once "include/navbarProtec.php";
     require_once "include/hero.php";
 ?>
     <p class="fs-2 text-center mt-5">Controle de Administrador</p>
