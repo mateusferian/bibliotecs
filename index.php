@@ -15,6 +15,7 @@
     <link href="login/css/botao.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/logoWeb.png">
 </head>
 
 <body>

@@ -38,6 +38,7 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <link rel="icon" type="image/png" sizes="16x16" href="..assets/img/logoWeb.png">
 <?php
 require_once "../conexao.php";
 ?>
