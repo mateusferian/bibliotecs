@@ -63,7 +63,7 @@
         <br><br><br><br>
         <?php
         if (isset($_REQUEST['id_liv'])) {
- 
+            $arquivo2;
             $idlivro = $_GET['id_liv'];
             // Consulta SQL para recuperar o preço e a capa do jogo com base no código
             $consulta = $conn->prepare("SELECT * FROM tbl_livro where id_liv = $idlivro ");
@@ -108,10 +108,25 @@
         <p>
         <form action="detalhes.php?id_liv=<?php echo urlencode($idlivro); ?>" method="POST">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <?php
+        if($arquivo2 == "0"){
+            ?>
         <button class="btn btn-primary red-color-button" type="submit" name="Reservar" value="Reservar" id="botao">Reservar</button>
+        <?php
+        }
+        else{
+        ?>
+        <button class="btn btn-primary red-color-button" type="submit" name="Baixar" value="Baixar" id="botao">Baixar</button>
+        <?php
+        }
+    ?>
     </div>
 </form>
-        <?php
+<?php
+            if (isset($_REQUEST["Baixar"])) {
+                echo '<script>window.location.href = "' . $arquivo2 . '";</script>';
+            }
+
             if (isset($_REQUEST["Reservar"])) {
 
 
