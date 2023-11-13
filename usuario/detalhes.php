@@ -95,7 +95,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $nome; ?></h5>
-                        <p class="card-text">DESCRICAO<?php echo $descricao; ?></p>
+                        <p class="card-text">Sinópse: <?php echo $descricao; ?></p>
                         <p class="card-text">Autor(a): <?php echo $autor; ?></p>
                         <p class="card-text">Ano: <?php echo $ano ?></p>
                         <p class="card-text">Editora: <?php echo $editora; ?></p>

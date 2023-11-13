@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/11/2023 às 04:38
+-- Tempo de geração: 13/11/2023 às 12:12
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -46,8 +46,6 @@ CREATE TABLE `tbl_administrador` (
 
 INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
 (34, 'situacao@gmail.com', 'situacao@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 0),
-(35, 'a@gmail.com', 'a@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 1),
-(36, 'casa@gmail.com', 'abc@gmail.com', '$2y$10$LCiEXEhanfNqsfSzxKykb.2rb5BcjkirUNeQozlW2Qw.RHzBrEv4.', '2023-10-27', '0', 0),
 (37, 'admin@gmail.com', 'admin@gmail.com', '$2y$10$FEWNLhissWQegHKMmakSM.SnZJ1zSQasPisnlQ7aFGvvC09dePFgi', '2023-11-02', '0', 1);
 
 -- --------------------------------------------------------
@@ -74,24 +72,6 @@ CREATE TABLE `tbl_aluno` (
 --
 
 INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`, `condicao`) VALUES
-(2, 'as', 'mateusferian10 @gmail.com ', '07/07/2005', '', '', NULL, '', 0, ''),
-(3, '1', 'sas', '2', '', '', NULL, '', 0, ''),
-(4, 'mateus', 'ferian', '123', '', '', NULL, '', 0, ''),
-(5, 'test', 'mane@gmail.com', '12', '', '', NULL, '', 0, ''),
-(6, 'pedro', 'pedro@gmail.com', '12345', '', '', NULL, '', 0, ''),
-(7, 'ze', 'ze@gmail.com', '123', '', '', NULL, '', 0, ''),
-(8, '12341', 'joseeeeeeeeee', '123', '', '', NULL, '', 0, ''),
-(9, 'testeeeeeeeeeeeeeeeee', 'testeeeeeeeeeeeeeeeee', '123', '', '', NULL, '', 1, ''),
-(10, 'maneeeeeeeee', 'maneeeeeeeee', 'maneeeeeeeee', '', '', NULL, '', 1, ''),
-(11, 'crip', 'crip', '$2y$10$JoHyw5u0Q5OyfBpIY5jt.ecy0gYXiuMmVu.84.T7vUyJ9MCm/ZykC', '', '', NULL, '', 0, ''),
-(12, 'data', 'data', '$2y$10$F2VcHIAUZ7ZFaQv5DiSynu/XdoszqldqSYPBnEkQdtW3vZOSmW4IS', '', '', '2023-09-03', '', 0, ''),
-(13, 'as', 'as', '$2y$10$58hx7O9z9RV2pB6Yy6F8nOagak0xVUnnP.kFD5oSPcfC8qvTvWeeq', '', '', '2023-09-03', '', 0, ''),
-(14, 'sad', 'as', '$2y$10$7R1292uM1BdU/Mba0QtA6O4CdRN6lbpLLGbMCVPf6IFE7BUfVkGv6', '', '', '2023-09-03', '', 0, ''),
-(15, 'asd', 'sd', '$2y$10$lfilVSBo0LX6CcQHZ9r7Z.LqRM7TwUlE87.SfLz879zXtUtJ/PDTe', '', '', '2023-09-03', '', 0, ''),
-(16, 'asd', 'asd', '$2y$10$hGJAdDCnIkD1E31LbTA/Hej.h/fhvVKv31pWojTjyx/ky/hkpQ0eq', '', '', '2023-09-03', '', 0, ''),
-(17, 'asd', 'asd', '$2y$10$4iqeSE6bCDueSgD08mN1CepcM/4gYb/5MMCi9Ip482ReYGKG9R8qm', '', '', '2023-09-03', '', 0, ''),
-(18, 'zxcz', 'zxcxc', '$2y$10$EXeEcmpT9iEvqBjvyM7a6e61f80PPxIMb868ybBOGlDO7Dvva09sC', '', '', '2023-09-03', '', 0, ''),
-(19, 'qwe', 's@gmail.com', '$2y$10$3mpDohUxvlytXtD6AprWN.f01TeJfaioiaIo2ATykB8gFAzB04gPy', '', '', '2023-09-03', '', 0, ''),
 (21, 'mateus', 'mateusferian10@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', '', '', '2023-09-20', 'NULL', 1, 'desbloqueado');
 
 -- --------------------------------------------------------
@@ -186,7 +166,7 @@ INSERT INTO `tbl_horario` (`id`, `dia`, `periodo`, `horario`) VALUES
 
 CREATE TABLE `tbl_livro` (
   `id_liv` int NOT NULL,
-  `isbn` int NOT NULL,
+  `isbn` varchar(100) NOT NULL,
   `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome` varchar(500) NOT NULL,
   `autor` varchar(50) NOT NULL,
@@ -205,20 +185,15 @@ CREATE TABLE `tbl_livro` (
 --
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`, `disponibilidade`) VALUES
-(92, 1341, 'Séries da Literatura Estrangeira', 'DISPONIBILIDADE', '34', 34, '../img/img_03-11-2023_07-02-36_2798012950.png', '0', 'S', '', '34', '1', 'retirado'),
-(93, 123, 'Séries da Literatura Estrangeira', 'DISPONIVEL', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(94, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO', '23', 23, '../img/img_04-11-2023_13-50-46_2947098437.png', '0', 'N', '', '23', '1', 'retirado'),
-(95, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(96, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(97, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(98, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(99, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(100, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(101, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(102, 123, 'Séries da Literatura Estrangeira', 'TERCEIRO\r\n', '23', 23, '../img/img_03-11-2023_08-07-40_2737359086.png', '0', 'N', '', '23', '1', 'retirado'),
-(103, 2344, 'Séries da Literatura Estrangeira', 'aulaa', '3434', 3434, '../img/img_08-11-2023_14-16-20_6645937670.jpg', '0', 'S', '', '343', '0', 'retirado'),
-(104, 6757575, 'Séries da Literatura Estrangeira', 'teste 3', '7878', 7878, '', '0', 'S', '', '7878', '1', 'retirado'),
-(105, 234324, 'Diversos da Literatura Estrangeira', 'TESTE 3', '3434', 343, '', '0', 'S', '', '343', '1', 'retirado');
+(110, '9788535914845', 'Clássico da Literatura Brasileira e Português', 'Dom Casmurro', 'Machado de Assis', 1899, '../img/img_13-11-2023_06-57-31_8543294373.jpg', '0', 'S', 'Bento de Albuquerque Santiago, advogado carioca, aos 54 anos, relembra sua juventude no romance \"Dom Casmurro\". Apelidado ironicamente por um \"poeta do trem\", ele narra a história desde o seminário até o casamento com Capitu. Desconfianças de traição e questionamentos sobre a paternidade culminam em um final irônico, sugerindo que Capitu e seu amigo Escobar podem tê-lo enganado. O livro abrange 1857 a 1875, marcando a infância, o seminário, o casamento e a ruptura de Bento.', 'Livraria Garnier.', '1', 'naoRetirado'),
+(112, '978857164-8823', 'Clássico da Literatura Brasileira e Português', 'Memórias Póstumas de Brás Cubas', 'Machado de Assis ', 1881, '../img/img_13-11-2023_07-22-39_853574968.jpg', '0', 'N', 'Brás Cubas, defunto-autor, narra suas memórias póstumas, desde a infância rebelde até a morte por pneumonia. Relata amores, desilusões, política e a obsessão pelo \"emplastro Brás Cubas\". Virgília, amante, morre. O enredo, marcado por ironias, revela a busca por glória e o vazio existencial.', 'Tipografia Nacional', '1', 'naoRetirado'),
+(113, '97885325-4289', 'Contos', 'O Livro dos Seres Imaginários', 'Jorge Luis Borges', 1957, '../img/img_13-11-2023_07-34-33_49384864.png', '0', 'N', 'Borges cataloga 116 seres imaginários, explorando origens e descrições de diversas fontes. Conecta autores como Lewis, Kafka e Poe, destacando criaturas como o catóblepa e anfibesna. Além de uma lista, o livro mergulha na etimologia, revelando significados de entidades como valquírias e fadas. Destaque para o peculiar Odradek, descrito por Kafka como um fuso estrelado feito de pedaços de linha, uma criatura intrigante.', 'Globo', '1', 'naoRetirado'),
+(114, '9788581630327', 'Poemas e Poesias', 'A Mensagem', 'Fernando Pessoa', 1934, '../img/img_13-11-2023_07-44-28_3827597228.png', '../pdf/arquivo_13-11-2023_07-44-28_2054076804.pdf', 'N', '\"A Mensagem\", de Fernando Pessoa, é uma obra poética que explora a identidade portuguesa. Dividida em três partes, apresenta profundos insights filosóficos e místicos, refletindo sobre o destino de Portugal. A poesia do autor atravessa tempos históricos, oferecendo uma visão única da alma lusitana.', ' L&PM', '1', 'naoRetirado'),
+(115, '97885390-00791', 'Auto-Ajuda e Religião', 'O Poder do Agora', 'Eckhart Tolle', 1997, '../img/img_13-11-2023_08-07-47_1750919022.png', '0', 'N', '                            Em \'O Poder do Agora\', Eckhart Tolle guia os leitores a transcender o tempo, viver no presente e encontrar paz interior. Uma jornada espiritual que oferece ensinamentos transformadores para uma vida plena e consciente.        ', 'Sextante', '1', 'naoRetirado'),
+(116, '97885325-00011', 'Contos', 'As Crônicas de Nárnia', 'C.S. Lewis', 1950, '../img/img_13-11-2023_08-23-37_4246250373.png', '0', 'S', 'Em \'As Crônicas de Nárnia\', C.S. Lewis transporta os leitores para um mundo mágico e encantador, onde crianças comuns se tornam heróis em aventuras extraordinárias. Uma obra repleta de magia, amizade e descobertas que cativa leitores de todas as idades', 'Martins Fontes', '1', 'naoRetirado'),
+(117, '97885254-17720', 'Diversos da Literatura Brasileira', 'O Cortiço', 'Aluísio Azevedo', 1890, '../img/img_13-11-2023_11-10-49_6672399449.png', '../pdf/img/arquivo_13-11-2023_11-10-49_8455144604.pdf', 'N', '        Em \'O Cortiço\', Aluísio Azevedo mergulha nos dramas da vida em um cortiço no Rio de Janeiro do século XIX. A obra escancara a realidade social da época, explorando questões como as relações humanas, o preconceito, e a luta pela sobrevivência. Um retrato impactante da sociedade brasileira no contexto urbano, que permanece relevante e provocativo    ', 'Martin Claret', '1', 'naoRetirado'),
+(118, '9788501049940', 'Diversos da Literatura Estrangeira', 'Cem Anos de Solidão', 'Gabriel García Márquez', 1967, '../img/img_13-11-2023_11-21-05_3478345804.png', '../pdf/img/arquivo_13-11-2023_11-21-05_5508084917.pdf', 'N', '                Em \"Cem Anos de Solidão\", Gabriel García Márquez tece uma saga mágica que atravessa gerações da família Buendía. Através de realismo mágico, a obra explora amor, poder, política e mistério em Macondo, uma cidade fictícia que se torna um microcosmo da condição humana. Uma narrativa fascinante e única que transcende fronteiras literárias.        ', 'Record', '1', 'naoRetirado'),
+(119, '9788579801114', 'Séries da Literatura Estrangeira', 'Percy Jackson e os Olimpianos - O Ladrão de Raios', 'Rick Riordan', 2005, '../img/img_13-11-2023_12-08-52_6207410197.png', '0', 'S', '        No primeiro livro da série, \'O Ladrão de Raios\', Rick Riordan apresenta Percy Jackson, um adolescente que descobre ser um semideus e é lançado em um mundo de deuses gregos, monstros e mitologia. Uma aventura eletrizante que combina humor, ação e elementos da mitologia antiga.    ', 'Intrínseca', '1', 'naoRetirado');
 
 -- --------------------------------------------------------
 
@@ -233,13 +208,6 @@ CREATE TABLE `tbl_reservado` (
   `dataDeReserva` date NOT NULL,
   `dataDeEntrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `tbl_reservado`
---
-
-INSERT INTO `tbl_reservado` (`id`, `idAluno`, `idLivro`, `dataDeReserva`, `dataDeEntrega`) VALUES
-(35, 21, 105, '2023-11-12', '2023-11-26');
 
 --
 -- Índices para tabelas despejadas
@@ -339,7 +307,7 @@ ALTER TABLE `tbl_horario`
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_reservado`
