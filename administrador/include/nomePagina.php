@@ -4,8 +4,8 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
                             <h2><?php  echo $nomeDaPagina;?></h2>
-                            <p>Nossa biblioteca presencial está abertas a doações!</br>
-                                Faça uma ação e ajude no conhecimento.
+                            <p>Domine a administração com facilidade <br>
+                             Controle, eficiência e emoção em cada clique!
                             </p>
                         </div>
                     </div>

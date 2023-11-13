@@ -154,8 +154,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
     <div class="col-sm-4 mt-5">
         <img src="<?php echo $livros[$i]["arquivo"]?>" class="card-img-top img_tamanho"
             alt="<?php echo $livros[$i]["nome"]?>">
-        <h5 class="card-title">   <br><?php echo $livros[$i]["nome"]?></h5>
-<br>
+            <h5 class="card-title"><br><?php echo ucwords(strtolower($livros[$i]["nome"])); ?></h5>
+            
         <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn" id="botao">Ver</a></p>
     </div>
     <?php
@@ -381,7 +381,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             <div>
                                 <?php
                                   $nome = $rowEvento['nome'];
-                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                  $nome_quebrada = wordwrap(mb_strtoupper($nome), 15, "<br>\n", false);
+
                                 ?>
                                 <p class="h3"><?php echo $nome_quebrada; ?></p>
 
@@ -392,7 +393,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                         <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
                             <?php
                                   $nome = $rowEvento['nome'];
-                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                  $nome_quebrada = wordwrap(mb_strtoupper($nome), 15, "<br>\n", false);
                                 ?>
                             <p class="h3"><?php echo $nome_quebrada; ?></p>
 

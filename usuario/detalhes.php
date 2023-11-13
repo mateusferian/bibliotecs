@@ -83,14 +83,15 @@
         }
         ?>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="<?php echo $arquivo; ?>" class="card-img-top" alt="Capa do livro">
-                    <div class="card-body">
-                        <p class="card-text"></p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-4">
+    <div class="card h-50" style="width: 18rem;">
+        <img src="<?php echo $arquivo; ?>" class="card-img-top" alt="Capa do livro">
+        <div class="card-body">
+            <p class="card-text"></p>
+        </div>
+    </div>
+</div>
+
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-body">
