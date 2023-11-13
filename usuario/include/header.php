@@ -10,7 +10,7 @@
 
 <link href="../assets/img/favicon.png" rel="icon">
 <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<title>Bibliotecs</title>
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-  <link rel="icon" type="image/png" sizes="16x16" href="..assets/img/logoWeb.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/logoWeb.png">
 <?php
 require_once "../conexao.php";
 ?>

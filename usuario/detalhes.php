@@ -1,11 +1,9 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
     <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
 
     <style>
@@ -55,6 +53,7 @@
 </head>
 <body>
 <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>

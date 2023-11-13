@@ -1,5 +1,4 @@
 <?php
-require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
@@ -29,6 +28,7 @@ require_once "include/header.php";
 <body>
 
     <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 try{
@@ -158,13 +158,15 @@ try{
             </div>
 
             <div class="col-md-12 mx-auto">
-            <br><br>
-                <label for="descricao" class="form-label">
-                    <h5>Sinópse</h5>
-                </label>
-                <textarea type="text" name="descricao" class="form-control"
-                    value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>" id="descricao"></textarea>
-            </div>
+    <br><br>
+    <label for="descricao" class="form-label">
+        <h5>Sinópse</h5>
+    </label>
+    <textarea type="text" name="descricao" class="form-control">
+        <?php if(isset($row['descricao'])) { echo $row['descricao']; } ?>
+    </textarea>
+</div>
+
 
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"

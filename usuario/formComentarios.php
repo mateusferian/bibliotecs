@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
     <link rel="stylesheet" href="css/formulario.css">
@@ -22,6 +21,7 @@
    <body>
     <main>
         <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
 ?>
     <?php

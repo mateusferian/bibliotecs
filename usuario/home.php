@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
@@ -23,6 +22,7 @@
 
 
     <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
@@ -154,12 +154,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
     <div class="col-sm-4 mt-5">
         <img src="<?php echo $livros[$i]["arquivo"]?>" class="card-img-top img_tamanho"
             alt="<?php echo $livros[$i]["nome"]?>">
-        <h5 class="card-title"><?php echo $livros[$i]["nome"]?></h5>
-
-        <?php
-      $media_avaliacoes = $livros[$i]["destaque"];
-      mediaEstrelasDeAvaliacao($media_avaliacoes);
-      ?>
+        <h5 class="card-title">   <br><?php echo $livros[$i]["nome"]?></h5>
+<br>
         <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn" id="botao">Ver</a></p>
     </div>
     <?php

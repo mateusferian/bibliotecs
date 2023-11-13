@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 <link href="css/swalFireLivro.css" rel="stylesheet">
@@ -16,6 +15,7 @@
 
 <body>
     <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
@@ -43,12 +43,13 @@
                     <select class="form-control" name="filtro" id="filtro">
                         <option value="SemFiltro" selected>Sem Filtro</option>
                         <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
-                        <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
-                        <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
-                        <option value="Poemas e Poesias">Poemas e Poesias</option>
-                        <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
-                        <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira
-                            e Português</option>
+                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias">Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e
+                        Português</option>
+                    <option value="Contos">Contos</option>
                     </select>
                     <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
                 </form>

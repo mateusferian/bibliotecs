@@ -1,6 +1,6 @@
 <?php
-require_once "../restrito.php";
 require_once "include/header.php";
+require_once "../restrito.php";
 
 if (isset($_REQUEST["id"])) {
     $idLivro = $_REQUEST["id"];

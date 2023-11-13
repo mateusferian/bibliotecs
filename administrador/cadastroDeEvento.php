@@ -1,7 +1,6 @@
 
 
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
@@ -17,6 +16,7 @@
 
 <body>
 <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php"
     ?>
     <script>

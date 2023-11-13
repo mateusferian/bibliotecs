@@ -1,11 +1,11 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 </head>
 
 <body>
 <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     ?>
     <main id="main">
