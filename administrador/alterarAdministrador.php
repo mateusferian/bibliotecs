@@ -1,6 +1,4 @@
-<?php
-    require_once "protect.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +28,9 @@
 </head>
 
 <body>
-
+<?php
+    require_once "protect.php";
+?>
     <script>
     AOS.init();
     </script>
@@ -60,7 +60,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="alterarAdministrador.php?protect=2343431" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Alterar</h1>
+                    <h1 class="text-center">Alterar Administrador</h1>
                     <br><br>
 
                     <div class="form-group text-center">

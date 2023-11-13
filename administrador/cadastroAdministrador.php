@@ -1,8 +1,4 @@
 
-<?php
-    require_once "protect.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +28,10 @@
 
 <body>
 
+<?php
+    require_once "protect.php";
+?>
+
     <script>
     AOS.init();
     </script>
@@ -43,7 +43,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="cadastroAdministrador.php?protect=123452" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Cadastro</h1>
+                    <h1 class="text-center">Cadastro Administrador</h1>
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">

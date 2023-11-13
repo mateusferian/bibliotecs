@@ -1,6 +1,3 @@
-<?php
-    require_once "protect.php";
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +27,10 @@
 </head>
 
 <body>
+<?php
+    require_once "protect.php";
+?>
+
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;">
         <div class="container mt-4">
             <div class="col-md-6 offset-md-3 form">

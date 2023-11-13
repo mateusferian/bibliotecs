@@ -1,5 +1,4 @@
 <?php
-    require_once "protect.php";
     require_once "include/header.php";
 ?>
 <style>
@@ -23,6 +22,7 @@
 
 <body>
     <?php
+    require_once "protect.php";
     require_once "include/navbarProtec.php";
     require_once "include/hero.php";
 ?>
@@ -79,7 +79,7 @@
                         <?php
                 }
                 ?>
-                    </td>;
+                    </td>
 
                     <?php
                 $bytes = random_bytes(7);
