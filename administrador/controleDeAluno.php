@@ -21,12 +21,12 @@
 </head>
 
 <body>
-    <?php
+<?php
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
-<p class="fs-2 text-center mt-5">Controle de Alunos</p>
+
 <div class="container mt-4">
     <form method="get">
         <p class="fs-5 mt-5">Opção de filtragem</p>
@@ -57,7 +57,7 @@
     });
 </script>
 
-
+<p class="fs-1 text-center">Controle de Aluno</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">

@@ -24,10 +24,11 @@
 </head>
 
 <body>
-    <?php
+<?php
+    $nomeDaPagina ="Controle de Horario";
     require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
     <style>
     .table-description {
@@ -44,9 +45,6 @@
     }
     </style>
 
-
-
-<p class="fs-2 text-center mt-5">Controle de horario</p>
 
 <div class="container mt-5">
     <table class="table table-bordered text-center">
@@ -78,17 +76,17 @@
                     echo '<tr>';
                     echo '<td>' . $row["id"] . '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["nome"] . '" onclick="openDescriptionModal(this)">';
+                    echo '<td class="table-description" data-description="' . $row["dia"] . '" onclick="openDescriptionModal(this)">';
                     $nome = $row["dia"];
                     limitandoCampos($nome);
                     echo '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["cargo"] . '" onclick="openDescriptionModal(this)">';
+                    echo '<td class="table-description" data-description="' . $row["periodo"] . '" onclick="openDescriptionModal(this)">';
                     $autor = $row["periodo"];
                     limitandoCampos($autor);
                     echo '</td>';
 
-                    echo '<td class="table-description" data-description="' . $row["comentario"] . '" onclick="openDescriptionModal(this)">';
+                    echo '<td class="table-description" data-description="' . $row["horario"] . '" onclick="openDescriptionModal(this)">';
                     $descricao = $row["horario"];
                     limitandoCampos($descricao);
                     echo '</td>';

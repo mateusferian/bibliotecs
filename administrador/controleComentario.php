@@ -24,10 +24,11 @@
 </head>
 
 <body>
-    <?php
+<?php
+    $nomeDaPagina ="Controle de Comentario";
     require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
     <style>
     .table-description {
@@ -45,8 +46,6 @@
     </style>
 
 
-
-<p class="fs-2 text-center mt-5">Controle de comentario</p>
 
 <div class="container mt-5">
     <table class="table table-bordered text-center">

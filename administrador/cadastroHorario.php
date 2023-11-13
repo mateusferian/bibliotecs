@@ -43,9 +43,10 @@ require_once "include/header.php";
 <body>
 
 <?php
+    $nomeDaPagina ="Cadastro de Horario";
     require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
 
 <p class="fs-2 text-center mt-4">Cadastro de Horário</p>
