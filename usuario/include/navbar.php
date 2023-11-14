@@ -12,7 +12,7 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php">Menu</a></li>
-                    <li><a href="home.phpblog.html">Horarios</a></li>
+                    <li><a href="segunda.php">Horarios</a></li>
                     <li><a href="doacoes.php">Doação</a></li>
                     <li><a href="conta.php"> conta</a></li>
                 </ul>
