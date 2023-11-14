@@ -1,204 +1,214 @@
 <?php
-require_once "include/header.php";
+    require_once "include/header.php";
 ?>
 
-<!-- css  -->
-<link href="css/swalFireLivro.css" rel="stylesheet">
-<link rel="stylesheet" href="css/botao.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-<style>
-.img_novidades {
-    max-width: 80%;
-    height: auto;
-}
-
-.img_tamanho {
-    max-width: 300px;
-    height: auto;
-}
-
-.img_lista {
-    max-width: 100px;
-    height: auto;
-}
-
-        .estrelas input[type=radio]{
-	display: none;
-    }.estrelas label i.fa:before{
-	content: '\f005';
-	color: #FC0;
-    }.estrelas  input[type=radio]:checked  ~ label i.fa:before{
-	color: #CCC;
-    }
-    </style>
-
+    <link rel="stylesheet" href="css/formulario.css">
+    <link rel="stylesheet" href="css/alterarAluno.css">
+    <link rel="stylesheet" href="css/swalFire.css">
+    <link rel="stylesheet" href="css/botao.css">
 </head>
 
 <body>
 
-    <?php
-    $nomeDaPagina ="Alterar comentario";
+    <script>
+    AOS.init();
+    </script>
+<?php
     require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/nomePagina.php";
 
-try{
-   if(isset($_REQUEST["al"])) {
+    try{
+    if(isset($_REQUEST["al"])) {
+        
+    $id = $_REQUEST["al"];
+    $consulta = $conn->prepare("SELECT * FROM tbl_aluno where id=:id;");
+    $consulta->bindValue(':id', $id);
+    $consulta->execute();
+    $row=$consulta -> fetch(PDO::FETCH_ASSOC);
+    }
     
-  $id = $_REQUEST["al"];
-  $consulta = $conn->prepare("SELECT * FROM tbl_aluno where id=:id;");
-  $consulta->bindValue(':id', $id);
-  $consulta->execute();
-  $row=$consulta -> fetch(PDO::FETCH_ASSOC);
-  }
-  
-  }
-  
-  catch (PDOException $erro){
-  	echo $erro->getMessage();
-  }
-?>
+    }
+    
+    catch (PDOException $erro){
+        echo $erro->getMessage();
+    }
+    ?>
+    </div>
+    <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
+        data-aos-delay="100">
+        <div class="container mt-4">
+            <div class="col-md-6 offset-md-3">
+                <form class="form" action="alterarAluno.php" method="POST" name="formulario">
+                    <br><br>
+                    <h1 class="text-center">Alterar Aluno</h1>
+                    <br><br>
 
-    <form name="form" method="post" action="alterarComentario.php" enctype="multipart/form-data">
-        <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                            <label>ID</label>
+                            <input type="text" name="id" class="form-control"
+                            value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
+                        </div>
+                    </div>
 
-            <div class="col-sm-12  mt-3">
-                <label for="id" class="form-label"> ID: </label><br>
-                <input type="text" name="id" class="form-control"
-                    value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
+                    <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                            <label>E-mail Institucional</label>
+                            <input type="text" name="email" class="form-control"
+                            value="<?php if(isset($row['email'])) {echo $row['email'];} ?>" readonly="readonly"><br>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                            <label>Nome completo</label>
+                            <input type="text" name="nome" class="form-control" value="<?php if(isset($row['nome'])) {echo $row['nome'];} ?>" readonly="readonly"><br>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+        <label for="sala" >Sala</label>
+          <select id="sala" name="sala" class="form-control"
+          value="<?php if(isset($row['sala'])) {echo $row['sala'];} ?>" id="sala">
+            <option value="1º DS">1º DS</option>
+            <option value="1º qui">1º quimica</option>
+            <option value="1º info">1º info</option>
+            <option value="1º LCHS">1º LCHS</option>
+            <option value="1º en med">1º ensino médio</option>
+            <option value="2º DS">2º DS</option>
+            <option value="2º qui">2º quimica</option>
+            <option value="2º info">2º info</option>
+            <option value="2º LCHS">2º LCHS</option>
+            <option value="2º en med">2º ensino médio</option>
+            <option value="3º DS">3º DS</option>
+            <option value="3º qui">3º quimica</option>
+            <option value="3º info">3º info</option>
+            <option value="3º LCHS">3º LCHS</option>
+            <option value="3º en med">3º ensino médio</option>
+            <option value="segurança">Segurança do Trabalho</option>
+            <option value="info">Informática para Internet</option>
+            <option value="adm">Administração</option>
+            <option value="qui">Química</option>
+
+          </select> 
+        </div> 
+        </div> <br>
+
+
+        <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+        <label for="periodo" >Periodo</label>
+          <select id="periodo" name="periodo" class="form-control"
+          value="<?php if(isset($row['periodo'])) {echo $row['periodo'];} ?>" id="periodo">
+            <option value="manhã">manhã</option>
+            <option value="tarde">tarde</option>
+            <option value="noite">noite</option>
+            <option value="integrado">integrado - manhã e tarde</option>
+        
+          </select> 
+        </div> 
+        </div> 
+        <br>
+
+        <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="situacao" id="situacao">
+                    <option value="1"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 1) { echo 'selected'; } ?>>
+                        Ativado</option>
+                    <option value="0"
+                        <?php if (isset($row['situacao']) && $row['situacao'] == 0) { echo 'selected'; } ?>>
+                        Desativado</option>
+                </select>
+            </div>
+            <br>
+
+            <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                <label for="situacao">CONDIÇÃO</label>
+                <select class="form-control" name="situacao" id="situacao">
+                    <option value="1"
+                        <?php if (isset($row['condicao']) && $row['condicao'] == "bloqueado") { echo 'selected'; } ?>>
+                        bloqueado</option>
+                    <option value="0"
+                        <?php if (isset($row['condicao']) && $row['condicao'] == "desbloqueado") { echo 'selected'; } ?>>
+                        desbloqueado</option>
+                </select>
             </div>
 
-            <div class="col-sm-12  mt-3">
-                <label for="nome" class="form-label">Nome </label><br>
-                <input type="text" name="nome" class="form-control"
-                    value="<?php if(isset($row['nome'])) {echo $row['nome'];} ?>"><br>
-            </div>
+        <br> <br>
 
-            <div class="col-sm-12  mt-3">
-                <label for="comentario" class="form-label"> Email: </label><br>
-                <input type="comentario" name="comentario" class="form-control"
-                    value="<?php if(isset($row['comentario'])) {echo $row['comentario'];} ?>"><br>
+                    <div class="form-group">
+                        <div class="col-md-5 offset-md-5">
+                            <input type="submit" value="Cadastra-se" class="btn btn-primary" name="Cadastra-se">
+                        </div>
+                        <br><br>
+                    </div>
+                </form>
             </div>
-
-            <div class="col-sm-6  mt-3">
-                <label for="cargo" class="form-label">Senha</label>
-                <input type="text" name="cargo" class="form-control"
-                    value="<?php if(isset($row['cargo'])) {echo $row['cargo'];} ?>"><br>
-            </div>
-
-            <div class="col-sm-6  mt-3">
-        <div class="estrelas">
-        <label for="comentario" class="form-label"> Periodo: </label><br>
-            <?php
-                $originalRating = $row['estrela']; // Obtenha o valor da classificação do banco de dados
-            ?>
-            <input type="radio" id="vazio" name="estrela" value="" <?php echo ($originalRating === '') ? 'checked' : ''; ?>>
-            <label for="estrela_um"><i class="fa"></i></label>
-            <input type="radio" id="estrela_um" name="estrela" value="1" <?php echo ($originalRating == 1) ? 'checked' : ''; ?>>
-            <label for="estrela_dois"><i class="fa"></i></label>
-            <input type="radio" id="estrela_dois" name="estrela" value="2" <?php echo ($originalRating == 2) ? 'checked' : ''; ?>>
-            <label for="estrela_tres"><i class="fa"></i></label>
-            <input type="radio" id="estrela_tres" name="estrela" value="3" <?php echo ($originalRating == 3) ? 'checked' : ''; ?>>
-            <label for="estrela_quatro"><i class="fa"></i></label>
-            <input type="radio" id="estrela_quatro" name="estrela" value="4" <?php echo ($originalRating == 4) ? 'checked' : ''; ?>>
-            <label for="estrela_cinco"><i class="fa"></i></label>
-            <input type="radio" id="estrela_cinco" name="estrela" value="5" <?php echo ($originalRating == 5) ? 'checked' : ''; ?>><br><br>	
         </div>
     </div>
-
-            <div class="col-12  mt-3">
-                <button id="botao" type="submit" name="alterar" value="alterar"
-                    class="btn btn-primary mt-2">alterar</button>
-                <br><br>
-            </div>
-        </div>
-    </form>
-
-    <script>
-    const ratingInputs = document.querySelectorAll('input[type="radio"]');
-    const ratingValue = document.getElementById('ratingValue');
-    const originalRating = <?php echo $originalRating; ?>;
-
-    // Inicializa a cor com base na classificação do banco de dados
-    setStarColor(originalRating);
-
-    ratingInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            ratingValue.textContent = input.value;
-
-            // Muda a cor das estrelas quando uma opção é selecionada
-            setStarColor(input.value);
-        });
-    });
-
-    function setStarColor(rating) {
-        // Adapte isso de acordo com a lógica específica do seu código para mudar a cor
-        ratingInputs.forEach(input => {
-            const starLabel = input.nextElementSibling;
-            starLabel.style.color = input.value <= rating ? 'yellow' : 'gray';
-        });
-    }
-</script>
-
     <?php
-try{
-      if (isset($_REQUEST["alterar"])) {
+
+    require_once "conexao.php";
+
+    if (isset($_REQUEST["Cadastra-se"])) {
+
+      $nome = $_REQUEST["nome"];
+      $email = $_REQUEST["email"];
+      $senha = $_REQUEST["senha"];
+      $periodo = $_REQUEST["periodo"];
+      $sala = $_REQUEST["sala"];
+      $dataCadastro = date("Y-m-d");
+      $situacao = 1;
+      $hash = password_hash($senha, PASSWORD_DEFAULT);
+
+      try{ 
+        $sql = $conn->prepare("INSERT INTO tbl_aluno (id, nome, email, senha, periodo, sala, dataCadastro, recuperar_senha, situacao, condicao)
+                            VALUES (:id, :nome, :email, :senha, :periodo, :sala, :dataCadastro, :recuperar_senha, :situacao, :condicao) ");
         
-    
-        try {
-                $id = $_REQUEST["id"];
-                $nome = $_REQUEST["nome"];
-                $comentario = $_REQUEST["comentario"];
-                $cargo = $_REQUEST["cargo"];
-                $estrela = $_REQUEST["estrela"];
-                
-                $sql = $conn->prepare("UPDATE tbl_aluno SET nome = :nome, comentario = :comentario, cargo = :cargo, estrela = :estrela, avatar = :avatar WHERE id = :id");
-                
-                $sql->bindValue(':id', $id);
-                $sql->bindValue(':nome', $nome);
-                $sql->bindValue(':comentario', $comentario);
-                $sql->bindValue(':cargo', $cargo);
-                $sql->bindValue(':estrela', $estrela);
-                $sql->bindValue(':avatar', $avatar);
+        $sql->bindValue(':id', null);   
+        $sql->bindValue(':nome', $nome);
+        $sql->bindValue(':sala', $sala);
+        $sql->bindValue(':senha', $hash);
+        $sql->bindValue(':periodo', $periodo);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':dataCadastro', $dataCadastro);
+        $sql->bindValue(':recuperar_senha', null);
+        $sql->bindValue(':situacao', $situacao );    
+        $sql->bindValue(':condicao', "desbloqueado");  
+
+        $sql->execute();
+        echo "<script>
+            Swal.fire({
+                title: 'Cadastro com Sucesso!!',
+                html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
+                customClass: {
+                    popup: 'swalFireCadastroAluno',
+                },
+                showCancelButton: false, // Não mostrar o botão de cancelar
+                confirmButtonText: 'Ir para a página de login',
+                timer: 5000, 
+                timerProgressBar: true, 
+                allowOutsideClick: false      
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../index.php';
+                }
+            });
+        </script>";
+
         
-                $sql->execute();
-
-                echo "<script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Alteração realizado!!',
-                    customClass: {
-                        popup: 'swalFireLivro',
-                    },
-                    showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de aluno',
-                    timer: 4000,
-                    timerProgressBar: true, 
-                    allowOutsideClick: false    
-                    
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = 'controleDeAluno.php';
-                    }
-                    
-                });
-                </script>";
-
-            }catch (PDOException $erro){
-            echo $erro->getMessage();
-            }
-
-        } 
-
-    }catch (PDOException $erro){
-	echo $erro->getMessage();
+      } 
+      catch (PDOException $erro) {
+          echo $erro->getMessage();
+      }
     }
 
-    $conn = null;
-    require_once "include/footer.php";
-    require_once "include/scrollTop.php";
-?>
+    $conn;
+    ?>
 </body>
 
 </html>
