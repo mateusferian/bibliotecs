@@ -1,5 +1,4 @@
 <?php
-    require_once "protect.php";
     require_once "include/header.php";
 ?>
 <style>
@@ -23,7 +22,8 @@
 
 <body>
     <?php
-    require_once "include/navbar.php";
+    require_once "protect.php";
+    require_once "include/navbarProtec.php";
     require_once "include/hero.php";
 ?>
     <p class="fs-2 text-center mt-5">Controle de Administrador</p>
@@ -79,7 +79,7 @@
                         <?php
                 }
                 ?>
-                    </td>;
+                    </td>
 
                     <?php
                 $bytes = random_bytes(7);
@@ -108,7 +108,7 @@
     try{
      if (isset($_REQUEST["ex"])) {
         $id = $_REQUEST["ex"];
-        deletandoAdministrador($id, $conn);
+        deletando($id, $conn);
      }
     }catch(PDOException $erro){
       echo $erro->getMessage();
@@ -145,7 +145,7 @@
     </div>
 
     <?php
-    function deletandoAdministrador($id,$conn ){                
+    function deletando($id,$conn ){                
         $stmt = $conn->prepare("SELECT nome FROM tbl_administrador WHERE id = :id");
         $stmt->bindValue(':id', $id);
         $stmt->execute();

@@ -8,13 +8,27 @@
     </a>
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="controleDeAluno.php">controle de alunos</a></li>
-            <li><a href="controleDeLivro.php">controle de livros</a></li>
-            <li><a href="#Ajuda"> conta</a></li>
-            <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
-            <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
-            <li><a href="blog.html">notificações</a></li>
-            <li><a href="sair.php"> sair</a></li>
+        <li class="dropdown"><a href="#"><span>Controles</span> <i       
+                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                    <li><a href="controleDeAluno.php">controle de alunos</a></li>
+                    <li><a href="controleDeLivro.php">controle de livros</a></li>
+                    <li><a href="controleDeLivroPDF.php">controle de livros em PDF</a></li>
+                    <li><a href="controleComentario.php">controle de comentarios</a></li>
+                    <li><a href="controleDeEvento.php">controle de evento</a></li>
+                    <li><a href="controleDeHorario.php">controle de horario</a></li>
+                </ul>
+                </li>
+
+                <li class="dropdown"><a href="#"><span>Cadastros</span> <i       
+                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                    <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
+                    <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
+                    <li><a href="cadastroHorario.php">cadastro de horario</a></li>
+                </ul>
+                </li>
+            <li><a href="conta.php"> conta</a></li>
         </ul>
     </nav><!-- .navbar -->
 

@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="css/botao.css">
     <link rel="stylesheet" href="css/swalFire.css">
 
-    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/logoWeb.png">
 
     <?php
     require_once "../conexao.php";

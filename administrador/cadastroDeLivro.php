@@ -1,12 +1,10 @@
 <?php
-require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
         <!-- css  -->
         <link href="css/swalFireLivro.css" rel="stylesheet">
     <link rel="stylesheet" href="css/botao.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
 
     <style>
     .img_novidades {
@@ -27,15 +25,16 @@ require_once "include/header.php";
 </head>
 <body>
 <?php
+    $nomeDaPagina ="Cadastro de Livro";
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
 <script>
     AOS.init();
     </script>
 
 <br>
-      <h1 class="text-center">Cadastro de Livros</h1>  
 
    <form name="form1" method="post" action="cadastroDeLivro.php" enctype="multipart/form-data">
    <div class="row">

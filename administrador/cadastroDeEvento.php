@@ -1,33 +1,24 @@
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliotecs</title>
-
-    <link href="../bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
-    <script src="../bootstrap/bootstrapJS/bootstrap.min.js"> </script>
+<?php
+    require_once "include/header.php";
+?>
 
     <link rel="stylesheet" href="css/formulario.css">
-    <link rel="stylesheet" href="css/cadastroAdministrador.css">
+    <link rel="stylesheet" href="css/cadastroEvento.css">
     <link rel="stylesheet" href="css/swalFire.css">
     <link rel="stylesheet" href="css/botao.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 
 </head>
 
 <body>
-
+<?php
+    require_once "../restrito.php";
+    require_once "include/navbar.php"
+    ?>
     <script>
     AOS.init();
     </script>
@@ -109,7 +100,7 @@
                 allowOutsideClick: false      
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '../index.php';
+                    window.location.href = 'controleDeEvento.php';
                 }
             });
         </script>";
@@ -120,8 +111,10 @@
           echo $erro->getMessage();
       }
     }
-    $conn;
-    ?>
+    $conn = null;
+    require_once "include/footer.php";
+    require_once "include/scrollTop.php";
+?>
 </body>
 
 </html>

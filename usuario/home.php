@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
@@ -23,6 +22,7 @@
 
 
     <?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
@@ -61,7 +61,7 @@
                                 <div class="testimonial-wrap">
                                     <div class="testimonial-item">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/img/testimonials/testimonials-1.jpg" class="testimonial-img flex-shrink-0" alt="">
+                                            <img src="<?php echo $rowComentario["avatar"]?>" class="testimonial-img flex-shrink-0" alt="">
                                             <div>
                                                 <h3><?php echo $rowComentario['nome']; ?></h3>
                                                 <h4> <?php echo $rowComentario['cargo']; ?></h4>
@@ -93,121 +93,13 @@
 
 
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="../assets/img/testimonials/testimonials-2.jpg"
-                                        class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Paola Silva</h3>
-                                        <h4>Aluna</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    Achei o site da biblioteca extremamente conveniente. Ele oferece a opção de fazer
-                                    reservas online para retirada de livros, o que economiza muito tempo.
-                                    Além disso, a seção de recomendações de leitura me ajudou a descobrir novos títulos
-                                    interessantes.
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
+                   
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="../assets/img/testimonials/testimonials-3.jpg"
-                                        class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Michele Bird</h3>
-                                        <h4>Professora</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    Estou realmente satisfeita com o site da biblioteca! A variedade de livros
-                                    disponíveis é incrível, com opções para todos os gostos e gêneros.
-                                    A interface é intuitiva e fácil de usar, permitindo uma busca rápida e precisa.
-                                    Nunca mais vou ficar sem leitura com essa biblioteca online!
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
+                    
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="../assets/img/testimonials/testimonials-4.jpg"
-                                        class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Alberto Soares </h3>
-                                        <h4>Aluno</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    O site da biblioteca é uma fonte de conhecimento! Além de fornecer acesso ao
-                                    catálogo completo de livros, encontrei clássicos que sempre desejei ler e títulos
-                                    contemporâneos que ainda nem tinha ouvido falar.
-                                    O sistema de reserva online facilita minha vida, sem precisar me preocupar em passar
-                                    horas na biblioteca procurando livros. Já sou um fã fiel!
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
+                   
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="../assets/img/testimonials/testimonials-5.jpg"
-                                        class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Robson Fernandes</h3>
-                                        <h4>Professor</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    O site da biblioteca é uma ótima ferramenta para qualquer pessoa interessada em
-                                    praticidade.
-                                    Além de fornecer informações sobre cada livro, ele também oferece a opção de
-                                    reserva-los,
-                                    o que é perfeito para estudantes com rotinas agitadas. Uma maravilhosa extensão da
-                                    biblioteca física!
 
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -262,12 +154,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
     <div class="col-sm-4 mt-5">
         <img src="<?php echo $livros[$i]["arquivo"]?>" class="card-img-top img_tamanho"
             alt="<?php echo $livros[$i]["nome"]?>">
-        <h5 class="card-title"><?php echo $livros[$i]["nome"]?></h5>
-
-        <?php
-      $media_avaliacoes = $livros[$i]["destaque"];
-      mediaEstrelasDeAvaliacao($media_avaliacoes);
-      ?>
+            <h5 class="card-title"><br><?php echo ucwords(strtolower($livros[$i]["nome"])); ?></h5>
+            <br>
         <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn" id="botao">Ver</a></p>
     </div>
     <?php
@@ -493,7 +381,8 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             <div>
                                 <?php
                                   $nome = $rowEvento['nome'];
-                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                  $nome_quebrada = wordwrap(mb_strtoupper($nome), 15, "<br>\n", false);
+
                                 ?>
                                 <p class="h3"><?php echo $nome_quebrada; ?></p>
 
@@ -504,7 +393,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                         <div class="descricao-evento" id="descricao-evento-<?php echo $index; ?>">
                             <?php
                                   $nome = $rowEvento['nome'];
-                                  $nome_quebrada = wordwrap(strtoupper($nome), 10, "<br>\n", false);
+                                  $nome_quebrada = wordwrap(mb_strtoupper($nome), 15, "<br>\n", false);
                                 ?>
                             <p class="h3"><?php echo $nome_quebrada; ?></p>
 

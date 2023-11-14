@@ -45,6 +45,8 @@
                     session_start();
                     $_SESSION['email'] = $rowAdministrador['email'];
                     
+                    $_SESSION['arquivo'] = $rowAdministrador['arquivo'];
+
                     $_SESSION['senha'] = $rowAdministrador['senha'];
                     
                     $_SESSION['nome'] = $rowAdministrador['nome'];

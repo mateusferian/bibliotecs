@@ -1,12 +1,10 @@
 <?php
-require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
 <!-- css  -->
 <link href="css/swalFireLivro.css" rel="stylesheet">
 <link rel="stylesheet" href="css/botao.css">
-<link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
 
 <style>
 .img_novidades {
@@ -30,8 +28,10 @@ require_once "include/header.php";
 <body>
 
     <?php
+    $nomeDaPagina ="Alterar livro";
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 try{
    if(isset($_REQUEST["al"])) {
     
@@ -49,8 +49,6 @@ try{
   }
 ?>
 
-
-    <legend>Alterar Dados de Livros</legend>
 
     <form name="form" method="post" action="alterarLivro.php" enctype="multipart/form-data">
         <div class="row">
@@ -118,18 +116,14 @@ try{
                 </select>
             </div>
 
-            <div class="col-sm-6   mt-3">
+            <div class="col-sm-12   mt-3">
                 <label for="imagem" class="form-label">Selecione a Imagem</label>
-                <input type="file" name="arquivo" class="form-control"
-                    value="<?php if(isset($row['arquivo'])) {echo $row['arquivo'];} ?>"><br>
+                <input type="file" class="form-control" id="arquivo" name="arquivo"><br>
             </div>
 
-
-            <div class="col-sm-6  mt-3">
-                <label for="pdf" class="form-label">Selecione o arquivo PDF</label>
-                <input type="file" name="arquivo2" class="form-control"
-                    value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
-            </div>
+            <input type="hidden" name="caminho_arquivo" value="<?php if (isset($row['arquivo'])) {
+            echo $row['arquivo'];
+        } ?>">
 
             <div class="col-sm-12  mt-3">
                 <label for="situacao">Situação</label>
@@ -156,13 +150,15 @@ try{
             </div>
 
             <div class="col-md-12 mx-auto">
-            <br><br>
-                <label for="descricao" class="form-label">
-                    <h5>Sinópse</h5>
-                </label>
-                <textarea type="text" name="descricao" class="form-control"
-                    value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>" id="descricao"></textarea>
-            </div>
+    <br><br>
+    <label for="descricao" class="form-label">
+        <h5>Sinópse</h5>
+    </label>
+    <textarea type="text" name="descricao" class="form-control">
+        <?php if(isset($row['descricao'])) { echo $row['descricao']; } ?>
+    </textarea>
+</div>
+
 
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
@@ -232,25 +228,9 @@ try{
                 $arquivo = $_REQUEST['caminho_arquivo'];
                 }
 
-                $nomeimg2 =  $_FILES["arquivo2"]["name"];
 
-                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
-
-                $tamanho2 =  $_FILES["arquivo2"]["size"];
-
-                $tipoimg2 =  $_FILES["arquivo2"]["type"];
-
-                $erro2 =     $_FILES["arquivo2"]["error"];
-
-                $ext2 = "pdf";
-                $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-                $arquivo2 = '../pdf/' . $novo_nomeimg2;
-
-                $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
-                if($tamanho2==0){
                     $arquivo2= 0;
-                }
+
                 try{
                     if($disponibilidade == "naoRetirado"){
                         $consultaReserva = $conn->prepare("SELECT * FROM  tbl_reservado WHERE idLivro=:idLivro;");
@@ -295,7 +275,7 @@ try{
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    confirmButtonText: 'Ir para a página de controle de livro',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    

@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 <style>
@@ -22,41 +21,43 @@
 </head>
 
 <body>
-    <?php
+<?php
+    require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/hero.php";
 ?>
-    <p class="fs-2 text-center mt-5">Controle de Alunos</p>
-    <div class="container mt-4">
-        <form method="get">
-            <p class="fs-5 mt-5">Opção de filtragem</p>
-            <select class="form-control" name="filtro" id="filtro">
-                <option value="opcao0">sem filtro</option>
-                <option value="bloqueado">Bloquados</option>
-                <option value="desbloqueado">Desbloqueado</option>
-                <option value="inativo">Inativo</option>
-                <option value="ativo">Ativo</option>
-            </select>
-            <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
-        </form>
-    </div>
 
-    <script>
-            // Recupere o elemento select
-            var filtroSelect = document.getElementById("filtro");
+<div class="container mt-4">
+    <form method="get">
+        <p class="fs-5 mt-5">Opção de filtragem</p>
+        <select class="form-control" name="filtro" id="filtro">
+            <option value="opcao0" selected>sem filtro</option>
+            <option value="bloqueado">Bloqueados</option>
+            <option value="desbloqueado">Desbloqueado</option>
+            <option value="inativo">Inativo</option>
+            <option value="ativo">Ativo</option>
+        </select>
+        <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+    </form>
+</div>
 
-            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-            filtroSelect.addEventListener("change", function() {
-                localStorage.setItem("filtroSelecionado", filtroSelect.value);
-            });
+<script>
+    // Recupere o elemento select
+    var filtroSelect = document.getElementById("filtro");
 
-            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
-            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
-            if (filtroSelecionado) {
-                filtroSelect.value = filtroSelecionado;
-            }
-            </script>
+    // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada, ou "sem filtro" como padrão.
+    var filtroSelecionado = localStorage.getItem("filtroSelecionado");
+    if (filtroSelecionado) {
+        filtroSelect.value = filtroSelecionado;
+    }
 
+    // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
+    filtroSelect.addEventListener("change", function() {
+        localStorage.setItem("filtroSelecionado", filtroSelect.value);
+    });
+</script>
+
+<p class="fs-1 text-center">Controle de Aluno</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -105,39 +106,32 @@
 
                 while($row = $consulta->fetch(PDO::FETCH_ASSOC)){
                   ?>
-                <tr>
-                    <td><?php echo $row["id"] ?> </td>
-                    <td><?php echo $row["nome"] ?></td>
-                    <td><?php echo $row["email"] ?></td>
-                    <td style="color: <?php echo $row["condicao"] === 'bloqueado' ? 'red' : 'green'; ?>">
-                    <?php echo $row["condicao"]; ?>
-                    </td>
-                    <td><?php echo $row["sala"] ?></td>
-                    <td>
-                    <td>
-                    <?php
-                    if ($row["situacao"] == 1) {
-                    ?>
-                    <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
-                    <?php
-                    } else {
-                    ?>
-                    <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado">
-                    </center>
-                    <?php
-                    }
-                    ?>
-                    </td>
-                    <td>
-                        <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
-                    </td>
-                    <td>
-                        <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
-                    </td>
-                    <td>
-                        <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["nome"]; ?></td>
+                        <td><?php echo $row["email"]; ?></td>
+                        <td style="color: <?php echo $row["condicao"] === 'bloqueado' ? 'red' : 'green'; ?>">
+                            <?php echo $row["condicao"]; ?>
+                        </td>
+                        <td><?php echo $row["sala"]; ?></td>
+                        <td>
+                            <?php if ($row["situacao"] == 1): ?>
+                                <center><img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                            <?php else: ?>
+                                <center><img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Desativado"></center>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
+                        </td>
+                        <td>
+                            <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                        </td>
+                        <td>
+                            <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
+                        </td>
+                    </tr>
+
                 <?php
      }
      }catch(PDOException $erro){
