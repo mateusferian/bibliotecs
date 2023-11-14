@@ -1,6 +1,10 @@
 <?php
     require_once "include/header.php";
+    
 ?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style>
   .img_novidades{
@@ -50,42 +54,71 @@ li{
 
 <body>
 <?php
-    $nomeDaPagina ="Horarios";
+    $nomeDaPagina ="Horários de Funcionamento";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
     ?>
 
 <div class="container">
-        <h1 class="topo">Bibliotecs</h1>
-        <!DOCTYPE html>
 
     <!-- TENTATIVA DE MENU HORIZONTAL -->
-  
-    <nav class="navbar navbar-expand-lg navbar-light ">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="segunda.php">Segunda</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="terça.php">Terça</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="quarta.php">Quarta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="quinta.php">Quinta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sexta.php">Sexta</a>
-          </li>
-          <li class="nav-item">
-        </ul>
-      </div>
-    </nav>
+
+    <style>
+        #botao {
+            background-color: rgba(0, 131, 116, 0.8);
+            color: white;
+            border: 2px solid rgba(0, 131, 116, 0.8);
+        }
+
+        #botao:hover {
+            background-color: #99cdc7;
+            color: white;
+            border: 2px solid #99cdc7;
+        }
+
+        #botao:active {
+            background-color: #014d44;
+            border: 2px solid #014d44;
+        }
+
+        .link {
+            background-color: rgba(0, 131, 116, 0.8);
+            color: white;
+            border: 2px solid rgba(0, 131, 116, 0.8);
+        }
+
+        .link:hover {
+            background-color: #99cdc7;
+            color: white;
+            border: 2px solid #99cdc7;
+        }
+
+        .link:active {
+            background-color: #014d44;
+            border: 2px solid #014d44;
+        }
+    </style>
+
+<div class="container mt-5">
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Dias da Semana</h5>
+                <p class="card-text">
+                    <a href="segunda.php" class="btn btn-primary link" id="botao">Segunda</a>
+                    <a href="terca.php" class="btn btn-primary link" id="botao">Terça</a>
+                    <a href="quarta.php" class="btn btn-primary link" id="botao">Quarta</a>
+                    <a href="quinta.php" class="btn btn-primary link" id="botao">Quinta</a>
+                    <a href="sexta.php" class="btn btn-primary link" id="botao">Sexta</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
     
-    01
+    
     <script>
         function toggleTable() {
             var table = document.getElementById("myTable");
@@ -119,19 +152,28 @@ table.style.display = "none";
         }
         echo "</table>";
     }
+    $horario = "0";
 
-
-    
     ?>
     
 </body>
 </html>
+<?php
+        $consultaManha = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='Segunda-Feira' AND  periodo ='Manha'");
+        $consultaManha->execute();
 
+        $consultaTarde = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='Segunda-Feira' AND  periodo ='Tarde'");
+        $consultaTarde->execute();
 
-    
+        $consultaNoite = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='Segunda-Feira' AND  periodo ='Noite'");
+        $consultaNoite->execute();
+
+        
+?>
+    <br><br><br>
         <div class="card">
           <div class="card-header">
-           <center><h2>Horários de funcionamento</h2></center>
+           <center><h2>Horários de Segunda-Feira</h2></center>
           </div>
           <div class="card-body">
             <div class="row">
@@ -143,7 +185,13 @@ table.style.display = "none";
                </div>
                
               <div class="card-body">
-                <center><p class="card-text"> <br><br> <?php echo $horarioManha; ?>  <br></p></center>
+                <?php
+        while ($rowManha = $consultaManha->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+            <center><p class="card-text"> <br><br> <?php echo $rowManha["horario"] ?>  -- <?php echo $rowManha["termino"] ?>  <br></p></center>
+      <?php
+        }
+                ?>
               </div>
             </div>
   
@@ -152,7 +200,13 @@ table.style.display = "none";
                 <center><h4>Tarde</h4></center>
                </div>
               <div class="card-body">
-                <center><p class="card-text"><br>  <?php echo $horarioTarde; ?>  <br>  <br></p></center>
+              <?php
+        while ($rowTarde = $consultaTarde->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+            <center><p class="card-text"> <br><br> <?php echo $rowTarde["horario"] ?>  -- <?php echo $rowTarde["termino"] ?>  <br></p></center>
+      <?php
+        }
+                ?>
               </div>
             </div>
   
@@ -161,7 +215,13 @@ table.style.display = "none";
                 <center><h4>Noite</h4></center>
                </div>
               <div class="card-body">
-                <center><p class="card-text"><br>  <?php echo $horarioNoite; ?>  <br>  <br></p></center>
+              <?php
+        while ($rowNoite = $consultaNoite->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+            <center><p class="card-text"> <br><br> <?php echo $rowNoite["horario"] ?> -- <?php echo $rowNoite["termino"] ?> <br></p></center>
+      <?php
+        }
+                ?>
               </div>
             </div>
   
@@ -188,6 +248,7 @@ table.style.display = "none";
  
   <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<br><br><br>
 <?php
       require_once "include/footer.php";
       require_once "include/scrollTop.php";

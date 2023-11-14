@@ -52,7 +52,7 @@ try{
     <form name="form" method="post" action="alterarHorario.php" enctype="multipart/form-data">
         <div class="row">
 
-        <div class="col-sm-12  mt-3">
+            <div class="col-sm-12  mt-3">
                 <label for="id" class="form-label"> ID: </label><br>
                 <input type="text" name="id" class="form-control"
                     value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
@@ -61,11 +61,16 @@ try{
             <div class="col-sm-12 mt-3">
                 <label for="dia" class="form-label">Dia</label>
                 <select name="dia" class="form-control" id="dia">
-                    <option value="Segunda-feira" <?php echo ($row['dia'] === "Segunda-feira") ? 'selected' : ''; ?>>Segunda-feira</option>
-                    <option value="Terça-feira" <?php echo ($row['dia'] === "Terça-feira") ? 'selected' : ''; ?>>Terça-feira</option>
-                    <option value="Quarta-feira" <?php echo ($row['dia'] === "Quarta-feira") ? 'selected' : ''; ?>>Quarta-feira</option>
-                    <option value="Quinta-feira" <?php echo ($row['dia'] === "Quinta-feira") ? 'selected' : ''; ?>>Quinta-feira</option>
-                    <option value="Sexta-feira" <?php echo ($row['dia'] === "Sexta-feira") ? 'selected' : ''; ?>>Sexta-feira</option>
+                    <option value="Segunda-feira" <?php echo ($row['dia'] === "Segunda-feira") ? 'selected' : ''; ?>>
+                        Segunda-feira</option>
+                    <option value="Terça-feira" <?php echo ($row['dia'] === "Terça-feira") ? 'selected' : ''; ?>>
+                        Terça-feira</option>
+                    <option value="Quarta-feira" <?php echo ($row['dia'] === "Quarta-feira") ? 'selected' : ''; ?>>
+                        Quarta-feira</option>
+                    <option value="Quinta-feira" <?php echo ($row['dia'] === "Quinta-feira") ? 'selected' : ''; ?>>
+                        Quinta-feira</option>
+                    <option value="Sexta-feira" <?php echo ($row['dia'] === "Sexta-feira") ? 'selected' : ''; ?>>
+                        Sexta-feira</option>
                 </select>
             </div>
 
@@ -82,9 +87,15 @@ try{
             </div>
 
             <div class="col-sm-12  mt-3">
-                <label for="horario" class="form-label">Horário</label>
+                <label for="horario" class="form-label">Horário de inicio</label>
                 <input type="text" name="horario" class="form-control"
                     value="<?php if(isset($row['horario'])) {echo $row['horario'];} ?>"><br>
+            </div>
+
+            <div class="col-sm-12 mt-3">
+                <label for="termino" class="form-label">Horário de termino</label>
+                <input type="termino" name="termino" class="form-control"
+                value="<?php if(isset($row['termino'])) {echo $row['termino'];} ?>"><br>
             </div>
 
             <div class="col-12  mt-3">
@@ -102,14 +113,16 @@ try{
             $dia = $_POST["dia"];
             $periodo = $_POST["periodo"];
             $horario = $_POST["horario"];
+            $termino = $_POST["termino"];
 
      try{
-            $sql = $conn->prepare("UPDATE tbl_horario SET dia = :dia, periodo = :periodo, horario = :horario WHERE id = :id");
+            $sql = $conn->prepare("UPDATE tbl_horario SET dia = :dia, periodo = :periodo, horario = :horario, termino = :termino WHERE id = :id");
                     
             $sql->bindValue(':id', $id); // Certifique-se de vincular o ID como inteiro, se for o caso.
             $sql->bindValue(':dia', $dia);
             $sql->bindValue(':periodo', $periodo);
             $sql->bindValue(':horario', $horario);
+            $sql->bindValue(':termino', $termino);
             
             $sql->execute();
         

@@ -125,7 +125,7 @@
                             <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
                         </td>
                         <td>
-                            <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                            <a href="alterarAluno.php?al=<?php echo $row["id"]; ?>">Alterar</a>
                         </td>
                         <td>
                             <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>

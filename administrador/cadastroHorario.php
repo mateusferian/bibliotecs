@@ -78,8 +78,13 @@ require_once "include/header.php";
   </div>
 
   <div class="col-sm-12 mt-3">
-    <label for="horario" class="form-label">Horário</label>
+    <label for="horario" class="form-label">Horário de inicio</label>
     <input type="horario" name="horario" class="form-control">
+  </div>
+
+  <div class="col-sm-12 mt-3">
+    <label for="termino" class="form-label">Horário de termino</label>
+    <input type="termino" name="termino" class="form-control">
   </div>
 
   <div class="col-12  mt-3">
@@ -97,15 +102,17 @@ try {
       $dia = $_REQUEST["dia"];
       $periodo = $_REQUEST["periodo"];
       $horario = $_REQUEST["horario"];
+      $termino = $_REQUEST["termino"];
       
   
-        $sql = $conn->prepare("INSERT INTO tbl_horario (id, dia, periodo, horario)
-                            VALUES (:id, :dia, :periodo	, :horario) ");
+        $sql = $conn->prepare("INSERT INTO tbl_horario (id, dia, periodo, horario, termino)
+                            VALUES (:id, :dia, :periodo	, :horario, :termino) ");
         
         $sql->bindValue(':id', null);
         $sql->bindValue(':dia', $dia);
         $sql->bindValue(':periodo', $periodo);
         $sql->bindValue(':horario',$horario);
+        $sql->bindValue(':termino',$termino);
         
         $sql->execute();
         echo "<script>

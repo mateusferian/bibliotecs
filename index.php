@@ -56,7 +56,7 @@
                             <a href="login/esqueciSenha.php" class="form-links">Esqueci minha senha</a>
                         </div>
                         <div class="align-vertical">
-                            <a href="cadastroUsuario.php" class="form-links">Não tem uma conta? cadastre-se</a>
+                            <a href="login/cadastroAluno.php" class="form-links">Não tem uma conta? cadastre-se</a>
                         </div>
                     </div>
 

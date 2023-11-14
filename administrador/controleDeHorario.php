@@ -53,7 +53,8 @@
                 <th scope="col">ID</th>
                 <th scope="col">DIA</th>
                 <th scope="col">PERIODO</th>
-                <th scope="col">HORARIO</th>
+                <th scope="col">HORARIO DE INICIO</th>
+                <th scope="col">HORARIO DE TERMINO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
             </tr>
         </thead>
@@ -87,8 +88,13 @@
                     echo '</td>';
 
                     echo '<td class="table-description" data-description="' . $row["horario"] . '" onclick="openDescriptionModal(this)">';
-                    $descricao = $row["horario"];
-                    limitandoCampos($descricao);
+                    $horario = $row["horario"];
+                    limitandoCampos($horario);
+                    echo '</td>';
+
+                    echo '<td class="table-description" data-description="' . $row["termino"] . '" onclick="openDescriptionModal(this)">';
+                    $termino = $row["termino"];
+                    limitandoCampos($termino);
                     echo '</td>';
 
                     echo '<td>';
