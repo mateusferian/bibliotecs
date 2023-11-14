@@ -14,6 +14,7 @@
                     <li><a href="home.php">Menu</a></li>
                     <li><a href="home.phpblog.html">Horarios</a></li>
                     <li><a href="doacoes.php">Doação</a></li>
+                    <li><a href="conta.php"> conta</a></li>
                 </ul>
         </li>
 
