@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/11/2023 às 20:37
+-- Tempo de geração: 13/11/2023 às 23:45
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -72,7 +72,9 @@ CREATE TABLE `tbl_aluno` (
 --
 
 INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`, `condicao`) VALUES
-(21, 'mateus', 'mateusferian10@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', '', '', '2023-09-20', 'NULL', 1, 'desbloqueado');
+(21, 'mateus', 'mateusferian10@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 1, 'desbloqueado'),
+(22, 'carlos', 'carlos@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 1, 'bloqueado'),
+(23, 'kauan', 'kauan@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 0, 'desbloqueado');
 
 -- --------------------------------------------------------
 
@@ -154,7 +156,12 @@ CREATE TABLE `tbl_horario` (
 --
 
 INSERT INTO `tbl_horario` (`id`, `dia`, `periodo`, `horario`) VALUES
-(23, 'Quinta-feira', 'Tarde', 'ALTEREIII');
+(24, 'Quinta-feira', 'Tarde', '13:00'),
+(25, 'Sexta-feira', 'Tarde', '15:00'),
+(26, 'Segunda-feira', 'Tarde', '15:00'),
+(27, 'Terça-feira', 'Tarde', '15:00'),
+(28, 'Quarta-feira', 'Tarde', '13:00'),
+(29, 'Quinta-feira', 'Tarde', '13:00');
 
 -- --------------------------------------------------------
 
@@ -190,8 +197,10 @@ INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, 
 (115, '97885390-00791', 'Auto-Ajuda e Religião', 'O Poder do Agora', 'Eckhart Tolle', 1997, '../img/img_13-11-2023_08-07-47_1750919022.png', '0', 'N', '                            Em \'O Poder do Agora\', Eckhart Tolle guia os leitores a transcender o tempo, viver no presente e encontrar paz interior. Uma jornada espiritual que oferece ensinamentos transformadores para uma vida plena e consciente.        ', 'Sextante', '1', 'naoRetirado'),
 (116, '97885325-00011', 'Contos', 'As Crônicas de Nárnia', 'C.S. Lewis', 1950, '../img/img_13-11-2023_08-23-37_4246250373.png', '0', 'S', 'Em \'As Crônicas de Nárnia\', C.S. Lewis transporta os leitores para um mundo mágico e encantador, onde crianças comuns se tornam heróis em aventuras extraordinárias. Uma obra repleta de magia, amizade e descobertas que cativa leitores de todas as idades', 'Martins Fontes', '1', 'naoRetirado'),
 (117, '97885254-17720', 'Diversos da Literatura Brasileira', 'O Cortiço', 'Aluísio Azevedo', 1890, '../img/img_13-11-2023_11-10-49_6672399449.png', '../pdf/img/arquivo_13-11-2023_11-10-49_8455144604.pdf', 'N', '        Em \'O Cortiço\', Aluísio Azevedo mergulha nos dramas da vida em um cortiço no Rio de Janeiro do século XIX. A obra escancara a realidade social da época, explorando questões como as relações humanas, o preconceito, e a luta pela sobrevivência. Um retrato impactante da sociedade brasileira no contexto urbano, que permanece relevante e provocativo    ', 'Martin Claret', '1', 'naoRetirado'),
-(118, '9788501049940', 'Diversos da Literatura Estrangeira', 'Cem Anos de Solidão', 'Gabriel García Márquez', 1967, '../img/img_13-11-2023_11-21-05_3478345804.png', '../pdf/img/arquivo_13-11-2023_11-21-05_5508084917.pdf', 'N', '                Em \"Cem Anos de Solidão\", Gabriel García Márquez tece uma saga mágica que atravessa gerações da família Buendía. Através de realismo mágico, a obra explora amor, poder, política e mistério em Macondo, uma cidade fictícia que se torna um microcosmo da condição humana. Uma narrativa fascinante e única que transcende fronteiras literárias.        ', 'Record', '1', 'naoRetirado'),
-(119, '9788579801114', 'Séries da Literatura Estrangeira', 'Percy Jackson e os Olimpianos - O Ladrão de Raios', 'Rick Riordan', 2005, '../img/img_13-11-2023_12-08-52_6207410197.png', '0', 'S', '        No primeiro livro da série, \'O Ladrão de Raios\', Rick Riordan apresenta Percy Jackson, um adolescente que descobre ser um semideus e é lançado em um mundo de deuses gregos, monstros e mitologia. Uma aventura eletrizante que combina humor, ação e elementos da mitologia antiga.    ', 'Intrínseca', '1', 'naoRetirado');
+(118, '9788501049940', 'Séries da Literatura Estrangeira', 'Cem Anos de Solidão', 'Gabriel García Márquez', 1967, '../img/img_13-11-2023_11-21-05_3478345804.png', '../pdf/arquivo_13-11-2023_11-21-05_5508084917.pdf', 'N', '                        Em \"Cem Anos de Solidão\", Gabriel García Márquez tece uma saga mágica que atravessa gerações da família Buendía. Através de realismo mágico, a obra explora amor, poder, política e mistério em Macondo, uma cidade fictícia que se torna um microcosmo da condição humana. Uma narrativa fascinante e única que transcende fronteiras literárias.            ', 'Record', '0', 'retirado'),
+(119, '9788579801114', 'Séries da Literatura Estrangeira', 'Percy Jackson  - O Ladrão de Raios', 'Rick Riordan', 2005, '../img/img_13-11-2023_12-08-52_6207410197.png', '0', 'S', '        No primeiro livro da série, \'O Ladrão de Raios\', Rick Riordan apresenta Percy Jackson, um adolescente que descobre ser um semideus e é lançado em um mundo de deuses gregos, monstros e mitologia. Uma aventura eletrizante que combina humor, ação e elementos da mitologia antiga.    ', 'Intrínseca', '1', 'retirado'),
+(120, '9788535902735', 'Contos', '1984', 'George Orwell', 1949, '../img/img_13-11-2023_22-10-12_3504734284.png', '0', 'S', 'Em um regime totalitário, Winston luta contra a opressão e a manipulação do Estado, enfrentando um mundo sombrio de vigilância e resistência.', 'Companhia das Letras', '1', 'naoRetirado'),
+(121, '9788535902742', 'Séries da Literatura Estrangeira', 'O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 1943, '../img/img_13-11-2023_22-14-29_7282843099.png', '../pdf/arquivo_13-11-2023_11-21-05_550343484917.pdf', 'N', '        Aventuras do Pequeno Príncipe explorando planetas e descobrindo a essência da vida, revelando lições atemporais sobre amor e amizade.    ', 'Agir', '1', 'naoRetirado');
 
 -- --------------------------------------------------------
 
@@ -206,6 +215,13 @@ CREATE TABLE `tbl_reservado` (
   `dataDeReserva` date NOT NULL,
   `dataDeEntrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tbl_reservado`
+--
+
+INSERT INTO `tbl_reservado` (`id`, `idAluno`, `idLivro`, `dataDeReserva`, `dataDeEntrega`) VALUES
+(36, 21, 119, '2023-11-13', '2023-11-13');
 
 --
 -- Índices para tabelas despejadas
@@ -275,7 +291,7 @@ ALTER TABLE `tbl_administrador`
 -- AUTO_INCREMENT de tabela `tbl_aluno`
 --
 ALTER TABLE `tbl_aluno`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_comentario`
@@ -299,19 +315,19 @@ ALTER TABLE `tbl_eventos`
 -- AUTO_INCREMENT de tabela `tbl_horario`
 --
 ALTER TABLE `tbl_horario`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_livro`
 --
 ALTER TABLE `tbl_livro`
-  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_reservado`
 --
 ALTER TABLE `tbl_reservado`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restrições para tabelas despejadas
