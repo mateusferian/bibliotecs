@@ -155,7 +155,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
         <img src="<?php echo $livros[$i]["arquivo"]?>" class="card-img-top img_tamanho"
             alt="<?php echo $livros[$i]["nome"]?>">
             <h5 class="card-title"><br><?php echo ucwords(strtolower($livros[$i]["nome"])); ?></h5>
-            
+            <br>
         <p><a href="detalhes.php?id_liv=<?php echo $livros[$i]['id_liv']?>" class="btn" id="botao">Ver</a></p>
     </div>
     <?php

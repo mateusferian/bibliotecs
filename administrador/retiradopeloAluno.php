@@ -1,5 +1,4 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
@@ -65,12 +64,14 @@
 </head>
 <body>
 <?php
+    $nomeDaPagina ="Livros reservados pelo aluno";
+
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
     <div class="container">
-    <br><br><br><br>
-        <br><br><br><br>
+    <br>
 
 <?php
 $idAluno = $_GET["id"];
@@ -107,7 +108,6 @@ $aluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
             <?php
         }else{
             ?>
-            <p class="fs-1 text-center">Livros Reservados pelo aluno <?php echo $aluno["nome"]; ?></p>
             <?php
             while ($rowReserva = $consultaReserva->fetch(PDO::FETCH_ASSOC)) {
                 $idLivro = $rowReserva["idLivro"];

@@ -53,9 +53,12 @@
 </head>
 <body>
 <?php
-    require_once "../restrito.php";
-    require_once "include/navbar.php";
-    require_once "include/hero.php";
+
+$nomeDaPagina ="Detalhes dos livros";
+require_once "../restrito.php";
+require_once "include/navbar.php";
+require_once "include/nomePagina.php";
+
 ?>
     <div class="container">
     <br><br><br><br>

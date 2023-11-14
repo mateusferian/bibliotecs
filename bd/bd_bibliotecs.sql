@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 13-Nov-2023 às 19:20
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.2.0
+-- Host: localhost
+-- Tempo de geração: 13/11/2023 às 20:37
+-- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
+-- Versão do PHP: 8.1.2-1ubuntu2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,23 +27,21 @@ USE `bd_bibliotecs`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_administrador`
+-- Estrutura para tabela `tbl_administrador`
 --
 
-DROP TABLE IF EXISTS `tbl_administrador`;
-CREATE TABLE IF NOT EXISTS `tbl_administrador` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_administrador` (
+  `id` int NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `senha` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `dataCadastro` date DEFAULT NULL,
   `recuperar_senha` varchar(300) NOT NULL,
-  `situacao` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `situacao` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_administrador`
+-- Despejando dados para a tabela `tbl_administrador`
 --
 
 INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
@@ -53,26 +51,24 @@ INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_aluno`
+-- Estrutura para tabela `tbl_aluno`
 --
 
-DROP TABLE IF EXISTS `tbl_aluno`;
-CREATE TABLE IF NOT EXISTS `tbl_aluno` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_aluno` (
+  `id` int NOT NULL,
   `nome` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `senha` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `senha` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `periodo` varchar(30) NOT NULL,
   `sala` varchar(30) NOT NULL,
   `dataCadastro` date DEFAULT NULL,
   `recuperar_senha` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `situacao` int NOT NULL,
-  `condicao` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `condicao` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_aluno`
+-- Despejando dados para a tabela `tbl_aluno`
 --
 
 INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`, `condicao`) VALUES
@@ -81,22 +77,20 @@ INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dat
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_comentario`
+-- Estrutura para tabela `tbl_comentario`
 --
 
-DROP TABLE IF EXISTS `tbl_comentario`;
-CREATE TABLE IF NOT EXISTS `tbl_comentario` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_comentario` (
+  `id` int NOT NULL,
   `nome` varchar(60) NOT NULL,
   `comentario` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cargo` varchar(40) NOT NULL,
   `estrela` int NOT NULL,
-  `avatar` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `avatar` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_comentario`
+-- Despejando dados para a tabela `tbl_comentario`
 --
 
 INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`, `avatar`) VALUES
@@ -109,20 +103,18 @@ INSERT INTO `tbl_comentario` (`id`, `nome`, `comentario`, `cargo`, `estrela`, `a
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_evento`
+-- Estrutura para tabela `tbl_evento`
 --
 
-DROP TABLE IF EXISTS `tbl_evento`;
-CREATE TABLE IF NOT EXISTS `tbl_evento` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_evento` (
+  `id` int NOT NULL,
   `nome` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `descricao` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `dataEvento` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `dataEvento` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_evento`
+-- Despejando dados para a tabela `tbl_evento`
 --
 
 INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `dataEvento`) VALUES
@@ -135,34 +127,30 @@ INSERT INTO `tbl_evento` (`id`, `nome`, `descricao`, `dataEvento`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_eventos`
+-- Estrutura para tabela `tbl_eventos`
 --
 
-DROP TABLE IF EXISTS `tbl_eventos`;
-CREATE TABLE IF NOT EXISTS `tbl_eventos` (
-  `id_eventos` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_eventos` (
+  `id_eventos` int NOT NULL,
   `nome_eventos` varchar(60) NOT NULL,
-  `inf_eventos` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_eventos`)
+  `inf_eventos` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_horario`
+-- Estrutura para tabela `tbl_horario`
 --
 
-DROP TABLE IF EXISTS `tbl_horario`;
-CREATE TABLE IF NOT EXISTS `tbl_horario` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_horario` (
+  `id` int NOT NULL,
   `dia` varchar(20) NOT NULL,
   `periodo` varchar(15) NOT NULL,
-  `horario` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `horario` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_horario`
+-- Despejando dados para a tabela `tbl_horario`
 --
 
 INSERT INTO `tbl_horario` (`id`, `dia`, `periodo`, `horario`) VALUES
@@ -171,12 +159,11 @@ INSERT INTO `tbl_horario` (`id`, `dia`, `periodo`, `horario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_livro`
+-- Estrutura para tabela `tbl_livro`
 --
 
-DROP TABLE IF EXISTS `tbl_livro`;
-CREATE TABLE IF NOT EXISTS `tbl_livro` (
-  `id_liv` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_livro` (
+  `id_liv` int NOT NULL,
   `isbn` varchar(100) NOT NULL,
   `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome` varchar(500) NOT NULL,
@@ -188,12 +175,11 @@ CREATE TABLE IF NOT EXISTS `tbl_livro` (
   `descricao` varchar(500) NOT NULL,
   `editora` varchar(50) NOT NULL,
   `situacao` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `disponibilidade` varchar(40) NOT NULL,
-  PRIMARY KEY (`id_liv`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `disponibilidade` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Extraindo dados da tabela `tbl_livro`
+-- Despejando dados para a tabela `tbl_livro`
 --
 
 INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, `arquivo`, `arquivo2`, `destaque`, `descricao`, `editora`, `situacao`, `disponibilidade`) VALUES
@@ -210,27 +196,129 @@ INSERT INTO `tbl_livro` (`id_liv`, `isbn`, `categoria`, `nome`, `autor`, `ano`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_reservado`
+-- Estrutura para tabela `tbl_reservado`
 --
 
-DROP TABLE IF EXISTS `tbl_reservado`;
-CREATE TABLE IF NOT EXISTS `tbl_reservado` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_reservado` (
+  `id` int NOT NULL,
   `idAluno` int NOT NULL,
   `idLivro` int NOT NULL,
   `dataDeReserva` date NOT NULL,
-  `dataDeEntrega` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `PK01` (`idAluno`),
-  KEY `PK02` (`idLivro`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `dataDeEntrega` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Restrições para despejos de tabelas
+-- Índices para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `tbl_reservado`
+-- Índices de tabela `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_aluno`
+--
+ALTER TABLE `tbl_aluno`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_comentario`
+--
+ALTER TABLE `tbl_comentario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_evento`
+--
+ALTER TABLE `tbl_evento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_eventos`
+--
+ALTER TABLE `tbl_eventos`
+  ADD PRIMARY KEY (`id_eventos`);
+
+--
+-- Índices de tabela `tbl_horario`
+--
+ALTER TABLE `tbl_horario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_livro`
+--
+ALTER TABLE `tbl_livro`
+  ADD PRIMARY KEY (`id_liv`);
+
+--
+-- Índices de tabela `tbl_reservado`
+--
+ALTER TABLE `tbl_reservado`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `PK01` (`idAluno`),
+  ADD KEY `PK02` (`idLivro`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `tbl_administrador`
+--
+ALTER TABLE `tbl_administrador`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_aluno`
+--
+ALTER TABLE `tbl_aluno`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_comentario`
+--
+ALTER TABLE `tbl_comentario`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_evento`
+--
+ALTER TABLE `tbl_evento`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_eventos`
+--
+ALTER TABLE `tbl_eventos`
+  MODIFY `id_eventos` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_horario`
+--
+ALTER TABLE `tbl_horario`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_livro`
+--
+ALTER TABLE `tbl_livro`
+  MODIFY `id_liv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_reservado`
+--
+ALTER TABLE `tbl_reservado`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `tbl_reservado`
 --
 ALTER TABLE `tbl_reservado`
   ADD CONSTRAINT `PK01` FOREIGN KEY (`idAluno`) REFERENCES `tbl_aluno` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

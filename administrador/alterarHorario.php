@@ -28,9 +28,10 @@ require_once "include/header.php";
 <body>
 
     <?php
+    $nomeDaPagina ="Alterar Horario";
     require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 try{
    if(isset($_REQUEST["al"])) {
     
@@ -47,8 +48,6 @@ try{
   	echo $erro->getMessage();
   }
 ?>
-
-    <legend>Alterar dados de horarios</legend>
 
     <form name="form" method="post" action="alterarHorario.php" enctype="multipart/form-data">
         <div class="row">

@@ -5,25 +5,11 @@
 
 <body>
 <?php
+    $nomeDaPagina ="Doações";
     require_once "../restrito.php";
     require_once "include/navbar.php";
+    require_once "include/nomePagina.php";
     ?>
-    <main id="main">
-        <div class="breadcrumbs">
-            <div class="page-header d-flex align-items-center" style="background-image: url('');">
-                <div class="container position-relative">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-6 text-center">
-                            <h2>Doações</h2>
-                            <p>Nossa biblioteca presencial está abertas a doações!</br>
-                                Faça uma ação e ajude no conhecimento.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
 
         <div class="container mt-4">
         <div class="card">

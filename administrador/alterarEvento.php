@@ -5,7 +5,7 @@
 ?>
 
     <link rel="stylesheet" href="css/formulario.css">
-    <link rel="stylesheet" href="css/cadastroEvento.css">
+    <link rel="stylesheet" href="css/alterarDeEvento.css">
     <link rel="stylesheet" href="css/swalFire.css">
     <link rel="stylesheet" href="css/botao.css">
 

@@ -49,7 +49,6 @@ require_once "include/header.php";
     require_once "include/nomePagina.php";
 ?>
 
-<p class="fs-2 text-center mt-4">Cadastro de Horário</p>
 
 <script>
     AOS.init();

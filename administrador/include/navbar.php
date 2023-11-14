@@ -13,6 +13,7 @@
                     <ul>
                     <li><a href="controleDeAluno.php">controle de alunos</a></li>
                     <li><a href="controleDeLivro.php">controle de livros</a></li>
+                    <li><a href="controleDeLivroPDF.php">controle de livros em PDF</a></li>
                     <li><a href="controleComentario.php">controle de comentarios</a></li>
                     <li><a href="controleDeEvento.php">controle de evento</a></li>
                     <li><a href="controleDeHorario.php">controle de horario</a></li>

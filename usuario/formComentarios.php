@@ -65,7 +65,7 @@
     <div class="input-group-label">
         <label for="informacoes" class="form-label">Faça seu comentário</label>
         <textarea  class="form-control" id="informacoes" name="comentario" rows="5" cols="42"
-        placeholder="Escreva seu cometário sobre o site."
+
         style="max-height: 50px; overflow-y: auto; resize: vertical;"
         required></textarea>
 </div>

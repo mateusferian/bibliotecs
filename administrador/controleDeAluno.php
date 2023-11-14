@@ -106,39 +106,32 @@
 
                 while($row = $consulta->fetch(PDO::FETCH_ASSOC)){
                   ?>
-                <tr>
-                    <td><?php echo $row["id"] ?> </td>
-                    <td><?php echo $row["nome"] ?></td>
-                    <td><?php echo $row["email"] ?></td>
-                    <td style="color: <?php echo $row["condicao"] === 'bloqueado' ? 'red' : 'green'; ?>">
-                    <?php echo $row["condicao"]; ?>
-                    </td>
-                    <td><?php echo $row["sala"] ?></td>
-                    <td>
-                    <td>
-                    <?php
-                    if ($row["situacao"] == 1) {
-                    ?>
-                    <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
-                    <?php
-                    } else {
-                    ?>
-                    <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado">
-                    </center>
-                    <?php
-                    }
-                    ?>
-                    </td>
-                    <td>
-                        <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
-                    </td>
-                    <td>
-                        <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
-                    </td>
-                    <td>
-                        <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["nome"]; ?></td>
+                        <td><?php echo $row["email"]; ?></td>
+                        <td style="color: <?php echo $row["condicao"] === 'bloqueado' ? 'red' : 'green'; ?>">
+                            <?php echo $row["condicao"]; ?>
+                        </td>
+                        <td><?php echo $row["sala"]; ?></td>
+                        <td>
+                            <?php if ($row["situacao"] == 1): ?>
+                                <center><img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
+                            <?php else: ?>
+                                <center><img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Desativado"></center>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
+                        </td>
+                        <td>
+                            <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                        </td>
+                        <td>
+                            <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
+                        </td>
+                    </tr>
+
                 <?php
      }
      }catch(PDOException $erro){

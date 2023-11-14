@@ -38,9 +38,11 @@ require_once "include/header.php";
 <body>
 
     <?php
-        require_once "../restrito.php";
+    $nomeDaPagina ="Alterar comentario";
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
+
 try{
    if(isset($_REQUEST["al"])) {
     
@@ -57,9 +59,6 @@ try{
   	echo $erro->getMessage();
   }
 ?>
-
-
-    <legend>Alterar Dados de De Livro</legend>
 
     <form name="form" method="post" action="alterarComentario.php" enctype="multipart/form-data">
         <div class="row">

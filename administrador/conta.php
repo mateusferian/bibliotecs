@@ -28,23 +28,23 @@
                     <h1 class="text-center">Conta</h1>
                     <br>
 
-                    <div class="container">
+                    <!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="testimonial-wrap d-flex justify-content-center align-items-center">
                 <div class="testimonial-item border rounded-circle">
                     <div class="testimonial-img-wrap overflow-hidden">
-                        <?php
-                            // Supondo que você tenha o caminho da imagem em uma variável de sessão chamada 'imagem_professor'
-                            $caminho_imagem = $_SESSION['arquivo'] ?? '../assets/img/imagensProfessores/user.png';
-                        ?>
-                        <img src="<?php echo $caminho_imagem; ?>" class="testimonial-img img-fluid rounded-circle" alt="">
-                    </div>
+
+                            
+                             $caminho_imagem = $_SESSION['arquivo'] ?? '../assets/img/imagensProfessores/user.png'; -->
+                        
+                        <!-- <img src="" class="testimonial-img img-fluid rounded-circle" alt=""> -->
+                 <!--   </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
                     <br>
 

@@ -111,8 +111,7 @@
           echo $erro->getMessage();
       }
     }
-    $conn;
-
+    $conn = null;
     require_once "include/footer.php";
     require_once "include/scrollTop.php";
 ?>

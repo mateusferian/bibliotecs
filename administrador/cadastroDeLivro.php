@@ -35,7 +35,6 @@ require_once "include/header.php";
     </script>
 
 <br>
-      <h1 class="text-center">Cadastro de Livros</h1>  
 
    <form name="form1" method="post" action="cadastroDeLivro.php" enctype="multipart/form-data">
    <div class="row">
