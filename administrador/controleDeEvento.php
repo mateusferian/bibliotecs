@@ -223,10 +223,10 @@
                                 window.location.href = 'controleDeEvento.php';
                             }, 4000);
                         </script>";
-                        exit;
+
                     }
                     
-                    exit;
+
                 }
                 require_once "include/footer.php";
                 require_once "include/scrollTop.php";

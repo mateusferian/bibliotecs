@@ -76,8 +76,8 @@
             <option value="3º qui">3º quimica</option>
             <option value="3º info">3º info</option>
             <option value="3º LCHS">3º LCHS</option>
-            <option value="3º en med">3º ensino médio</option>
-            <option value="segurança">Segurança do Trabalho</option>
+            <option value="3º ensino médio">3º ensino médio</option>
+            <option value="segurança do Trabalho">Segurança do Trabalho</option>
             <option value="info">Informática para Internet</option>
             <option value="adm">Administração</option>
             <option value="qui">Química</option>
@@ -144,9 +144,9 @@
       $totalRowAdministrador = $consultaAdministrador ->rowCount();
 
 
-      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email;");
-
+      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email AND id <> :id;;");
       $consultaAluno->bindValue(':email' , $email);
+      $consultaAluno->bindValue(':id' , $id);
       $consultaAluno->execute();
       $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
       $totalRowAluno = $consultaAluno ->rowCount();

@@ -68,6 +68,7 @@
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">condicao</th>
                     <th scope="col">SALA</th>
+                    <th scope="col">PERIODO</th>
                     <th scope="col">SITUAÇÃO</th>
                     <th colspan="3" scope="col">AÇÕES</th>
                 </tr>
@@ -114,6 +115,7 @@
                             <?php echo $row["condicao"]; ?>
                         </td>
                         <td><?php echo $row["sala"]; ?></td>
+                        <td><?php echo $row["periodo"]; ?></td>
                         <td>
                             <?php if ($row["situacao"] == 1): ?>
                                 <center><img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
@@ -240,10 +242,8 @@
                         window.location.href = 'controleDeAluno.php';
                     }, 4000); 
                 </script>";
-                exit;
             }
-            
-            exit;
+        
         }
         require_once "include/footer.php";
         require_once "include/scrollTop.php";

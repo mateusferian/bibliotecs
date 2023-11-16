@@ -187,13 +187,15 @@ try{
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    confirmButtonText: 'Ir para a página de controle de horario',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    
                     
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        window.location.href = 'controleComentario.php';
+                    } else {
                         window.location.href = 'controleComentario.php';
                     }
                     

@@ -143,8 +143,9 @@ try{
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = 'controleDeHorario.php';
-                    }
-                    
+                    }else{
+                        window.location.href = 'controleDeHorario.php';
+                    }                    
                 });
                 </script>";
 

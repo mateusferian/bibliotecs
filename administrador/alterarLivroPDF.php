@@ -305,7 +305,9 @@ try{
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = 'controleDeLivroPDF.php';
-                    }
+                    }else{
+                        window.location.href = 'controleDeLivroPDF.php';
+                    }   
                     
                 });
                 </script>";

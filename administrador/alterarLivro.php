@@ -283,7 +283,9 @@ try{
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = 'controleDeLivro.php';
-                    }
+                    }else{
+                        window.location.href = 'controleDeLivro.php';
+                    }   
                     
                 });
                 </script>";
