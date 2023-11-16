@@ -113,7 +113,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input type="submit" value="Cadastra-se" class="btn btn-primary" name="Cadastra-se">
+                            <input type="submit" value="Cadastra-se"  id="formulario" class="btn btn-primary" name="Cadastra-se">
                         </div>
                         <br><br>
                     </div>
@@ -123,7 +123,7 @@
     </div>
     <?php
 
-    require_once "conexao.php";
+    require_once "../conexao.php";
 
     if (isset($_REQUEST["Cadastra-se"])) {
 
@@ -136,6 +136,63 @@
       $situacao = 1;
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
+      $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
+
+      $consultaAdministrador->bindValue(':email' , $email);
+      $consultaAdministrador->execute();
+      $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
+      $totalRowAdministrador = $consultaAdministrador ->rowCount();
+
+
+      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email;");
+
+      $consultaAluno->bindValue(':email' , $email);
+      $consultaAluno->execute();
+      $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
+      $totalRowAluno = $consultaAluno ->rowCount();
+
+
+
+    if($totalRowAdministrador > 0 ){
+
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Email já utilizado',
+            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+            customClass: {
+                popup: 'swalFireCadastroAdministrador',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false  
+        });
+
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'cadastroAluno.php';
+        }, 3000);
+    </script>";
+
+    }else if($totalRowAluno > 0 ){
+
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Email já utilizado',
+            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+            customClass: {
+                popup: 'swalFireCadastroAdministrador',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false  
+        });
+
+        setTimeout(function() {
+            window.location.href = 'cadastroAluno.php';
+        }, 4000);
+    </script>";
+
+    }else{
       try{ 
         $sql = $conn->prepare("INSERT INTO tbl_aluno (id, nome, email, senha, periodo, sala, dataCadastro, recuperar_senha, situacao, condicao)
                             VALUES (:id, :nome, :email, :senha, :periodo, :sala, :dataCadastro, :recuperar_senha, :situacao, :condicao) ");
@@ -157,7 +214,7 @@
                 title: 'Cadastro com Sucesso!!',
                 html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
                 customClass: {
-                    popup: 'swalFireCadastroAluno',
+                    popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false, // Não mostrar o botão de cancelar
                 confirmButtonText: 'Ir para a página de login',
@@ -177,6 +234,7 @@
           echo $erro->getMessage();
       }
     }
+}
 
     $conn;
     ?>
