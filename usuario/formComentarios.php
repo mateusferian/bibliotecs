@@ -135,6 +135,23 @@ if (isset($_REQUEST["Cadastrar"])) {
 
     }else if($estrela == 5){
         $avatar="../assets/imagemAvatar/5.png";
+    }else{
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'É permitido no minimo uma estrela!',
+            customClass: {
+                popup: 'swalFireControleDeAlunoApagado',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false  
+        });
+
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'formComentarios.php';
+        }, 4000);
+         </script>";
     }
 
       try{ 
