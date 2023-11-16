@@ -138,7 +138,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
   $consulta->execute();
   $livros = $consulta->fetchAll(PDO::FETCH_ASSOC);
   $totalLivros = count($livros);
-  $livrosPorPagina = 3; // Número de livros por página
+  $livrosPorPagina = 9; // Número de livros por página
   $totalPaginas = ceil($totalLivros / $livrosPorPagina);
 
   // Obtém o número da página atual da URL
