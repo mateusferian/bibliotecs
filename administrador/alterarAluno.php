@@ -148,7 +148,6 @@
         $id = $_REQUEST["id"];
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
-      $senha = $_REQUEST["senha"];
       $periodo = $_REQUEST["periodo"];
       $sala = $_REQUEST["sala"];
       $dataCadastro = date("Y-m-d");
@@ -218,7 +217,6 @@
         $sql = $conn->prepare("UPDATE tbl_aluno 
         SET nome = :nome, 
             email = :email, 
-            senha = :senha, 
             periodo = :periodo, 
             sala = :sala, 
             dataCadastro = :dataCadastro, 
@@ -229,7 +227,6 @@
         $sql->bindValue(':id',  $id);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':sala', $sala);
-        $sql->bindValue(':senha', $hash);
         $sql->bindValue(':periodo', $periodo);
         $sql->bindValue(':email', $email);
         $sql->bindValue(':dataCadastro', $dataCadastro);
