@@ -156,6 +156,7 @@
 
     if (isset($_REQUEST["Cadastra-se"])) {
 
+        $id = $_REQUEST["id"];
       $nome = $_REQUEST["nome"];
       $email = $_REQUEST["email"];
       $senha = $_REQUEST["senha"];
@@ -235,7 +236,7 @@
             condicao = :condicao 
         WHERE id = :id");
         
-        $sql->bindValue(':id', null);   
+        $sql->bindValue(':id',  $id);   
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':sala', $sala);
         $sql->bindValue(':senha', $hash);
