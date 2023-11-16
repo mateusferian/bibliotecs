@@ -70,6 +70,7 @@
                     <th scope="col">SALA</th>
                     <th scope="col">PERIODO</th>
                     <th scope="col">SITUAÇÃO</th>
+                    <th scope="col">DATA DE CADASTRO</th>
                     <th colspan="3" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -123,6 +124,8 @@
                                 <center><img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Desativado"></center>
                             <?php endif; ?>
                         </td>
+                        <td><?php echo date('d/m/Y', strtotime($row['dataCadastro'])); ?></td>
+
                         <td>
                             <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
                         </td>

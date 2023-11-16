@@ -36,6 +36,7 @@
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">SITUAÇÃO</th>
+                    <th scope="col">DATA DE CADASTRO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -80,7 +81,7 @@
                 }
                 ?>
                     </td>
-
+                    <td><?php echo date('d/m/Y', strtotime($row['dataCadastro'])); ?></td>
                     <?php
                 $bytes = random_bytes(7);
                 $valorPermitido = bin2hex($bytes);

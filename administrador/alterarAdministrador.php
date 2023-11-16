@@ -204,7 +204,7 @@
                 popup: 'swalFireCadastroAdministrador',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de login',
+            confirmButtonText: 'Ir para a página de controle',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      

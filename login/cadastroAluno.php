@@ -136,17 +136,16 @@
       $situacao = 1;
       $hash = password_hash($senha, PASSWORD_DEFAULT);
 
-      $consultaAdministrador = $conn->prepare("SELECT * FROM  tbl_administrador WHERE email=:email;");
+      $consultaAdministrador = $conn->prepare("SELECT * FROM tbl_administrador WHERE email=:email;");
+      $consultaAdministrador->bindValue(':email', $email);
 
-      $consultaAdministrador->bindValue(':email' , $email);
       $consultaAdministrador->execute();
       $rowAdministrador = $consultaAdministrador->fetch(PDO::FETCH_ASSOC);
       $totalRowAdministrador = $consultaAdministrador ->rowCount();
 
 
-      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email AND id <> :id;;");
+      $consultaAluno = $conn->prepare("SELECT * FROM  tbl_aluno WHERE email=:email");
       $consultaAluno->bindValue(':email' , $email);
-      $consultaAluno->bindValue(':id' , $id);
       $consultaAluno->execute();
       $rowAluno = $consultaAluno->fetch(PDO::FETCH_ASSOC);
       $totalRowAluno = $consultaAluno ->rowCount();
@@ -209,21 +208,21 @@
         $sql->bindValue(':condicao', "desbloqueado");  
 
         $sql->execute();
+        $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro com Sucesso!!',
-                html: '<p>Para evitar riscos de senha incorreta, pedimos para selecionar \"Lembre de mim\" na página de login.</p>',
+                title: 'Cadastro de aluno realizado com Sucesso!!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
-                showCancelButton: false, // Não mostrar o botão de cancelar
+                showCancelButton: false,
                 confirmButtonText: 'Ir para a página de login',
-                timer: 5000, 
+                timer: 4000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '../index.php';
+                    window.location.href = '../index.p  hp';
                 }
             });
         </script>";
