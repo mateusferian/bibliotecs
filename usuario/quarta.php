@@ -159,13 +159,13 @@ table.style.display = "none";
 </body>
 </html>
 <?php
-        $consultaManha = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='segunda-Feira' AND  periodo ='Manha'");
+        $consultaManha = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='quarta-Feira' AND  periodo ='Manha'");
         $consultaManha->execute();
 
-        $consultaTarde = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='segunda-Feira' AND  periodo ='Tarde'");
+        $consultaTarde = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='quarta-Feira' AND  periodo ='Tarde'");
         $consultaTarde->execute();
 
-        $consultaNoite = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='segunda-Feira' AND  periodo ='Noite'");
+        $consultaNoite = $conn->prepare("SELECT * FROM tbl_horario WHERE dia ='quarta-Feira' AND  periodo ='Noite'");
         $consultaNoite->execute();
 
         
@@ -173,7 +173,7 @@ table.style.display = "none";
     <br><br><br>
         <div class="card">
           <div class="card-header">
-           <center><h2>Horários de Segunda-Feira</h2></center>
+           <center><h2>Horários de Quarta-Feira</h2></center>
           </div>
           <div class="card-body">
             <div class="row">
@@ -234,6 +234,7 @@ table.style.display = "none";
   </body>
   </html>
   
+
     </p>
    </div>
   </div>

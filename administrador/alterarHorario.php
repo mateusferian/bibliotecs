@@ -61,15 +61,15 @@ try{
             <div class="col-sm-12 mt-3">
                 <label for="dia" class="form-label">Dia</label>
                 <select name="dia" class="form-control" id="dia">
-                    <option value="Segunda-feira" <?php echo ($row['dia'] === "Segunda-feira") ? 'selected' : ''; ?>>
+                    <option value="segunda-feira" <?php echo ($row['dia'] === "Segunda-feira") ? 'selected' : ''; ?>>
                         Segunda-feira</option>
-                    <option value="Terça-feira" <?php echo ($row['dia'] === "Terça-feira") ? 'selected' : ''; ?>>
+                    <option value="terca-feira" <?php echo ($row['dia'] === "Terça-feira") ? 'selected' : ''; ?>>
                         Terça-feira</option>
-                    <option value="Quarta-feira" <?php echo ($row['dia'] === "Quarta-feira") ? 'selected' : ''; ?>>
+                    <option value="quarta-feira" <?php echo ($row['dia'] === "Quarta-feira") ? 'selected' : ''; ?>>
                         Quarta-feira</option>
-                    <option value="Quinta-feira" <?php echo ($row['dia'] === "Quinta-feira") ? 'selected' : ''; ?>>
+                    <option value="quinta-feira" <?php echo ($row['dia'] === "Quinta-feira") ? 'selected' : ''; ?>>
                         Quinta-feira</option>
-                    <option value="Sexta-feira" <?php echo ($row['dia'] === "Sexta-feira") ? 'selected' : ''; ?>>
+                    <option value="sexta-feira" <?php echo ($row['dia'] === "Sexta-feira") ? 'selected' : ''; ?>>
                         Sexta-feira</option>
                 </select>
             </div>
