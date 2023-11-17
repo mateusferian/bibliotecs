@@ -16,7 +16,6 @@
 <body>
     <?php
     $nomeDaPagina ="Controle de Livro";
-    $nomeDaPagina2 ="em PDF";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -35,6 +34,7 @@
         max-width: none;
     }
     </style>
+
 
 <div class="container mt-4">
     <div class="row">
@@ -57,55 +57,7 @@
     </div>
 </div>
 
-<?php
-        function limitandoCampos ($campo){
-            if (strlen($campo) > 100) {
-                echo substr($campo, 0, 100) . '...';
-            } else {
-                echo $campo;
-            }
-        }
-
-        function limitandoCampoDisponibilidade($campo, $campoDaTabela) {
-         if($campoDaTabela == "naoRetirado"){
-            if (strlen($campo) > 100) {
-                echo '<span style="color: green;">' . substr($campo, 0, 100) . '...</span>';
-            } else {
-                echo '<span style="color: green;">' . $campo . '</span>';
-            }
-        } else{
-            if (strlen($campo) > 100) {
-                echo '<span style="color: red;">' . substr($campo, 0, 100) . '...</span>';
-            } else {
-                echo '<span style="color: red;">' . $campo . '</span>';
-            }
-        }
-    }
-        
-        
-        ?>
-            </tbody>
-        </table>
-        <div class="modal modal-container" onclick="closeDescriptionModal()" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <!-- Use 'modal-lg' para modal grande -->
-                <div class="modal-content" onclick="event.stopPropagation()">
-                </div>
-            </div>
-        </div>
-
-        <?php
-
-        try {
-            if (isset($_REQUEST["ex"])) {
-                $id = $_REQUEST["ex"];
-                deletandoLivro($id,$conn );
-            }
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
-?>
-
+    
     <div class="container mt-5">
         <table class="table table-bordered text-center">
             <thead>
@@ -118,10 +70,9 @@
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
                     <th scope="col">DISPONIBILIDADE</th>
-                    <th scope="col">DESCRIÇÃO</th>
+                    <th scope="col">SINÓPSE</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
-                    <th scope="col">PDF</th>
                     <th scope="col">SITUAÇÃO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
@@ -135,30 +86,30 @@
         $consultaSQL = "SELECT * FROM tbl_livro";
 
         if ($filtro === "SemFiltro") {
-            $consultaSQL .= " WHERE arquivo2 <> '0'";
-
-        } elseif ($filtro === "Séries da Literatura Estrangeira") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria = 'Séries da Literatura Estrangeira')";
-
-        } elseif ($filtro === "Diversos da Literatura Estrangeira") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Diversos da Literatura Estrangeira')";
-
-        } elseif ($filtro === "Diversos da Literatura Brasileira") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Diversos da Literatura Brasileira')";
-
-        } elseif ($filtro === "Poemas e Poesias") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Poemas e Poesias')";
+            $consultaSQL .= " WHERE arquivo2 != '0'";
         
-
+        } elseif ($filtro === "Séries da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Séries da Literatura Estrangeira')";
+        
+        } elseif ($filtro === "Diversos da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Diversos da Literatura Estrangeira')";
+        
+        } elseif ($filtro === "Diversos da Literatura Brasileira") {
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Diversos da Literatura Brasileira')";
+        
+        } elseif ($filtro === "Poemas e Poesias") {
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Poemas e Poesias')";
+        
         } elseif ($filtro === "Auto-Ajuda e Religião") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Auto-Ajuda e Religião')";
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Auto-Ajuda e Religião')";
         
         } elseif ($filtro === "Clássico da Literatura Brasileira e Português") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Clássico da Literatura Brasileira e Português')";
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Clássico da Literatura Brasileira e Português')";
         
         } elseif ($filtro === "Contos") {
-            $consultaSQL .= " WHERE (arquivo2 <> '0') AND (categoria  = 'Contos')";
+            $consultaSQL .= " WHERE (arquivo2 != '0') AND (categoria = 'Contos')";
         }
+        
 
         $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
@@ -173,9 +124,10 @@
         $consultaSQL .= " LIMIT $indiceInicial, $alunosPorPagina;";
         $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
+        
+        
 
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            echo '<tr>';
             echo '<tr>';
             echo '<td>' . $row["id_liv"] . '</td>';
 
@@ -183,33 +135,47 @@
             $nome = $row["nome"];      
             limitandoCampos($nome);  
 
-            echo '<td>' . $row["isbn"] . '</td>';
-            echo '<td>' . $row["categoria"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["isbn"] . '" onclick="openDescriptionModal(this)">';
+            $isbn = $row["isbn"];      
+            limitandoCampos($isbn);  
+
+            echo '<td class="table-description" data-description="' . $row["categoria"] . '" onclick="openDescriptionModal(this)">';
+            $categoria = $row["categoria"];      
+            limitandoCampos($categoria);  
 
             echo '<td class="table-description" data-description="' . $row["autor"] . '" onclick="openDescriptionModal(this)">';
             $autor = $row["autor"];      
             limitandoCampos($autor);  
 
-            echo '<td>' . $row["ano"] . '</td>';
-            echo '<td>' . $row["destaque"] . '</td>';  
+            echo '<td class="table-description" data-description="' . $row["ano"] . '" onclick="openDescriptionModal(this)">';
+            $ano = $row["ano"];      
+            limitandoCampos($ano);
+
+            echo '<td class="table-description" data-description="' . $row["destaque"] . '" onclick="openDescriptionModal(this)">';
+            $destaque = $row["destaque"];      
+            limitandoCampos($destaque);
+
             if ($row["disponibilidade"] == "naoRetirado") {
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Não Retirado";      
+                $disponibilidade = "Não Retirado"; 
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
             else{
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Retirado";      
+                $disponibilidade = "Retirado";     
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
-            $descricao = $row["descricao"];      
-            limitandoCampos($descricao);   
+            $descricao = $row["descricao"];      ; // Limita a exibição a 200 caracteres
+            limitandoCampos($descricao);      // Usa o limite padrão de 150 caracteres
+              
 
-            echo '<td>' . $row["editora"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["editora"] . '" onclick="openDescriptionModal(this)">';
+            $editora = $row["editora"];      
+            limitandoCampos($editora);  
+
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
-            echo '<td><a href="' . $row["arquivo2"] . '">Download</a></td>';
             echo '<td>';
             if ($row["situacao"] == 1) {
                 ?>
@@ -235,20 +201,51 @@
         } catch (PDOException $erro) {
           echo $erro->getMessage();
         }
+        function limitandoCampos ($campo){
+            if (strlen($campo) > 100) {
+                echo substr($campo, 0, 100) . '...';
+            } else {
+                echo $campo;
+            }
+        }
+
+        function limitandoCampoDisponibilidade($campo, $campoDaTabela) {
+         if($campoDaTabela == "naoRetirado"){
+            if (strlen($campo) > 100) {
+                echo '<span style="color: green;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: green;">' . $campo . '</span>';
+            }
+        } else{
+            if (strlen($campo) > 100) {
+                echo '<span style="color: red;">' . substr($campo, 0, 100) . '...</span>';
+            } else {
+                echo '<span style="color: red;">' . $campo . '</span>';
+            }
+        }
+    }
+        
         ?>
             </tbody>
         </table>
+        <div class="modal modal-container" onclick="closeDescriptionModal()" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <!-- Use 'modal-lg' para modal grande -->
+                <div class="modal-content" onclick="event.stopPropagation()">
+                </div>
+            </div>
+        </div>
 
         <?php
-      try{
+
+        try {
             if (isset($_REQUEST["ex"])) {
                 $id = $_REQUEST["ex"];
                 deletandoLivro($id,$conn );
-
             }
-      }catch(PDOException $erro){
-        echo $erro->getMessage();
-      }
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
        $conn;
        ?>
          <nav aria-label="Page navigation example">
@@ -278,6 +275,7 @@
             </ul>
         </nav>
     </div>
+
 
     <?php
     function deletandoLivro($id,$conn ){
@@ -326,7 +324,7 @@
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Livro em pdf apagado com sucesso',
+                                title: 'Livro apagado com sucesso',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },
@@ -339,7 +337,7 @@
                                 window.location.href = 'controleDeLivroPDF.php';
                             }, 4000);
                         </script>";
-           
+
                     }
                     
 
