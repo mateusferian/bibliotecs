@@ -318,7 +318,7 @@ try{
                     $tipoimg2 =  $_FILES["arquivo2"]["type"];
     
                     $erro2 =     $_FILES["arquivo2"]["error"];
-                    
+
                     $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
 
                     if (($ext2 != 'pdf')) {
@@ -335,7 +335,7 @@ try{
                     
                         // Redirecione automaticamente após um breve atraso
                         setTimeout(function() {
-                            window.location.href = 'cadastroDeLivro.php';
+                            window.location.href = 'controleDeLivroPDF.php';
                         }, 4000);
                         </script>";
                         exit;

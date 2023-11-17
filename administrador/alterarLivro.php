@@ -185,6 +185,51 @@ try{
                 $situacao = $_REQUEST["situacao"];
                 $disponibilidade = $_REQUEST["disponibilidade"];  
         
+                if (empty($nome) || empty($isbn)  || empty($autor) || empty($ano) ||  empty($descricao) || empty($editora)) {
+                    $mensagem = "Campos obrigatórios em branco: ";
+                    
+                    if (empty($nome)) {
+                        $mensagem .= "Nome ";
+                    }
+            
+                    if (empty($isbn)) {
+                      $mensagem .= "ISBN ";
+                    }
+
+            
+                    if (empty($autor)) {
+                        $mensagem .= "Autor ";
+                    }
+                    if (empty($ano)) {
+                        $mensagem .= "Ano ";
+                    }
+            
+                    if (empty($descricao)) {
+                        $mensagem .= "Sinópse ";
+                    }
+            
+                    if (empty($editora)) {
+                        $mensagem .= "Editora ";
+                    }
+                    
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: '$mensagem não pode estar vazio!!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeLivro.php';
+                    }, 4000);
+                    </script>";
+                }
+
                 date_default_timezone_set('America/Sao_Paulo');
                 $data = date("d-m-Y");
                 $time = date("H-i-s");
@@ -214,7 +259,7 @@ try{
                 
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
-                        window.location.href = 'alterarLivro.php';
+                        window.location.href = 'controleDeLivro.php';
                     }, 4000);
                     </script>";
                     exit;
@@ -234,7 +279,7 @@ try{
                 
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
-                        window.location.href = 'alterarLivro.php';
+                        window.location.href = 'controleDeLivro.php';
                     }, 4000);
                     </script>";
                     exit;
@@ -251,72 +296,8 @@ try{
         
                 $arquivo = $_REQUEST['caminho_arquivo'];
                 }
+                
 
-                if (empty($nome) || empty($isbn) || ($categoria == "naoSelecionado") || empty($autor) || empty($ano) || ($destaque == "naoSelecionado") || empty($descricao) || empty($editora) || ($destaque == "naoSelecionado") ||  ($disponibilidade == "naoSelecionado") ||  empty($_FILES['arquivo']['name'])) {
-                    $mensagem = "Campos obrigatórios em branco: ";
-                    
-                    if (empty($nome)) {
-                        $mensagem .= "Nome ";
-                    }
-            
-                    if (empty($isbn)) {
-                      $mensagem .= "ISBN ";
-                    }
-            
-                    if ( $categoria == "naoSelecionado") {
-                      $mensagem .= "Categoria ";
-                    }
-            
-                    if (empty($autor)) {
-                        $mensagem .= "Autor ";
-                    }
-                    if (empty($ano)) {
-                        $mensagem .= "Ano ";
-                    }
-            
-                    if ($destaque == "naoSelecionado") {
-                      $mensagem .= "Destaque ";
-                    }
-            
-                    if (empty($descricao)) {
-                        $mensagem .= "Descrição ";
-                    }
-            
-                    if (empty($editora)) {
-                        $mensagem .= "Editora ";
-                    }
-            
-                    if ($situacao == "naoSelecionado") {
-                      $mensagem .= "Situação ";
-                    }
-            
-                    if ($disponibilidade == "naoSelecionado") {
-                      $mensagem .= "Disponibilidade ";
-                    }
-            
-                    if (empty($_FILES['arquivo']['name'])) {
-                        $mensagem .= "Imagem ";
-                    }
-                    
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: '$mensagem não pode estar vazio!!!',
-                        customClass: {
-                            popup: 'swalFireLivro',
-                        },
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                
-                    // Redirecione automaticamente após um breve atraso
-                    setTimeout(function() {
-                        window.location.href = 'alterarLivro.php';
-                    }, 4000);
-                    </script>";
-                }
-                
-                
                     $arquivo2= 0;
 
                 try{
