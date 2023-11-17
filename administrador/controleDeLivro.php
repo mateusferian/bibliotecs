@@ -81,40 +81,48 @@
                 <?php
       try {
 
+        $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : "SemFiltro";
 
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
-            $categoria = $_GET["filtro"];
-            if($categoria == "SemFiltro"){
-                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
-            }else{
-            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria");
-            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-            }
-        }else{
-            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
-        }
+        $consultaSQL = "SELECT * FROM tbl_livro";
+
+        if ($filtro === "SemFiltro") {
+            $consultaSQL .= " WHERE arquivo2 = '0'";
+
+        } elseif ($filtro === "Séries da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria = 'Séries da Literatura Estrangeira')";
+
+        } elseif ($filtro === "Diversos da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Diversos da Literatura Estrangeira')";
+
+        } elseif ($filtro === "Diversos da Literatura Brasileira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Diversos da Literatura Brasileira')";
+
+        } elseif ($filtro === "Poemas e Poesias") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Poemas e Poesias')";
         
+
+        } elseif ($filtro === "Auto-Ajuda e Religião") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Auto-Ajuda e Religião')";
+        
+        } elseif ($filtro === "Clássico da Literatura Brasileira e Português") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Clássico da Literatura Brasileira e Português')";
+        
+        } elseif ($filtro === "Contos") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Contos')";
+        }
+
+        $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
-        $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-        $livrosPorPagina = 10;
-        $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-        
-        $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
-        $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
-        
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
-            $categoria = $_GET["filtro"];
-            if($categoria == "SemFiltro"){
-                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
-            }else{
-            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
-            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-            }
- 
-        } else {
-            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
-        }
-        
+
+        $totalAlunos = $consulta->rowCount();
+        $alunosPorPagina = 10;
+        $totalPaginas = ceil($totalAlunos / $alunosPorPagina);
+
+        $paginaAtual = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
+        $indiceInicial = ($paginaAtual - 1) * $alunosPorPagina;
+
+        $consultaSQL .= " LIMIT $indiceInicial, $alunosPorPagina;";
+        $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
         
         
@@ -226,30 +234,30 @@
         }
        $conn;
        ?>
-        <nav aria-label="Page navigation example">
+         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center custom-pagination">
                 <?php
-    $groupSize = 5;
-    $startPage = 1;
+            $groupSize = 5;
+            $startPage = 1;
 
-    if ($paginaAtual1 > $groupSize) {
-      $startPage = $paginaAtual1 - floor($groupSize / 2);
-    }
+            if ($paginaAtual > $groupSize) {
+                $startPage = $paginaAtual - floor($groupSize / 2);
+            }
 
-    for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
-      $activeClass = $i == $paginaAtual1 ? 'active' : '';
+            for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
+                $activeClass = $i == $paginaAtual ? 'active' : '';
 
-      if ($i == $startPage && $i > 1) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i - 1) . '">...</a></li>';
-      }
+                if ($i == $startPage && $i > 1) {
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i - 1) . '&filtro=' . $filtro . '">...</a></li>';
+                }
 
-      echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina1=' . $i . '">' . $i . '</a></li>';
+                echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina=' . $i . '&filtro=' . $filtro . '">' . $i . '</a></li>';
 
-      if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i + 1) . '">...</a></li>';
-      }
-    }
-    ?>
+                if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i + 1) . '&filtro=' . $filtro . '">...</a></li>';
+                }
+            }
+            ?>
             </ul>
         </nav>
     </div>

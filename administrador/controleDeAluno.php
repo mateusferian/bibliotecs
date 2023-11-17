@@ -31,15 +31,16 @@
     <form method="get">
         <p class="fs-5 mt-5">Opção de filtragem</p>
         <select class="form-control" name="filtro" id="filtro">
-            <option value="opcao0" selected>sem filtro</option>
-            <option value="bloqueado">Bloqueados</option>
-            <option value="desbloqueado">Desbloqueado</option>
-            <option value="inativo">Inativo</option>
-            <option value="ativo">Ativo</option>
+            <option value="opcao0" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'opcao0' ? 'selected' : ''; ?>>Sem Filtro</option>
+            <option value="bloqueado" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'bloqueado' ? 'selected' : ''; ?>>Bloqueados</option>
+            <option value="desbloqueado" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'desbloqueado' ? 'selected' : ''; ?>>Desbloqueado</option>
+            <option value="inativo" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'inativo' ? 'selected' : ''; ?>>Inativo</option>
+            <option value="ativo" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'ativo' ? 'selected' : ''; ?>>Ativo</option>
         </select>
         <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
     </form>
 </div>
+
 
 <script src ="js/selecionarFiltro.js"></script>
 
