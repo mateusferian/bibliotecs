@@ -167,8 +167,9 @@
             }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
-            $descricao = $row["descricao"];      
-            limitandoCampos($descricao);   
+            $descricao = $row["descricao"];      ; // Limita a exibição a 200 caracteres
+            limitandoCampos($descricao);      // Usa o limite padrão de 150 caracteres
+              
 
             echo '<td class="table-description" data-description="' . $row["editora"] . '" onclick="openDescriptionModal(this)">';
             $editora = $row["editora"];      
@@ -223,7 +224,6 @@
             }
         }
     }
-        
         
         ?>
             </tbody>
