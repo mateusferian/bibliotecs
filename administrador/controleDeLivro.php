@@ -147,16 +147,22 @@
             $autor = $row["autor"];      
             limitandoCampos($autor);  
 
-            echo '<td>' . $row["ano"] . '</td>';
-            echo '<td>' . $row["destaque"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["ano"] . '" onclick="openDescriptionModal(this)">';
+            $ano = $row["ano"];      
+            limitandoCampos($ano);
+
+            echo '<td class="table-description" data-description="' . $row["destaque"] . '" onclick="openDescriptionModal(this)">';
+            $destaque = $row["destaque"];      
+            limitandoCampos($destaque);
+
             if ($row["disponibilidade"] == "naoRetirado") {
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Não Retirado";      
+                $disponibilidade = "Não Retirado"; 
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
             else{
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Retirado";      
+                $disponibilidade = "Retirado";     
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
 
