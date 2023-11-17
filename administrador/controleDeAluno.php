@@ -31,31 +31,19 @@
     <form method="get">
         <p class="fs-5 mt-5">Opção de filtragem</p>
         <select class="form-control" name="filtro" id="filtro">
-            <option value="opcao0" selected>sem filtro</option>
-            <option value="bloqueado">Bloqueados</option>
-            <option value="desbloqueado">Desbloqueado</option>
-            <option value="inativo">Inativo</option>
-            <option value="ativo">Ativo</option>
+            <option value="opcao0" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'opcao0' ? 'selected' : ''; ?>>Sem Filtro</option>
+            <option value="bloqueado" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'bloqueado' ? 'selected' : ''; ?>>Bloqueados</option>
+            <option value="desbloqueado" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'desbloqueado' ? 'selected' : ''; ?>>Desbloqueado</option>
+            <option value="inativo" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'inativo' ? 'selected' : ''; ?>>Inativo</option>
+            <option value="ativo" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'ativo' ? 'selected' : ''; ?>>Ativo</option>
         </select>
         <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
     </form>
 </div>
 
-<script>
-    // Recupere o elemento select
-    var filtroSelect = document.getElementById("filtro");
 
-    // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada, ou "sem filtro" como padrão.
-    var filtroSelecionado = localStorage.getItem("filtroSelecionado");
-    if (filtroSelecionado) {
-        filtroSelect.value = filtroSelecionado;
-    }
+<script src ="js/selecionarFiltro.js"></script>
 
-    // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-    filtroSelect.addEventListener("change", function() {
-        localStorage.setItem("filtroSelecionado", filtroSelect.value);
-    });
-</script>
 
 <p class="fs-1 text-center">Controle de Aluno</p>
 
@@ -68,7 +56,9 @@
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">condicao</th>
                     <th scope="col">SALA</th>
+                    <th scope="col">PERIODO</th>
                     <th scope="col">SITUAÇÃO</th>
+                    <th scope="col">DATA DE CADASTRO</th>
                     <th colspan="3" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -114,6 +104,7 @@
                             <?php echo $row["condicao"]; ?>
                         </td>
                         <td><?php echo $row["sala"]; ?></td>
+                        <td><?php echo $row["periodo"]; ?></td>
                         <td>
                             <?php if ($row["situacao"] == 1): ?>
                                 <center><img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
@@ -121,11 +112,13 @@
                                 <center><img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Desativado"></center>
                             <?php endif; ?>
                         </td>
+                        <td><?php echo date('d/m/Y', strtotime($row['dataCadastro'])); ?></td>
+
                         <td>
                             <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
                         </td>
                         <td>
-                            <a href="alterar.php?al=<?php echo $row["id"]; ?>">Alterar</a>
+                            <a href="alterarAluno.php?al=<?php echo $row["id"]; ?>">Alterar</a>
                         </td>
                         <td>
                             <a href="controleDeAluno.php?ex=<?php echo $row["id"]; ?>">Excluir</a>
@@ -240,10 +233,8 @@
                         window.location.href = 'controleDeAluno.php';
                     }, 4000); 
                 </script>";
-                exit;
             }
-            
-            exit;
+        
         }
         require_once "include/footer.php";
         require_once "include/scrollTop.php";

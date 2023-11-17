@@ -36,44 +36,28 @@
     </style>
 
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-sm-12 mt-3">
-                <form method="get" action="controleDeLivro.php">
-                    <p class="fs-5 mt-5">Opção de filtragem</p>
-                    <select class="form-control" name="filtro" id="filtro">
-                        <option value="SemFiltro" selected>Sem Filtro</option>
-                        <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
-                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
-                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
-                    <option value="Poemas e Poesias">Poemas e Poesias</option>
-                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
-                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e
-                        Português</option>
-                    <option value="Contos">Contos</option>
-                    </select>
-                    <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
-                </form>
-            </div>
-
-            <script>
-            // Recupere o elemento select
-            var filtroSelect = document.getElementById("filtro");
-
-            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-            filtroSelect.addEventListener("change", function() {
-                localStorage.setItem("filtroSelecionado", filtroSelect.value);
-            });
-
-            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
-            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
-            if (filtroSelecionado) {
-                filtroSelect.value = filtroSelecionado;
-            }
-            </script>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12 mt-3">
+            <form method="get" action="controleDeLivro.php">
+                <p class="fs-5 mt-5">Opção de filtragem</p>
+                <select class="form-control" name="filtro" id="filtro">
+                    <option value="SemFiltro" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'SemFiltro' ? 'selected' : ''; ?>>Sem Filtro</option>
+                    <option value="Séries da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Séries da Literatura Estrangeira' ? 'selected' : ''; ?>>Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Diversos da Literatura Estrangeira' ? 'selected' : ''; ?>>Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Diversos da Literatura Brasileira' ? 'selected' : ''; ?>>Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Poemas e Poesias' ? 'selected' : ''; ?>>Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Auto-Ajuda e Religião' ? 'selected' : ''; ?>>Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Clássico da Literatura Brasileira e Português' ? 'selected' : ''; ?>>Clássico da Literatura Brasileira e Português</option>
+                    <option value="Contos" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Contos' ? 'selected' : ''; ?>>Contos</option>
+                </select>
+                <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+            </form>
         </div>
     </div>
+</div>
 
+    
     <div class="container mt-5">
         <table class="table table-bordered text-center">
             <thead>
@@ -97,40 +81,48 @@
                 <?php
       try {
 
+        $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : "SemFiltro";
 
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
-            $categoria = $_GET["filtro"];
-            if($categoria == "SemFiltro"){
-                $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
-            }else{
-            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria");
-            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-            }
-        }else{
-            $consulta = $conn->prepare("SELECT COUNT(*) as total FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0'");
-        }
+        $consultaSQL = "SELECT * FROM tbl_livro";
+
+        if ($filtro === "SemFiltro") {
+            $consultaSQL .= " WHERE arquivo2 = '0'";
+
+        } elseif ($filtro === "Séries da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria = 'Séries da Literatura Estrangeira')";
+
+        } elseif ($filtro === "Diversos da Literatura Estrangeira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Diversos da Literatura Estrangeira')";
+
+        } elseif ($filtro === "Diversos da Literatura Brasileira") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Diversos da Literatura Brasileira')";
+
+        } elseif ($filtro === "Poemas e Poesias") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Poemas e Poesias')";
         
+
+        } elseif ($filtro === "Auto-Ajuda e Religião") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Auto-Ajuda e Religião')";
+        
+        } elseif ($filtro === "Clássico da Literatura Brasileira e Português") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Clássico da Literatura Brasileira e Português')";
+        
+        } elseif ($filtro === "Contos") {
+            $consultaSQL .= " WHERE (arquivo2 = '0') AND (categoria  = 'Contos')";
+        }
+
+        $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
-        $totalLivros = $consulta->fetch(PDO::FETCH_ASSOC)['total'];
-        $livrosPorPagina = 10;
-        $totalPaginas = ceil($totalLivros / $livrosPorPagina);
-        
-        $paginaAtual1 = isset($_GET['pagina1']) ? max(1, $_GET['pagina1']) : 1;
-        $indiceInicial = ($paginaAtual1 - 1) * $livrosPorPagina;
-        
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["filtro"])) {
-            $categoria = $_GET["filtro"];
-            if($categoria == "SemFiltro"){
-                $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
-            }else{
-            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE (arquivo2 IS NULL OR arquivo2 = '0') AND categoria = :categoria LIMIT $indiceInicial, $livrosPorPagina");
-            $consulta->bindParam(':categoria', $categoria, PDO::PARAM_STR);
-            }
- 
-        } else {
-            $consulta = $conn->prepare("SELECT * FROM tbl_livro WHERE arquivo2 IS NULL OR arquivo2 = '0' LIMIT $indiceInicial, $livrosPorPagina");
-        }
-        
+
+        $totalAlunos = $consulta->rowCount();
+        $alunosPorPagina = 10;
+        $totalPaginas = ceil($totalAlunos / $alunosPorPagina);
+
+        $paginaAtual = isset($_GET['pagina']) ? max(1, $_GET['pagina']) : 1;
+        $indiceInicial = ($paginaAtual - 1) * $alunosPorPagina;
+
+        $consultaSQL .= " LIMIT $indiceInicial, $alunosPorPagina;";
+        $consulta = $conn->prepare($consultaSQL);
         $consulta->execute();
         
         
@@ -143,31 +135,46 @@
             $nome = $row["nome"];      
             limitandoCampos($nome);  
 
-            echo '<td>' . $row["isbn"] . '</td>';
-            echo '<td>' . $row["categoria"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["isbn"] . '" onclick="openDescriptionModal(this)">';
+            $isbn = $row["isbn"];      
+            limitandoCampos($isbn);  
+
+            echo '<td class="table-description" data-description="' . $row["categoria"] . '" onclick="openDescriptionModal(this)">';
+            $categoria = $row["categoria"];      
+            limitandoCampos($categoria);  
 
             echo '<td class="table-description" data-description="' . $row["autor"] . '" onclick="openDescriptionModal(this)">';
             $autor = $row["autor"];      
             limitandoCampos($autor);  
 
-            echo '<td>' . $row["ano"] . '</td>';
-            echo '<td>' . $row["destaque"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["ano"] . '" onclick="openDescriptionModal(this)">';
+            $ano = $row["ano"];      
+            limitandoCampos($ano);
+
+            echo '<td class="table-description" data-description="' . $row["destaque"] . '" onclick="openDescriptionModal(this)">';
+            $destaque = $row["destaque"];      
+            limitandoCampos($destaque);
+
             if ($row["disponibilidade"] == "naoRetirado") {
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Não Retirado";      
+                $disponibilidade = "Não Retirado"; 
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
             else{
-                echo '<td class="table-description" data-description="' . $row["disponibilidade"] . '" onclick="openDescriptionModal(this)">';
-                $disponibilidade = "Retirado";      
+                $disponibilidade = "Retirado";     
+                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
 
             echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
-            $descricao = $row["descricao"];      
-            limitandoCampos($descricao);   
+            $descricao = $row["descricao"];      ; // Limita a exibição a 200 caracteres
+            limitandoCampos($descricao);      // Usa o limite padrão de 150 caracteres
+              
 
-            echo '<td>' . $row["editora"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["editora"] . '" onclick="openDescriptionModal(this)">';
+            $editora = $row["editora"];      
+            limitandoCampos($editora);  
+
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td>';
             if ($row["situacao"] == 1) {
@@ -218,7 +225,6 @@
         }
     }
         
-        
         ?>
             </tbody>
         </table>
@@ -242,30 +248,30 @@
         }
        $conn;
        ?>
-        <nav aria-label="Page navigation example">
+         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center custom-pagination">
                 <?php
-    $groupSize = 5;
-    $startPage = 1;
+            $groupSize = 5;
+            $startPage = 1;
 
-    if ($paginaAtual1 > $groupSize) {
-      $startPage = $paginaAtual1 - floor($groupSize / 2);
-    }
+            if ($paginaAtual > $groupSize) {
+                $startPage = $paginaAtual - floor($groupSize / 2);
+            }
 
-    for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
-      $activeClass = $i == $paginaAtual1 ? 'active' : '';
+            for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
+                $activeClass = $i == $paginaAtual ? 'active' : '';
 
-      if ($i == $startPage && $i > 1) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i - 1) . '">...</a></li>';
-      }
+                if ($i == $startPage && $i > 1) {
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i - 1) . '&filtro=' . $filtro . '">...</a></li>';
+                }
 
-      echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina1=' . $i . '">' . $i . '</a></li>';
+                echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina=' . $i . '&filtro=' . $filtro . '">' . $i . '</a></li>';
 
-      if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
-        echo '<li class="page-item"><a class="page-link" href="?pagina1=' . ($i + 1) . '">...</a></li>';
-      }
-    }
-    ?>
+                if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i + 1) . '&filtro=' . $filtro . '">...</a></li>';
+                }
+            }
+            ?>
             </ul>
         </nav>
     </div>
@@ -331,10 +337,10 @@
                                 window.location.href = 'controleDeLivro.php';
                             }, 4000);
                         </script>";
-                        exit;
+
                     }
                     
-                    exit;
+
                 }
                 require_once "include/footer.php";
                 require_once "include/scrollTop.php";

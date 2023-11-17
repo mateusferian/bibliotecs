@@ -133,7 +133,7 @@ $totalReserva= $consultaReserva ->rowCount();
             Swal.fire({
                 icon: 'success',
                 title: 'Livro renovado com sucesso!',
-                html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
+                html: '<p>o Livro foi renovado por mais 7 dias!!!</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',
                 },
@@ -143,7 +143,7 @@ $totalReserva= $consultaReserva ->rowCount();
     
             // Redirecione automaticamente após um breve atraso
             setTimeout(function() {
-                window.location.href = 'home.php';
+                window.location.href = 'retirados.php';
             }, 4000);
              </script>";
         }
@@ -154,7 +154,6 @@ $totalReserva= $consultaReserva ->rowCount();
             Swal.fire({
                 icon: 'error',
                 title: 'Só é permitido renovar o livro uma vez!',
-                html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',
                 },
@@ -164,7 +163,7 @@ $totalReserva= $consultaReserva ->rowCount();
     
             // Redirecione automaticamente após um breve atraso
             setTimeout(function() {
-                window.location.href = 'home.php';
+                window.location.href = 'retirados.php';
             }, 4000);
              </script>";
         }

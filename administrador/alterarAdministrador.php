@@ -149,49 +149,43 @@
 
 
 
-    if($totalRowAdministrador > 0 ){
-        
-
+      if ($totalRowAdministrador > 0) {
         echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Email já utilizado',
-            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
-            customClass: {
-                popup: 'swalFireCadastroAdministrador',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false  
-        });
-
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'controleDeAdministrador.php?protect=2343431';
-
-        }, 3000);
-    </script>";
-
-    }else if($totalRowAluno > 0 ){
-
+            Swal.fire({
+                icon: 'error',
+                title: 'Email já utilizado',
+                html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+                customClass: {
+                    popup: 'swalFireCadastroAdministrador',
+                },
+                showConfirmButton: false,
+                allowOutsideClick: false  
+            });
+    
+            // Redirect automatically after a brief delay
+            setTimeout(function() {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            }, 4000);
+        </script>";
+    } else if ($totalRowAluno > 0) {
         echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Email já utilizado',
-            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
-            customClass: {
-                popup: 'swalFireCadastroAdministrador',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false  
-            timer: 4000
-        });
-
-        setTimeout(function() {
-            window.location.href = 'controleDeAdministrador.php?protect=2343431';
-        });
-    </script>";
-
-    }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Email já utilizado',
+                html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+                customClass: {
+                    popup: 'swalFireCadastroAdministrador',
+                },
+                showConfirmButton: false,
+                allowOutsideClick: false  
+            });
+    
+            // Redirect automatically after a brief delay
+            setTimeout(function() {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            }, 4000);
+        </script>";
+    } else {
       try{ 
         $sql = $conn->prepare("UPDATE tbl_administrador SET nome = :nome, email = :email, dataCadastro = :dataCadastro, situacao = :situacao WHERE id = :id");
 
@@ -210,7 +204,7 @@
                 popup: 'swalFireCadastroAdministrador',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de login',
+            confirmButtonText: 'Ir para a página de controle',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      

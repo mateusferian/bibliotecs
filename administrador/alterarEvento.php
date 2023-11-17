@@ -127,6 +127,8 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = 'controleDeEvento.php';
+                }else {
+                    window.location.href = 'controleDeEvento.php';
                 }
             });
         </script>";
@@ -138,7 +140,9 @@
       }
     }
     $conn;
-    ?>
+    require_once "include/footer.php";
+    require_once "include/scrollTop.php";
+?>
 </body>
 
 </html>

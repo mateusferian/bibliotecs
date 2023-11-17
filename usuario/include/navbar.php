@@ -1,19 +1,27 @@
 <header id="header" class="header d-flex align-items-center">
 
 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Bibliotecs<span>.</span></h1>
-    </a>
+    
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a href="home.php" class="logo d-flex align-items-center">
+                <img src="../assets/img/logoPNG.png" alt="Bibliotecs Logo" class="img-fluid">
+            </a>
+        </div>
+    </div>
+</div>
+
+
     <nav id="navbar" class="navbar">
         <ul>
         <li class="dropdown"><a href="#"><span>Paginas</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php">Menu</a></li>
-                    <li><a href="home.phpblog.html">Horarios</a></li>
+                    <li><a href="segunda.php">Horarios</a></li>
                     <li><a href="doacoes.php">Doação</a></li>
+                    <li><a href="conta.php"> conta</a></li>
                 </ul>
         </li>
 

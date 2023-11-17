@@ -51,7 +51,7 @@ require_once "include/header.php";
         <div class="col-sm-6 mt-3">
         <label for="categoria" class="form-label">Categoria</label>
           <select id="categoria" name="categoria" class="form-control">
-            <option selected>Selecione o gênero</option>
+            <option value= "naoSelecionado" selected>Selecione o gênero</option>
             <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
             <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
             <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
@@ -80,7 +80,7 @@ require_once "include/header.php";
         <div class="col-sm-12 mt-3">
         <label for="destaque" class="form-label">Destaque</label>
           <select id="destaque" name="destaque" class="form-control">
-            <option selected>Informe se o produto é destaque</option> 
+            <option value= "naoSelecionado" selected>Informe se o produto é destaque</option> 
             <option value="S">S</option>
             <option value="N">N</option>
         </select>
@@ -99,7 +99,7 @@ require_once "include/header.php";
         <div class="col-sm-12 mt-3">
         <p> Situação </p>
           <select id="situ" name="situ" class="form-control">
-          <option selected>Selecione a situação desse livro</option>
+          <option value= "naoSelecionado" selected>Selecione a situação desse livro</option>
             <option value="1">Ativado</option>
             <option value="0">Desativado</option>
           </select>
@@ -108,7 +108,7 @@ require_once "include/header.php";
         <div class="col-sm-12 mt-3">
         <p> disponibilidade </p>
           <select id="disponibilidade" name="disponibilidade" class="form-control">
-          <option selected>Selecione a disponibilidade desse livro</option>
+          <option value= "naoSelecionado" selected>Selecione a disponibilidade desse livro</option>
             <option value="retirado">Retirado</option>
             <option value="naoRetirado">Não retirado</option>
           </select>
@@ -162,8 +162,47 @@ if (isset($_REQUEST["cadastrar"]))
       $tipoimg =  $_FILES["arquivo"]["type"];
 
       $erro =     $_FILES["arquivo"]["error"];
-
+    
       $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
+      if (($ext != 'jpg') and  ($ext != 'png')) {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'A imagem tem que ter extensão png ou jpg!!',
+            customClass: {
+                popup: 'swalFireLivro',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'cadastroDeLivro.php';
+        }, 4000);
+        </script>";
+        exit;
+      }
+
+      if ($tamanho > 900000) {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'A imagem é muito pesada!!',
+            customClass: {
+                popup: 'swalFireLivro',
+            },
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    
+        // Redirecione automaticamente após um breve atraso
+        setTimeout(function() {
+            window.location.href = 'cadastroDeLivro.php';
+        }, 4000);
+        </script>";
+        exit;
+      }
 
       $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
 
@@ -188,38 +227,13 @@ if (isset($_REQUEST["cadastrar"]))
       $tipoimg2 =  $_FILES["arquivo2"]["type"];
       $erro2 =     $_FILES["arquivo2"]["error"];
       
-      $ext2 = "pdf";
-      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-      $arquivo2 = '../pdf/' . $novo_nomeimg2;
+      $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
 
-      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-    
-      if (empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora) || empty($_FILES['arquivo']['name'])) {
-        $mensagem = "Campos obrigatórios em branco: ";
-        
-        if (empty($isbn)) {
-            $mensagem .= "ISBN ";
-        }
-        if (empty($autor)) {
-            $mensagem .= "Autor ";
-        }
-        if (empty($ano)) {
-            $mensagem .= "Ano ";
-        }
-        if (empty($descricao)) {
-            $mensagem .= "Descrição ";
-        }
-        if (empty($editora)) {
-            $mensagem .= "Editora ";
-        }
-        if (empty($_FILES['arquivo']['name'])) {
-            $mensagem .= "Imagem ";
-        }
-        
+      if (($ext2 != 'pdf')) {
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: '$mensagem não pode estar vazio!!!',
+            title: 'O arquivo tem que ter extensão PDF!!',
             customClass: {
                 popup: 'swalFireLivro',
             },
@@ -232,13 +246,83 @@ if (isset($_REQUEST["cadastrar"]))
             window.location.href = 'cadastroDeLivro.php';
         }, 4000);
         </script>";
-    }
-    
+        exit;
+      }
+
+      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+      $arquivo2 = '../pdf/' . $novo_nomeimg2;
+
+      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
 
     if($tamanho2==0){
       $arquivo2= 0;
     }
     
+    if (empty($nome) || empty($isbn) || ($categoria == "naoSelecionado") || empty($autor) || empty($ano) || ($destaque == "naoSelecionado") || empty($descricao) || empty($editora) || ($destaque == "naoSelecionado") ||  ($disponibilidade == "naoSelecionado") ||  empty($_FILES['arquivo']['name'])) {
+      $mensagem = "Campos obrigatórios em branco: ";
+      
+      if (empty($nome)) {
+          $mensagem .= "Nome ";
+      }
+
+      if (empty($isbn)) {
+        $mensagem .= "ISBN ";
+      }
+
+      if ( $categoria == "naoSelecionado") {
+        $mensagem .= "Categoria ";
+      }
+
+      if (empty($autor)) {
+          $mensagem .= "Autor ";
+      }
+      if (empty($ano)) {
+          $mensagem .= "Ano ";
+      }
+
+      if ($destaque == "naoSelecionado") {
+        $mensagem .= "Destaque ";
+      }
+
+      if (empty($descricao)) {
+          $mensagem .= "Sinópse ";
+      }
+
+      if (empty($editora)) {
+          $mensagem .= "Editora ";
+      }
+
+      if ($situacao == "naoSelecionado") {
+        $mensagem .= "Situação ";
+      }
+
+      if ($disponibilidade == "naoSelecionado") {
+        $mensagem .= "Disponibilidade ";
+      }
+
+      if (empty($_FILES['arquivo']['name'])) {
+          $mensagem .= "Imagem ";
+      }
+      
+      echo "<script>
+      Swal.fire({
+          icon: 'error',
+          title: '$mensagem não pode estar vazio!!!',
+          customClass: {
+              popup: 'swalFireLivro',
+          },
+          showConfirmButton: false,
+          allowOutsideClick: false
+      });
+  
+      // Redirecione automaticamente após um breve atraso
+      setTimeout(function() {
+          window.location.href = 'alterarLivro.php';
+      }, 4000);
+      </script>";
+  }
+  
+
     $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao ,disponibilidade)
     VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao, :disponibilidade)");
     
@@ -263,19 +347,21 @@ if (isset($_REQUEST["cadastrar"]))
             customClass: {
                 popup: 'swalFireLivro',
             },
-            showCancelButton: false,
+            showCancelButton: true,
             confirmButtonText: 'Ir para a página de controle de livro',
+            cancelButtonText: 'Ir para a página de controle de livro em PDF',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    
-              
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = 'controleDeLivro.php';
+            } else {
+                window.location.href = 'controleDeLivroPDF.php';
             }
-            
         });
     </script>";
+    
 
   
        }

@@ -59,11 +59,11 @@ require_once "include/header.php";
     <label for="dia" class="form-label">Dia</label>
     <select id="dia" name="dia" class="form-control">
       <option selected>Selecione uma opção:</option>
-      <option value="Segunda-feira">Segunda-feira</option>
-      <option value="Terça-feira">Terça-feira</option>
-      <option value="Quarta-feira">Quarta-feira</option>
-      <option value="Quinta-feira">Quinta-feira</option>
-      <option value="Sexta-feira">Sexta-feira</option>
+      <option value="segunda-feira">Segunda-feira</option>
+      <option value="terca-feira">Terça-feira</option>
+      <option value="quarta-feira">Quarta-feira</option>
+      <option value="quinta-feira">Quinta-feira</option>
+      <option value="sexta-feira">Sexta-feira</option>
     </select>
   </div>
 
@@ -78,8 +78,13 @@ require_once "include/header.php";
   </div>
 
   <div class="col-sm-12 mt-3">
-    <label for="horario" class="form-label">Horário</label>
+    <label for="horario" class="form-label">Horário de inicio</label>
     <input type="horario" name="horario" class="form-control">
+  </div>
+
+  <div class="col-sm-12 mt-3">
+    <label for="termino" class="form-label">Horário de termino</label>
+    <input type="termino" name="termino" class="form-control">
   </div>
 
   <div class="col-12  mt-3">
@@ -97,15 +102,17 @@ try {
       $dia = $_REQUEST["dia"];
       $periodo = $_REQUEST["periodo"];
       $horario = $_REQUEST["horario"];
+      $termino = $_REQUEST["termino"];
       
   
-        $sql = $conn->prepare("INSERT INTO tbl_horario (id, dia, periodo, horario)
-                            VALUES (:id, :dia, :periodo	, :horario) ");
+        $sql = $conn->prepare("INSERT INTO tbl_horario (id, dia, periodo, horario, termino)
+                            VALUES (:id, :dia, :periodo	, :horario, :termino) ");
         
         $sql->bindValue(':id', null);
         $sql->bindValue(':dia', $dia);
         $sql->bindValue(':periodo', $periodo);
         $sql->bindValue(':horario',$horario);
+        $sql->bindValue(':termino',$termino);
         
         $sql->execute();
         echo "<script>

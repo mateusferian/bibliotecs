@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="css/swalFire.css">
 <link rel="stylesheet" href="css/botao.css">
 
+<style>
+    #formulario {
+        width: 100%;
+    }
+</style>
 </head>
 
 <body>
@@ -71,16 +76,16 @@
 
 
                     <div class="form-group">
-                        <div class="col-md-6 offset-md-3">
-                            <div class="card custom-card">
-                                <div class="card-body text-center">
-                                    <a href="sair.php" class="custom-link">
-                                        <p class="custom-text">Sair</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="col-md-6 offset-md-3">
+        <div class="card custom-card">
+                <form action="sair.php" method="post">
+                    <button type="submit" class="btn btn-primary text-center card-body" id="formulario">
+                        Sair
+                    </button>
+                </form>
+        </div>
+    </div>
+</div>
 <br><br>
                 </div>
             </div>
