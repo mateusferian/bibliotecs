@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/11/2023 às 23:45
+-- Tempo de geração: 17/11/2023 às 16:52
 -- Versão do servidor: 8.0.35-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -46,7 +46,7 @@ CREATE TABLE `tbl_administrador` (
 
 INSERT INTO `tbl_administrador` (`id`, `nome`, `email`, `senha`, `dataCadastro`, `recuperar_senha`, `situacao`) VALUES
 (34, 'situacao@gmail.com', 'situacao@gmail.com', '$2y$10$7/gvnJR24J3y8iV8fFi.TOPMKYOJUWjUltCdMqyZ.VtMwyoKw4qZq', '2023-10-26', '0', 0),
-(37, 'admin@gmail.com', 'admin@gmail.com', '$2y$10$FEWNLhissWQegHKMmakSM.SnZJ1zSQasPisnlQ7aFGvvC09dePFgi', '2023-11-02', '0', 1);
+(37, 'mily', 'milyrochhier@gmail.com', '$2y$10$FEWNLhissWQegHKMmakSM.SnZJ1zSQasPisnlQ7aFGvvC09dePFgi', '2023-11-02', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE `tbl_aluno` (
 --
 
 INSERT INTO `tbl_aluno` (`id`, `nome`, `email`, `senha`, `periodo`, `sala`, `dataCadastro`, `recuperar_senha`, `situacao`, `condicao`) VALUES
-(21, 'mateus', 'mateusferian10@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 1, 'desbloqueado'),
+(21, 'camily', 'camisyvitoria1000@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 1, 'desbloqueado'),
 (22, 'carlos', 'carlos@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 1, 'bloqueado'),
 (23, 'kauan', 'kauan@gmail.com', '$2y$10$elfQjOHMKn67BJXnrjPYrOQpnulrj48iBjOJsA9ayOrP5cBQmnDAC', 'tarde', '3ds', '2023-09-20', 'NULL', 0, 'desbloqueado');
 
