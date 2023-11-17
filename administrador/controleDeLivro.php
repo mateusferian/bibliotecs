@@ -135,8 +135,13 @@
             $nome = $row["nome"];      
             limitandoCampos($nome);  
 
-            echo '<td>' . $row["isbn"] . '</td>';
-            echo '<td>' . $row["categoria"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["isbn"] . '" onclick="openDescriptionModal(this)">';
+            $isbn = $row["isbn"];      
+            limitandoCampos($isbn);  
+
+            echo '<td class="table-description" data-description="' . $row["categoria"] . '" onclick="openDescriptionModal(this)">';
+            $categoria = $row["categoria"];      
+            limitandoCampos($categoria);  
 
             echo '<td class="table-description" data-description="' . $row["autor"] . '" onclick="openDescriptionModal(this)">';
             $autor = $row["autor"];      
@@ -159,7 +164,10 @@
             $descricao = $row["descricao"];      
             limitandoCampos($descricao);   
 
-            echo '<td>' . $row["editora"] . '</td>';
+            echo '<td class="table-description" data-description="' . $row["editora"] . '" onclick="openDescriptionModal(this)">';
+            $editora = $row["editora"];      
+            limitandoCampos($editora);  
+
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td>';
             if ($row["situacao"] == 1) {
