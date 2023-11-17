@@ -253,44 +253,8 @@ try{
                 $tipoimg =     $_FILES["arquivo"]["type"];
 
                 $erro =     $_FILES["arquivo"]["error"];
-        
-
-                $nomeimg2 =  $_FILES["arquivo2"]["name"];
-
-                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
-
-                $tamanho2 =  $_FILES["arquivo2"]["size"];
-
-                $tipoimg2 =  $_FILES["arquivo2"]["type"];
-
-                $erro2 =     $_FILES["arquivo2"]["error"];
 
                 $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-                $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
-                
-                if (!empty($_FILES["arquivo2"]["name"])) {
-                    if (($ext2 != 'pdf')) {
-                        echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'O arquivo tem que ter extensão PDF!!',
-                            customClass: {
-                                popup: 'swalFireLivro',
-                            },
-                            showConfirmButton: false,
-                            allowOutsideClick: false
-                        });
-                    
-                        // Redirecione automaticamente após um breve atraso
-                        setTimeout(function() {
-                            window.location.href = 'cadastroDeLivro.php';
-                        }, 4000);
-                        </script>";
-                        exit;
-                      }
-                }else{
-                    $arquivo2 = $_REQUEST['caminho_arquivo2'];
-                }
 
                   if (($ext != 'jpg') and  ($ext != 'png')) {
                     echo "<script>
@@ -338,15 +302,53 @@ try{
                 $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
                 $arquivo = '../img/' . $novo_nomeimg;
 
-                $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-                $arquivo2 = '../pdf/' . $novo_nomeimg2;
-                $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
                 } else {
         
                 $arquivo = $_REQUEST['caminho_arquivo'];
                 }
 
+                if (!empty($_FILES["arquivo2"]["name"])) {
+
+                    $nomeimg2 =  $_FILES["arquivo2"]["name"];
+
+                    $temp2 =     $_FILES["arquivo2"]["tmp_name"];
+    
+                    $tamanho2 =  $_FILES["arquivo2"]["size"];
+    
+                    $tipoimg2 =  $_FILES["arquivo2"]["type"];
+    
+                    $erro2 =     $_FILES["arquivo2"]["error"];
+                    
+                    $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
+
+                    if (($ext2 != 'pdf')) {
+                        echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'O arquivo tem que ter extensão PDF!!',
+                            customClass: {
+                                popup: 'swalFireLivro',
+                            },
+                            showConfirmButton: false,
+                            allowOutsideClick: false
+                        });
+                    
+                        // Redirecione automaticamente após um breve atraso
+                        setTimeout(function() {
+                            window.location.href = 'cadastroDeLivro.php';
+                        }, 4000);
+                        </script>";
+                        exit;
+                      }
+
+                      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+                      $arquivo2 = '../pdf/' . $novo_nomeimg2;
+                      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
+
+                }else{
+                    $arquivo2 = $_REQUEST['caminho_arquivo2'];
+                }
+                
                 try{
                     if($disponibilidade == "naoRetirado"){
                         $consultaReserva = $conn->prepare("SELECT * FROM  tbl_reservado WHERE idLivro=:idLivro;");
