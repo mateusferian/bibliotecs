@@ -1,11 +1,9 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
     <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
 
     <style>
@@ -64,13 +62,13 @@
     </style>
 </head>
 <body>
-<?php
+<?php    $nomeDaPagina ="Livros Retirados";
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 ?>
     <div class="container">
-    <br><br><br><br>
-        <br><br><br><br>
+    <br>
 
 <?php
 $idAluno = $_SESSION["id"];
@@ -97,7 +95,7 @@ $totalReserva= $consultaReserva ->rowCount();
                 <?php
             }else{
                 ?>
-    <p class="fs-1 text-center">Livros Reservado</p>
+
 
     <div class="row text-center mt-5">
         <?php
@@ -135,7 +133,7 @@ $totalReserva= $consultaReserva ->rowCount();
             Swal.fire({
                 icon: 'success',
                 title: 'Livro renovado com sucesso!',
-                html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
+                html: '<p>o Livro foi renovado por mais 7 dias!!!</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',
                 },
@@ -145,7 +143,7 @@ $totalReserva= $consultaReserva ->rowCount();
     
             // Redirecione automaticamente após um breve atraso
             setTimeout(function() {
-                window.location.href = 'home.php';
+                window.location.href = 'retirados.php';
             }, 4000);
              </script>";
         }
@@ -156,7 +154,6 @@ $totalReserva= $consultaReserva ->rowCount();
             Swal.fire({
                 icon: 'error',
                 title: 'Só é permitido renovar o livro uma vez!',
-                html: '<p>o Livro XXX foi renovado por mais 7 dias!!!</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',
                 },
@@ -166,7 +163,7 @@ $totalReserva= $consultaReserva ->rowCount();
     
             // Redirecione automaticamente após um breve atraso
             setTimeout(function() {
-                window.location.href = 'home.php';
+                window.location.href = 'retirados.php';
             }, 4000);
              </script>";
         }

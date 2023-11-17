@@ -1,6 +1,4 @@
-<?php
-    require_once "protect.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +19,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagensDeFundo/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/logoWeb.png">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
@@ -30,7 +28,9 @@
 </head>
 
 <body>
-
+<?php
+    require_once "protect.php";
+?>
     <script>
     AOS.init();
     </script>
@@ -60,7 +60,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="alterarAdministrador.php?protect=2343431" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Alterar</h1>
+                    <h1 class="text-center">Alterar Administrador</h1>
                     <br><br>
 
                     <div class="form-group text-center">
@@ -149,49 +149,43 @@
 
 
 
-    if($totalRowAdministrador > 0 ){
-        
-
+      if ($totalRowAdministrador > 0) {
         echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Email já utilizado',
-            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
-            customClass: {
-                popup: 'swalFireCadastroAdministrador',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false  
-        });
-
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'controleDeAdministrador.php?protect=2343431';
-
-        }, 3000);
-    </script>";
-
-    }else if($totalRowAluno > 0 ){
-
+            Swal.fire({
+                icon: 'error',
+                title: 'Email já utilizado',
+                html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+                customClass: {
+                    popup: 'swalFireCadastroAdministrador',
+                },
+                showConfirmButton: false,
+                allowOutsideClick: false  
+            });
+    
+            // Redirect automatically after a brief delay
+            setTimeout(function() {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            }, 4000);
+        </script>";
+    } else if ($totalRowAluno > 0) {
         echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Email já utilizado',
-            html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
-            customClass: {
-                popup: 'swalFireCadastroAdministrador',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false  
-            timer: 4000
-        });
-
-        setTimeout(function() {
-            window.location.href = 'controleDeAdministrador.php?protect=2343431';
-        });
-    </script>";
-
-    }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Email já utilizado',
+                html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
+                customClass: {
+                    popup: 'swalFireCadastroAdministrador',
+                },
+                showConfirmButton: false,
+                allowOutsideClick: false  
+            });
+    
+            // Redirect automatically after a brief delay
+            setTimeout(function() {
+                window.location.href = 'controleDeAdministrador.php?protect=2343431';
+            }, 4000);
+        </script>";
+    } else {
       try{ 
         $sql = $conn->prepare("UPDATE tbl_administrador SET nome = :nome, email = :email, dataCadastro = :dataCadastro, situacao = :situacao WHERE id = :id");
 
@@ -210,7 +204,7 @@
                 popup: 'swalFireCadastroAdministrador',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de login',
+            confirmButtonText: 'Ir para a página de controle',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      

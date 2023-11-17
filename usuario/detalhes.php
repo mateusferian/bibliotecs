@@ -1,11 +1,9 @@
 <?php
-    require_once "../restrito.php";
     require_once "include/header.php";
 ?>
 
     <link href="css/main.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
 
 
     <style>
@@ -55,15 +53,19 @@
 </head>
 <body>
 <?php
-    require_once "include/navbar.php";
-    require_once "include/hero.php";
+
+$nomeDaPagina ="Detalhes dos livros";
+require_once "../restrito.php";
+require_once "include/navbar.php";
+require_once "include/nomePagina.php";
+
 ?>
     <div class="container">
     <br><br><br><br>
         <br><br><br><br>
         <?php
         if (isset($_REQUEST['id_liv'])) {
- 
+            $arquivo2;
             $idlivro = $_GET['id_liv'];
             // Consulta SQL para recuperar o preço e a capa do jogo com base no código
             $consulta = $conn->prepare("SELECT * FROM tbl_livro where id_liv = $idlivro ");
@@ -84,19 +86,20 @@
         }
         ?>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="<?php echo $arquivo; ?>" class="card-img-top" alt="Capa do livro">
-                    <div class="card-body">
-                        <p class="card-text"></p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-4">
+    <div class="card h-50" style="width: 18rem;">
+        <img src="<?php echo $arquivo; ?>" class="card-img-top" alt="Capa do livro">
+        <div class="card-body">
+            <p class="card-text"></p>
+        </div>
+    </div>
+</div>
+
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $nome; ?></h5>
-                        <p class="card-text">DESCRICAO<?php echo $descricao; ?></p>
+                        <p class="card-text">Sinópse: <?php echo $descricao; ?></p>
                         <p class="card-text">Autor(a): <?php echo $autor; ?></p>
                         <p class="card-text">Ano: <?php echo $ano ?></p>
                         <p class="card-text">Editora: <?php echo $editora; ?></p>
@@ -108,10 +111,25 @@
         <p>
         <form action="detalhes.php?id_liv=<?php echo urlencode($idlivro); ?>" method="POST">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <?php
+        if($arquivo2 == "0"){
+            ?>
         <button class="btn btn-primary red-color-button" type="submit" name="Reservar" value="Reservar" id="botao">Reservar</button>
+        <?php
+        }
+        else{
+        ?>
+        <button class="btn btn-primary red-color-button" type="submit" name="Baixar" value="Baixar" id="botao">Baixar</button>
+        <?php
+        }
+    ?>
     </div>
 </form>
-        <?php
+<?php
+            if (isset($_REQUEST["Baixar"])) {
+                echo '<script>window.location.href = "' . $arquivo2 . '";</script>';
+            }
+
             if (isset($_REQUEST["Reservar"])) {
 
 

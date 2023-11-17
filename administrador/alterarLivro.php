@@ -1,12 +1,10 @@
 <?php
-require_once "../restrito.php";
 require_once "include/header.php";
 ?>
 
 <!-- css  -->
 <link href="css/swalFireLivro.css" rel="stylesheet">
 <link rel="stylesheet" href="css/botao.css">
-<link rel="icon" type="image/png" sizes="16x16" href="imagenslogo.png.png">
 
 <style>
 .img_novidades {
@@ -30,8 +28,10 @@ require_once "include/header.php";
 <body>
 
     <?php
+    $nomeDaPagina ="Alterar livro";
+    require_once "../restrito.php";
     require_once "include/navbar.php";
-    require_once "include/hero.php";
+    require_once "include/nomePagina.php";
 try{
    if(isset($_REQUEST["al"])) {
     
@@ -49,8 +49,6 @@ try{
   }
 ?>
 
-
-    <legend>Alterar Dados de Livros</legend>
 
     <form name="form" method="post" action="alterarLivro.php" enctype="multipart/form-data">
         <div class="row">
@@ -118,18 +116,14 @@ try{
                 </select>
             </div>
 
-            <div class="col-sm-6   mt-3">
+            <div class="col-sm-12   mt-3">
                 <label for="imagem" class="form-label">Selecione a Imagem</label>
-                <input type="file" name="arquivo" class="form-control"
-                    value="<?php if(isset($row['arquivo'])) {echo $row['arquivo'];} ?>"><br>
+                <input type="file" class="form-control" id="arquivo" name="arquivo"><br>
             </div>
 
-
-            <div class="col-sm-6  mt-3">
-                <label for="pdf" class="form-label">Selecione o arquivo PDF</label>
-                <input type="file" name="arquivo2" class="form-control"
-                    value="<?php if(isset($row['arquivo2'])) {echo $row['arquivo2'];} ?>">
-            </div>
+            <input type="hidden" name="caminho_arquivo" value="<?php if (isset($row['arquivo'])) {
+            echo $row['arquivo'];
+        } ?>">
 
             <div class="col-sm-12  mt-3">
                 <label for="situacao">Situação</label>
@@ -156,13 +150,15 @@ try{
             </div>
 
             <div class="col-md-12 mx-auto">
-            <br><br>
+                <br><br>
                 <label for="descricao" class="form-label">
                     <h5>Sinópse</h5>
                 </label>
-                <textarea type="text" name="descricao" class="form-control"
-                    value="<?php if(isset($row['descricao'])) {echo $row['descricao'];} ?>" id="descricao"></textarea>
+                <textarea type="text" name="descricao" class="form-control">
+        <?php if(isset($row['descricao'])) { echo $row['descricao']; } ?>
+    </textarea>
             </div>
+
 
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
@@ -192,65 +188,123 @@ try{
                 date_default_timezone_set('America/Sao_Paulo');
                 $data = date("d-m-Y");
                 $time = date("H-i-s");
-        
-                if (!empty($_FILES["arquivo"]["name"])) {
-        
-        
-                $nomeimg =     $_FILES["arquivo"]["name"];
-                $temp =     $_FILES["arquivo"]["tmp_name"];
-                $tamanho =  $_FILES["arquivo"]["size"];
-                $tipoimg =     $_FILES["arquivo"]["type"];
-                $erro =     $_FILES["arquivo"]["error"];
-        
-                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-        
-                if (($ext != 'jpg') and  ($ext != 'png')) {
-                    echo "<script language=javascript>
-                    alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
-                    location.href = 'alterar.php?al=$idusuario';
+
+                date_default_timezone_set('America/Sao_Paulo');
+$data = date("d-m-Y");
+$time = date("H-i-s");
+
+$nomeimg = $_FILES["arquivo"]["name"];
+$temp = $_FILES["arquivo"]["tmp_name"];
+$tamanho = $_FILES["arquivo"]["size"];
+$tipoimg = $_FILES["arquivo"]["type"];
+$erro = $_FILES["arquivo"]["error"];
+$ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
+
+$num = rand(1, 10000000000);
+
+$certo = true;
+
+        if (empty($nome) || empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora)) {
+            $mensagem = "Campos obrigatórios em branco: ";
+
+            if (empty($nome)) {
+                $mensagem .= "Nome ";
+            }
+
+            if (empty($isbn)) {
+                $mensagem .= "ISBN ";
+            }
+
+            if (empty($autor)) {
+                $mensagem .= "Autor ";
+            }
+            if (empty($ano)) {
+                $mensagem .= "Ano ";
+            }
+
+            if (empty($descricao)) {
+                $mensagem .= "Sinópse ";
+            }
+
+            if (empty($editora)) {
+                $mensagem .= "Editora ";
+            }
+
+            echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: '$mensagem não pode estar vazio!!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeLivroPDF.php';
+                    }, 4000);
                     </script>";
                     exit;
-                }
-        
-                if ($tamanho > 900000) {
-                    echo "<script language=javascript>
-                    alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
-                    location.href = 'alterar.php?al=$idusuario';
-                    </script>";
-                    exit;
-                }
+        }
 
-                $num = rand(1, 10000000000);
-        
-                $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-        
-                $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-        
-                $arquivo = '../img/' . $novo_nomeimg;
-                } else {
-        
-                $arquivo = $_REQUEST['caminho_arquivo'];
-                }
+        if (!empty($_FILES["arquivo"]["name"])) {
 
-                $nomeimg2 =  $_FILES["arquivo2"]["name"];
+            if (($ext != 'jpg') and ($ext != 'png')) {
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'A imagem tem que ter extensão png ou jpg!!',
+                            customClass: {
+                                popup: 'swalFireLivro',
+                            },
+                            showConfirmButton: false,
+                            allowOutsideClick: false
+                        });
 
-                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
+                        // Redirecione automaticamente após um breve atraso
+                        setTimeout(function() {
+                            window.location.href = 'controleDeLivroPDF.php';
+                        }, 4000);
+                        </script>";
+                exit;
+            }
 
-                $tamanho2 =  $_FILES["arquivo2"]["size"];
+            if ($tamanho > 900000) {
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'A imagem é muito pesada!!',
+                            customClass: {
+                                popup: 'swalFireLivro',
+                            },
+                            showConfirmButton: false,
+                            allowOutsideClick: false
+                        });
 
-                $tipoimg2 =  $_FILES["arquivo2"]["type"];
+                        // Redirecione automaticamente após um breve atraso
+                        setTimeout(function() {
+                            window.location.href = 'controleDeLivroPDF.php';
+                        }, 4000);
+                        </script>";
+                exit;
+            }
+        } else {
+            $certo = false;
+        }
 
-                $erro2 =     $_FILES["arquivo2"]["error"];
+        if (!empty($_FILES["arquivo"]["name"]) && $certo) {
+            $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+            $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+            $arquivo = '../img/' . $novo_nomeimg;
+        }else{
+            $arquivo = $_REQUEST['caminho_arquivo'];
+        }
 
-                $ext2 = "pdf";
-                $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-                $arquivo2 = '../pdf/' . $novo_nomeimg2;
-
-                $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
-                if($tamanho2==0){
+                
                     $arquivo2= 0;
-                }
+
                 try{
                     if($disponibilidade == "naoRetirado"){
                         $consultaReserva = $conn->prepare("SELECT * FROM  tbl_reservado WHERE idLivro=:idLivro;");
@@ -295,7 +349,7 @@ try{
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de lirvo',
+                    confirmButtonText: 'Ir para a página de controle de livro',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    
@@ -303,7 +357,9 @@ try{
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = 'controleDeLivro.php';
-                    }
+                    }else{
+                        window.location.href = 'controleDeLivro.php';
+                    }   
                     
                 });
                 </script>";

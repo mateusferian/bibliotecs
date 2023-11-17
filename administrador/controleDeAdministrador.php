@@ -1,5 +1,4 @@
 <?php
-    require_once "protect.php";
     require_once "include/header.php";
 ?>
 <style>
@@ -23,7 +22,8 @@
 
 <body>
     <?php
-    require_once "include/navbar.php";
+    require_once "protect.php";
+    require_once "include/navbarProtec.php";
     require_once "include/hero.php";
 ?>
     <p class="fs-2 text-center mt-5">Controle de Administrador</p>
@@ -36,6 +36,7 @@
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
                     <th scope="col">SITUAÇÃO</th>
+                    <th scope="col">DATA DE CADASTRO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
             </thead>
@@ -79,8 +80,8 @@
                         <?php
                 }
                 ?>
-                    </td>;
-
+                    </td>
+                    <td><?php echo date('d/m/Y', strtotime($row['dataCadastro'])); ?></td>
                     <?php
                 $bytes = random_bytes(7);
                 $valorPermitido = bin2hex($bytes);
@@ -108,7 +109,7 @@
     try{
      if (isset($_REQUEST["ex"])) {
         $id = $_REQUEST["ex"];
-        deletandoAdministrador($id, $conn);
+        deletando($id, $conn);
      }
     }catch(PDOException $erro){
       echo $erro->getMessage();
@@ -145,7 +146,7 @@
     </div>
 
     <?php
-    function deletandoAdministrador($id,$conn ){                
+    function deletando($id,$conn ){                
         $stmt = $conn->prepare("SELECT nome FROM tbl_administrador WHERE id = :id");
         $stmt->bindValue(':id', $id);
         $stmt->execute();
@@ -204,10 +205,9 @@
                         window.location.href = 'controleDeAdministrador.php?protect=43432123';
                     }, 4000); 
                 </script>";
-                exit;
+
             }
             
-            exit;
         }
         require_once "include/footer.php";
         require_once "include/scrollTop.php";
