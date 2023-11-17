@@ -36,44 +36,27 @@
     }
     </style>
 
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-sm-12 mt-3">
-                <form method="get" action="controleDeLivroPDF.php">
-                    <p class="fs-5 mt-5">Opção de filtragem</p>
-                    <select class="form-control" name="filtro" id="filtro">
-                        <option value="SemFiltro" selected>Sem Filtro</option>
-                        <option value="Séries da Literatura Estrangeira">Séries da Literatura Estrangeira</option>
-                    <option value="Diversos da Literatura Estrangeira">Diversos da Literatura Estrangeira</option>
-                    <option value="Diversos da Literatura Brasileira">Diversos da Literatura Brasileira</option>
-                    <option value="Poemas e Poesias">Poemas e Poesias</option>
-                    <option value="Auto-Ajuda e Religião">Auto-Ajuda e Religião</option>
-                    <option value="Clássico da Literatura Brasileira e Português">Clássico da Literatura Brasileira e
-                        Português</option>
-                    <option value="Contos">Contos</option>
-                    </select>
-                    <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
-                </form>
-            </div>
-
-            <script>
-            // Recupere o elemento select
-            var filtroSelect = document.getElementById("filtro");
-
-            // Adicione um ouvinte de evento para salvar a seleção no armazenamento local quando a seleção for alterada
-            filtroSelect.addEventListener("change", function() {
-                localStorage.setItem("filtroSelecionado", filtroSelect.value);
-            });
-
-            // Verifique se há uma seleção armazenada localmente e defina-a como a opção selecionada
-            var filtroSelecionado = localStorage.getItem("filtroSelecionado");
-            if (filtroSelecionado) {
-                filtroSelect.value = filtroSelecionado;
-            }
-            </script>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12 mt-3">
+            <form method="get" action="controleDeLivroPDF.php">
+                <p class="fs-5 mt-5">Opção de filtragem</p>
+                <select class="form-control" name="filtro" id="filtro">
+                    <option value="SemFiltro" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'SemFiltro' ? 'selected' : ''; ?>>Sem Filtro</option>
+                    <option value="Séries da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Séries da Literatura Estrangeira' ? 'selected' : ''; ?>>Séries da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Diversos da Literatura Estrangeira' ? 'selected' : ''; ?>>Diversos da Literatura Estrangeira</option>
+                    <option value="Diversos da Literatura Brasileira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Diversos da Literatura Brasileira' ? 'selected' : ''; ?>>Diversos da Literatura Brasileira</option>
+                    <option value="Poemas e Poesias" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Poemas e Poesias' ? 'selected' : ''; ?>>Poemas e Poesias</option>
+                    <option value="Auto-Ajuda e Religião" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Auto-Ajuda e Religião' ? 'selected' : ''; ?>>Auto-Ajuda e Religião</option>
+                    <option value="Clássico da Literatura Brasileira e Português" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Clássico da Literatura Brasileira e Português' ? 'selected' : ''; ?>>Clássico da Literatura Brasileira e Português</option>
+                    <option value="Contos" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Contos' ? 'selected' : ''; ?>>Contos</option>
+                </select>
+                <button id="botao" type="submit" class="btn btn-primary mt-2 botao-filtrar">Filtrar</button>
+            </form>
         </div>
     </div>
+</div>
+
 <?php
         function limitandoCampos ($campo){
             if (strlen($campo) > 100) {
