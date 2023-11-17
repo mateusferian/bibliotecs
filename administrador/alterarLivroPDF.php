@@ -259,6 +259,7 @@ try{
                         window.location.href = 'controleDeLivroPDF.php';
                     }, 4000);
                     </script>";
+                    exit;
                 }
 
                 if (!empty($_FILES["arquivo"]["name"])) {
