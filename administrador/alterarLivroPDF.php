@@ -192,6 +192,30 @@ try{
                 $situacao = $_REQUEST["situacao"];
                 $disponibilidade = $_REQUEST["disponibilidade"];  
         
+
+
+                date_default_timezone_set('America/Sao_Paulo');
+                $data = date("d-m-Y");
+                $time = date("H-i-s");
+
+                $nomeimg =     $_FILES["arquivo"]["name"];
+                $temp =     $_FILES["arquivo"]["tmp_name"];
+                $tamanho =  $_FILES["arquivo"]["size"];
+                $tipoimg =     $_FILES["arquivo"]["type"];
+                $erro =     $_FILES["arquivo"]["error"];
+                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
+
+                $num = rand(1, 10000000000);
+
+                $nomeimg2 =  $_FILES["arquivo2"]["name"];
+                $temp2 =     $_FILES["arquivo2"]["tmp_name"];
+                $tamanho2 =  $_FILES["arquivo2"]["size"];
+                $tipoimg2 =  $_FILES["arquivo2"]["type"];
+                $erro2 =     $_FILES["arquivo2"]["error"];
+                $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
+                
+                $certo = true;
+
                 if (empty($nome) || empty($isbn)  || empty($autor) || empty($ano) ||  empty($descricao) || empty($editora)) {
                     $mensagem = "Campos obrigatórios em branco: ";
                     
@@ -237,25 +261,8 @@ try{
                     </script>";
                 }
 
-                date_default_timezone_set('America/Sao_Paulo');
-                $data = date("d-m-Y");
-                $time = date("H-i-s");
-
                 if (!empty($_FILES["arquivo"]["name"])) {
         
-        
-                $nomeimg =     $_FILES["arquivo"]["name"];
-
-                $temp =     $_FILES["arquivo"]["tmp_name"];
-
-                $tamanho =  $_FILES["arquivo"]["size"];
-
-                $tipoimg =     $_FILES["arquivo"]["type"];
-
-                $erro =     $_FILES["arquivo"]["error"];
-
-                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-
                   if (($ext != 'jpg') and  ($ext != 'png')) {
                     echo "<script>
                     Swal.fire({
@@ -295,32 +302,12 @@ try{
                     </script>";
                     exit;
                   }
-
-                $num = rand(1, 10000000000);
-
-                $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-                $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-                $arquivo = '../img/' . $novo_nomeimg;
-
-                } else {
-        
-                $arquivo = $_REQUEST['caminho_arquivo'];
+                }else{
+                    $certo = false;
                 }
 
-                if (!empty($_FILES["arquivo2"]["name"])) {
 
-                    $nomeimg2 =  $_FILES["arquivo2"]["name"];
-
-                    $temp2 =     $_FILES["arquivo2"]["tmp_name"];
-    
-                    $tamanho2 =  $_FILES["arquivo2"]["size"];
-    
-                    $tipoimg2 =  $_FILES["arquivo2"]["type"];
-    
-                    $erro2 =     $_FILES["arquivo2"]["error"];
-
-                    $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
-
+                 if (!empty($_FILES["arquivo2"]["name"])) {
                     if (($ext2 != 'pdf')) {
                         echo "<script>
                         Swal.fire({
@@ -340,14 +327,29 @@ try{
                         </script>";
                         exit;
                       }
-
-                      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-                      $arquivo2 = '../pdf/' . $novo_nomeimg2;
-                      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
                 }else{
+                    $certo = false;
+                  }
+
+                if (((!empty($_FILES["arquivo2"]["name"])) || (!empty($_FILES["arquivo"]["name"]))) and($certo = true) ) {
+                    if (!empty($_FILES["arquivo"]["name"])){
+                    $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+                    $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+                    $arquivo = '../img/' . $novo_nomeimg;
+                    }else{
+                        $arquivo = $_REQUEST['caminho_arquivo'];
+                    }
+
+                    if (!empty($_FILES["arquivo2"]["name"])){
+                    $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+                    $arquivo2 = '../pdf/' . $novo_nomeimg2;
+                    $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
+
+                    }else{
                     $arquivo2 = $_REQUEST['caminho_arquivo2'];
+                    }
                 }
+                
                 
                 try{
                     if($disponibilidade == "naoRetirado"){
