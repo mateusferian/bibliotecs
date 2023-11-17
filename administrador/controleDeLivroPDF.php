@@ -16,6 +16,7 @@
 <body>
     <?php
     $nomeDaPagina ="Controle de Livro";
+    $nomeDaPagina2 ="em PDF";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -130,66 +131,64 @@
         while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
             echo '<td>' . $row["id_liv"] . '</td>';
-
-            echo '<td class="table-description" data-description="' . $row["nome"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["nome"]) . '" onclick="openDescriptionModal(this)">';
             $nome = $row["nome"];      
             limitandoCampos($nome);  
-
-            echo '<td class="table-description" data-description="' . $row["isbn"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["isbn"]) . '" onclick="openDescriptionModal(this)">';
             $isbn = $row["isbn"];      
             limitandoCampos($isbn);  
-
-            echo '<td class="table-description" data-description="' . $row["categoria"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["categoria"]) . '" onclick="openDescriptionModal(this)">';
             $categoria = $row["categoria"];      
             limitandoCampos($categoria);  
-
-            echo '<td class="table-description" data-description="' . $row["autor"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["autor"]) . '" onclick="openDescriptionModal(this)">';
             $autor = $row["autor"];      
             limitandoCampos($autor);  
-
-            echo '<td class="table-description" data-description="' . $row["ano"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["ano"]) . '" onclick="openDescriptionModal(this)">';
             $ano = $row["ano"];      
             limitandoCampos($ano);
-
-            echo '<td class="table-description" data-description="' . $row["destaque"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["destaque"]) . '" onclick="openDescriptionModal(this)">';
             $destaque = $row["destaque"];      
             limitandoCampos($destaque);
-
+            
             if ($row["disponibilidade"] == "naoRetirado") {
                 $disponibilidade = "Não Retirado"; 
-                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
+                echo '<td class="table-description" data-description="' . htmlspecialchars($disponibilidade) . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
-            }
-            else{
+            } else {
                 $disponibilidade = "Retirado";     
-                echo '<td class="table-description" data-description="' . $disponibilidade . '" onclick="openDescriptionModal(this)">';     
+                echo '<td class="table-description" data-description="' . htmlspecialchars($disponibilidade) . '" onclick="openDescriptionModal(this)">';     
                 limitandoCampoDisponibilidade($disponibilidade, $row["disponibilidade"]);  
             }
-
-            echo '<td class="table-description" data-description="' . $row["descricao"] . '" onclick="openDescriptionModal(this)">';
-            $descricao = $row["descricao"];      ; // Limita a exibição a 200 caracteres
-            limitandoCampos($descricao);      // Usa o limite padrão de 150 caracteres
-              
-
-            echo '<td class="table-description" data-description="' . $row["editora"] . '" onclick="openDescriptionModal(this)">';
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["descricao"]) . '" onclick="openDescriptionModal(this)">';
+            $descricao = $row["descricao"];
+            limitandoCampos($descricao);
+            
+            echo '<td class="table-description" data-description="' . htmlspecialchars($row["editora"]) . '" onclick="openDescriptionModal(this)">';
             $editora = $row["editora"];      
             limitandoCampos($editora);  
-
+            
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
             echo '<td>';
             if ($row["situacao"] == 1) {
                 ?>
                 <center> <img src="imagensDeFundo/ativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
-                } else {
+            } else {
                 ?>
                 <center> <img src="imagensDeFundo/desativado.jpg" height="15" width="15" title="Ativado"></center>
                 <?php
-    
-                }
-                echo '</td>';
-                echo '<td>';
-
+            
+            }
+            echo '</td>';
+            echo '<td>';
+            
             echo '<a href="alterarLivroPDF.php?al=' . $row["id_liv"] . '">Alterar</a>';
             echo '</td>';
             
@@ -197,18 +196,24 @@
             echo '<a href="controleDeLivroPDF.php?ex=' . $row["id_liv"] . '">Excluir</a>';
             echo '</td>';
             echo '</tr>';
-          }
+        }
         } catch (PDOException $erro) {
           echo $erro->getMessage();
         }
-        function limitandoCampos ($campo){
+
+
+        function limitandoCampos($campo) {
+            // Remova a função existente e substitua pelo seguinte código
+            echo '<span class="modal-description">';
             if (strlen($campo) > 100) {
                 echo substr($campo, 0, 100) . '...';
             } else {
                 echo $campo;
             }
+            echo '</span>';
         }
 
+        
         function limitandoCampoDisponibilidade($campo, $campoDaTabela) {
          if($campoDaTabela == "naoRetirado"){
             if (strlen($campo) > 100) {
@@ -324,7 +329,7 @@
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Livro apagado com sucesso',
+                                title: 'Livro em PDF apagado com sucesso',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },
