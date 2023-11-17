@@ -74,6 +74,7 @@
                     <th scope="col">SINÓPSE</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
+                    <th scope="col">PDF</th>
                     <th scope="col">SITUAÇÃO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
                 </tr>
@@ -175,6 +176,9 @@
             limitandoCampos($editora);  
             
             echo '<td><img src="' . $row["arquivo"] . '" class="img_lista img-fluid"></td>';
+
+            echo '<td><a href="' . $row["arquivo2"] . '">Download</a></td>';
+            
             echo '<td>';
             if ($row["situacao"] == 1) {
                 ?>

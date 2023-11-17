@@ -200,21 +200,45 @@ try{
         
                 $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
         
-                if (($ext != 'jpg') and  ($ext != 'png')) {
-                    echo "<script language=javascript>
-                    alert('SÓ É POSSÍVEL FAZER UPLOAD DE ARQUIVO COM EXTENSÃO JPG OU PNG!!');
-                    location.href = 'alterar.php?al=$idusuario';
+                  if (($ext != 'jpg') and  ($ext != 'png')) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'A imagem tem que ter extensão png ou jpg!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'alterarLivro.php';
+                    }, 4000);
                     </script>";
                     exit;
-                }
-        
-                if ($tamanho > 900000) {
-                    echo "<script language=javascript>
-                    alert('	VERIFIQUE O TAMANHO DO SEU ARQUIVO!!');
-                    location.href = 'alterar.php?al=$idusuario';
+                  }
+            
+                  if ($tamanho > 900000) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'A imagem é muito pesada!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'alterarLivro.php';
+                    }, 4000);
                     </script>";
                     exit;
-                }
+                  }
 
                 $num = rand(1, 10000000000);
         
@@ -228,7 +252,71 @@ try{
                 $arquivo = $_REQUEST['caminho_arquivo'];
                 }
 
-
+                if (empty($nome) || empty($isbn) || ($categoria == "naoSelecionado") || empty($autor) || empty($ano) || ($destaque == "naoSelecionado") || empty($descricao) || empty($editora) || ($destaque == "naoSelecionado") ||  ($disponibilidade == "naoSelecionado") ||  empty($_FILES['arquivo']['name'])) {
+                    $mensagem = "Campos obrigatórios em branco: ";
+                    
+                    if (empty($nome)) {
+                        $mensagem .= "Nome ";
+                    }
+            
+                    if (empty($isbn)) {
+                      $mensagem .= "ISBN ";
+                    }
+            
+                    if ( $categoria == "naoSelecionado") {
+                      $mensagem .= "Categoria ";
+                    }
+            
+                    if (empty($autor)) {
+                        $mensagem .= "Autor ";
+                    }
+                    if (empty($ano)) {
+                        $mensagem .= "Ano ";
+                    }
+            
+                    if ($destaque == "naoSelecionado") {
+                      $mensagem .= "Destaque ";
+                    }
+            
+                    if (empty($descricao)) {
+                        $mensagem .= "Descrição ";
+                    }
+            
+                    if (empty($editora)) {
+                        $mensagem .= "Editora ";
+                    }
+            
+                    if ($situacao == "naoSelecionado") {
+                      $mensagem .= "Situação ";
+                    }
+            
+                    if ($disponibilidade == "naoSelecionado") {
+                      $mensagem .= "Disponibilidade ";
+                    }
+            
+                    if (empty($_FILES['arquivo']['name'])) {
+                        $mensagem .= "Imagem ";
+                    }
+                    
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: '$mensagem não pode estar vazio!!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'alterarLivro.php';
+                    }, 4000);
+                    </script>";
+                }
+                
+                
                     $arquivo2= 0;
 
                 try{
