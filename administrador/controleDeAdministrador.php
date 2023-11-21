@@ -129,17 +129,18 @@
 
             for ($i = $startPage; $i <= min($startPage + $groupSize - 1, $totalPaginas); $i++) {
                 $activeClass = $i == $paginaAtual ? 'active' : '';
-
+            
                 if ($i == $startPage && $i > 1) {
-                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i - 1) . '&filtro=' . $filtro . '">...</a></li>';
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i - 1) . '&filtro=' . $filtro . '&protect=454545">...</a></li>';
                 }
-
-                echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina=' . $i . '&filtro=' . $filtro . '">' . $i . '</a></li>';
-
+            
+                echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?pagina=' . $i . '&filtro=' . $filtro . '&protect=454545">' . $i . '</a></li>';
+            
                 if ($i == $startPage + $groupSize - 1 && $i < $totalPaginas) {
-                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i + 1) . '&filtro=' . $filtro . '">...</a></li>';
+                    echo '<li class="page-item"><a class="page-link" href="?pagina=' . ($i + 1) . '&filtro=' . $filtro . '&protect=454545">...</a></li>';
                 }
-            }
+            }            
+            
             ?>
             </ul>
         </nav>
