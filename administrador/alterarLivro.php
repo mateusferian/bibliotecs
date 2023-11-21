@@ -271,7 +271,7 @@ $certo = true;
                 exit;
             }
 
-            if ($tamanho > 900000) {
+            if ($tamanho > 9000000) {
                 echo "<script>
                         Swal.fire({
                             icon: 'error',

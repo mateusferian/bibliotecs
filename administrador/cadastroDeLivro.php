@@ -184,7 +184,7 @@ if (isset($_REQUEST["cadastrar"]))
         exit;
       }
 
-      if ($tamanho > 900000) {
+      if ($tamanho > 9000000) {
         echo "<script>
         Swal.fire({
             icon: 'error',
@@ -229,6 +229,7 @@ if (isset($_REQUEST["cadastrar"]))
       
       $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
 
+      if ($tamanho2 != 0) {
       if (($ext2 != 'pdf')) {
         echo "<script>
         Swal.fire({
@@ -253,8 +254,8 @@ if (isset($_REQUEST["cadastrar"]))
       $arquivo2 = '../pdf/' . $novo_nomeimg2;
 
       $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
-    if($tamanho2==0){
+    }
+    else if($tamanho2==0){
       $arquivo2= 0;
     }
     
