@@ -1,11 +1,15 @@
 <header id="header" class="header d-flex align-items-center">
 
 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Bibliotecs<span>.</span></h1>
-    </a>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <a href="controleDeAluno.php" class="logo d-flex align-items-center">
+                        <img src="../assets/img/logoPNG.png" alt="Bibliotecs Logo" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
     <nav id="navbar" class="navbar">
 
     <ul>
