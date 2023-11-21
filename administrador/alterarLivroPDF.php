@@ -284,7 +284,7 @@ try{
                     exit;
                   }
             
-                  if ($tamanho > 900000) {
+                  if ($tamanho > 9000000) {
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
@@ -396,7 +396,7 @@ try{
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de livro',
+                    confirmButtonText: 'Ir para a página de controle de livro em pdf',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    
