@@ -222,7 +222,7 @@
                 allowOutsideClick: false      
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '../index.p  hp';
+                    window.location.href = '../index.php';
                 }
             });
         </script>";

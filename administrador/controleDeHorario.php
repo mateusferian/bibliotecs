@@ -54,7 +54,7 @@
                 <th scope="col">DIA</th>
                 <th scope="col">PERIODO</th>
                 <th scope="col">HORARIO DE INICIO</th>
-                <th scope="col">HORARIO DE TERMINO</th>
+                <th scope="col">HORARIO DE TÉRMINO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
             </tr>
         </thead>
