@@ -79,12 +79,12 @@ require_once "include/header.php";
 
   <div class="col-sm-12 mt-3">
     <label for="horario" class="form-label">Horário de inicio</label>
-    <input type="horario" name="horario" class="form-control">
+    <input type="text" name="horario" class="form-control">
   </div>
 
   <div class="col-sm-12 mt-3">
     <label for="termino" class="form-label">Horário de termino</label>
-    <input type="termino" name="termino" class="form-control">
+    <input type="text" name="termino" class="form-control">
   </div>
 
   <div class="col-12  mt-3">

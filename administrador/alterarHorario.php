@@ -94,7 +94,7 @@ try{
 
             <div class="col-sm-12 mt-3">
                 <label for="termino" class="form-label">Horário de termino</label>
-                <input type="termino" name="termino" class="form-control"
+                <input type="text" name="termino" class="form-control"
                 value="<?php if(isset($row['termino'])) {echo $row['termino'];} ?>"><br>
             </div>
 
