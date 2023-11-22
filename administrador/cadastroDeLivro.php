@@ -146,118 +146,155 @@ if (isset($_REQUEST["cadastrar"]))
       $disponibilidade = $_REQUEST["disponibilidade"];
 
       date_default_timezone_set('America/Sao_Paulo');
-
       $data = date("d-m-Y");
-
       $time = date("H-i-s");
 
-      $num = rand(1, 10000000000);
-
-      $nomeimg =  $_FILES["arquivo"]["name"];
-
+      $nomeimg =     $_FILES["arquivo"]["name"];
       $temp =     $_FILES["arquivo"]["tmp_name"];
-
       $tamanho =  $_FILES["arquivo"]["size"];
-
-      $tipoimg =  $_FILES["arquivo"]["type"];
-
+      $tipoimg =     $_FILES["arquivo"]["type"];
       $erro =     $_FILES["arquivo"]["error"];
-    
       $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-      if (($ext != 'jpg') and  ($ext != 'png')) {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'A imagem tem que ter extensão png ou jpg!!',
-            customClass: {
-                popup: 'swalFireLivro',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false
-        });
-    
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'cadastroDeLivro.php';
-        }, 4000);
-        </script>";
-        exit;
-      }
-
-      if ($tamanho > 9000000) {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'A imagem é muito pesada!!',
-            customClass: {
-                popup: 'swalFireLivro',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false
-        });
-    
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'cadastroDeLivro.php';
-        }, 4000);
-        </script>";
-        exit;
-      }
-
-      $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-
-      $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-
-      $arquivo = '../img/' . $novo_nomeimg;
-
-      date_default_timezone_set('America/Sao_Paulo');
-
-      $data = date("d-m-Y");
-
-      $time = date("H-i-s");
 
       $num = rand(1, 10000000000);
 
-
-    $arquivo2 = $_REQUEST = ["arquivo2"];
-      
       $nomeimg2 =  $_FILES["arquivo2"]["name"];
       $temp2 =     $_FILES["arquivo2"]["tmp_name"];
       $tamanho2 =  $_FILES["arquivo2"]["size"];
       $tipoimg2 =  $_FILES["arquivo2"]["type"];
       $erro2 =     $_FILES["arquivo2"]["error"];
-      
       $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
+      
+      $certo = true;
 
-      if ($tamanho2 != 0) {
-      if (($ext2 != 'pdf')) {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'O arquivo tem que ter extensão PDF!!',
-            customClass: {
-                popup: 'swalFireLivro',
-            },
-            showConfirmButton: false,
-            allowOutsideClick: false
-        });
-    
-        // Redirecione automaticamente após um breve atraso
-        setTimeout(function() {
-            window.location.href = 'cadastroDeLivro.php';
-        }, 4000);
-        </script>";
-        exit;
+      if (empty($nome) || empty($isbn)  || empty($autor) || empty($ano) ||  empty($descricao) || empty($editora)) {
+          $mensagem = "Campos obrigatórios em branco: ";
+          
+          if (empty($nome)) {
+              $mensagem .= "Nome ";
+          }
+  
+          if (empty($isbn)) {
+            $mensagem .= "ISBN ";
+          }
+
+  
+          if (empty($autor)) {
+              $mensagem .= "Autor ";
+          }
+          if (empty($ano)) {
+              $mensagem .= "Ano ";
+          }
+  
+          if (empty($descricao)) {
+              $mensagem .= "Sinópse ";
+          }
+  
+          if (empty($editora)) {
+              $mensagem .= "Editora ";
+          }
+          
+          echo "<script>
+          Swal.fire({
+              icon: 'error',
+              title: '$mensagem não pode estar vazio!!!',
+              customClass: {
+                  popup: 'swalFireLivro',
+              },
+              showConfirmButton: false,
+              allowOutsideClick: false
+          });
+      
+          // Redirecione automaticamente após um breve atraso
+          setTimeout(function() {
+              window.location.href = 'controleDeLivroPDF.php';
+          }, 4000);
+          </script>";
+          exit;
       }
 
-      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-      $arquivo2 = '../pdf/' . $novo_nomeimg2;
+      if ($tamanho > 0) {
 
-      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-    }
-    else if($tamanho2==0){
-      $arquivo2= 0;
-    }
+        if (($ext != 'jpg') and  ($ext != 'png')) {
+          echo "<script>
+          Swal.fire({
+              icon: 'error',
+              title: 'A imagem tem que ter extensão png ou jpg!!',
+              customClass: {
+                  popup: 'swalFireLivro',
+              },
+              showConfirmButton: false,
+              allowOutsideClick: false
+          });
+      
+          // Redirecione automaticamente após um breve atraso
+          setTimeout(function() {
+              window.location.href = 'controleDeLivroPDF.php';
+          }, 4000);
+          </script>";
+          exit;
+        }
+  
+        if ($tamanho > 9000000) {
+          echo "<script>
+          Swal.fire({
+              icon: 'error',
+              title: 'A imagem é muito pesada!!',
+              customClass: {
+                  popup: 'swalFireLivro',
+              },
+              showConfirmButton: false,
+              allowOutsideClick: false
+          });
+      
+          // Redirecione automaticamente após um breve atraso
+          setTimeout(function() {
+              window.location.href = 'controleDeLivroPDF.php';
+          }, 4000);
+          </script>";
+          exit;
+        }
+      }
+
+      if($tamanho2 == 0){
+        $arquivo2= 0;
+        
+      }else if($tamanho2 > 0){
+          if (($ext2 != 'pdf')) {
+              echo "<script>
+              Swal.fire({
+                  icon: 'error',
+                  title: 'O arquivo tem que ter extensão PDF!!',
+                  customClass: {
+                      popup: 'swalFireLivro',
+                  },
+                  showConfirmButton: false,
+                  allowOutsideClick: false
+              });
+          
+              // Redirecione automaticamente após um breve atraso
+              setTimeout(function() {
+                  window.location.href = 'controleDeLivroPDF.php';
+              }, 4000);
+              </script>";
+              exit;
+            }
+      }
+
+      if((($tamanho2 >  0) || (!empty($_FILES["arquivo"]["name"])))) {
+          if (!empty($_FILES["arquivo"]["name"])){
+          $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+          $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+          $arquivo = '../img/' . $novo_nomeimg;
+          }
+
+          if($tamanho2 > 0){
+          $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+          $arquivo2 = '../pdf/' . $novo_nomeimg2;
+          $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
+
+          }
+      }
     
     if (empty($nome) || empty($isbn) || ($categoria == "naoSelecionado") || empty($autor) || empty($ano) || ($destaque == "naoSelecionado") || empty($descricao) || empty($editora) || ($destaque == "naoSelecionado") ||  ($disponibilidade == "naoSelecionado") ||  empty($_FILES['arquivo']['name'])) {
       $mensagem = "Campos obrigatórios em branco: ";
@@ -321,8 +358,8 @@ if (isset($_REQUEST["cadastrar"]))
           window.location.href = 'alterarLivro.php';
       }, 4000);
       </script>";
-  }
-  
+    }
+
 
     $sql = $conn->prepare("INSERT INTO tbl_livro(id_liv, isbn, categoria, nome, autor, ano, destaque, descricao,  editora, arquivo, arquivo2, situacao ,disponibilidade)
     VALUES (:id_liv, :isbn, :categoria, :nome, :autor, :ano, :destaque, :descricao, :editora, :arquivo, :arquivo2, :situacao, :disponibilidade)");
