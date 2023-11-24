@@ -29,6 +29,7 @@ require_once "include/header.php";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
+    require_once "include/recuperarTamanhoPermitido.php";
 ?>
 <script>
     AOS.init();
@@ -36,7 +37,7 @@ require_once "include/header.php";
 
 <br>
 
-   <form name="form1" method="post" action="cadastroDeLivro.php" enctype="multipart/form-data">
+   <form name="form1" method="post" action="cadastroDeLivro.php"  onsubmit="return checkFileSize();" enctype="multipart/form-data">
    <div class="row">
    <div class="col-sm-12  mt-3">
           <label for="nome" class="form-label">Nome do Livro</label>
@@ -128,7 +129,8 @@ require_once "include/header.php";
         <div>
       </form>
 	<?php
-
+        $url = 'cadastroDeLivro.php';
+        require_once "include/verificaTamanho.php";
 try {
 
 if (isset($_REQUEST["cadastrar"])) 
@@ -167,52 +169,6 @@ if (isset($_REQUEST["cadastrar"]))
       
       $certo = true;
 
-      if (empty($nome) || empty($isbn)  || empty($autor) || empty($ano) ||  empty($descricao) || empty($editora)) {
-          $mensagem = "Campos obrigatórios em branco: ";
-          
-          if (empty($nome)) {
-              $mensagem .= "Nome ";
-          }
-  
-          if (empty($isbn)) {
-            $mensagem .= "ISBN ";
-          }
-
-  
-          if (empty($autor)) {
-              $mensagem .= "Autor ";
-          }
-          if (empty($ano)) {
-              $mensagem .= "Ano ";
-          }
-  
-          if (empty($descricao)) {
-              $mensagem .= "Sinópse ";
-          }
-  
-          if (empty($editora)) {
-              $mensagem .= "Editora ";
-          }
-          
-          echo "<script>
-          Swal.fire({
-              icon: 'error',
-              title: '$mensagem não pode estar vazio!!!',
-              customClass: {
-                  popup: 'swalFireLivro',
-              },
-              showConfirmButton: false,
-              allowOutsideClick: false
-          });
-      
-          // Redirecione automaticamente após um breve atraso
-          setTimeout(function() {
-              window.location.href = 'controleDeLivroPDF.php';
-          }, 4000);
-          </script>";
-          exit;
-      }
-
       if ($tamanho > 0) {
 
         if (($ext != 'jpg') and  ($ext != 'png')) {
@@ -229,7 +185,7 @@ if (isset($_REQUEST["cadastrar"]))
       
           // Redirecione automaticamente após um breve atraso
           setTimeout(function() {
-              window.location.href = 'controleDeLivroPDF.php';
+              window.location.href = 'cadastroDeLivro.php';
           }, 4000);
           </script>";
           exit;
@@ -249,7 +205,7 @@ if (isset($_REQUEST["cadastrar"]))
       
           // Redirecione automaticamente após um breve atraso
           setTimeout(function() {
-              window.location.href = 'controleDeLivroPDF.php';
+              window.location.href = 'cadastroDeLivro.php';
           }, 4000);
           </script>";
           exit;
@@ -274,7 +230,7 @@ if (isset($_REQUEST["cadastrar"]))
           
               // Redirecione automaticamente após um breve atraso
               setTimeout(function() {
-                  window.location.href = 'controleDeLivroPDF.php';
+                  window.location.href = 'cadastroDeLivro.php';
               }, 4000);
               </script>";
               exit;
@@ -355,7 +311,7 @@ if (isset($_REQUEST["cadastrar"]))
   
       // Redirecione automaticamente após um breve atraso
       setTimeout(function() {
-          window.location.href = 'alterarLivro.php';
+          window.location.href = 'cadastroDeLivro.php';
       }, 4000);
       </script>";
     }
