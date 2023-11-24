@@ -185,52 +185,33 @@ try{
                 $situacao = $_REQUEST["situacao"];
                 $disponibilidade = $_REQUEST["disponibilidade"];  
         
-                date_default_timezone_set('America/Sao_Paulo');
-                $data = date("d-m-Y");
-                $time = date("H-i-s");
+                if (empty($nome) || empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora)) {
+                    $mensagem = "Campos obrigatórios em branco: ";
+        
+                    if (empty($nome)) {
+                        $mensagem .= "Nome ";
+                    }
+        
+                    if (empty($isbn)) {
+                        $mensagem .= "ISBN ";
+                    }
+        
+                    if (empty($autor)) {
+                        $mensagem .= "Autor ";
+                    }
+                    if (empty($ano)) {
+                        $mensagem .= "Ano ";
+                    }
+        
+                    if (empty($descricao)) {
+                        $mensagem .= "Sinópse ";
+                    }
+        
+                    if (empty($editora)) {
+                        $mensagem .= "Editora ";
+                    }
 
-                date_default_timezone_set('America/Sao_Paulo');
-$data = date("d-m-Y");
-$time = date("H-i-s");
-
-$nomeimg = $_FILES["arquivo"]["name"];
-$temp = $_FILES["arquivo"]["tmp_name"];
-$tamanho = $_FILES["arquivo"]["size"];
-$tipoimg = $_FILES["arquivo"]["type"];
-$erro = $_FILES["arquivo"]["error"];
-$ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
-
-$num = rand(1, 10000000000);
-
-$certo = true;
-
-        if (empty($nome) || empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora)) {
-            $mensagem = "Campos obrigatórios em branco: ";
-
-            if (empty($nome)) {
-                $mensagem .= "Nome ";
-            }
-
-            if (empty($isbn)) {
-                $mensagem .= "ISBN ";
-            }
-
-            if (empty($autor)) {
-                $mensagem .= "Autor ";
-            }
-            if (empty($ano)) {
-                $mensagem .= "Ano ";
-            }
-
-            if (empty($descricao)) {
-                $mensagem .= "Sinópse ";
-            }
-
-            if (empty($editora)) {
-                $mensagem .= "Editora ";
-            }
-
-            echo "<script>
+                    echo "<script>
                     Swal.fire({
                         icon: 'error',
                         title: '$mensagem não pode estar vazio!!!',
@@ -243,64 +224,77 @@ $certo = true;
 
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
-                        window.location.href = 'controleDeLivroPDF.php';
+                        window.location.href = 'controleDeLivro.php';
                     }, 4000);
                     </script>";
                     exit;
         }
+                  
+                date_default_timezone_set('America/Sao_Paulo');
+                $data = date("d-m-Y");
+                $time = date("H-i-s");
 
-        if (!empty($_FILES["arquivo"]["name"])) {
+                $nomeimg =     $_FILES["arquivo"]["name"];
+                $temp =     $_FILES["arquivo"]["tmp_name"];
+                $tamanho =  $_FILES["arquivo"]["size"];
+                $tipoimg =     $_FILES["arquivo"]["type"];
+                $erro =     $_FILES["arquivo"]["error"];
+                $ext = pathinfo($nomeimg, PATHINFO_EXTENSION);
 
-            if (($ext != 'jpg') and ($ext != 'png')) {
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'A imagem tem que ter extensão png ou jpg!!',
-                            customClass: {
-                                popup: 'swalFireLivro',
-                            },
-                            showConfirmButton: false,
-                            allowOutsideClick: false
-                        });
+                $num = rand(1, 10000000000);
 
-                        // Redirecione automaticamente após um breve atraso
-                        setTimeout(function() {
-                            window.location.href = 'controleDeLivroPDF.php';
-                        }, 4000);
-                        </script>";
-                exit;
-            }
 
-            if ($tamanho > 9000000) {
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'A imagem é muito pesada!!',
-                            customClass: {
-                                popup: 'swalFireLivro',
-                            },
-                            showConfirmButton: false,
-                            allowOutsideClick: false
-                        });
 
-                        // Redirecione automaticamente após um breve atraso
-                        setTimeout(function() {
-                            window.location.href = 'controleDeLivroPDF.php';
-                        }, 4000);
-                        </script>";
-                exit;
-            }
-        } else {
-            $certo = false;
-        }
+                if (!empty($_FILES["arquivo"]["name"])) {
+        
+                  if (($ext != 'jpg') and  ($ext != 'png')) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'A imagem tem que ter extensão png ou jpg!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeLivro.php';
+                    }, 4000);
+                    </script>";
+                    exit;
+                  }
+            
+                  if ($tamanho > 9000000) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'A imagem é muito pesada!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeLivro.php';
+                    }, 4000);
+                    </script>";
+                    exit;
+                  }
+                }
 
-        if (!empty($_FILES["arquivo"]["name"]) && $certo) {
-            $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-            $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-            $arquivo = '../img/' . $novo_nomeimg;
-        }else{
-            $arquivo = $_REQUEST['caminho_arquivo'];
-        }
+                if (!empty($_FILES["arquivo"]["name"])){
+                      $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+                      $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+                      $arquivo = '../img/' . $novo_nomeimg;
+                    }else{
+                    $arquivo = $_REQUEST['caminho_arquivo'];
+                    }
 
                 
                     $arquivo2= 0;
