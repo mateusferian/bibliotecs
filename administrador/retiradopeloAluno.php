@@ -81,8 +81,6 @@ $consultaReserva->bindValue(':idAluno', $idAluno);
 $consultaReserva->execute();
 $totalReserva= $consultaReserva ->rowCount();
 
-
-$idLivro = $rowReserva["idLivro"];
 $consultaAluno = $conn->prepare("SELECT * FROM tbl_aluno WHERE id = :id");
 $consultaAluno->bindValue(':id', $idAluno);
 $consultaAluno->execute();
