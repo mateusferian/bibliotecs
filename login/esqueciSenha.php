@@ -190,7 +190,7 @@ if (isset($_GET["erro"])) {
                                 value="<?php echo $email; ?>"><br><br>
                         </div>
                     </div>
-                    <a class="form-links" href="../index.php"> lembrou? clique aqui e vá apra a area de login</a>
+                    <a class="form-links" href="../index.php"> Lembrou? clique aqui e vá para a área de login</a>
                     <br><br>
 
                     <div class="form-group">

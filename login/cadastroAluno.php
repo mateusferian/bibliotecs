@@ -43,9 +43,9 @@
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-mail Institucional</label>
+                            <label>E-mail </label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="digite o seu e-mail " required="">
                         </div>
                     </div>
 

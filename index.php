@@ -36,9 +36,9 @@
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label class="login">E-MAIL INSTITUCIONAL</label>
+                            <label class="login">E-MAIL</label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="digite o seu e-mail" required="">
                         </div>
                     </div>
 
