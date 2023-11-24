@@ -47,9 +47,10 @@ try{
   catch (PDOException $erro){
   	echo $erro->getMessage();
   }
+  require_once "include/recuperarTamanhoPermitido.php";
 ?>
 
-    <form name="form" method="post" action="alterarLivroPDF.php" enctype="multipart/form-data">
+    <form name="form" method="post" action="alterarLivroPDF.php" onsubmit="return checkFileSize();" enctype="multipart/form-data">
         <div class="row">
 
             <div class="col-sm-12  mt-3">
@@ -176,6 +177,8 @@ try{
     </form>
 
     <?php
+           $url = 'controleDeLivroPDF.php';
+           require_once "include/verificaTamanho.php";
 try{
       if (isset($_REQUEST["alterar"])) {
         
@@ -192,7 +195,51 @@ try{
                 $situacao = $_REQUEST["situacao"];
                 $disponibilidade = $_REQUEST["disponibilidade"];  
         
+                if (empty($nome) || empty($isbn) || empty($autor) || empty($ano) || empty($descricao) || empty($editora)) {
+                    $mensagem = "Campos obrigatórios em branco: ";
+        
+                    if (empty($nome)) {
+                        $mensagem .= "Nome ";
+                    }
+        
+                    if (empty($isbn)) {
+                        $mensagem .= "ISBN ";
+                    }
+        
+                    if (empty($autor)) {
+                        $mensagem .= "Autor ";
+                    }
+                    if (empty($ano)) {
+                        $mensagem .= "Ano ";
+                    }
+        
+                    if (empty($descricao)) {
+                        $mensagem .= "Sinópse ";
+                    }
+        
+                    if (empty($editora)) {
+                        $mensagem .= "Editora ";
+                    }
 
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: '$mensagem não pode estar vazio!!!',
+                        customClass: {
+                            popup: 'swalFireLivro',
+                        },
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+
+                    // Redirecione automaticamente após um breve atraso
+                    setTimeout(function() {
+                        window.location.href = 'controleDeLivroPDF.php';
+                    }, 4000);
+                    </script>";
+                    exit;
+        }
+                  
 
                 date_default_timezone_set('America/Sao_Paulo');
                 $data = date("d-m-Y");
@@ -213,54 +260,6 @@ try{
                 $tipoimg2 =  $_FILES["arquivo2"]["type"];
                 $erro2 =     $_FILES["arquivo2"]["error"];
                 $ext2 = pathinfo($nomeimg2, PATHINFO_EXTENSION);
-                
-                $certo = true;
-
-                if (empty($nome) || empty($isbn)  || empty($autor) || empty($ano) ||  empty($descricao) || empty($editora)) {
-                    $mensagem = "Campos obrigatórios em branco: ";
-                    
-                    if (empty($nome)) {
-                        $mensagem .= "Nome ";
-                    }
-            
-                    if (empty($isbn)) {
-                      $mensagem .= "ISBN ";
-                    }
-
-            
-                    if (empty($autor)) {
-                        $mensagem .= "Autor ";
-                    }
-                    if (empty($ano)) {
-                        $mensagem .= "Ano ";
-                    }
-            
-                    if (empty($descricao)) {
-                        $mensagem .= "Sinópse ";
-                    }
-            
-                    if (empty($editora)) {
-                        $mensagem .= "Editora ";
-                    }
-                    
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: '$mensagem não pode estar vazio!!!',
-                        customClass: {
-                            popup: 'swalFireLivro',
-                        },
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                
-                    // Redirecione automaticamente após um breve atraso
-                    setTimeout(function() {
-                        window.location.href = 'controleDeLivroPDF.php';
-                    }, 4000);
-                    </script>";
-                    exit;
-                }
 
                 if (!empty($_FILES["arquivo"]["name"])) {
         
@@ -303,8 +302,6 @@ try{
                     </script>";
                     exit;
                   }
-                }else{
-                    $certo = false;
                 }
 
 
@@ -328,29 +325,27 @@ try{
                         </script>";
                         exit;
                       }
-                }else{
-                    $certo = false;
-                  }
+                }
+                
 
-                if (((!empty($_FILES["arquivo2"]["name"])) || (!empty($_FILES["arquivo"]["name"]))) and($certo = true) ) {
-                    if (!empty($_FILES["arquivo"]["name"])){
-                    $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
-                    $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
-                    $arquivo = '../img/' . $novo_nomeimg;
+                if (!empty($_FILES["arquivo"]["name"])){
+                      $novo_nomeimg = 'img' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext;
+                      $mover = move_uploaded_file($temp, '../img/' . $novo_nomeimg);
+                      $arquivo = '../img/' . $novo_nomeimg;
                     }else{
-                        $arquivo = $_REQUEST['caminho_arquivo'];
+                    $arquivo = $_REQUEST['caminho_arquivo'];
                     }
-
+  
+  
                     if (!empty($_FILES["arquivo2"]["name"])){
-                    $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
-                    $arquivo2 = '../pdf/' . $novo_nomeimg2;
-                    $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
-
+                      $novo_nomeimg2 = 'arquivo' . '_' . $data . '_' . $time . '_' . $num . '.' . $ext2;
+                      $arquivo2 = '../pdf/' . $novo_nomeimg2;
+                      $mover2 = move_uploaded_file($temp2, '../pdf/' . $novo_nomeimg2);
                     }else{
                     $arquivo2 = $_REQUEST['caminho_arquivo2'];
                     }
-                }
-                
+                 
+
                 
                 try{
                     if($disponibilidade == "naoRetirado"){
