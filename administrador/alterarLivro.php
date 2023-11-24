@@ -243,7 +243,7 @@ $certo = true;
 
                     // Redirecione automaticamente após um breve atraso
                     setTimeout(function() {
-                        window.location.href = 'controleDeLivroPDF.php';
+                        window.location.href = 'controleDeLivro.php';
                     }, 4000);
                     </script>";
                     exit;
@@ -265,7 +265,7 @@ $certo = true;
 
                         // Redirecione automaticamente após um breve atraso
                         setTimeout(function() {
-                            window.location.href = 'controleDeLivroPDF.php';
+                            window.location.href = 'controleDeLivro.php';
                         }, 4000);
                         </script>";
                 exit;
@@ -285,7 +285,7 @@ $certo = true;
 
                         // Redirecione automaticamente após um breve atraso
                         setTimeout(function() {
-                            window.location.href = 'controleDeLivroPDF.php';
+                            window.location.href = 'controleDeLivro.php';
                         }, 4000);
                         </script>";
                 exit;
