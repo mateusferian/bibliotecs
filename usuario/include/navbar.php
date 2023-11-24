@@ -15,7 +15,7 @@
 
     <nav id="navbar" class="navbar">
         <ul>
-        <li class="dropdown"><a href="#"><span>Paginas</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de acesso</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php">Menu</a></li>
