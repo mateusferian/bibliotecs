@@ -19,7 +19,7 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php">Menu</a></li>
-                    <li><a href="segunda.php">Horarios</a></li>
+                    <li><a href="segunda.php">Horários</a></li>
                     <li><a href="doacoes.php">Doação</a></li>
                     <li><a href="conta.php"> conta</a></li>
                 </ul>
@@ -35,11 +35,11 @@
                 </ul>
         </li>
 
-        <li class="dropdown"><a href="#"><span>Opções de comentario</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de comentário</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                    <li><a href="formComentarios.php">Fomulario para comentarios</a></li>
-                    <li><a href="home.php#testimonials">Comentarios sobre a bibliotecs</a></li>
+                    <li><a href="formComentarios.php">Fomulario para comentário</a></li>
+                    <li><a href="home.php#testimonials">comentário sobre a biblioTecs</a></li>
                 </ul>
         </li>
 

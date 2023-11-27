@@ -14,9 +14,8 @@
                          </div>
                      </div>
                  </div>
-                 <p>A BiblioTecs é um portal para infinitas aventuras literárias. Descubra mundos desconhecidos,
-                     encontre respostas e alimente sua imaginação. Explore o conhecimento em três simples passos:
-                     escolha um livro, mergulhe em suas páginas e viaje para onde sua mente o levará..</p>
+                 <p>A BiblioTecs é um portal para infinitas aventuras literárias. Descubra mundos desconhecidos, encontre respostas e alimente sua imaginação. 
+                 Explore o conhecimento em três simples passos: escolha um livro, mergulhe em suas páginas e viaje para onde sua mente o levará.</p>
                  <div class="social-links d-flex mt-4">
                      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -41,10 +40,8 @@
 
              <div class="col-lg-2 col-6 footer-links">
                  <h4>quem somos</h4>
-                 <p>A reserva online de livros em bibliotecas oferece um acesso conveniente a uma variedade de obras
-                     digitais, possibilitando empréstimos virtuais e flexibilidade na leitura por meio de
-                     dispositivos. Além disso, a opção de retirada presencial após a reserva no site promove o acesso
-                     acessível ao conhecimento e à cultura</p>
+                 <p>"A reserva online de livros em bibliotecas oferece um acesso conveniente a uma variedade de obras digitais,
+                  possibilitando empréstimos virtuais e flexibilidade na leitura por meio de dispositivos. Além disso, a opção de retirada presencial após a reserva no site promove o acesso acessível ao conhecimento e à cultura.</p>
              </div>
 
              <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
