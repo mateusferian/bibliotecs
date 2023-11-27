@@ -23,15 +23,14 @@
              </div>
 
              <div class="col-lg-2 col-6 footer-links">
-                 <h4>contato</h4>
+                 <h4>Contatos</h4>
                  <ul>
                      <p>
                          <strong>Phone:</strong>
-                         <br> (65) 3885-5712<br>
-                         (79) 2937-7594<br>
+                         <br> (19) 3885-5712<br>
+                         (19) 2937-7594<br>
                          <strong>Email:</strong>
-                         <br>info@example.com<br>
-                         info@example.com<br>
+                         bibliotecs@gmail.com<br>
                      </p>
                      <strong>Endreço:</strong>
                      <br>Rua maria das Dores , 000, São José Do Rio Pardo-SP<br>
@@ -39,13 +38,13 @@
              </div>
 
              <div class="col-lg-2 col-6 footer-links">
-                 <h4>quem somos</h4>
-                 <p>"A reserva online de livros em bibliotecas oferece um acesso conveniente a uma variedade de obras digitais,
+                 <h4>Quem somos</h4>
+                 <p>A reserva online de livros em bibliotecas oferece um acesso conveniente a uma variedade de obras digitais,
                   possibilitando empréstimos virtuais e flexibilidade na leitura por meio de dispositivos. Além disso, a opção de retirada presencial após a reserva no site promove o acesso acessível ao conhecimento e à cultura.</p>
              </div>
 
              <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                 <h4>telefones para doações</h4>
+                 <h4>Telefones para doações</h4>
                  <p>
                      (65) 1234-5712<br>
                      (79) 4321-7594<br>

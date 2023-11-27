@@ -20,8 +20,8 @@
                     <ul>
                     <li><a href="home.php">Menu</a></li>
                     <li><a href="segunda.php">Horários</a></li>
-                    <li><a href="doacoes.php">Doação</a></li>
-                    <li><a href="conta.php"> conta</a></li>
+                    <li><a href="doacoes.php">Doações</a></li>
+                    <li><a href="conta.php"> Conta</a></li>
                 </ul>
         </li>
 
@@ -29,7 +29,7 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php#livros">Livros</a></li>
-                    <li><a href="home.php#destaques">Livros em Destaque</a></li>
+                    <li><a href="home.php#destaques">Livros em destaque</a></li>
                     <li><a href="home.php#livrosPDF">Livros em PDF</a></li>
                     <li><a href="retirados.php">Meus livros retirados</a></li>
                 </ul>
@@ -39,7 +39,7 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="formComentarios.php">Fomulario para comentário</a></li>
-                    <li><a href="home.php#testimonials">comentário sobre a biblioTecs</a></li>
+                    <li><a href="home.php#testimonials">Comentário sobre a BiblioTecs</a></li>
                 </ul>
         </li>
 

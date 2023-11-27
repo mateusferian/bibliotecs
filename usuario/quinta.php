@@ -106,11 +106,11 @@ li{
             <div class="card-body">
                 <h5 class="card-title">Dias da Semana</h5>
                 <p class="card-text">
-                    <a href="segunda.php" class="btn btn-primary link" id="botao">Segunda</a>
-                    <a href="terca.php" class="btn btn-primary link" id="botao">Terça</a>
-                    <a href="quarta.php" class="btn btn-primary link" id="botao">Quarta</a>
-                    <a href="quinta.php" class="btn btn-primary link" id="botao">Quinta</a>
-                    <a href="sexta.php" class="btn btn-primary link" id="botao">Sexta</a>
+                <a href="segunda.php" class="btn btn-primary link" id="botao">Segunda-feira</a>
+                    <a href="terca.php" class="btn btn-primary link" id="botao">Terça-feira</a>
+                    <a href="quarta.php" class="btn btn-primary link" id="botao">Quarta-feira</a>
+                    <a href="quinta.php" class="btn btn-primary link" id="botao">Quinta-feira</a>
+                    <a href="sexta.php" class="btn btn-primary link" id="botao">Sexta-feira</a>
                 </p>
             </div>
         </div>
@@ -173,7 +173,7 @@ table.style.display = "none";
     <br><br><br>
         <div class="card">
           <div class="card-header">
-           <center><h2>Horários de Quinta-Feira</h2></center>
+           <center><h2>Horários de Quinta-feira</h2></center>
           </div>
           <div class="card-body">
             <div class="row">
