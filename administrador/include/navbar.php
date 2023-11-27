@@ -20,7 +20,7 @@
                         <li><a href="controleDeLivroPDF.php">Controle de livros em PDF</a></li>
                         <li><a href="controleComentario.php">Controle de comentários</a></li>
                         <li><a href="controleDeEvento.php">Controle de evento</a></li>
-                        <li><a href="controleDeHorario.php">Controle de horario</a></li>
+                        <li><a href="controleDeHorario.php">Controle de horário</a></li>
                     </ul>
                 </li>
 
