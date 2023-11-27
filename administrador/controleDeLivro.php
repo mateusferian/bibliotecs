@@ -15,7 +15,7 @@
 
 <body>
     <?php
-    $nomeDaPagina ="Controle de Livro";
+    $nomeDaPagina ="Controle de livros";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -70,7 +70,7 @@
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
                     <th scope="col">DISPONIBILIDADE</th>
-                    <th scope="col">SINÓPSE</th>
+                    <th scope="col">SINOPSE</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
                     <th scope="col">SITUAÇÃO</th>

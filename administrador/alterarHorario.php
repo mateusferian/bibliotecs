@@ -100,7 +100,7 @@ try{
 
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
-                    class="btn btn-primary mt-2">alterar</button>
+                    class="btn btn-primary mt-2">Alterar</button>
                 <br><br>
             </div>
         </div>

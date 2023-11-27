@@ -84,7 +84,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input id="formulario" type="submit" value="alterar" class="btn" name="alterar">
+                            <input id="formulario" type="submit" value="Alterar" class="btn" name="alterar">
                         </div>
                         <br><br>
                     </div>

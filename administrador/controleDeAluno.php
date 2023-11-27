@@ -29,7 +29,7 @@
 
 <div class="container mt-4">
     <form method="get">
-        <p class="fs-5 mt-5">Opção de filtragem</p>
+        <p class="fs-5 mt-5">Opções de filtragem</p>
         <select class="form-control" name="filtro" id="filtro">
             <option value="opcao0" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'opcao0' ? 'selected' : ''; ?>>Sem Filtro</option>
             <option value="bloqueado" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'bloqueado' ? 'selected' : ''; ?>>Bloqueados</option>
@@ -45,7 +45,7 @@
 <script src ="js/selecionarFiltro.js"></script>
 
 
-<p class="fs-1 text-center">Controle de Aluno</p>
+<p class="fs-1 text-center">Controle de aluno</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -54,7 +54,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">NOME</th>
                     <th scope="col">EMAIL-INSTITUCIONAL</th>
-                    <th scope="col">condicao</th>
+                    <th scope="col">CONDIÇÃO</th>
                     <th scope="col">SALA</th>
                     <th scope="col">PERIODO</th>
                     <th scope="col">SITUAÇÃO</th>
@@ -115,7 +115,7 @@
                         <td><?php echo date('d/m/Y', strtotime($row['dataCadastro'])); ?></td>
 
                         <td>
-                            <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livro Reservado</a>
+                            <a href="retiradopeloAluno.php?id=<?php echo $row["id"]; ?>">Livros reservados</a>
                         </td>
                         <td>
                             <a href="alterarAluno.php?al=<?php echo $row["id"]; ?>">Alterar</a>

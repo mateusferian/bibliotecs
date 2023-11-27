@@ -25,7 +25,7 @@
 
 <body>
 <?php
-    $nomeDaPagina ="Controle de Horario";
+    $nomeDaPagina ="Controle de horários";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";

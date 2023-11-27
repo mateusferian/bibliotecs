@@ -25,7 +25,7 @@
 
 <body>
 <?php
-    $nomeDaPagina ="Controle de Comentario";
+    $nomeDaPagina ="Controle de comentários";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -54,7 +54,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">NOME</th>
                 <th scope="col">CARGO</th>
-                <th scope="col">COMENTARIO</th>
+                <th scope="col">COMENTÁRIO</th>
                 <th scope="col">AVATAR</th>
                 <th scope="col">AVALIAÇÃO</th>
                 <th colspan="2" scope="col">AÇÕES</th>
