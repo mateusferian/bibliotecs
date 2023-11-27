@@ -25,7 +25,7 @@
                 </ul>
         </li>
 
-        <li class="dropdown"><a href="#"><span>Opções de Livro</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de Livros</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php#livros">Livros</a></li>
@@ -35,7 +35,7 @@
                 </ul>
         </li>
 
-        <li class="dropdown"><a href="#"><span>Opções de comentário</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de comentários</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="formComentarios.php">Fomulario para comentário</a></li>
