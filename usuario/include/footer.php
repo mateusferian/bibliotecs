@@ -28,8 +28,8 @@
                      <p>
                          <strong>Phone:</strong>
                          <br> (19) 3885-5712<br>
-                         (19) 2937-7594<br>
-                         <strong>Email:</strong>
+                         (19) 2937-7594<br><br>
+                         <strong>Email:</strong><br>
                          bibliotecs@gmail.com<br>
                      </p>
                      <strong>Endreço:</strong>

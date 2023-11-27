@@ -43,20 +43,20 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="cadastroAdministrador.php?protect=123452" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Cadastro Administrador</h1>
+                    <h1 class="text-center">Cadastro de Administrador</h1>
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                         <label>E-MAIL</label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="Digite o seu e-mail" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>Nome completo</label>
-                            <input type="text" name="nome" class="form-control" placeholder="digite o seu nome"
+                            <input type="text" name="nome" class="form-control" placeholder="Digite o seu nome"
                                 required="">
                         </div>
                     </div>

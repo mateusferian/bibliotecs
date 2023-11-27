@@ -60,12 +60,12 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="alterarAdministrador.php?protect=2343431" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Alterar Administrador</h1>
+                    <h1 class="text-center">Alterar administrador</h1>
                     <br><br>
 
                     <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
-                            <label> ID: </label><br>
+                            <label> Id: </label><br>
                             <input type="text" name="id" class="form-control"
                                 value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
                         </div>
@@ -73,7 +73,7 @@
 
                     <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-MAIL</label>
+                            <label>E-mail</label>
                             <input type="text" name="email" class="form-control"
                                 value="<?php if(isset($row['email'])) {echo $row['email'];} ?>"><br>
                         </div>
