@@ -45,14 +45,14 @@
                         <div class="col-md-6 offset-md-3">
                             <label>E-mail </label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail " required="">
+                                placeholder="Digite o seu e-mail " required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>Nome completo</label>
-                            <input type="text" name="nome" class="form-control" placeholder="digite o seu nome"
+                            <input type="text" name="nome" class="form-control" placeholder="Digite o seu nome"
                                 required="">
                         </div>
                     </div>

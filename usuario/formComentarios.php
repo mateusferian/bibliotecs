@@ -46,7 +46,7 @@
         <div class="col-md-6 offset-md-3">
         <label>Nome</label>
         <input type="text" name="nome" class="form-control"
-         placeholder="digite o seu e-mail institucional" required="">
+         placeholder="Digite o seu nome" required="">
         </div>
     </div>
 
@@ -55,7 +55,7 @@
     <div class="col-md-6 offset-md-3">
     <label>cargo</label>
     <input type="text" name="cargo" class="form-control"
-     placeholder="digite o seu e-mail institucional" required="">
+     placeholder="Digite o seu cargo" required="">
      </div>
     </div>
 
