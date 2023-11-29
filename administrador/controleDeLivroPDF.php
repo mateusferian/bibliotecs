@@ -301,8 +301,8 @@
                         popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
                     },
                     showCancelButton: true, // Não mostrar o botão de cancelar
-                    confirmButtonText: 'sim',
-                    cancelButtonText: 'não',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false      
@@ -333,7 +333,7 @@
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Livro em PDF apagado com sucesso',
+                                title: 'Livro em PDF apagado com sucesso!',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },

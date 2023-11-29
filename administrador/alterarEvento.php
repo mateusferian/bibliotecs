@@ -115,12 +115,12 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Alteração de evento realizado com Sucesso!!',
+                title: 'Alteração de evento realizada com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false,
-                confirmButtonText: 'Ir para a página de controle',
+                confirmButtonText: 'Ir para a página de controle de ventos',
                 timer: 4000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      

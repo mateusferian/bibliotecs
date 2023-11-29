@@ -13,8 +13,8 @@
     <nav id="navbar" class="navbar">
 
     <ul>
-        <li><a href="controleDeAdministrador.php?protect=2343431">Controle de administrador</a></li>
-        <li><a href="cadastroAdministrador.php?protect=2343431">Cadastro de administrador</a></li>
+        <li><a href="controleDeAdministrador.php?protect=2343431">Controle de administradores</a></li>
+        <li><a href="cadastroAdministrador.php?protect=2343431">Cadastro de administradores</a></li>
         <li><a href="opcoesDeAcesso.php?protect=2343431">Opções de acesso</a></li>
         <li><a href="../index.php">Sair</a></li>
     </ul>

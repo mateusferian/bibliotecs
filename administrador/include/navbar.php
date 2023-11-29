@@ -19,8 +19,8 @@
                         <li><a href="controleDeLivro.php">Controle de livros</a></li>
                         <li><a href="controleDeLivroPDF.php">Controle de livros em PDF</a></li>
                         <li><a href="controleComentario.php">Controle de comentários</a></li>
-                        <li><a href="controleDeEvento.php">Controle de evento</a></li>
-                        <li><a href="controleDeHorario.php">Controle de horário</a></li>
+                        <li><a href="controleDeEvento.php">Controle de eventos</a></li>
+                        <li><a href="controleDeHorario.php">Controle de horários</a></li>
                     </ul>
                 </li>
 
@@ -28,8 +28,8 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         <li><a href="cadastroDeLivro.php">Cadastro de livros</a></li>
-                        <li><a href="cadastroDeEvento.php">Cadastro de evento</a></li>
-                        <li><a href="cadastroHorario.php">Cadastro de horário</a></li>
+                        <li><a href="cadastroDeEvento.php">Cadastro de eventos</a></li>
+                        <li><a href="cadastroHorario.php">Cadastro de horários</a></li>
                     </ul>
                 </li>
                 <li><a href="conta.php"> Conta</a></li>

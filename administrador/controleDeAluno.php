@@ -45,7 +45,7 @@
 <script src ="js/selecionarFiltro.js"></script>
 
 
-<p class="fs-1 text-center">Controle de aluno</p>
+<p class="fs-1 text-center">Controle de alunos</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -188,8 +188,8 @@
                 popup: 'swalFireControleDeAluno',
             },
             showCancelButton: true,
-            confirmButtonText: 'sim',
-            cancelButtonText: 'não',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      
@@ -220,7 +220,7 @@
                 echo "<script>
                     Swal.fire({
                         icon: 'success',
-                        title: 'Aluno apagado com sucesso',
+                        title: 'Aluno apagado com sucesso!',
                         customClass: {
                             popup: 'swalFireControleDeAlunoApagado',
                         },

@@ -43,7 +43,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="cadastroAdministrador.php?protect=123452" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Cadastro de Administrador</h1>
+                    <h1 class="text-center">Cadastro de Administradores</h1>
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
@@ -116,7 +116,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -136,7 +136,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -167,7 +167,7 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de administrador realizado com Sucesso!!',
+                title: 'Cadastro de administrador realizado com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },

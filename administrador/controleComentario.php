@@ -195,13 +195,13 @@
                 echo "<script>
                 Swal.fire({
                     title: 'Apagar',
-                    html: '<p>Tem certeza que deseja apagar o comentario de \"" . $comentario['nome'] . "\"?</p>',
+                    html: '<p>Tem certeza que deseja apagar o comentário de \"" . $comentario['nome'] . "\"?</p>',
                     customClass: {
                         popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
                     },
                     showCancelButton: true, // Não mostrar o botão de cancelar
-                    confirmButtonText: 'sim',
-                    cancelButtonText: 'não',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false      
@@ -232,7 +232,7 @@
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'comentario apagado com sucesso',
+                                title: 'Comentario apagado com sucesso!',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },

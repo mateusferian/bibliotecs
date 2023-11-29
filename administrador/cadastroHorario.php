@@ -43,7 +43,7 @@ require_once "include/header.php";
 <body>
 
 <?php
-    $nomeDaPagina ="Cadastro de horario";
+    $nomeDaPagina ="Cadastro de horarios";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -117,12 +117,12 @@ try {
         $sql->execute();
         echo "<script>
         Swal.fire({
-            title: 'Cadastro realizado!',
+            title: 'Cadastro realizado com sucesso!',
             customClass: {
                 popup: 'swalFireLivro',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de controle de horário',
+            confirmButtonText: 'Ir para a página de controle de horários',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    

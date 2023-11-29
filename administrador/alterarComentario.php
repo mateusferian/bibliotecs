@@ -38,7 +38,7 @@ require_once "include/header.php";
 <body>
 
     <?php
-    $nomeDaPagina ="Alterar comentario";
+    $nomeDaPagina ="Alterar comentário";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -182,12 +182,12 @@ try{
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Alteração realizado!!',
+                    title: 'Alteração de comentário realizada com sucesso!',
                     customClass: {
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de horario',
+                    confirmButtonText: 'Ir para a página de controle de comentários',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    

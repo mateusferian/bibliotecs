@@ -130,12 +130,12 @@ try{
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Alteração realizado!!',
+                    title: 'Alteração de horário realizada com sucesso!',
                     customClass: {
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de horario',
+                    confirmButtonText: 'Ir para a página de controle de horários',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    

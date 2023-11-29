@@ -40,7 +40,7 @@
 
                 <div class="form-group text-center">
                     <div class="mx-auto">
-                        <input id="formulario" type="button" value="Cadastro de administrador" class="btn btn-primary"
+                        <input id="formulario" type="button" value="Cadastro de administradores" class="btn btn-primary"
                         onclick="direcionaParaCadastroAdministrador()">
                     </div>
                     <br>
@@ -48,7 +48,7 @@
 
                 <div class="form-group text-center">
                     <div class="mx-auto">
-                        <input id="formulario" type="button" value="Controle de administrador" class="btn btn-primary" 
+                        <input id="formulario" type="button" value="Controle de administradores" class="btn btn-primary" 
                         onclick="direcionaParaControleAdministrador()">
                     </div>
                     <br>

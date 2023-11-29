@@ -224,7 +224,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: '$mensagem não pode estar vazio!!!',
+                        title: '$mensagem não pode estar vazio!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -267,7 +267,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: 'A imagem tem que ter extensão png ou jpg!!',
+                        title: 'A imagem tem que ter extensão png ou jpg!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -287,7 +287,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: 'A imagem é muito pesada!!',
+                        title: 'A imagem é muito pesada!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -310,7 +310,7 @@ try{
                         echo "<script>
                         Swal.fire({
                             icon: 'error',
-                            title: 'O arquivo tem que ter extensão PDF!!',
+                            title: 'O arquivo tem que ter extensão PDF!',
                             customClass: {
                                 popup: 'swalFireLivro',
                             },
@@ -386,12 +386,12 @@ try{
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Alteração realizado!!',
+                    title: 'Alteração de livro em PDF realizada com sucesso!',
                     customClass: {
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de livro em pdf',
+                    confirmButtonText: 'Ir para a página de controle de livros em pdf',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    

@@ -25,7 +25,7 @@ require_once "include/header.php";
 </head>
 <body>
 <?php
-    $nomeDaPagina ="Cadastro de livro";
+    $nomeDaPagina ="Cadastro de livros";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -195,7 +195,7 @@ if (isset($_REQUEST["cadastrar"]))
           echo "<script>
           Swal.fire({
               icon: 'error',
-              title: 'A imagem é muito pesada!!',
+              title: 'A imagem é muito pesada!',
               customClass: {
                   popup: 'swalFireLivro',
               },
@@ -337,13 +337,13 @@ if (isset($_REQUEST["cadastrar"]))
         $sql->execute();
         echo "<script>
         Swal.fire({
-            title: 'Cadastro realizado!',
+            title: 'Cadastro realizado com sucesso!',
             customClass: {
                 popup: 'swalFireLivro',
             },
             showCancelButton: true,
-            confirmButtonText: 'Ir para a página de controle de livro',
-            cancelButtonText: 'Ir para a página de controle de livro em PDF',
+            confirmButtonText: 'Ir para a página de controle de livros',
+            cancelButtonText: 'Ir para a página de controle de livros em PDF',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    

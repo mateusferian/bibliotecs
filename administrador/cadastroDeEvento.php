@@ -30,7 +30,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="cadastroDeEvento.php" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Cadastro de evento</h1>
+                    <h1 class="text-center">Cadastro de eventos</h1>
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
@@ -89,12 +89,12 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de evento realizado com Sucesso!',
+                title: 'Cadastro de evento realizado com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false,
-                confirmButtonText: 'Ir para a página de controle',
+                confirmButtonText: 'Ir para a página de controle de eventos',
                 timer: 4000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      
