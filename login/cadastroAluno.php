@@ -157,7 +157,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -177,7 +177,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -211,7 +211,7 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de aluno realizado com Sucesso!!',
+                title: 'Cadastro realizado com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },

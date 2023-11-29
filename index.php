@@ -80,7 +80,7 @@
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'email ou senha incorretos',
+                    title: 'Email ou senha incorretos!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },
@@ -99,7 +99,7 @@ if (isset($_GET["inativo"])) {
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'Usuario inativo!!',
+                    title: 'Usuario inativo!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },
