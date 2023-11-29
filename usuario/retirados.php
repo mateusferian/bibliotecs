@@ -119,7 +119,21 @@ $totalReserva= $consultaReserva ->rowCount();
             <div class="col-sm-4 mt-5">
             <img src="<?php echo $livro["arquivo"]?>" class="card-img-top img_tamanho" alt="<?php echo $livro["nome"]?>">
                 <h5 class="card-title"><?php echo $livro["nome"] ?></h5>
-                <p>Data de Entrega: <?php echo date("d/m/Y", strtotime($rowReservaLivro["dataDeEntrega"])) ?></p>
+
+        <?php
+                $dataEntrega = strtotime($rowReservaLivro["dataDeEntrega"]);
+                    $dataAtual = time();
+
+                    if ($dataAtual > $dataEntrega) {
+                        $cor = 'red';
+
+                    } else {
+                        $cor = 'green';
+
+                    }
+                    ?>
+
+                    <p style="color: <?php echo $cor; ?>">Data de Entrega: <?php echo date("d/m/Y", $dataEntrega); ?></p>
                 <p><a href="renovar.php?id=<?php echo $livro['id_liv'] ?>" class="btn" id="botao">Renovar</a></p>
             </div>
         <?php }} ?>
