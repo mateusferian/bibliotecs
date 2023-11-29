@@ -38,8 +38,8 @@
         <li class="dropdown"><a href="#"><span>Opções de comentários</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                    <li><a href="formComentarios.php">Fomulario para comentário</a></li>
-                    <li><a href="home.php#testimonials">Comentário sobre a BiblioTecs</a></li>
+                    <li><a href="formComentarios.php">Fomulario para comentários</a></li>
+                    <li><a href="home.php#testimonials">Comentários sobre a BiblioTecs</a></li>
                 </ul>
         </li>
 

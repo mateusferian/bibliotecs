@@ -133,7 +133,7 @@ $totalReserva= $consultaReserva ->rowCount();
             Swal.fire({
                 icon: 'success',
                 title: 'Livro renovado com sucesso!',
-                html: '<p>o Livro foi renovado por mais 7 dias!!!</p>',
+                html: '<p>o Livro foi renovado por mais 7 dias</p>',
                 customClass: {
                     popup: 'swalFireControleDeAlunoApagado',
                 },

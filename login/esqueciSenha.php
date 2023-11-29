@@ -134,7 +134,7 @@ if (isset($_GET["erro"])) {
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Email enviado com sucesso!',
+                    title: 'E-mail enviado com sucesso!',
                     html: '<p>Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!</p>',
                     customClass: {
                         popup: 'swalFireIndex',
@@ -186,7 +186,7 @@ if (isset($_GET["erro"])) {
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label class="login">E-mail</label>
-                            <input type="text" name="email" placeholder="Digite o e-mail"
+                            <input type="text" name="email" placeholder="Digite o seu e-mail"
                                 value="<?php echo $email; ?>"><br><br>
                         </div>
                     </div>

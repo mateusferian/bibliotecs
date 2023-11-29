@@ -80,7 +80,7 @@
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'Email ou senha incorretos!',
+                    title: 'E-mail ou senha incorretos!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },
