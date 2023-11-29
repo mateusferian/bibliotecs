@@ -36,9 +36,9 @@
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label class="login">E-MAIL INSTITUCIONAL</label>
+                            <label class="login">E-MAIL</label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="Digite o seu e-mail" required="">
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'email ou senha incorretos',
+                    title: 'E-mail ou senha incorretos!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },
@@ -99,7 +99,7 @@ if (isset($_GET["inativo"])) {
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'Usuario inativo!!',
+                    title: 'Usuario inativo!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },

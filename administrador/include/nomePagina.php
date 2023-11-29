@@ -13,7 +13,7 @@
                             }
                             ?>
                             <p>Domine a administração com facilidade <br>
-                             Controle, eficiência e emoção em cada clique!
+                             controle, eficiência e emoção em cada clique!
                             </p>
                         </div>
                     </div>

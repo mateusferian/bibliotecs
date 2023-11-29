@@ -43,7 +43,7 @@ require_once "include/header.php";
 <body>
 
 <?php
-    $nomeDaPagina ="Cadastro de Horario";
+    $nomeDaPagina ="Cadastro de horarios";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -58,7 +58,7 @@ require_once "include/header.php";
   <div class="col-sm-12 mt-3">
     <label for="dia" class="form-label">Dia</label>
     <select id="dia" name="dia" class="form-control">
-      <option selected>Selecione uma opção:</option>
+      <option selected>Selecione um dia da semana</option>
       <option value="segunda-feira">Segunda-feira</option>
       <option value="terca-feira">Terça-feira</option>
       <option value="quarta-feira">Quarta-feira</option>
@@ -70,7 +70,7 @@ require_once "include/header.php";
   <div class="col-sm-12 mt-3">
     <label for="periodo" class="form-label">Período</label>
     <select id="periodo" name="periodo" class="form-control">
-      <option selected>Selecione uma opção:</option>
+      <option selected>Selecione um periodo</option>
       <option value="Manha">Manhã</option>
       <option value="Tarde">Tarde</option>
       <option value="Noite">Noite</option>
@@ -79,12 +79,12 @@ require_once "include/header.php";
 
   <div class="col-sm-12 mt-3">
     <label for="horario" class="form-label">Horário de inicio</label>
-    <input type="text" name="horario" class="form-control">
+    <input type="text" name="horario" class="form-control" placeholder="Digite o horário de inicio">
   </div>
 
   <div class="col-sm-12 mt-3">
     <label for="termino" class="form-label">Horário de termino</label>
-    <input type="text" name="termino" class="form-control">
+    <input type="text" name="termino" class="form-control" placeholder="Digite o horário de termino">
   </div>
 
   <div class="col-12  mt-3">
@@ -117,12 +117,12 @@ try {
         $sql->execute();
         echo "<script>
         Swal.fire({
-            title: 'Cadastro realizado!!',
+            title: 'Cadastro realizado com sucesso!',
             customClass: {
                 popup: 'swalFireLivro',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de controle de horario',
+            confirmButtonText: 'Ir para a página de controle de horários',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false    

@@ -84,7 +84,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input id="formulario" type="submit" value="alterar" class="btn" name="alterar">
+                            <input id="formulario" type="submit" value="Alterar" class="btn" name="alterar">
                         </div>
                         <br><br>
                     </div>
@@ -115,12 +115,12 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Alteração de evento realizado com Sucesso!!',
+                title: 'Alteração de evento realizada com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false,
-                confirmButtonText: 'Ir para a página de controle',
+                confirmButtonText: 'Ir para a página de controle de ventos',
                 timer: 4000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      

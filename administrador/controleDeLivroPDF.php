@@ -15,7 +15,7 @@
 
 <body>
     <?php
-    $nomeDaPagina ="Controle de Livro";
+    $nomeDaPagina ="Controle de livros";
     $nomeDaPagina2 ="em PDF";
     require_once "../restrito.php";
     require_once "include/navbar.php";
@@ -41,7 +41,7 @@
     <div class="row">
         <div class="col-sm-12 mt-3">
             <form method="get" action="controleDeLivroPDF.php">
-                <p class="fs-5 mt-5">Opção de filtragem</p>
+                <p class="fs-5 mt-5">Opções de filtragem</p>
                 <select class="form-control" name="filtro" id="filtro">
                     <option value="SemFiltro" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'SemFiltro' ? 'selected' : ''; ?>>Sem Filtro</option>
                     <option value="Séries da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Séries da Literatura Estrangeira' ? 'selected' : ''; ?>>Séries da Literatura Estrangeira</option>
@@ -71,7 +71,7 @@
                     <th scope="col">ANO</th>
                     <th scope="col">DESTAQUE</th>
                     <th scope="col">DISPONIBILIDADE</th>
-                    <th scope="col">SINÓPSE</th>
+                    <th scope="col">SINOPSE</th>
                     <th scope="col">EDITORA</th>
                     <th scope="col">IMAGEM</th>
                     <th scope="col">PDF</th>
@@ -301,8 +301,8 @@
                         popup: 'swalFireLivro', // Classe CSS personalizada para a caixa de diálogo
                     },
                     showCancelButton: true, // Não mostrar o botão de cancelar
-                    confirmButtonText: 'sim',
-                    cancelButtonText: 'não',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false      
@@ -333,7 +333,7 @@
                         echo "<script>
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Livro em PDF apagado com sucesso',
+                                title: 'Livro em PDF apagado com sucesso!',
                                 customClass: {
                                     popup: 'swalFireLivroApagado',
                                 },

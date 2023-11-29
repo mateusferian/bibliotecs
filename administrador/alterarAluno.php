@@ -178,7 +178,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -198,7 +198,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -236,12 +236,12 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Alteração realizado!!',
+                title: 'Alteração de aluno realizada com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },
                 showCancelButton: false, // Não mostrar o botão de cancelar
-                confirmButtonText: 'Ir para controle de aluno',
+                confirmButtonText: 'Ir para a página de controle de alunos',
                 timer: 5000, 
                 timerProgressBar: true, 
                 allowOutsideClick: false      

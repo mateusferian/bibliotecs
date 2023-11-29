@@ -31,7 +31,7 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="verificarSenha.php" method="POST">
                     <br><br>
-                    <h1 class="text-center">Codigo de acesso</h1>
+                    <h1 class="text-center">Código de acesso</h1>
                     <br><br>
 
                     <div class="form-group">
@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input  id="formulario" type="submit" value="enviar codigo" class="btn btn-primary">
+                            <input  id="formulario" type="submit" value="Enviar código" class="btn btn-primary">
                         </div>
                         <br><br>
                     </div>
@@ -58,7 +58,7 @@
     echo "<script>
     Swal.fire({
         icon: 'error',
-        title: 'você nâo tem acesso!!',
+        title: 'você nâo tem acesso!',
         customClass: {
             popup: 'swalFireCadastroAdministrador',
         },

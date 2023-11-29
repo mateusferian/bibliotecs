@@ -15,24 +15,24 @@
                 <li class="dropdown"><a href="#"><span>Controles</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="controleDeAluno.php">controle de alunos</a></li>
-                        <li><a href="controleDeLivro.php">controle de livros</a></li>
-                        <li><a href="controleDeLivroPDF.php">controle de livros em PDF</a></li>
-                        <li><a href="controleComentario.php">controle de comentarios</a></li>
-                        <li><a href="controleDeEvento.php">controle de evento</a></li>
-                        <li><a href="controleDeHorario.php">controle de horario</a></li>
+                        <li><a href="controleDeAluno.php">Controle de alunos</a></li>
+                        <li><a href="controleDeLivro.php">Controle de livros</a></li>
+                        <li><a href="controleDeLivroPDF.php">Controle de livros em PDF</a></li>
+                        <li><a href="controleComentario.php">Controle de comentários</a></li>
+                        <li><a href="controleDeEvento.php">Controle de eventos</a></li>
+                        <li><a href="controleDeHorario.php">Controle de horários</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown"><a href="#"><span>Cadastros</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="cadastroDeLivro.php">cadastro de livros</a></li>
-                        <li><a href="cadastroDeEvento.php">cadastro de evento</a></li>
-                        <li><a href="cadastroHorario.php">cadastro de horario</a></li>
+                        <li><a href="cadastroDeLivro.php">Cadastro de livros</a></li>
+                        <li><a href="cadastroDeEvento.php">Cadastro de eventos</a></li>
+                        <li><a href="cadastroHorario.php">Cadastro de horários</a></li>
                     </ul>
                 </li>
-                <li><a href="conta.php"> conta</a></li>
+                <li><a href="conta.php"> Conta</a></li>
             </ul>
         </nav><!-- .navbar -->
 

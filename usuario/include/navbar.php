@@ -15,31 +15,31 @@
 
     <nav id="navbar" class="navbar">
         <ul>
-        <li class="dropdown"><a href="#"><span>Paginas</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de acesso</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php">Menu</a></li>
-                    <li><a href="segunda.php">Horarios</a></li>
-                    <li><a href="doacoes.php">Doação</a></li>
-                    <li><a href="conta.php"> conta</a></li>
+                    <li><a href="segunda.php">Horários</a></li>
+                    <li><a href="doacoes.php">Doações</a></li>
+                    <li><a href="conta.php"> Conta</a></li>
                 </ul>
         </li>
 
-        <li class="dropdown"><a href="#"><span>Opções de Livro</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de Livros</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="home.php#livros">Livros</a></li>
-                    <li><a href="home.php#destaques">Livros em Destaque</a></li>
+                    <li><a href="home.php#destaques">Livros em destaque</a></li>
                     <li><a href="home.php#livrosPDF">Livros em PDF</a></li>
                     <li><a href="retirados.php">Meus livros retirados</a></li>
                 </ul>
         </li>
 
-        <li class="dropdown"><a href="#"><span>Opções de comentario</span> <i       
+        <li class="dropdown"><a href="#"><span>Opções de comentários</span> <i       
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                    <li><a href="formComentarios.php">Fomulario para comentarios</a></li>
-                    <li><a href="home.php#testimonials">Comentarios sobre a bibliotecs</a></li>
+                    <li><a href="formComentarios.php">Fomulario para comentários</a></li>
+                    <li><a href="home.php#testimonials">Comentários sobre a BiblioTecs</a></li>
                 </ul>
         </li>
 

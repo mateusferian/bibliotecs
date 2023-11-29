@@ -46,7 +46,7 @@
         <div class="col-md-6 offset-md-3">
         <label>Nome</label>
         <input type="text" name="nome" class="form-control"
-         placeholder="digite o seu e-mail institucional" required="">
+         placeholder="Digite o seu nome" required="">
         </div>
     </div>
 
@@ -55,7 +55,7 @@
     <div class="col-md-6 offset-md-3">
     <label>cargo</label>
     <input type="text" name="cargo" class="form-control"
-     placeholder="digite o seu e-mail institucional" required="">
+     placeholder="Digite o seu cargo" required="">
      </div>
     </div>
 
@@ -63,11 +63,11 @@
     <div class="form-group">
     <div class="col-md-6 offset-md-3">
     <div class="input-group-label">
-        <label for="informacoes" class="form-label">Faça seu comentário</label>
+        <label for="informacoes" class="form-label">Comentário</label>
         <textarea  class="form-control" id="informacoes" name="comentario" rows="5" cols="42"
 
         style="max-height: 50px; overflow-y: auto; resize: vertical;"
-        required></textarea>
+        placeholder="Digite o seu comentário" required></textarea>
 </div>
 </div>
     </div>
