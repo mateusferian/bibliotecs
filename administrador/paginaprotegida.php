@@ -58,7 +58,7 @@
     echo "<script>
     Swal.fire({
         icon: 'error',
-        title: 'você nâo tem acesso!!',
+        title: 'você nâo tem acesso!',
         customClass: {
             popup: 'swalFireCadastroAdministrador',
         },

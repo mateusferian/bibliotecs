@@ -175,7 +175,7 @@ if (isset($_REQUEST["cadastrar"]))
           echo "<script>
           Swal.fire({
               icon: 'error',
-              title: 'A imagem tem que ter extensão png ou jpg!!',
+              title: 'A imagem tem que ter extensão png ou jpg!',
               customClass: {
                   popup: 'swalFireLivro',
               },
@@ -220,7 +220,7 @@ if (isset($_REQUEST["cadastrar"]))
               echo "<script>
               Swal.fire({
                   icon: 'error',
-                  title: 'O arquivo tem que ter extensão PDF!!',
+                  title: 'O arquivo tem que ter extensão PDF!',
                   customClass: {
                       popup: 'swalFireLivro',
                   },
@@ -301,7 +301,7 @@ if (isset($_REQUEST["cadastrar"]))
       echo "<script>
       Swal.fire({
           icon: 'error',
-          title: '$mensagem não pode estar vazio!!!',
+          title: '$mensagem não pode estar vazio!',
           customClass: {
               popup: 'swalFireLivro',
           },
@@ -337,7 +337,7 @@ if (isset($_REQUEST["cadastrar"]))
         $sql->execute();
         echo "<script>
         Swal.fire({
-            title: 'Cadastro realizado!!',
+            title: 'Cadastro realizado!',
             customClass: {
                 popup: 'swalFireLivro',
             },

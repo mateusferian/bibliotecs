@@ -36,14 +36,14 @@
                         <div class="col-md-6 offset-md-3">
                         <label>Nome</label>
                             <input type="text" name="nome" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                            placeholder="Digite o nome do evento" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>descrição</label>
-                            <input type="text" name="descricao" class="form-control" placeholder="digite o a descrição do evento"
+                            <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição do evento"
                                 required="">
                         </div>
                     </div>
@@ -58,7 +58,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input id="formulario" type="submit" value="cadastrar" class="btn" name="cadastrar">
+                            <input id="formulario" type="submit" value="Cadastrar" class="btn" name="cadastrar">
                         </div>
                         <br><br>
                     </div>
@@ -89,7 +89,7 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de evento realizado com Sucesso!!',
+                title: 'Cadastro de evento realizado com Sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },

@@ -40,7 +40,7 @@
     <div class="row">
         <div class="col-sm-12 mt-3">
             <form method="get" action="controleDeLivro.php">
-                <p class="fs-5 mt-5">Opção de filtragem</p>
+                <p class="fs-5 mt-5">Opções de filtragem</p>
                 <select class="form-control" name="filtro" id="filtro">
                     <option value="SemFiltro" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'SemFiltro' ? 'selected' : ''; ?>>Sem Filtro</option>
                     <option value="Séries da Literatura Estrangeira" <?php echo isset($_GET['filtro']) && $_GET['filtro'] == 'Séries da Literatura Estrangeira' ? 'selected' : ''; ?>>Séries da Literatura Estrangeira</option>
