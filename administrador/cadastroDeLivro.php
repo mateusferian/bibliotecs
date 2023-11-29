@@ -25,7 +25,7 @@ require_once "include/header.php";
 </head>
 <body>
 <?php
-    $nomeDaPagina ="Cadastro de Livro";
+    $nomeDaPagina ="Cadastro de livro";
     require_once "../restrito.php";
     require_once "include/navbar.php";
     require_once "include/nomePagina.php";
@@ -41,12 +41,12 @@ require_once "include/header.php";
    <div class="row">
    <div class="col-sm-12  mt-3">
           <label for="nome" class="form-label">Nome do Livro</label>
-          <input type="text" class="form-control" id="nome" name="nome">
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do livro">
         </div>
 
         <div class="col-sm-12  mt-3">
             <label for="isbn" class="form-label">ISBN</label>
-            <input type="text" name="isbn" class="form-control">
+            <input type="text" name="isbn" class="form-control" placeholder="Digite o isbn do livro">
         </div>
 
         <div class="col-sm-6 mt-3">
@@ -65,17 +65,17 @@ require_once "include/header.php";
 
         <div class="col-sm-6  mt-3">
             <label for="autor" class="form-label">Autor</label>
-            <input type="text" name="autor" class="form-control">
+            <input type="text" name="autor" class="form-control" placeholder="Digite o autor do livro">
             </div>
 	
         <div class="col-sm-6  mt-3">
           <label for="ano" class="form-label">Ano</label>
-          <input type="text" class="form-control" id="ano" name="ano">
+          <input type="text" class="form-control" id="ano" name="ano" placeholder="Digite o ano do livro">
         </div>
         
         <div class="col-sm-6  mt-3">
           <label for="editora" class="form-label">Editora</label>
-          <input type="text" class="form-control" id="editora" name="editora">
+          <input type="text" class="form-control" id="editora" name="editora" placeholder="Digite a editora do livro">
         </div>
 
         <div class="col-sm-12 mt-3">
@@ -117,8 +117,8 @@ require_once "include/header.php";
 
         <div class="col-md-12 mx-auto">
         <br><br>
-          <label for="descricao" class="form-label"><h5>Sinópse</h5></label>
-          <textarea class="form-control" rows="4" id="descricao" name="descricao" ></textarea>
+          <label for="descricao" class="form-label"><h5>Sinopse</h5></label>
+          <textarea class="form-control" rows="4" id="descricao" name="descricao"  placeholder="Digite a sinopse do livro"></textarea>
         </div>
     
     
