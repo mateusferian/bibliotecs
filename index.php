@@ -23,6 +23,10 @@
     .login{
         color: #fff;
     }
+
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
 </style>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
         data-aos-delay="100">
@@ -46,7 +50,7 @@
                         <div class="col-md-6 offset-md-3">
                             <label class="login">Senha</label>
                             <input type="password" name="senha" class="form-control" 
-                                required="">
+                                placeholder="Digite a sua senha" required="">
                         </div>
                     </div>
 

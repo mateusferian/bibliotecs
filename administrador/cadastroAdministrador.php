@@ -26,6 +26,11 @@
 
 </head>
 
+<style>
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
+    </style>
 <body>
 
 <?php
@@ -65,7 +70,7 @@
                         <div class="col-md-6 offset-md-3">
                             <label>Senha</label>
                             <input type="password" name="senha" class="form-control" 
-                                required="">
+                            placeholder="Digite a sua senha" required="">
                         </div>
                     </div>
                     <a class="form-links" href="opcoesDeAcesso.php?protect=434341212">Já tenho uma conta</a>

@@ -10,6 +10,10 @@ include_once 'include/header.php';
     body {
     background-image: url(img/atualizarSenha.jpg);
     }
+
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
 </style>
 
     <?php
