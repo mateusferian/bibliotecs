@@ -25,25 +25,31 @@
 
 </head>
 
+<style>
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
+    </style>
+
 <body>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;">
         <div class="container mt-4">
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="verificarSenha.php" method="POST">
                     <br><br>
-                    <h1 class="text-center">Codigo de acesso</h1>
+                    <h1 class="text-center">Código de acesso</h1>
                     <br><br>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label>Senha</label>
-                            <input type="password" name="senha" class="form-control" required>
+                            <label>Código</label>
+                            <input type="password" name="senha" class="form-control" placeholder="Digite o código de acesso" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-5 offset-md-5">
-                            <input  id="formulario" type="submit" value="enviar codigo" class="btn btn-primary">
+                            <input  id="formulario" type="submit" value="Enviar código" class="btn btn-primary">
                         </div>
                         <br><br>
                     </div>
@@ -58,7 +64,7 @@
     echo "<script>
     Swal.fire({
         icon: 'error',
-        title: 'você nâo tem acesso!!',
+        title: 'você nâo tem acesso!',
         customClass: {
             popup: 'swalFireCadastroAdministrador',
         },

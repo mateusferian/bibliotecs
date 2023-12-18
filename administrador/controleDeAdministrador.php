@@ -26,7 +26,7 @@
     require_once "include/navbarProtec.php";
     require_once "include/hero.php";
 ?>
-    <p class="fs-2 text-center mt-5">Controle de Administrador</p>
+    <p class="fs-2 text-center mt-5">Controle de administradores</p>
 
     <div class="container mt-5">
         <table class="table table-bordered text-center">
@@ -34,7 +34,7 @@
                 <tr class="bg-light">
                     <th scope="col">ID</th>
                     <th scope="col">NOME</th>
-                    <th scope="col">EMAIL-INSTITUCIONAL</th>
+                    <th scope="col">EMAIL</th>
                     <th scope="col">SITUAÇÃO</th>
                     <th scope="col">DATA DE CADASTRO</th>
                     <th colspan="2" scope="col">AÇÕES</th>
@@ -161,8 +161,8 @@
                 popup: 'swalFireControleDeAluno',
             },
             showCancelButton: true,
-            confirmButtonText: 'sim',
-            cancelButtonText: 'não',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      
@@ -193,7 +193,7 @@
                 echo "<script>
                     Swal.fire({
                         icon: 'success',
-                        title: 'Administrador apagado com sucesso',
+                        title: 'Administrador apagado com sucesso!',
                         customClass: {
                             popup: 'swalFireControleDeAlunoApagado',
                         },

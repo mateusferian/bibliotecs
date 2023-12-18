@@ -60,12 +60,12 @@
             <div class="col-md-6 offset-md-3">
                 <form class="form" action="alterarAdministrador.php?protect=2343431" method="POST" name="formulario">
                     <br><br>
-                    <h1 class="text-center">Alterar Administrador</h1>
+                    <h1 class="text-center">Alterar administrador</h1>
                     <br><br>
 
                     <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
-                            <label> ID: </label><br>
+                            <label> Id: </label><br>
                             <input type="text" name="id" class="form-control"
                                 value="<?php if(isset($row['id'])) {echo $row['id'];} ?>" readonly="readonly"><br>
                         </div>
@@ -73,7 +73,7 @@
 
                     <div class="form-group text-center">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-MAIL</label>
+                            <label>E-mail</label>
                             <input type="text" name="email" class="form-control"
                                 value="<?php if(isset($row['email'])) {echo $row['email'];} ?>"><br>
                         </div>
@@ -153,7 +153,7 @@
         echo "<script>
             Swal.fire({
                 icon: 'error',
-                title: 'Email já utilizado',
+                title: 'Email já utilizado!',
                 html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
@@ -171,7 +171,7 @@
         echo "<script>
             Swal.fire({
                 icon: 'error',
-                title: 'Email já utilizado',
+                title: 'Email já utilizado!',
                 html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
@@ -199,12 +199,12 @@
         $sql->execute();
         echo "<script>
         Swal.fire({
-            title: 'Alteração de administrador realizada com Sucesso!!',
+            title: 'Alteração de administrador realizada com sucesso!',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
             },
             showCancelButton: false,
-            confirmButtonText: 'Ir para a página de controle',
+            confirmButtonText: 'Ir para a página de controle administradores',
             timer: 4000,
             timerProgressBar: true,
             allowOutsideClick: false      

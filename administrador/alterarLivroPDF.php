@@ -146,7 +146,7 @@ try{
             </div>
 
             <div class="col-sm-12  mt-3">
-                <label for="disponibilidade">disponibilidade</label>
+                <label for="disponibilidade">Disponibilidade</label>
                 <select class="form-control" name="disponibilidade" id="disponibilidade">
                     <option value="retirado"
                         <?php if (isset($row['disponibilidade']) && $row['disponibilidade'] == "retirado") { echo 'selected'; } ?>>
@@ -160,7 +160,7 @@ try{
             <div class="col-md-12 mx-auto">
     <br><br>
     <label for="descricao" class="form-label">
-        <h5>Sinópse</h5>
+    Sinopse
     </label>
     <textarea type="text" name="descricao" class="form-control">
         <?php if(isset($row['descricao'])) { echo $row['descricao']; } ?>
@@ -170,7 +170,7 @@ try{
 
             <div class="col-12  mt-3">
                 <button id="botao" type="submit" name="alterar" value="alterar"
-                    class="btn btn-primary mt-2">alterar</button>
+                    class="btn btn-primary mt-2">Alterar</button>
                 <br><br>
             </div>
         </div>
@@ -224,7 +224,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: '$mensagem não pode estar vazio!!!',
+                        title: '$mensagem não pode estar vazio!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -267,7 +267,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: 'A imagem tem que ter extensão png ou jpg!!',
+                        title: 'A imagem tem que ter extensão png ou jpg!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -287,7 +287,7 @@ try{
                     echo "<script>
                     Swal.fire({
                         icon: 'error',
-                        title: 'A imagem é muito pesada!!',
+                        title: 'A imagem é muito pesada!',
                         customClass: {
                             popup: 'swalFireLivro',
                         },
@@ -310,7 +310,7 @@ try{
                         echo "<script>
                         Swal.fire({
                             icon: 'error',
-                            title: 'O arquivo tem que ter extensão PDF!!',
+                            title: 'O arquivo tem que ter extensão PDF!',
                             customClass: {
                                 popup: 'swalFireLivro',
                             },
@@ -386,12 +386,12 @@ try{
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Alteração realizado!!',
+                    title: 'Alteração de livro em PDF realizada com sucesso!',
                     customClass: {
                         popup: 'swalFireLivro',
                     },
                     showCancelButton: false,
-                    confirmButtonText: 'Ir para a página de controle de livro em pdf',
+                    confirmButtonText: 'Ir para a página de controle de livros em pdf',
                     timer: 4000,
                     timerProgressBar: true, 
                     allowOutsideClick: false    

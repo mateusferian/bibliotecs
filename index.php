@@ -23,6 +23,10 @@
     .login{
         color: #fff;
     }
+
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
 </style>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;" data-aos="zoom-out"
         data-aos-delay="100">
@@ -36,9 +40,9 @@
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label class="login">E-MAIL INSTITUCIONAL</label>
+                            <label class="login">E-MAIL</label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="Digite o seu e-mail" required="">
                         </div>
                     </div>
 
@@ -46,7 +50,7 @@
                         <div class="col-md-6 offset-md-3">
                             <label class="login">Senha</label>
                             <input type="password" name="senha" class="form-control" 
-                                required="">
+                                placeholder="Digite a sua senha" required="">
                         </div>
                     </div>
 
@@ -80,7 +84,7 @@
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'email ou senha incorretos',
+                    title: 'E-mail ou senha incorretos!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },
@@ -99,7 +103,7 @@ if (isset($_GET["inativo"])) {
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    title: 'Usuario inativo!!',
+                    title: 'Usuario inativo!',
                     customClass: {
                         popup: 'swalFireIndex',
                     },

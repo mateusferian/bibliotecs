@@ -25,6 +25,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 </head>
+<style>
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
+    </style>
 
 <body>
 
@@ -43,16 +48,16 @@
                     <br><br>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label>E-mail Institucional</label>
+                            <label>E-mail </label>
                             <input type="text" name="email" class="form-control"
-                                placeholder="digite o seu e-mail institucional" required="">
+                                placeholder="Digite o seu e-mail " required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
                             <label>Nome completo</label>
-                            <input type="text" name="nome" class="form-control" placeholder="digite o seu nome"
+                            <input type="text" name="nome" class="form-control" placeholder="Digite o seu nome"
                                 required="">
                         </div>
                     </div>
@@ -105,7 +110,7 @@
                         <div class="col-md-6 offset-md-3">
                             <label>Senha</label>
                             <input type="password" name="senha" class="form-control" 
-                                required="">
+                               placeholder="Digite a sua senha" required="">
                         </div>
                     </div>
                     <a class="form-links" href="../index.php">Já tenho uma conta</a>
@@ -157,7 +162,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -177,7 +182,7 @@
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Email já utilizado',
+            title: 'Email já utilizado!',
             html: '<p>O email: \"" . $email . "\" já está sendo utilizado</p>',
             customClass: {
                 popup: 'swalFireCadastroAdministrador',
@@ -211,7 +216,7 @@
         $sql->execute();
         echo "<script>
             Swal.fire({
-                title: 'Cadastro de aluno realizado com Sucesso!!',
+                title: 'Cadastro realizado com sucesso!',
                 customClass: {
                     popup: 'swalFireCadastroAdministrador',
                 },

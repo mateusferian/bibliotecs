@@ -21,13 +21,13 @@
                         <div class="row">
                             <div class="col-lg-12 order-1 order-lg-2">
                                 <h1>| Informações para as doações</h1>
-                                <p class="fw-light">Não se esqueça de verificar a <mark>qualidade </mark> dos livros doados.</br> Não dê para os outros o que <mark>não gostaria de receber.</mark></p></br>
+                                <p class="fw-light">Não se esqueça de verificar a <mark>qualidade </mark> dos livros doados.</br> Não dê aos outros o que <mark>não gostaria de receber.</mark></p></br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 order-1 order-lg-2">
                                 <h1>| Como doar?</h1>
-                                <p class="fw-light">Contate um dos administradores da nossa biblioteca presencial (contatos abaixo) e informe-os sobre sua doação.</br>Após comunicar os administradores, marque um horário para entregar o livro físico</p></br></br></br></br>
+                                <p class="fw-light">Contate um dos administradores da nossa biblioteca presencial (contatos abaixo) e informe-os sobre sua doação</br>Após comunicar os administradores, marque um horário para entregar o livro físico.</p></br></br></br></br>
                                 <h1>| Endereço e Contatos </h1>
                                 </br>
                                 <p class="fw-light">Avenida Alexandre Carlos de Melo, 18 - Jardim Aeroporto </br>

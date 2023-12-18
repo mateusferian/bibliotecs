@@ -208,7 +208,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
 
                 <div class="col-lg-4">
                     <div class="content px-xl-5">
-                        <h3> Otimize Sua Experiência na <strong>Bibliotecs</strong></h3>
+                        <h3> Otimize Sua Experiência na <strong>BiblioTecs</strong></h3>
                         <p>
                             Nossa seção de Perguntas Frequentes foi criada para agilizar suas buscas.
                             Seja você um estudante, professor ou amante da leitura, encontrará respostas úteis aqui.
@@ -231,27 +231,27 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             </h3>
                             <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                    Bem-vindo à nossa Biblioteca de Reservas, o seu refúgio literário onde as páginas
-                                    ganham vida e as histórias se desdobram. Nós nos dedicamos a conectar os amantes da
-                                    leitura com os tesouros literários que aguardam ser explorados.<br><br>
-                                    Nossa plataforma de reserva de livros oferece uma experiência simples e conveniente,
-                                    permitindo que você mergulhe em uma vasta coleção de títulos emocionantes, desde
-                                    clássicos atemporais até as mais recentes aventuras literárias. Com um clique, você
-                                    pode reservar o livro que deseja e embarcar em uma jornada através das
-                                    palavras.<br><br>
-                                    Nossa missão é promover o amor pela leitura e fortalecer a comunidade de leitores.
-                                    Acreditamos que cada livro reserva um mundo único para ser descoberto, e estamos
-                                    aqui para facilitar essa jornada. Além disso, estamos comprometidos em fornecer um
-                                    serviço excepcional, garantindo que sua experiência conosco seja suave e
-                                    enriquecedora.<br><br>
-                                    Fique à vontade para explorar nossa biblioteca virtual, reservar seus livros
-                                    favoritos e compartilhar suas descobertas literárias com amigos e familiares.
-                                    Juntos, podemos criar um espaço onde as histórias continuam a inspirar, ensinar e
-                                    entrelaçar nossas vidas.<br><br>
-                                    Agradecemos por escolher a bibliotecs como seu destino literário. Prepare-se para
-                                    embarcar em aventuras inesquecíveis, página por página.<br><br>
+                                    Bem vindo à nossa Biblioteca de Reservas, o seu refúgio literário onde as páginas ganham vida e as 
+                                    histórias se desdobram. Nós nos dedicamos a conectar amantes da leitura com os tesouros 
+                                    literários que aguardam ser explorados.<br><br>
+
+                                    Nossa plataforma de reserva de livros oferece uma experiência simples e conveniente, 
+                                    permitindo que você mergulhe em uma vasta coleção de títulos emocionantes, desde clássicos 
+                                    atemporais até as mais recentes aventuras literárias. Com um clique, você pode reservar o 
+                                    livro que deseja e embarcar em uma jornada através das palavras.<br><br>
+
+                                     Nossa missão é promover o amor pela leitura e fortalecer a comunidade de leitores.
+                                     Acreditamos que cada livro reserva um mundo único a ser descoberto, e estamos aqui para 
+                                     facilitar essa jornada. Além disso, estamos comprometidos em fornecer um serviço excepcional, 
+                                     garantindo que sua experiência conosco seja suave e enriquecedora.<br><br>
+
+                                     Fique à vontade para explorar nossa biblioteca virtual, reservar seus livros favoritos
+                                      e compartilhar suas descobertas literárias com amigos e familiares. Juntos, podemos
+                                       criar um espaço onde as histórias continuam a inspirar, ensinar e entrelaçar nossas vidas.<br><br>
+
+                                       Agradecemos por escolher a BiblioTecs como seu destino literário. Prepare-se para embarcar em aventuras inesquecíveis, página por página.<br><br>
                                     Leia, explore, sonhe.<br><br>
-                                    Equipe da Bibliotecs
+                                    Equipe da BiblioTecs
                                 </div>
                             </div>
                         </div><!-- # Faq item-->
@@ -266,11 +266,10 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             </h3>
                             <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                    O leitor podera ficar com o livro reservado com duração de uma semana, após essa
-                                    semana poderá renovar por mais uma semana.
+                                O leitor poderá ficar com o livro reservado por uma semana; após esse período, poderá renovar por mais uma semana.
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
+                        </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
@@ -282,14 +281,13 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             </h3>
                             <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                    Ao navegar na página inicial, a pessoa escolhe o livro que deseja e clica em 'Ver'.
-                                    Isso a direciona para a página de informações específicas do livro. Nessa página,
-                                    ela pode clicar no botão 'Reservar'
-                                    para garantir o livro. Após a reserva ser concluída com sucesso, a pessoa poderá
-                                    retirar o livro na escola.
+                                Ao navegar na página inicial, a pessoa escolhe o livro desejado e clica em 'Ver'. 
+                                Isso a direciona para a página de informações específicas do livro. Nessa página, 
+                                ela pode clicar no botão 'Reservar' para garantir o livro. Após a reserva ser concluída com sucesso,
+                                 a pessoa poderá retirar o livro na escola.
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
+                        </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
@@ -302,21 +300,19 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                             </h3>
                             <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                 <div class="accordion-body">
-                                    o motivo mais comum para ser bloqueado de fazer reservas no site da escola estão
-                                    frequentemente
-                                    relacionados ao comportamento do usuário e ao cumprimento das políticas da
-                                    biblioteca da escola.
-                                    Um dos motivos comuns pode ser relacionado à demora na devolução de livros
+                                O motivo mais comum para ser bloqueado de fazer reservas no site da escola está 
+                                frequentemente relacionado ao comportamento do usuário e ao cumprimento das políticas 
+                                da biblioteca da escola. Um dos motivos comuns pode ser atraso na devolução de livros
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
+                        </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-5">
                                     <span class="num">5.</span>
-                                    ficou mais alguma duvida? entre em contato:
+                                    Ficou mais alguma duvida? entre em contato:
                                 </button>
                             </h3>
                             <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -324,14 +320,12 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
                                     Caso houver dúvidas sobre o uso do site,
                                     entre em contato
 
-                                    <p> telefone (**) ***** - ****</p>
-                                    <p> telefone (**) ***** - ****</p>
-                                    <p> telefone (**) ***** - ****</p>
-                                    <p> ou </p>
-
-                                    <a href="email.html">email@bibliotecs.com</a>
-                                    <p><a href="email.html">email@bibliotecs.com</a></p>
-                                    <p><a href="email.html">email@bibliotecs.com</a></p>
+                                    <P> telefone (19) 3885-5712 <br>
+                                     telefone (19) 2937-7594 <br>
+                                    telefone (19) 2931-7594 <br><br>
+                                     ou  envie um email para:</p>
+                                    <p><a href="email.html">bibliotecs@gmail.com</a> <br>
+                                    <a href="email.html">email@bibliotecs.com</a></p>
                                 </div>
                             </div>
                         </div><!-- # Faq item-->
@@ -431,7 +425,7 @@ function exibirLivrosPaginados($conn, $destaque,$secaoId, $tipoLIvro) {
         const descricaoEvento = document.querySelector(".php-email-form");
         const mensagemPadrao = `
         <p class="h3">BEM-VINDO À NOSSA PÁGINA DE EVENTOS!</p>
-        <p class="h6">Aqui você encontrará uma lista dos eventos emocionantes que estão programados para ocorrer em breve. Cada evento é exibido com o nome e um ícone ao lado. Para saber mais detalhes sobre um evento específico, basta clicar no ícone correspondente ao lado do nome. Isso abrirá a descrição completa do evento, incluindo datas, horários e informações adicionais. Se você deseja ver todos os eventos, basta posicionar a seta do mouse sobre o nome e datas e, em seguida, use a roda de rolagem do mouse para deslocar a lista e visualizar todos os eventos. Explore nossa lista de eventos e fique por dentro de tudo o que está acontecendo!</p>
+        <p class="h6">Aqui, você encontrará uma lista dos eventos emocionantes que estão programados para ocorrer em breve. Cada evento é exibido com o nome e um ícone ao lado. Para saber mais detalhes sobre um evento específico, basta clicar no ícone correspondente ao lado do nome. Isso abrirá a descrição completa do evento, incluindo datas, horários e informações adicionais. Se você deseja ver todos os eventos, basta posicionar o cursor sobre o nome e datas e, em seguida, usar a roda de rolagem do mouse para deslocar a lista e visualizar todos os eventos. Explore nossa lista de eventos e fique por dentro de tudo o que está acontecendo!</p>
     `;
         eventos.forEach(function(evento, index) {
             evento.addEventListener("click", function() {

@@ -12,7 +12,7 @@
                             }
                             ?>
                             <p>Desperte o desejo de explorar novos horizontes 
-                            <br>e ampliar seu conhecimento através dos fascinantes livros disponíveis em nosso site.
+                            <br>e ampliar seu conhecimento através dos fascinantes livros disponíveis em nosso site!
                             </p>
                         </div>
                     </div>
