@@ -31,7 +31,7 @@ http://localhost:8080/bibliotecs/
 ```
 
 ### how to log in to the system?
-user-level access:
+user level access:
 * e-mail:
 ```
 milyrochhier@gmail.com
@@ -42,7 +42,7 @@ milyrochhier@gmail.com
 a123
 ```
 
-admin-level access:
+admin level access:
 * e-mail:
 ```
 camisyvitoria1000@gmail.com
