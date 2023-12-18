@@ -27,8 +27,44 @@ https://github.com/mateusferian/bibliotecs.git
 access the browser:
 
 ```
-http://localhost/bibliotecs/
+http://localhost:8080/bibliotecs/
 ```
+
+### how to log in to the system?
+user-level access:
+* e-mail:
+```
+milyrochhier@gmail.com
+```
+* password:
+
+```
+a123
+```
+
+admin-level access:
+* e-mail:
+```
+camisyvitoria1000@gmail.com
+```
+* password:
+
+```
+b123
+```
+
+director level access:
+
+* link:
+```
+http://localhost:8080/bibliotecs/administrador/paginaprotegida.php
+```
+* code:
+
+```
+3dsetec
+```
+
 ### technologies used
 
 * [PHP](https://www.php.net/) - PHP, a powerful and versatile scripting language, drives dynamism and interactivity in web development.
