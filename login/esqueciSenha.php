@@ -73,7 +73,7 @@ if (isset($_GET["erro"])) {
             $result_update_aluno->bindParam(':id', $row_email['id'], PDO::PARAM_INT);
             $result_update_aluno->execute();
         
-            $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
+            $link = "http://localhost/bibliotecs/login/atualizarSenha.php?chave=$chave_recuperar_senha";
 
         } else if ($result_email_admin->rowCount() > 0) {
                 $row_email = $result_email_admin->fetch(PDO::FETCH_ASSOC);
@@ -85,7 +85,7 @@ if (isset($_GET["erro"])) {
                 $result_update_admin->bindParam(':id', $row_email['id'], PDO::PARAM_INT);
                 $result_update_admin->execute();
         
-                $link = "http://localhost/tcc-library/login/atualizarSenha.php?chave=$chave_recuperar_senha";
+                $link = "http://localhost/bibliotecs/login/atualizarSenha.php?chave=$chave_recuperar_senha";
 
             } else {
                 echo "<script>
