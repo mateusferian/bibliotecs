@@ -71,8 +71,10 @@ http://localhost:8080/bibliotecs/administrador/paginaprotegida.php
 ####
 * [MySQL](https://www.mysql.com/) - MySQL, the reliable open-source database, is the efficient backbone for storing and retrieving data in web applications.
 ####
-* [Apache](https://httpd.apache.org/) - Apache, the robust web server, seamlessly collaborates with PHP to empower dynamic and interactive web applications, delivering a reliable foundation for online innovation
+* [Apache](https://httpd.apache.org/) - Apache, the robust web server, seamlessly collaborates with PHP to empower dynamic and interactive web applications, delivering a reliable foundation for online innovation.
 ####
 * [phpmyadmin](https://www.phpmyadmin.net/) - phpMyAdmin, the user-friendly interface, facilitates MySQL administration, allowing intuitive web-based database management.
 ####
-* [PHPMailer](https://github.com/PHPMailer/PHPMailer) - phpMailer, the PHP email-sending library, provides a flexible and effective solution for automated communication..
+* [PHPMailer](https://github.com/PHPMailer/PHPMailer) - phpMailer, the PHP email-sending library, provides a flexible and effective solution for automated communication.
+####
+* [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - JavaScript is a high-level, object-oriented scripting language widely used for web development, enabling dynamic interactivity on web pages through manipulation of HTML elements, user event handling, and asynchronous server requests.
