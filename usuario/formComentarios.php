@@ -15,6 +15,10 @@
     }.estrelas  input[type=radio]:checked  ~ label i.fa:before{
 	color: #CCC;
     }
+    textarea::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
+
     </style>
     </head>
 

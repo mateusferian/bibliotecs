@@ -25,6 +25,12 @@
 
 </head>
 
+<style>
+    input[type="password"]::placeholder {
+        color: #99cdc7 !important; /* Substitua essa cor pelo código ou nome da cor desejada */
+    }
+    </style>
+
 <body>
     <div id="myDiv" class="d-flex align-items-center" style="min-height: 100vh;">
         <div class="container mt-4">
@@ -36,8 +42,8 @@
 
                     <div class="form-group">
                         <div class="col-md-6 offset-md-3">
-                            <label>Senha</label>
-                            <input type="password" name="senha" class="form-control" required>
+                            <label>Código</label>
+                            <input type="password" name="senha" class="form-control" placeholder="Digite o código de acesso" required>
                         </div>
                     </div>
 
